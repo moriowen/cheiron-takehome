@@ -13,7 +13,7 @@ class LLMSettings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     openai_api_key: SecretStr
-    llm_model: str = "gpt-5.4-nano"
+    llm_model: str = "gpt-5.4-mini"
     llm_max_completion_tokens: int = 1000
     llm_timeout_s: float = 30.0
     llm_max_attempts: int = 2  # first try + one repair retry

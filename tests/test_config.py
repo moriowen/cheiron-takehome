@@ -4,9 +4,9 @@ from pydantic import ValidationError
 from trialviz.config import SUPPORTED_MODELS, LLMSettings
 
 
-def test_defaults_to_dev_model():
+def test_defaults_to_eval_chosen_model():
     s = LLMSettings(_env_file=None, openai_api_key="k")
-    assert s.llm_model == "gpt-5.4-nano"
+    assert s.llm_model == "gpt-5.4-mini"
 
 
 @pytest.mark.parametrize("model", sorted(SUPPORTED_MODELS))

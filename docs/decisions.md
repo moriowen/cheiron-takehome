@@ -23,7 +23,7 @@ The strict schema guarantees shape. Pydantic validators check rules a schema can
 One LLM call does not justify LangChain or similar. `OpenAIPlanner` is the only module that imports `openai`. `StubPlanner` serves tests.
 
 ### D05. Dev model `gpt-5.4-nano`; final model chosen by evals
-2026-11-12. Accepted.
+2026-11-12. Superseded by D21 (default model only; the supported-model set still holds).
 Supported models are `gpt-5.4-nano`, `gpt-5.4-mini`, `gpt-5.4`, `gpt-5.1`, because they accept the same request (`max_completion_tokens`, `temperature=0`, `reasoning_effort="none"`, strict `json_schema`). Probed on the API. `gpt-4o-mini` is cheaper ($0.15/$0.60 vs $0.20/$1.25 per 1M) but uses an older parameter set, so a later swap would break the request code. `gpt-5` and `gpt-5-mini` reject `temperature=0` and `reasoning_effort="none"`. A planner call costs about $0.0002 on nano. Changing the model is one setting (`LLM_MODEL`).
 
 ### D06. Track LLM spend ourselves
@@ -82,6 +82,14 @@ A Dockerfile and compose file make `docker compose up` with a `.env` the only se
 2026-11-12. Accepted.
 `TASK.md` is git-ignored because companies often keep take-home prompts private.
 
+### D20. A comparison is the series, never a dimension or a filter
+2026-11-12. Accepted.
+First planner eval (nano, prompt .2): 17/19. Both failures were comparisons: the model put the compared field into `group_by` or added a second dimension. Validators now reject a comparison field that is also in `group_by` or `filters`, and a comparison breakdown must have exactly one dimension. The repair retry then fixes such plans. Prompt .3 states the rule with an example.
+
+### D21. Default model is `gpt-5.4-mini`
+2026-11-12. Accepted.
+Planner evals, prompt .3, 19 cases: nano 18/19 ($0.0073 per run, unstable on the cross-tab case across runs), mini 19/19 ($0.0268 per run, about $0.0014 per query). The quality gain is worth the cost. Nano stays available via `LLM_MODEL` for cheap iteration. Results: `evals/results/`.
+
 ## Assumptions
 
 | ID | Assumption | If false |
@@ -91,4 +99,5 @@ A Dockerfile and compose file make `docker compose up` with a `.env` the only se
 | A03 | The ClinicalTrials.gov rate limit allows a few requests per second from one client. | Raise `min_interval_s`, add caching. |
 | A04 | Reviewers judge the backend and the JSON spec. The frontend is a bonus. | Spend more time on the UI. |
 | A05 | Relevance order (the API default) is a fair sample when a fetch is truncated. | Fetch by a neutral sort, or report counts only from exact totals. |
+| A07 | Deadline is 2026-11-13 morning (about 12 hours from 2026-11-12 evening). Scope favors breadth of query classes over polish. | Re-plan milestones. |
 | A06 | A model upgrade fixes interpretation errors, not design errors. Evals separate the two. | n/a (this is how we read eval results) |
