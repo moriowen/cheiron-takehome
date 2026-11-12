@@ -14,6 +14,8 @@ Provider is OpenAI only. The key is `OPENAI_API_KEY` in `.env` (git-ignored; tem
 
 Allowed models (the key works only for these): `gpt-4o-mini`, `gpt-4o-2024-08-06`, `gpt-4.1-nano`, `gpt-4.1-mini`, `gpt-4.1`, `gpt-5-mini`, `gpt-5`, `gpt-5.1`, `gpt-5.2`, `gpt-5.4-nano`, `gpt-5.4-mini`, `gpt-5.4`. `gpt-4.1-nano` is on the list but returns 404 for this key (checked 2026-11-12). The key cannot read billing or usage, so log token usage per call to track spend. Keep the model name in config, not in code, so evals can compare models.
 
+Dev model is `gpt-5.4-nano`. Swap targets are `gpt-5.4-mini`, `gpt-5.4`, and `gpt-5.1`. Send only the parameters that all four accept: `max_completion_tokens` (the API rejects `max_tokens` on the 5.x models), `temperature=0`, `reasoning_effort="none"`, and `response_format` with a strict `json_schema`. `gpt-5` and `gpt-5-mini` reject `temperature=0` and `reasoning_effort="none"`, so they need a different parameter set. Do not use them.
+
 API exploration notes: [docs/01-data-source.md](docs/01-data-source.md).
 
 ## Decision drivers from TASK.md
