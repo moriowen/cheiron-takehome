@@ -1,1 +1,33 @@
-<!doctype html><title>Trialviz</title><p>Frontend coming soon. API docs: <a href="/docs">/docs</a></p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trial Explorer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Trial Explorer</h1>
+    <span id="mode" class="mode"></span>
+  </header>
+  <main>
+    <section id="chat" aria-live="polite"></section>
+    <aside id="citations" hidden>
+      <div class="cite-head">
+        <h2 id="cite-title">Sources</h2>
+        <button id="cite-close" aria-label="Close sources">×</button>
+      </div>
+      <ol id="cite-list"></ol>
+    </aside>
+  </main>
+  <div id="presets" class="presets"></div>
+  <form id="ask">
+    <input id="q" autocomplete="off" placeholder="Ask about clinical trials, e.g. Which countries have the most recruiting trials for asthma?" maxlength="500">
+    <button type="submit">Ask</button>
+  </form>
+  <script src="render.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

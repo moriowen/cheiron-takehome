@@ -784,45 +784,6 @@
             ]
           },
           {
-            "id": "drug:chemotherapy",
-            "label": "Chemotherapy",
-            "group": "drug",
-            "weight": 21,
-            "citation_count": 21,
-            "citations": [
-              {
-                "nct_id": "NCT00256841",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Chemotherapy",
-                "title": "Hypo-Hyperfractionated Chest Radiation for Non Small Cell Lung Cancer With Taxotere/Xeloda Combination Chemotherapy"
-              },
-              {
-                "nct_id": "NCT00864331",
-                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-                "excerpt": "Chemotherapy",
-                "title": "Optimization of Treatment of Advanced Nonsmall Cell Lung Cancer Using Radiotherapy and Chemotherapy"
-              },
-              {
-                "nct_id": "NCT01707329",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Chemotherapy",
-                "title": "Icotinib in Combination With Chemotherapy Versus Chemotherapy Alone in Patients Progressed After Icotinib Treatment"
-              },
-              {
-                "nct_id": "NCT07874984",
-                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-                "excerpt": "Chemotherapy",
-                "title": "SPGL008 in Combination With SSGJ-706 \u00b1 Chemotherapy for Advanced Non-small Cell Lung Cancer"
-              },
-              {
-                "nct_id": "NCT05488626",
-                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-                "excerpt": "Chemotherapy",
-                "title": "Daily Adaptive Radiation Therapy: An Individualized Approach for Stage III Lung Cancer"
-              }
-            ]
-          },
-          {
             "id": "drug:cyclophosphamide",
             "label": "Cyclophosphamide",
             "group": "drug",
@@ -1014,6 +975,45 @@
                 "field": "protocolSection.armsInterventionsModule.interventions[1].name",
                 "excerpt": "Anlotinib",
                 "title": "A Study to Evaluate the Tolerance, Pharmacokinetics and Efficacy of TQ-A3334 Tablets"
+              }
+            ]
+          },
+          {
+            "id": "drug:cemiplimab",
+            "label": "Cemiplimab",
+            "group": "drug",
+            "weight": 17,
+            "citation_count": 17,
+            "citations": [
+              {
+                "nct_id": "NCT06865339",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cemiplimab",
+                "title": "Thoracic Radiotherapy and Inhibition of PD-1 and LAG-3 for Locally Advanced Non-Small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT06623656",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cemiplimab",
+                "title": "Preoperative Radioimmunotherapy Versus Chemoimmunotherapy in NSCLC"
+              },
+              {
+                "nct_id": "NCT05142189",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Cemiplimab",
+                "title": "Clinical Trial Evaluating the Safety, Tolerability and Preliminary Efficacy of BNT116 Alone and in Combinations in Patients With Advanced Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT04982224",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Cemiplimab",
+                "title": "Study of REGN5093-M114 (METxMET Antibody-Drug Conjugate) in Adult Patients With Mesenchymal Epithelial Transition Factor (MET) Overexpressing Advanced Cancer"
+              },
+              {
+                "nct_id": "NCT03580694",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Cemiplimab",
+                "title": "Study of REGN4659 in Combination With Cemiplimab in Patients With Advanced or Metastatic Non-Small Cell Lung Cancer (NSCLC)"
               }
             ]
           }
@@ -5904,6 +5904,62 @@
             ]
           },
           {
+            "source": "drug:cemiplimab",
+            "target": "drug:paclitaxel",
+            "weight": 4,
+            "citation_count": 4,
+            "citations": [
+              {
+                "nct_id": "NCT06623656",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cemiplimab",
+                "title": "Preoperative Radioimmunotherapy Versus Chemoimmunotherapy in NSCLC"
+              },
+              {
+                "nct_id": "NCT06623656",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Platinum based chemotherapy",
+                "title": "Preoperative Radioimmunotherapy Versus Chemoimmunotherapy in NSCLC"
+              },
+              {
+                "nct_id": "NCT05142189",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Cemiplimab",
+                "title": "Clinical Trial Evaluating the Safety, Tolerability and Preliminary Efficacy of BNT116 Alone and in Combinations in Patients With Advanced Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT05142189",
+                "field": "protocolSection.armsInterventionsModule.interventions[4].name",
+                "excerpt": "Paclitaxel",
+                "title": "Clinical Trial Evaluating the Safety, Tolerability and Preliminary Efficacy of BNT116 Alone and in Combinations in Patients With Advanced Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT07418931",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cemiplimab 350 mg IV",
+                "title": "A Multicenter Open-label Phase II Study of Cemiplimab Plus Chemotherapy, Selected on the Basis of Baseline Cytidine Deaminase Activity, in Advanced Squamous Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT07418931",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Paclitaxel 200 mg/sqm IV",
+                "title": "A Multicenter Open-label Phase II Study of Cemiplimab Plus Chemotherapy, Selected on the Basis of Baseline Cytidine Deaminase Activity, in Advanced Squamous Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT05800015",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "cemiplimab",
+                "title": "A Trial to Learn How the Combination of Fianlimab With Cemiplimab and Chemotherapy Works Compared With Cemiplimab and Chemotherapy for Treating Adult Patients With Advanced Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT05800015",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Paclitaxel",
+                "title": "A Trial to Learn How the Combination of Fianlimab With Cemiplimab and Chemotherapy Works Compared With Cemiplimab and Chemotherapy for Treating Adult Patients With Advanced Non-small Cell Lung Cancer"
+              }
+            ]
+          },
+          {
             "source": "drug:cetuximab",
             "target": "drug:gemcitabine",
             "weight": 4,
@@ -6573,6 +6629,50 @@
           },
           {
             "source": "drug:carboplatin",
+            "target": "drug:cemiplimab",
+            "weight": 3,
+            "citation_count": 3,
+            "citations": [
+              {
+                "nct_id": "NCT06623656",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Platinum based chemotherapy",
+                "title": "Preoperative Radioimmunotherapy Versus Chemoimmunotherapy in NSCLC"
+              },
+              {
+                "nct_id": "NCT06623656",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cemiplimab",
+                "title": "Preoperative Radioimmunotherapy Versus Chemoimmunotherapy in NSCLC"
+              },
+              {
+                "nct_id": "NCT05142189",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Carboplatin",
+                "title": "Clinical Trial Evaluating the Safety, Tolerability and Preliminary Efficacy of BNT116 Alone and in Combinations in Patients With Advanced Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT05142189",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Cemiplimab",
+                "title": "Clinical Trial Evaluating the Safety, Tolerability and Preliminary Efficacy of BNT116 Alone and in Combinations in Patients With Advanced Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT05800015",
+                "field": "protocolSection.armsInterventionsModule.interventions[4].name",
+                "excerpt": "Carboplatin",
+                "title": "A Trial to Learn How the Combination of Fianlimab With Cemiplimab and Chemotherapy Works Compared With Cemiplimab and Chemotherapy for Treating Adult Patients With Advanced Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT05800015",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "cemiplimab",
+                "title": "A Trial to Learn How the Combination of Fianlimab With Cemiplimab and Chemotherapy Works Compared With Cemiplimab and Chemotherapy for Treating Adult Patients With Advanced Non-small Cell Lung Cancer"
+              }
+            ]
+          },
+          {
+            "source": "drug:carboplatin",
             "target": "drug:osimertinib",
             "weight": 3,
             "citation_count": 3,
@@ -6656,6 +6756,50 @@
                 "field": "protocolSection.armsInterventionsModule.interventions[0].name",
                 "excerpt": "Sintilimab + Anlotinib + Pemetrexed + Cisplatin or Carboplatin",
                 "title": "Sintilimab, Anlotinib Hydrochloride and Platinum-Containing Dual-Agent Chemotherapy in NSCLC"
+              }
+            ]
+          },
+          {
+            "source": "drug:cemiplimab",
+            "target": "drug:cisplatin",
+            "weight": 3,
+            "citation_count": 3,
+            "citations": [
+              {
+                "nct_id": "NCT06623656",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cemiplimab",
+                "title": "Preoperative Radioimmunotherapy Versus Chemoimmunotherapy in NSCLC"
+              },
+              {
+                "nct_id": "NCT06623656",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Platinum based chemotherapy",
+                "title": "Preoperative Radioimmunotherapy Versus Chemoimmunotherapy in NSCLC"
+              },
+              {
+                "nct_id": "NCT07418931",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cemiplimab 350 mg IV",
+                "title": "A Multicenter Open-label Phase II Study of Cemiplimab Plus Chemotherapy, Selected on the Basis of Baseline Cytidine Deaminase Activity, in Advanced Squamous Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT07418931",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Cisplatin 80 mg/sqm IV",
+                "title": "A Multicenter Open-label Phase II Study of Cemiplimab Plus Chemotherapy, Selected on the Basis of Baseline Cytidine Deaminase Activity, in Advanced Squamous Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT05800015",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "cemiplimab",
+                "title": "A Trial to Learn How the Combination of Fianlimab With Cemiplimab and Chemotherapy Works Compared With Cemiplimab and Chemotherapy for Treating Adult Patients With Advanced Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT05800015",
+                "field": "protocolSection.armsInterventionsModule.interventions[5].name",
+                "excerpt": "Cisplatin",
+                "title": "A Trial to Learn How the Combination of Fianlimab With Cemiplimab and Chemotherapy Works Compared With Cemiplimab and Chemotherapy for Treating Adult Patients With Advanced Non-small Cell Lung Cancer"
               }
             ]
           },
@@ -6744,50 +6888,6 @@
                 "field": "protocolSection.armsInterventionsModule.interventions[1].name",
                 "excerpt": "Pemetrexed",
                 "title": "AK129 Combination Therapy for Advanced Solid Tumors"
-              }
-            ]
-          },
-          {
-            "source": "drug:chemotherapy",
-            "target": "drug:nivolumab",
-            "weight": 3,
-            "citation_count": 3,
-            "citations": [
-              {
-                "nct_id": "NCT02327078",
-                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-                "excerpt": "Chemotherapy",
-                "title": "A Study of the Safety, Tolerability, and Efficacy of Epacadostat Administered in Combination With Nivolumab in Select Advanced Cancers (ECHO-204)"
-              },
-              {
-                "nct_id": "NCT02327078",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Nivolumab",
-                "title": "A Study of the Safety, Tolerability, and Efficacy of Epacadostat Administered in Combination With Nivolumab in Select Advanced Cancers (ECHO-204)"
-              },
-              {
-                "nct_id": "NCT03351361",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "Chemotherapy",
-                "title": "Nivolumab and Ipilimumab Versus Chimiotherapy in First Line Treatment in PS 2 or Elderly in Advanced NSCLC Patients"
-              },
-              {
-                "nct_id": "NCT03351361",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Nivolumab + Ipilimumab",
-                "title": "Nivolumab and Ipilimumab Versus Chimiotherapy in First Line Treatment in PS 2 or Elderly in Advanced NSCLC Patients"
-              },
-              {
-                "nct_id": "NCT02949843",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Chemotherapy",
-                "title": "Targeted Therapy in Treating Patients With Incurable Non-Small Cell Lung Cancer With Genetic Mutations"
-              },
-              {
-                "nct_id": "NCT02949843",
-                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
-                "excerpt": "Nivolumab",
-                "title": "Targeted Therapy in Treating Patients With Incurable Non-Small Cell Lung Cancer With Genetic Mutations"
               }
             ]
           },
@@ -7253,6 +7353,38 @@
           },
           {
             "source": "drug:atezolizumab",
+            "target": "drug:cemiplimab",
+            "weight": 2,
+            "citation_count": 2,
+            "citations": [
+              {
+                "nct_id": "NCT05429866",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Checkpoint Blockade, Immune",
+                "title": "Immunological Variables Associated to ICI Toxicity in Cancer Patients"
+              },
+              {
+                "nct_id": "NCT05429866",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Checkpoint Blockade, Immune",
+                "title": "Immunological Variables Associated to ICI Toxicity in Cancer Patients"
+              },
+              {
+                "nct_id": "NCT05317858",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Atezolizumab",
+                "title": "Blood-brain Barrier (BBB) Opening Using Exablate Focused Ultrasound With Standard of Care Treatment of NSCLC Brain Mets"
+              },
+              {
+                "nct_id": "NCT05317858",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Cemiplimab",
+                "title": "Blood-brain Barrier (BBB) Opening Using Exablate Focused Ultrasound With Standard of Care Treatment of NSCLC Brain Mets"
+              }
+            ]
+          },
+          {
+            "source": "drug:atezolizumab",
             "target": "drug:docetaxel",
             "weight": 2,
             "citation_count": 2,
@@ -7476,6 +7608,166 @@
             ]
           },
           {
+            "source": "drug:cemiplimab",
+            "target": "drug:docetaxel",
+            "weight": 2,
+            "citation_count": 2,
+            "citations": [
+              {
+                "nct_id": "NCT06623656",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cemiplimab",
+                "title": "Preoperative Radioimmunotherapy Versus Chemoimmunotherapy in NSCLC"
+              },
+              {
+                "nct_id": "NCT06623656",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Platinum based chemotherapy",
+                "title": "Preoperative Radioimmunotherapy Versus Chemoimmunotherapy in NSCLC"
+              },
+              {
+                "nct_id": "NCT05142189",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Cemiplimab",
+                "title": "Clinical Trial Evaluating the Safety, Tolerability and Preliminary Efficacy of BNT116 Alone and in Combinations in Patients With Advanced Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT05142189",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Docetaxel",
+                "title": "Clinical Trial Evaluating the Safety, Tolerability and Preliminary Efficacy of BNT116 Alone and in Combinations in Patients With Advanced Non-small Cell Lung Cancer"
+              }
+            ]
+          },
+          {
+            "source": "drug:cemiplimab",
+            "target": "drug:gemcitabine",
+            "weight": 2,
+            "citation_count": 2,
+            "citations": [
+              {
+                "nct_id": "NCT06623656",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cemiplimab",
+                "title": "Preoperative Radioimmunotherapy Versus Chemoimmunotherapy in NSCLC"
+              },
+              {
+                "nct_id": "NCT06623656",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Platinum based chemotherapy",
+                "title": "Preoperative Radioimmunotherapy Versus Chemoimmunotherapy in NSCLC"
+              },
+              {
+                "nct_id": "NCT07418931",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cemiplimab 350 mg IV",
+                "title": "A Multicenter Open-label Phase II Study of Cemiplimab Plus Chemotherapy, Selected on the Basis of Baseline Cytidine Deaminase Activity, in Advanced Squamous Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT07418931",
+                "field": "protocolSection.armsInterventionsModule.interventions[4].name",
+                "excerpt": "Gemcitabine 1000 mg/sqm a",
+                "title": "A Multicenter Open-label Phase II Study of Cemiplimab Plus Chemotherapy, Selected on the Basis of Baseline Cytidine Deaminase Activity, in Advanced Squamous Non-small Cell Lung Cancer"
+              }
+            ]
+          },
+          {
+            "source": "drug:cemiplimab",
+            "target": "drug:nivolumab",
+            "weight": 2,
+            "citation_count": 2,
+            "citations": [
+              {
+                "nct_id": "NCT05429866",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Checkpoint Blockade, Immune",
+                "title": "Immunological Variables Associated to ICI Toxicity in Cancer Patients"
+              },
+              {
+                "nct_id": "NCT05429866",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Checkpoint Blockade, Immune",
+                "title": "Immunological Variables Associated to ICI Toxicity in Cancer Patients"
+              },
+              {
+                "nct_id": "NCT05317858",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Cemiplimab",
+                "title": "Blood-brain Barrier (BBB) Opening Using Exablate Focused Ultrasound With Standard of Care Treatment of NSCLC Brain Mets"
+              },
+              {
+                "nct_id": "NCT05317858",
+                "field": "protocolSection.armsInterventionsModule.interventions[4].name",
+                "excerpt": "Nivolumab",
+                "title": "Blood-brain Barrier (BBB) Opening Using Exablate Focused Ultrasound With Standard of Care Treatment of NSCLC Brain Mets"
+              }
+            ]
+          },
+          {
+            "source": "drug:cemiplimab",
+            "target": "drug:pembrolizumab",
+            "weight": 2,
+            "citation_count": 2,
+            "citations": [
+              {
+                "nct_id": "NCT03515629",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "REGN2810/ipi",
+                "title": "REGN2810 (Anti-PD-1 Antibody), Platinum-based Doublet Chemotherapy, and Ipilimumab (Anti-CTLA-4 Antibody) Versus Pembrolizumab Monotherapy in Patients With Lung Cancer"
+              },
+              {
+                "nct_id": "NCT03515629",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Pembrolizumab",
+                "title": "REGN2810 (Anti-PD-1 Antibody), Platinum-based Doublet Chemotherapy, and Ipilimumab (Anti-CTLA-4 Antibody) Versus Pembrolizumab Monotherapy in Patients With Lung Cancer"
+              },
+              {
+                "nct_id": "NCT05317858",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Cemiplimab",
+                "title": "Blood-brain Barrier (BBB) Opening Using Exablate Focused Ultrasound With Standard of Care Treatment of NSCLC Brain Mets"
+              },
+              {
+                "nct_id": "NCT05317858",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Pembrolizumab",
+                "title": "Blood-brain Barrier (BBB) Opening Using Exablate Focused Ultrasound With Standard of Care Treatment of NSCLC Brain Mets"
+              }
+            ]
+          },
+          {
+            "source": "drug:cemiplimab",
+            "target": "drug:pemetrexed",
+            "weight": 2,
+            "citation_count": 2,
+            "citations": [
+              {
+                "nct_id": "NCT06623656",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cemiplimab",
+                "title": "Preoperative Radioimmunotherapy Versus Chemoimmunotherapy in NSCLC"
+              },
+              {
+                "nct_id": "NCT06623656",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Platinum based chemotherapy",
+                "title": "Preoperative Radioimmunotherapy Versus Chemoimmunotherapy in NSCLC"
+              },
+              {
+                "nct_id": "NCT05800015",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "cemiplimab",
+                "title": "A Trial to Learn How the Combination of Fianlimab With Cemiplimab and Chemotherapy Works Compared With Cemiplimab and Chemotherapy for Treating Adult Patients With Advanced Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT05800015",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Pemetrexed",
+                "title": "A Trial to Learn How the Combination of Fianlimab With Cemiplimab and Chemotherapy Works Compared With Cemiplimab and Chemotherapy for Treating Adult Patients With Advanced Non-small Cell Lung Cancer"
+              }
+            ]
+          },
+          {
             "source": "drug:cetuximab",
             "target": "drug:pembrolizumab",
             "weight": 2,
@@ -7504,70 +7796,6 @@
                 "field": "protocolSection.armsInterventionsModule.interventions[3].name",
                 "excerpt": "Pembrolizumab",
                 "title": "A Study to Learn About Study Medicine ALTA3263 in Adults With Advanced Solid Tumors With KRAS Mutations"
-              }
-            ]
-          },
-          {
-            "source": "drug:chemotherapy",
-            "target": "drug:paclitaxel",
-            "weight": 2,
-            "citation_count": 2,
-            "citations": [
-              {
-                "nct_id": "NCT00002519",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "chemotherapy",
-                "title": "Paclitaxel Plus Radiation Therapy in Treating Patients With Untreated Stage III Non-small Cell Lung Cancer"
-              },
-              {
-                "nct_id": "NCT00002519",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "paclitaxel",
-                "title": "Paclitaxel Plus Radiation Therapy in Treating Patients With Untreated Stage III Non-small Cell Lung Cancer"
-              },
-              {
-                "nct_id": "NCT06943820",
-                "field": "protocolSection.armsInterventionsModule.interventions[11].name",
-                "excerpt": "Chemotherapy",
-                "title": "AK129 Combination Therapy for Advanced Solid Tumors"
-              },
-              {
-                "nct_id": "NCT06943820",
-                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-                "excerpt": "Paclitaxel",
-                "title": "AK129 Combination Therapy for Advanced Solid Tumors"
-              }
-            ]
-          },
-          {
-            "source": "drug:chemotherapy",
-            "target": "drug:pemetrexed",
-            "weight": 2,
-            "citation_count": 2,
-            "citations": [
-              {
-                "nct_id": "NCT05255302",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "Chemotherapy",
-                "title": "De-escalation Immunotherapy mAintenance Duration Trial for Stage IV Lung Cancer Patients With Disease Control After Chemo-immunotherapy Induction"
-              },
-              {
-                "nct_id": "NCT05255302",
-                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-                "excerpt": "Pemetrexed",
-                "title": "De-escalation Immunotherapy mAintenance Duration Trial for Stage IV Lung Cancer Patients With Disease Control After Chemo-immunotherapy Induction"
-              },
-              {
-                "nct_id": "NCT06943820",
-                "field": "protocolSection.armsInterventionsModule.interventions[11].name",
-                "excerpt": "Chemotherapy",
-                "title": "AK129 Combination Therapy for Advanced Solid Tumors"
-              },
-              {
-                "nct_id": "NCT06943820",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "Pemetrexed",
-                "title": "AK129 Combination Therapy for Advanced Solid Tumors"
               }
             ]
           },
@@ -8341,26 +8569,6 @@
           },
           {
             "source": "drug:carboplatin",
-            "target": "drug:chemotherapy",
-            "weight": 1,
-            "citation_count": 1,
-            "citations": [
-              {
-                "nct_id": "NCT06943820",
-                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
-                "excerpt": "Carboplatin",
-                "title": "AK129 Combination Therapy for Advanced Solid Tumors"
-              },
-              {
-                "nct_id": "NCT06943820",
-                "field": "protocolSection.armsInterventionsModule.interventions[11].name",
-                "excerpt": "Chemotherapy",
-                "title": "AK129 Combination Therapy for Advanced Solid Tumors"
-              }
-            ]
-          },
-          {
-            "source": "drug:carboplatin",
             "target": "drug:cyclophosphamide",
             "weight": 1,
             "citation_count": 1,
@@ -8400,22 +8608,62 @@
             ]
           },
           {
-            "source": "drug:cetuximab",
-            "target": "drug:chemotherapy",
+            "source": "drug:cemiplimab",
+            "target": "drug:durvalumab",
             "weight": 1,
             "citation_count": 1,
             "citations": [
               {
-                "nct_id": "NCT06943820",
-                "field": "protocolSection.armsInterventionsModule.interventions[8].name",
-                "excerpt": "Cetuximab",
-                "title": "AK129 Combination Therapy for Advanced Solid Tumors"
+                "nct_id": "NCT05429866",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Checkpoint Blockade, Immune",
+                "title": "Immunological Variables Associated to ICI Toxicity in Cancer Patients"
               },
               {
-                "nct_id": "NCT06943820",
-                "field": "protocolSection.armsInterventionsModule.interventions[11].name",
-                "excerpt": "Chemotherapy",
-                "title": "AK129 Combination Therapy for Advanced Solid Tumors"
+                "nct_id": "NCT05429866",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Checkpoint Blockade, Immune",
+                "title": "Immunological Variables Associated to ICI Toxicity in Cancer Patients"
+              }
+            ]
+          },
+          {
+            "source": "drug:cemiplimab",
+            "target": "drug:ipilimumab",
+            "weight": 1,
+            "citation_count": 1,
+            "citations": [
+              {
+                "nct_id": "NCT05401786",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Cemiplimab",
+                "title": "Anti-PD-1 Re-challenge After Immune Priming by Ipilimumab and Immune Boosting by Radiotherapy in Advanced NSCLC"
+              },
+              {
+                "nct_id": "NCT05401786",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Ipilimumab",
+                "title": "Anti-PD-1 Re-challenge After Immune Priming by Ipilimumab and Immune Boosting by Radiotherapy in Advanced NSCLC"
+              }
+            ]
+          },
+          {
+            "source": "drug:cemiplimab",
+            "target": "drug:osimertinib",
+            "weight": 1,
+            "citation_count": 1,
+            "citations": [
+              {
+                "nct_id": "NCT05142189",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Cemiplimab",
+                "title": "Clinical Trial Evaluating the Safety, Tolerability and Preliminary Efficacy of BNT116 Alone and in Combinations in Patients With Advanced Non-small Cell Lung Cancer"
+              },
+              {
+                "nct_id": "NCT05142189",
+                "field": "protocolSection.armsInterventionsModule.interventions[9].name",
+                "excerpt": "Osimertinib",
+                "title": "Clinical Trial Evaluating the Safety, Tolerability and Preliminary Efficacy of BNT116 Alone and in Combinations in Patients With Advanced Non-small Cell Lung Cancer"
               }
             ]
           },
@@ -8476,66 +8724,6 @@
                 "field": "protocolSection.armsInterventionsModule.interventions[1].name",
                 "excerpt": "Osimertinib",
                 "title": "Osimertinib, Cetuximab, and Tucatinib for the Treatment of EGFR-Mutant Stage IV or Recurrent Non-small Lung Cell Cancer"
-              }
-            ]
-          },
-          {
-            "source": "drug:chemotherapy",
-            "target": "drug:docetaxel",
-            "weight": 1,
-            "citation_count": 1,
-            "citations": [
-              {
-                "nct_id": "NCT06943820",
-                "field": "protocolSection.armsInterventionsModule.interventions[11].name",
-                "excerpt": "Chemotherapy",
-                "title": "AK129 Combination Therapy for Advanced Solid Tumors"
-              },
-              {
-                "nct_id": "NCT06943820",
-                "field": "protocolSection.armsInterventionsModule.interventions[5].name",
-                "excerpt": "Docetaxel",
-                "title": "AK129 Combination Therapy for Advanced Solid Tumors"
-              }
-            ]
-          },
-          {
-            "source": "drug:chemotherapy",
-            "target": "drug:ipilimumab",
-            "weight": 1,
-            "citation_count": 1,
-            "citations": [
-              {
-                "nct_id": "NCT03351361",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "Chemotherapy",
-                "title": "Nivolumab and Ipilimumab Versus Chimiotherapy in First Line Treatment in PS 2 or Elderly in Advanced NSCLC Patients"
-              },
-              {
-                "nct_id": "NCT03351361",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Nivolumab + Ipilimumab",
-                "title": "Nivolumab and Ipilimumab Versus Chimiotherapy in First Line Treatment in PS 2 or Elderly in Advanced NSCLC Patients"
-              }
-            ]
-          },
-          {
-            "source": "drug:chemotherapy",
-            "target": "drug:pembrolizumab",
-            "weight": 1,
-            "citation_count": 1,
-            "citations": [
-              {
-                "nct_id": "NCT02949843",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Chemotherapy",
-                "title": "Targeted Therapy in Treating Patients With Incurable Non-Small Cell Lung Cancer With Genetic Mutations"
-              },
-              {
-                "nct_id": "NCT02949843",
-                "field": "protocolSection.armsInterventionsModule.interventions[4].name",
-                "excerpt": "Pembrolizumab",
-                "title": "Targeted Therapy in Treating Patients With Incurable Non-Small Cell Lung Cancer With Genetic Mutations"
               }
             ]
           },

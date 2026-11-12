@@ -10,6 +10,7 @@ RUN uv sync --frozen --no-dev --no-install-project
 
 COPY src ./src
 COPY frontend ./frontend
+COPY examples ./examples
 RUN uv sync --frozen --no-dev
 
 EXPOSE 8000

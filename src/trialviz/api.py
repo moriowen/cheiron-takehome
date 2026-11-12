@@ -14,7 +14,9 @@ from trialviz.llm.planner import PlannerError
 from trialviz.pipeline import Pipeline, PipelineError
 from trialviz.schemas import QueryRequest, QueryResponse
 
-FRONTEND = Path(__file__).parents[2] / "frontend"
+ROOT = Path(__file__).parents[2]
+FRONTEND = ROOT / "frontend"
+EXAMPLES = ROOT / "examples"  # presets the frontend can replay
 
 
 def create_app(pipeline: Pipeline) -> FastAPI:
@@ -40,6 +42,8 @@ def create_app(pipeline: Pipeline) -> FastAPI:
     def health() -> dict:
         return {"status": "ok"}
 
+    if EXAMPLES.is_dir():
+        app.mount("/examples", StaticFiles(directory=EXAMPLES), name="examples")
     if FRONTEND.is_dir():
         app.mount("/ui", StaticFiles(directory=FRONTEND, html=True), name="ui")
 

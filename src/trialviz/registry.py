@@ -16,6 +16,18 @@ from trialviz.schemas import Citation
 
 ABSENT = "(field absent)"
 DRUG_TYPES = {"DRUG", "BIOLOGICAL"}
+# Free-text "drug" names that name a category, not a drug. Matched only when no MeSH term exists.
+GENERIC_DRUG_NAMES = {
+    "chemotherapy",
+    "standard of care",
+    "standard chemotherapy",
+    "placebo",
+    "saline",
+    "best supportive care",
+    "control",
+    "usual care",
+    "vehicle",
+}
 
 
 @dataclass(frozen=True)
@@ -170,7 +182,7 @@ def _drugs(s: dict) -> list[Value]:
         labels = _mesh_matches(names, meshes) or [_clean_name(iv["name"])]
         for label in labels:
             key = label.lower()
-            if "placebo" in key or not key:
+            if not key or "placebo" in key or key in GENERIC_DRUG_NAMES:
                 continue
             citation = cite(s, f"{base}[{i}].name", iv["name"])
             out.setdefault(key, Value(key, _display(label), citation))

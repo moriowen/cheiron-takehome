@@ -188,3 +188,19 @@ def test_lowercase_labels_are_capitalized():
     assert "Pembrolizumab" in labels
     [v] = DIMENSIONS[Dimension.STATUS].extract(EDGE)
     assert v.label == "Completed"
+
+
+def test_generic_intervention_names_are_not_drugs():
+    s = {
+        "protocolSection": {
+            "identificationModule": {"nctId": "NCT7"},
+            "armsInterventionsModule": {
+                "interventions": [
+                    {"type": "DRUG", "name": "Chemotherapy"},
+                    {"type": "DRUG", "name": "Standard of care"},
+                    {"type": "DRUG", "name": "Docetaxel"},
+                ]
+            },
+        }
+    }
+    assert keys(Dimension.DRUG, s) == ["docetaxel"]
