@@ -211,7 +211,7 @@ Latest results (all committed in `evals/results/`):
 | Planner, 72 cases | gpt-5.4-nano | 95.8% | 88.5 to 98.6% | $0.00042 | 1.3 / 2.0 s |
 | End-to-end, 27 cases, live | gpt-5.4-mini | 27/27 | 88 to 100% | | 2.7 / 5.9 s |
 
-CI runs lint and the offline tests on every push. A second workflow runs the planner evals on pull requests that touch the prompt, plan schema, or model settings, and fails if any intent drops below its floor in `evals/thresholds.json` (it needs an `OPENAI_API_KEY` repository secret). [docs/03-evals.md](docs/03-evals.md) explains the method, the failure categories, and how each failure we found became a regression case.
+GitHub CI runs lint and the offline tests on every push. The planner eval gate runs locally with the key in `.env`: `uv run python -m evals.planner_eval --runs 3 --gate` fails if any intent drops below its floor in `evals/thresholds.json`. Run it before committing a change to the prompt, plan schema, or model settings. [docs/03-evals.md](docs/03-evals.md) explains the method, the failure categories, and how each failure we found became a regression case.
 
 ## Design decisions and trade-offs
 

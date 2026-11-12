@@ -8,7 +8,8 @@ Reports, per docs/03-evals.md:
 - 95% Wilson intervals, results per intent / difficulty / source
 - failure counts per category (the axial codes from our error analysis)
 - cost per successful case, p50/p95 latency, retry rate
-With --gate, exits 1 if any intent falls below evals/thresholds.json (used in CI).
+With --gate, exits 1 if any intent falls below evals/thresholds.json. Run it locally before
+committing a prompt, plan-schema, or model change (D31).
 Writes evals/results/planner-<model>-p<prompt>-d<dataset>-k<K>.json.
 """
 

@@ -116,7 +116,7 @@ Live review of the lung cancer co-occurrence network showed "Chemotherapy" as a 
 
 ### D28. Eval methodology
 2026-11-12. Accepted.
-Evals follow the practices mapped in [03-evals.md](03-evals.md): failure categories from error analysis, a versioned and stratified golden set (`DATASET_VERSION` with intent, difficulty, and source metadata), synthetic cases generated from explicit dimension tuples with code-derived labels, deterministic checks only (no LLM judge), pass@k and pass^k with k=3, Wilson confidence intervals, cost per success and p50/p95 latency, a per-intent CI gate, and regression cases for every failure seen. Multi-turn simulation, judge alignment, pairwise judging, and online evals do not apply to a single-turn system with no judge and no production traffic.
+Evals follow the practices mapped in [03-evals.md](03-evals.md): failure categories from error analysis, a versioned and stratified golden set (`DATASET_VERSION` with intent, difficulty, and source metadata), synthetic cases generated from explicit dimension tuples with code-derived labels, deterministic checks only (no LLM judge), pass@k and pass^k with k=3, Wilson confidence intervals, cost per success and p50/p95 latency, a per-intent gate (run locally with `--gate`, D31), and regression cases for every failure seen. Multi-turn simulation, judge alignment, pairwise judging, and online evals do not apply to a single-turn system with no judge and no production traffic.
 
 ### D29. Keep `gpt-5.4-mini` after the k=3 comparison
 2026-11-12. Accepted. Refines D21.
@@ -125,6 +125,10 @@ On 72 cases x 3 runs (prompt .4): mini pass^k 100% (95% CI 94.9 to 100), nano 95
 ### D30. Answer the answerable part of a request
 2026-11-12. Accepted. Prompt .4.
 The first k=3 run found a planner that marked a whole network question unsupported because it also asked for trial names. The prompt now says to plan the answerable part and keep `supported=true`. Trial titles are already in every citation. A regression case pins this.
+
+### D31. The eval gate runs locally, not on GitHub
+2026-11-12. Accepted. Supersedes the `eval-gate.yml` workflow from D28.
+The OpenAI key lives only in the git-ignored `.env`. A GitHub gate would need the key stored as a repository secret. The user chose to keep evals local: `uv run python -m evals.planner_eval --runs 3 --gate` before committing prompt, plan, or model changes. GitHub CI keeps lint and offline tests, which need no key.
 
 ## Assumptions
 

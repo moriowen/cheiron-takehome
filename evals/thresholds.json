@@ -1,5 +1,5 @@
 {
-  "_comment": "CI gate for evals.planner_eval --gate. Per-intent floors on pass^k, so a gain in one intent cannot hide a regression in another. Raise floors as the dataset grows; see docs/03-evals.md.",
+  "_comment": "Local gate for evals.planner_eval --gate (D31). Per-intent floors on pass^k, so a gain in one intent cannot hide a regression in another. Raise floors as the dataset grows; see docs/03-evals.md.",
   "overall_pass_hat_k": 0.85,
   "default_per_intent": 0.75,
   "per_intent_pass_hat_k": {
