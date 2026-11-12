@@ -1,0 +1,455 @@
+{
+  "request": {
+    "query": "Which countries have the most recruiting trials for multiple sclerosis?"
+  },
+  "response": {
+    "status": "ok",
+    "visualization": {
+      "type": "bar_chart",
+      "title": "Trials for multiple sclerosis (recruiting) by country",
+      "subtitle": null,
+      "encoding": {
+        "x": {
+          "field": "trial_count",
+          "type": "quantitative",
+          "title": "Trials",
+          "sort": null
+        },
+        "y": {
+          "field": "country",
+          "type": "nominal",
+          "title": "Country",
+          "sort": null
+        }
+      },
+      "data": [
+        {
+          "country": "United States",
+          "trial_count": 159,
+          "citation_count": 159,
+          "citations": [
+            {
+              "nct_id": "NCT01730131",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "United States",
+              "title": "Natural History Study of Progressive Multifocal Leukoencephalopathy (PML)"
+            },
+            {
+              "nct_id": "NCT04047628",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "United States",
+              "title": "Best Available Therapy Versus Autologous Hematopoietic Stem Cell Transplant for Multiple Sclerosis (BEAT-MS)"
+            },
+            {
+              "nct_id": "NCT07002034",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "United States",
+              "title": "RE104 Safety and Efficacy Study in Adjustment Disorder in Cancer and Other Medical Illnesses"
+            },
+            {
+              "nct_id": "NCT06138132",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "United States",
+              "title": "A Study of Anti-CD19 Chimeric Antigen Receptor T-Cell ( CAR-T) Therapy in Subjects With Non-relapsing and Progressive Forms of Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT06341023",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "United States",
+              "title": "Functional Balance Intervention in Multiple Sclerosis"
+            }
+          ]
+        },
+        {
+          "country": "France",
+          "trial_count": 53,
+          "citation_count": 53,
+          "citations": [
+            {
+              "nct_id": "NCT05758831",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "France",
+              "title": "RItuximab Versus Ocrelizumab in Relapsing-remitting Multiple Sclerosis."
+            },
+            {
+              "nct_id": "NCT04334031",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "France",
+              "title": "Deployment o the Multidisciplinary Prospective Cohort Imminent"
+            },
+            {
+              "nct_id": "NCT06592703",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "France",
+              "title": "Allogenic Adipose Tissue-derived Mesenchymal Stromal Cells for the Treatment of Primary Progressive Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT07108920",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "France",
+              "title": "Analysis of Balance Disorders After Botulinum Toxin Treatment in the Rectus Femoris in Patients With a Stiff Knee Gait"
+            },
+            {
+              "nct_id": "NCT07135752",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "France",
+              "title": "Comparison of Digital Biomarkers in Subjects With Radiologically Isolated Syndrome (RIS) and Multiple Sclerosis (MS) Patients With Clinically Normal Neurological Examination"
+            }
+          ]
+        },
+        {
+          "country": "Italy",
+          "trial_count": 39,
+          "citation_count": 39,
+          "citations": [
+            {
+              "nct_id": "NCT06820125",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Italy",
+              "title": "Isolated Versus Combined Cognitive and Motor High-tech Rehabilitation"
+            },
+            {
+              "nct_id": "NCT05748015",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Italy",
+              "title": "Definition of Autonomic Nervous System Involvement in Patients With Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT06408259",
+              "field": "protocolSection.contactsLocationsModule.locations[13].country",
+              "excerpt": "Italy",
+              "title": "Study to Evaluate the Effectiveness and Safety of Ozanimod Compared to Fingolimod in Children and Adolescents With Relapsing Remitting Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT07058896",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Italy",
+              "title": "Unravelling The Optimisation And Consolidation Of Motor Skills In People With Multiple Sclerosis With Severe Gait Impairment: A Feasibility Study"
+            },
+            {
+              "nct_id": "NCT05713890",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Italy",
+              "title": "Home-based Action Observation Treatment With Virtual-reality for Arm Rehabilitation in People With Multiple Sclerosis"
+            }
+          ]
+        },
+        {
+          "country": "Turkey (T\u00fcrkiye)",
+          "trial_count": 31,
+          "citation_count": 31,
+          "citations": [
+            {
+              "nct_id": "NCT07736482",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Turkey (T\u00fcrkiye)",
+              "title": "Relationship Between Single- and Dual-Task Obstacle Crossing Performance and Fatigue and Disability in Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT06408259",
+              "field": "protocolSection.contactsLocationsModule.locations[32].country",
+              "excerpt": "Turkey (T\u00fcrkiye)",
+              "title": "Study to Evaluate the Effectiveness and Safety of Ozanimod Compared to Fingolimod in Children and Adolescents With Relapsing Remitting Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT07151534",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Turkey (T\u00fcrkiye)",
+              "title": "Body Awareness, Trunk Stability, and Arm Function in MS"
+            },
+            {
+              "nct_id": "NCT07083856",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Turkey (T\u00fcrkiye)",
+              "title": "Effects of Reiki and Self-Acupressure Applications"
+            },
+            {
+              "nct_id": "NCT07451600",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Turkey (T\u00fcrkiye)",
+              "title": "Effectiveness of TMS on Spasticity and Balance for Patients With MS"
+            }
+          ]
+        },
+        {
+          "country": "Germany",
+          "trial_count": 28,
+          "citation_count": 28,
+          "citations": [
+            {
+              "nct_id": "NCT06280755",
+              "field": "protocolSection.contactsLocationsModule.locations[1].country",
+              "excerpt": "Germany",
+              "title": "Clinical Impact Through AI-assisted MS Care - A Retrospective Multi-center Observational Study."
+            },
+            {
+              "nct_id": "NCT07224373",
+              "field": "protocolSection.contactsLocationsModule.locations[14].country",
+              "excerpt": "Germany",
+              "title": "An Open-label Study of AZD0120 in Adults With Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT05170126",
+              "field": "protocolSection.contactsLocationsModule.locations[2].country",
+              "excerpt": "Germany",
+              "title": "A Study on the Safety of Ozanimod Exposure in Pregnant Women and Their Offspring"
+            },
+            {
+              "nct_id": "NCT07426991",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Germany",
+              "title": "Cognitive Performance, Sleep Disturbances and Fatigue in Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT07299019",
+              "field": "protocolSection.contactsLocationsModule.locations[48].country",
+              "excerpt": "Germany",
+              "title": "A Study of Orelabrutinib in Patients With Secondary Progressive Multiple Sclerosis"
+            }
+          ]
+        },
+        {
+          "country": "China",
+          "trial_count": 24,
+          "citation_count": 24,
+          "citations": [
+            {
+              "nct_id": "NCT07303790",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "China",
+              "title": "This is an Early Exploratory Study to Assess the Tolerability and Safety of GC012F in Patients With Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT06939166",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "China",
+              "title": "Universal Chimeric Antigen Receptor T-Cell \uff08UCAR T-cell\uff09 Therapy Targeting CD19/B Cell Maturation Antigen \uff08CD19/BCMA\uff09 in Patients With r/r Neurological Autoimmune Diseases"
+            },
+            {
+              "nct_id": "NCT07337785",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "China",
+              "title": "CD19/BCMA-Targeted UCAR-T for Patients With Neurological Autoimmune Diseases"
+            },
+            {
+              "nct_id": "NCT07653984",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "China",
+              "title": "Cohort Study on Neuroimmune Diseases in the Reproductive Age"
+            },
+            {
+              "nct_id": "NCT07305116",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "China",
+              "title": "CAR T-cell Therapy Targeting CD19 and BCMA in Patients With B Cell Mediated Autoimmune Disease"
+            }
+          ]
+        },
+        {
+          "country": "Canada",
+          "trial_count": 23,
+          "citation_count": 23,
+          "citations": [
+            {
+              "nct_id": "NCT06461741",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Canada",
+              "title": "EMG Biofeedback Training to Improve Balance in Individuals with Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT07224373",
+              "field": "protocolSection.contactsLocationsModule.locations[13].country",
+              "excerpt": "Canada",
+              "title": "An Open-label Study of AZD0120 in Adults With Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT03816345",
+              "field": "protocolSection.contactsLocationsModule.locations[51].country",
+              "excerpt": "Canada",
+              "title": "Testing an Immunotherapy Anti-cancer Drug, Nivolumab, for Advanced Cancers in Patients With Autoimmune Disorders, AIM-NIVO"
+            },
+            {
+              "nct_id": "NCT06261489",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Canada",
+              "title": "Cannabis (THC vs. CBD) in Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT06733922",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Canada",
+              "title": "ELIOS - Investigational Biomarkers to Track Disease Modification in Active RRMS"
+            }
+          ]
+        },
+        {
+          "country": "Switzerland",
+          "trial_count": 23,
+          "citation_count": 23,
+          "citations": [
+            {
+              "nct_id": "NCT02980640",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Switzerland",
+              "title": "Swiss Multiple Sclerosis Registry"
+            },
+            {
+              "nct_id": "NCT07086950",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Switzerland",
+              "title": "Neurorehabilitation of Cognitive Deficits in Multiple Sclerosis Using an Adaptive Cognitive Exergame"
+            },
+            {
+              "nct_id": "NCT04819737",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Switzerland",
+              "title": "Spinal Cord Lesion Detection in Multiple Sclerosis Using Novel MRI Sequences"
+            },
+            {
+              "nct_id": "NCT06780150",
+              "field": "protocolSection.contactsLocationsModule.locations[91].country",
+              "excerpt": "Switzerland",
+              "title": "A Study to Investigate Effects of Ocrelizumab Treatment on Neurofilament Light Chain (NfL) Levels and Participant Satisfaction in Participants With Multiple Sclerosis (MS)"
+            },
+            {
+              "nct_id": "NCT06369766",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Switzerland",
+              "title": "REtinal Markers In Neuroinflammatory Diseases (\"REMIND\")"
+            }
+          ]
+        },
+        {
+          "country": "Spain",
+          "trial_count": 22,
+          "citation_count": 22,
+          "citations": [
+            {
+              "nct_id": "NCT06408259",
+              "field": "protocolSection.contactsLocationsModule.locations[26].country",
+              "excerpt": "Spain",
+              "title": "Study to Evaluate the Effectiveness and Safety of Ozanimod Compared to Fingolimod in Children and Adolescents With Relapsing Remitting Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT07310862",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Spain",
+              "title": "Virtual Reality - Gamma Sensory Stimulation for Improving Fatigue in People With Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT07299019",
+              "field": "protocolSection.contactsLocationsModule.locations[83].country",
+              "excerpt": "Spain",
+              "title": "A Study of Orelabrutinib in Patients With Secondary Progressive Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT06735053",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Spain",
+              "title": "Impact of Virtual Reality Physiotherapy on Multiple Sclerosis Patients"
+            },
+            {
+              "nct_id": "NCT06968676",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Spain",
+              "title": "Mixed Reality for Upper Limb Rehabilitation in People With Multiple Sclerosis (VIRTUALDOMUS)"
+            }
+          ]
+        },
+        {
+          "country": "United Kingdom",
+          "trial_count": 22,
+          "citation_count": 22,
+          "citations": [
+            {
+              "nct_id": "NCT06728956",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "United Kingdom",
+              "title": "Assessing NHS ImplemeNTation of an onlinE Resilience Training Acceptance and Commitment Therapy (ACT) Programme to Prevent Job Loss in Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT07689682",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "United Kingdom",
+              "title": "OPM- MEG in Non-immune And iMmune-medIated Neurological Disease"
+            },
+            {
+              "nct_id": "NCT07452562",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "United Kingdom",
+              "title": "Hesperidin RCT in MS"
+            },
+            {
+              "nct_id": "NCT07224373",
+              "field": "protocolSection.contactsLocationsModule.locations[17].country",
+              "excerpt": "United Kingdom",
+              "title": "An Open-label Study of AZD0120 in Adults With Multiple Sclerosis"
+            },
+            {
+              "nct_id": "NCT07303582",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "United Kingdom",
+              "title": "Individualised Cryoneurolysis to Treat Pain in the Context of Spasticity in the Upper and Lower Extremities"
+            }
+          ]
+        }
+      ]
+    },
+    "meta": {
+      "plan": {
+        "supported": true,
+        "unsupported_reason": null,
+        "analysis": "breakdown",
+        "group_by": [
+          "country"
+        ],
+        "measures": [],
+        "filters": {
+          "drug": null,
+          "condition": "multiple sclerosis",
+          "sponsor": null,
+          "country": null,
+          "phase": null,
+          "status": [
+            "RECRUITING"
+          ],
+          "start_year": null,
+          "end_year": null
+        },
+        "comparison": null,
+        "top_n": 10
+      },
+      "filters": {
+        "condition": "multiple sclerosis",
+        "status": [
+          "RECRUITING"
+        ]
+      },
+      "api_query": {
+        "query.cond": "multiple sclerosis",
+        "filter.overallStatus": "RECRUITING"
+      },
+      "source": "clinicaltrials.gov",
+      "data_timestamp": "2026-11-12T10:00:05",
+      "records_used": 430,
+      "total_matching": 430,
+      "truncated": false,
+      "multi_valued": true,
+      "units": {
+        "trial_count": "trials"
+      },
+      "sort": "descending by trial_count",
+      "time_granularity": null,
+      "notes": [
+        "47 smaller country groups not shown (top 10 kept).",
+        "One trial can count in several groups, so group totals can exceed the number of trials."
+      ],
+      "llm": {
+        "model": "gpt-5.4-mini",
+        "prompt_version": "2026-11-12.3",
+        "attempts": 1,
+        "cost_usd": 0.001402
+      }
+    }
+  }
+}

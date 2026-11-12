@@ -1,0 +1,160 @@
+{
+  "model": "gpt-5.4-mini",
+  "prompt_version": "2026-11-12.3",
+  "passed": 19,
+  "total": 19,
+  "results": [
+    {
+      "id": "trend_drug_since",
+      "passed": true,
+      "errors": [],
+      "chart": "time_series",
+      "latency_s": 3.6,
+      "cost_usd": 0.001408
+    },
+    {
+      "id": "trend_condition",
+      "passed": true,
+      "errors": [],
+      "chart": "time_series",
+      "latency_s": 3.0,
+      "cost_usd": 0.001392
+    },
+    {
+      "id": "phase_distribution",
+      "passed": true,
+      "errors": [],
+      "chart": "bar_chart",
+      "latency_s": 3.0,
+      "cost_usd": 0.001387
+    },
+    {
+      "id": "intervention_types",
+      "passed": true,
+      "errors": [],
+      "chart": "bar_chart",
+      "latency_s": 3.1,
+      "cost_usd": 0.001393
+    },
+    {
+      "id": "compare_drugs_phase",
+      "passed": true,
+      "errors": [],
+      "chart": "grouped_bar_chart",
+      "latency_s": 5.0,
+      "cost_usd": 0.001449
+    },
+    {
+      "id": "compare_conditions_sponsor_class",
+      "passed": true,
+      "errors": [],
+      "chart": "grouped_bar_chart",
+      "latency_s": 7.9,
+      "cost_usd": 0.001442
+    },
+    {
+      "id": "countries_recruiting",
+      "passed": true,
+      "errors": [],
+      "chart": "bar_chart",
+      "latency_s": 1.6,
+      "cost_usd": 0.001402
+    },
+    {
+      "id": "network_sponsor_drug",
+      "passed": true,
+      "errors": [],
+      "chart": "network_graph",
+      "latency_s": 3.2,
+      "cost_usd": 0.001402
+    },
+    {
+      "id": "network_drug_cooccurrence",
+      "passed": true,
+      "errors": [],
+      "chart": "network_graph",
+      "latency_s": 3.0,
+      "cost_usd": 0.00139
+    },
+    {
+      "id": "hint_drug_trend",
+      "passed": true,
+      "errors": [],
+      "chart": "time_series",
+      "latency_s": 3.1,
+      "cost_usd": 0.001404
+    },
+    {
+      "id": "histogram_enrollment",
+      "passed": true,
+      "errors": [],
+      "chart": "histogram",
+      "latency_s": 1.6,
+      "cost_usd": 0.001409
+    },
+    {
+      "id": "scatter_enrollment_duration",
+      "passed": true,
+      "errors": [],
+      "chart": "scatter_plot",
+      "latency_s": 1.6,
+      "cost_usd": 0.001411
+    },
+    {
+      "id": "total_recruiting",
+      "passed": true,
+      "errors": [],
+      "chart": "metric",
+      "latency_s": 1.0,
+      "cost_usd": 0.001393
+    },
+    {
+      "id": "top_sponsors",
+      "passed": true,
+      "errors": [],
+      "chart": "bar_chart",
+      "latency_s": 2.9,
+      "cost_usd": 0.001393
+    },
+    {
+      "id": "crosstab_phase_status",
+      "passed": true,
+      "errors": [],
+      "chart": "grouped_bar_chart",
+      "latency_s": 2.6,
+      "cost_usd": 0.001402
+    },
+    {
+      "id": "trend_comparison",
+      "passed": true,
+      "errors": [],
+      "chart": "time_series",
+      "latency_s": 1.7,
+      "cost_usd": 0.001456
+    },
+    {
+      "id": "network_drug_condition_sponsor",
+      "passed": true,
+      "errors": [],
+      "chart": "network_graph",
+      "latency_s": 4.5,
+      "cost_usd": 0.001391
+    },
+    {
+      "id": "unsupported_efficacy",
+      "passed": true,
+      "errors": [],
+      "chart": null,
+      "latency_s": 1.0,
+      "cost_usd": 0.001456
+    },
+    {
+      "id": "unsupported_price",
+      "passed": true,
+      "errors": [],
+      "chart": null,
+      "latency_s": 1.0,
+      "cost_usd": 0.001441
+    }
+  ]
+}

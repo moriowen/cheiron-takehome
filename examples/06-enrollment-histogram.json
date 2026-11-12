@@ -1,0 +1,373 @@
+{
+  "request": {
+    "query": "What is the distribution of enrollment sizes in phase 3 asthma trials?"
+  },
+  "response": {
+    "status": "ok",
+    "visualization": {
+      "type": "histogram",
+      "title": "Distribution of enrollment (participants): trials for asthma in phase 3",
+      "subtitle": null,
+      "encoding": {
+        "x": {
+          "field": "bin_start",
+          "type": "quantitative",
+          "title": "Enrollment (participants)",
+          "sort": null
+        },
+        "x2": {
+          "field": "bin_end",
+          "type": "quantitative",
+          "title": null,
+          "sort": null
+        },
+        "y": {
+          "field": "trial_count",
+          "type": "quantitative",
+          "title": "Trials",
+          "sort": null
+        }
+      },
+      "data": [
+        {
+          "bin_start": 0,
+          "trial_count": 63,
+          "bin_end": 25,
+          "citation_count": 63,
+          "citations": [
+            {
+              "nct_id": "NCT04206761",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "0",
+              "title": "Investigating the Effects of QVM149 on MRI Ventilation Defects"
+            },
+            {
+              "nct_id": "NCT00288379",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "16",
+              "title": "SMILDA - Symbicort\u00aeTurbuhaler\u00ae Allergan Challenge Study in Allergic Patients With Mild Asthma"
+            },
+            {
+              "nct_id": "NCT02049294",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "11",
+              "title": "Study of the Steroid Sparing Effect of Xolair (Omalizumab) in Patients With Persistent Eosinophilic Bronchitis"
+            },
+            {
+              "nct_id": "NCT00268723",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "15",
+              "title": "Efficacy Study of Single-Dose Levalbuterol Tartrate HFA MDI Vs Placebo in Subjects 18 Years and Older With EIB"
+            },
+            {
+              "nct_id": "NCT01049178",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "0",
+              "title": "Randomized Controlled Trial of Silymarin in Asthma"
+            }
+          ]
+        },
+        {
+          "bin_start": 25,
+          "trial_count": 52,
+          "bin_end": 50,
+          "citation_count": 52,
+          "citations": [
+            {
+              "nct_id": "NCT00306163",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "37",
+              "title": "Responsiveness of Lower Airways in Adult Patients (18-60 Years) With Stable Asthma After Treatment With Ciclesonide and Fluticasone Propionate (BY9010/NL-101)"
+            },
+            {
+              "nct_id": "NCT03394508",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "30",
+              "title": "The Safety and Efficacy of Intralymphatic Immunotherapy in Pollen Allergic Adolescents and Young Adults With Asthma"
+            },
+            {
+              "nct_id": "NCT00135642",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "44",
+              "title": "Grass Pollen Immunotherapy Using a Cluster Regime for Seasonal Rhinitis and Asthma"
+            },
+            {
+              "nct_id": "NCT04259164",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "28",
+              "title": "Anti-inflammatory Effects Glycopyrronium"
+            },
+            {
+              "nct_id": "NCT00525772",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "26",
+              "title": "Effect of Ciclesonide on Exercise Induced Bronchoconstriction"
+            }
+          ]
+        },
+        {
+          "bin_start": 50,
+          "trial_count": 76,
+          "bin_end": 100,
+          "citation_count": 76,
+          "citations": [
+            {
+              "nct_id": "NCT00805324",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "54",
+              "title": "Study of the Effectiveness and Safety of Desloratadine (Aerius) Syrup in Children With Hayfever With or Without Asthma (P03472)"
+            },
+            {
+              "nct_id": "NCT02033122",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "58",
+              "title": "Effect of Aerobic Training in Moderate or Severe Asthmatic Patients"
+            },
+            {
+              "nct_id": "NCT02725242",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "77",
+              "title": "Efficacy of Once-daily Budesonide/Formoterol Turbuhaler 4.5/160 \u00b5g in Step Down Asthma"
+            },
+            {
+              "nct_id": "NCT00115297",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "62",
+              "title": "Montelukast for Early Life Wheezing"
+            },
+            {
+              "nct_id": "NCT00975741",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "97",
+              "title": "Efficacy and Safety of Two Dry Power Inhalers (DPIs) Used for the Application of Mometasone in the Treatment of Asthma"
+            }
+          ]
+        },
+        {
+          "bin_start": 100,
+          "trial_count": 109,
+          "bin_end": 200,
+          "citation_count": 109,
+          "citations": [
+            {
+              "nct_id": "NCT04227483",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "150",
+              "title": "Deflazacort Vs. Prednisolone in Acute-stage ABPA"
+            },
+            {
+              "nct_id": "NCT00583986",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "150",
+              "title": "Reliability of a Top Mount Actuation Indicator With Levalbuterol MDI in Adult and Pediatric Subjects With Asthma or COPD"
+            },
+            {
+              "nct_id": "NCT04435990",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "150",
+              "title": "Efficacy and Safety Evaluation for the Treatment of Allergy Against Mites"
+            },
+            {
+              "nct_id": "NCT00565955",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "116",
+              "title": "Effect of Addition of Oral Montelukast to Standard Treatment in Acute Moderate to Severe Asthma in Children"
+            },
+            {
+              "nct_id": "NCT07645248",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "110",
+              "title": "A Study to Compare Safety of 4 Weeks Exposure to Propellants Hydrofluoroalkane 1,1-difluoroethane (HFA-152a) and HFA-1,1,1,2-tetrafluoroethane (134a)"
+            }
+          ]
+        },
+        {
+          "bin_start": 200,
+          "trial_count": 191,
+          "bin_end": 500,
+          "citation_count": 191,
+          "citations": [
+            {
+              "nct_id": "NCT01244984",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "243",
+              "title": "A Long-term Safety Study of Fluticasone Furoate (FF)/GW642444 and FF in Japanese Subjects With Asthma"
+            },
+            {
+              "nct_id": "NCT06307665",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "440",
+              "title": "Evaluating the Efficacy and Safety of PT027 Compared With PT007 Administered As Needed in Participants 12 to < 18 Years of Age With Asthma"
+            },
+            {
+              "nct_id": "NCT02555371",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "306",
+              "title": "Cessation Versus Continuation of Long-term Mepolizumab in Severe Eosinophilic Asthma Patients"
+            },
+            {
+              "nct_id": "NCT01181895",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "348",
+              "title": "Study B2C112060: A Study of the Efficacy and Safety of Vilanterol Inhalation Powder in Adults and Adolescents With Persistent Asthma"
+            },
+            {
+              "nct_id": "NCT05191186",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "450",
+              "title": "Documentation of Efficacy of Intralymphatic Allergen Immunotherapy"
+            }
+          ]
+        },
+        {
+          "bin_start": 500,
+          "trial_count": 125,
+          "bin_end": 1000,
+          "citation_count": 125,
+          "citations": [
+            {
+              "nct_id": "NCT03562949",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "761",
+              "title": "A BE Study to Compare Beclomethasone Dipropionate Inhalation Aerosol, 40 mcg and QVAR\u00ae 40 mcg, Inhalation Aerosol"
+            },
+            {
+              "nct_id": "NCT00328718",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "526",
+              "title": "Pediatric ADVAIR DISKUS Versus Oral Montelukast Chewable Tablets"
+            },
+            {
+              "nct_id": "NCT00314574",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "850",
+              "title": "A Study of Omalizumab (Xolair) in Subjects With Moderate to Severe Persistent Asthma (EXTRA)"
+            },
+            {
+              "nct_id": "NCT01419262",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "703",
+              "title": "DO IT Trial: Vitamin D Outcomes and Interventions In Toddlers"
+            },
+            {
+              "nct_id": "NCT03557307",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "598",
+              "title": "Study to Evaluate Efficacy and Safety of Benralizumab in Reducing Oral Corticosteroid Use in Adult Patients With Severe Asthma"
+            }
+          ]
+        },
+        {
+          "bin_start": 1000,
+          "trial_count": 82,
+          "bin_end": 5000,
+          "citation_count": 82,
+          "citations": [
+            {
+              "nct_id": "NCT00734318",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "1667",
+              "title": "Study of FlutiForm\u00ae Versus Fluticasone Plus Formoterol in Adult Subjects With Severe Asthma"
+            },
+            {
+              "nct_id": "NCT03347279",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "1061",
+              "title": "Study to Evaluate Tezepelumab in Adults & Adolescents With Severe Uncontrolled Asthma"
+            },
+            {
+              "nct_id": "NCT00192257",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "2229",
+              "title": "Trial to Compare the Safety, Tolerability and Efficacy of Influenza Virus Vaccine, (CAIV-T) With Influenza Virus in Children With Asthma"
+            },
+            {
+              "nct_id": "NCT03052517",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "2538",
+              "title": "Study of Safety of QAW039 in Patients With Asthma Inadequately Controlled on Standard-of-care Asthma Treatment"
+            },
+            {
+              "nct_id": "NCT06570889",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "2000",
+              "title": "VItamin D in pregnanCy for prevenTion Of eaRlY Childhood Asthma"
+            }
+          ]
+        },
+        {
+          "bin_start": 5000,
+          "trial_count": 1,
+          "bin_end": null,
+          "citation_count": 1,
+          "citations": [
+            {
+              "nct_id": "NCT01444430",
+              "field": "protocolSection.designModule.enrollmentInfo.count",
+              "excerpt": "12460",
+              "title": "A 6 Month Safety Study Comparing Symbicort With Inhaled Corticosteroid Only in Asthmatic Adults and Adolescents"
+            }
+          ]
+        }
+      ]
+    },
+    "meta": {
+      "plan": {
+        "supported": true,
+        "unsupported_reason": null,
+        "analysis": "histogram",
+        "group_by": [],
+        "measures": [
+          "enrollment"
+        ],
+        "filters": {
+          "drug": null,
+          "condition": "asthma",
+          "sponsor": null,
+          "country": null,
+          "phase": [
+            "PHASE3"
+          ],
+          "status": null,
+          "start_year": null,
+          "end_year": null
+        },
+        "comparison": null,
+        "top_n": null
+      },
+      "filters": {
+        "condition": "asthma",
+        "phase": [
+          "PHASE3"
+        ]
+      },
+      "api_query": {
+        "query.cond": "asthma",
+        "filter.advanced": "AREA[Phase](PHASE3)"
+      },
+      "source": "clinicaltrials.gov",
+      "data_timestamp": "2026-11-12T10:00:05",
+      "records_used": 706,
+      "total_matching": 706,
+      "truncated": false,
+      "multi_valued": false,
+      "units": {
+        "trial_count": "trials",
+        "bin_start": "participants",
+        "bin_end": "participants"
+      },
+      "sort": null,
+      "time_granularity": null,
+      "notes": [
+        "7 trials have no enrollment and are not shown.",
+        "Bins are [bin_start, bin_end); bin_end null means open-ended."
+      ],
+      "llm": {
+        "model": "gpt-5.4-mini",
+        "prompt_version": "2026-11-12.3",
+        "attempts": 1,
+        "cost_usd": 0.001409
+      }
+    }
+  }
+}
