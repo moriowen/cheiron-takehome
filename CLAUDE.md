@@ -6,7 +6,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Take-home assignment: a backend service that turns a natural-language clinical-trials question into a structured visualization spec, backed by the ClinicalTrials.gov Data API (https://clinicaltrials.gov/data-api/api). The spec is in [TASK.md](TASK.md). It is the single source of truth for requirements, deliverables, and grading. Read it before any design decision.
 
-State: no code yet. Language, framework, and layout are not chosen. When they are, add the build, run, and test commands here (including how to run a single test).
+Stack: Python 3.12, uv, Pydantic v2, OpenAI SDK. FastAPI service and Dockerfile come later.
+
+## Commands
+
+```sh
+uv sync                                   # install
+uv run pytest                             # offline tests (default excludes `live`)
+uv run pytest tests/test_plan.py::test_valid_plan_parses   # one test
+uv run pytest -m live                     # real OpenAI calls, costs < $0.01
+uv run ruff check . && uv run ruff format .
+```
+
+## Architecture (so far)
+
+The LLM produces only a `QueryPlan` (`src/trialviz/plan.py`). Code does fetching, counting, chart choice, and citations. Callers depend on the `Planner` protocol (`llm/planner.py`). `OpenAIPlanner` is the only module that imports `openai`. `StubPlanner` serves tests. A plan that fails Pydantic validation gets one repair retry with the errors fed back. Each call logs tokens and cost (`llm/usage.py`). Bump `PROMPT_VERSION` in `llm/prompt.py` on every prompt change. `QueryPlan` and `QueryRequest` are provisional until the question taxonomy is settled.
+
+Gotcha: openai SDK 3.x depends on `httpx2`, not `httpx`.
 
 ## LLM access
 

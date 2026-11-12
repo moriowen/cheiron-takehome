@@ -1,0 +1,32 @@
+[project]
+name = "trialviz"
+version = "0.1.0"
+description = "Turns clinical-trial questions into visualization specs backed by ClinicalTrials.gov data."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=3.49.0",
+    "pydantic>=2.14.3",
+    "pydantic-settings>=2.16.2",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["live: calls real external APIs (costs money); run with -m live"]
+addopts = "-m 'not live'"
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.4",
+]
