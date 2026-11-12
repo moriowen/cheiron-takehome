@@ -66,8 +66,8 @@ Each milestone ends with tests green, lint clean, a commit, and this file and `d
 | M0 | LLM planner layer, ClinicalTrials.gov client | Offline and live tests pass | Done |
 | M1 | Final `QueryPlan`, `QueryRequest`, `QueryResponse` models | Every taxonomy row can be written as a valid plan; schema tests pass | Done |
 | M2 | Planner eval set and runner | Each appendix question has an expected plan; `evals/run.py` prints pass rate and cost per model | Done (mini 19/19) |
-| M3 | Recorded fixtures and field registry | Every Dimension and measure extracts values with citations from real fixtures | |
-| M4 | Aggregator | Breakdown, cross-tab, trend, network (bipartite and co-occurrence), histogram, scatter, total all tested on fixtures | |
+| M3 | Recorded fixtures and field registry | Every Dimension and measure extracts values with citations from real fixtures | Done |
+| M4 | Aggregator | Breakdown, cross-tab, trend, network (bipartite and co-occurrence), histogram, scatter, total all tested on fixtures | Done |
 | M5 | Chart selector and spec builders | Every taxonomy row produces a valid `QueryResponse` from a fixed plan and fixtures | |
 | M6 | Pipeline, FastAPI `POST /query`, cache, Docker | End-to-end request works locally and in Docker | |
 | M7 | End-to-end evals, example runs, README | 3 to 5 example JSON outputs committed from real runs; README covers every TASK.md item | |
