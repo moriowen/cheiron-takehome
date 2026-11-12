@@ -129,8 +129,10 @@ class LLMInfo(BaseModel):
 class Meta(BaseModel):
     plan: QueryPlan | None = Field(default=None, description="How the question was interpreted.")
     filters: dict[str, Any] = Field(default_factory=dict, description="Filters applied.")
-    api_query: dict[str, str] = Field(
-        default_factory=dict, description="Exact ClinicalTrials.gov API parameters used."
+    api_query: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Exact ClinicalTrials.gov API parameters used. With a comparison: one "
+        "parameter set per series, keyed by series name.",
     )
     source: str = "clinicaltrials.gov"
     data_timestamp: str | None = Field(default=None, description="Registry snapshot time.")
