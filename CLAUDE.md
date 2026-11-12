@@ -8,6 +8,14 @@ Take-home assignment: a backend service that turns a natural-language clinical-t
 
 State: no code yet. Language, framework, and layout are not chosen. When they are, add the build, run, and test commands here (including how to run a single test).
 
+## LLM access
+
+Provider is OpenAI only. The key is `OPENAI_API_KEY` in `.env` (git-ignored; template in `.env.example`). Never read, print, or commit `.env`. A local `.git/hooks/pre-commit` blocks staged `.env` files and `sk-...` strings.
+
+Allowed models (the key works only for these): `gpt-4o-mini`, `gpt-4o-2024-08-06`, `gpt-4.1-nano`, `gpt-4.1-mini`, `gpt-4.1`, `gpt-5-mini`, `gpt-5`, `gpt-5.1`, `gpt-5.2`, `gpt-5.4-nano`, `gpt-5.4-mini`, `gpt-5.4`. Keep the model name in config, not in code, so evals can compare models.
+
+API exploration notes: [docs/01-data-source.md](docs/01-data-source.md).
+
 ## Decision drivers from TASK.md
 
 Grading weights steer trade-offs: system design 35%, AI/agent design 20%, code quality 20%, query/visualization coverage 15%, input/output schema design 10%. Deep citations are a bonus.
