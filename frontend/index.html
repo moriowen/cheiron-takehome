@@ -12,6 +12,11 @@
     <h1>Trial Explorer</h1>
     <span id="mode" class="mode"></span>
   </header>
+  <nav class="tabs" role="tablist" aria-label="Demo">
+    <button id="ask-tab" role="tab" aria-selected="true" aria-controls="ask-panel" tabindex="0">Ask</button>
+    <button id="how-tab" role="tab" aria-selected="false" aria-controls="how-panel" tabindex="-1">How it works</button>
+  </nav>
+  <div id="ask-panel" role="tabpanel" aria-labelledby="ask-tab">
   <main>
     <section id="chat" aria-live="polite"></section>
     <aside id="citations" hidden>
@@ -27,7 +32,79 @@
     <input id="q" autocomplete="off" placeholder="Ask about clinical trials, e.g. Which countries have the most recruiting trials for asthma?" maxlength="500">
     <button type="submit">Ask</button>
   </form>
+  </div>
+  <section id="how-panel" role="tabpanel" aria-labelledby="how-tab" hidden>
+    <div class="how-content">
+      <h2>How a question becomes a chart</h2>
+      <p class="how-intro">The model plans the query. Code fetches registry records, counts them, and builds a chart with sources for every datum.</p>
+      <div class="flow-legend"><span class="legend-code">Code</span><span class="legend-model">LLM</span><span class="legend-data">Registry / cache</span><span class="legend-exit">Unsupported exit</span></div>
+      <h3 class="flow-heading">Request path</h3>
+      <div class="request-flow" aria-label="Request path, from question to chart">
+        <div class="flow-row">
+          <article class="flow-box"><h4>Request</h4><p><code>POST /query</code> with a <code>QueryRequest</code>.<br>Required: <code>query</code>, 1 to 500 characters.</p></article>
+          <p class="flow-note">Optional hints: <code>drug_name, condition, sponsor, country, phase, status, start_year, end_year</code>.</p>
+        </div>
+        <div class="flow-row planner-row">
+          <article class="flow-box model-box"><h4>Planner (LLM) <small>gpt-5.4-mini</small></h4><p>OpenAI Structured Outputs: strict JSON schema → <code>QueryPlan</code>.<br>Pydantic checks rules; one repair retry with validation errors.</p></article>
+          <article class="flow-box exit-box side-branch"><h4>Unsupported exit</h4><p><code>supported=false</code> → status <code>unsupported</code>.<br>Reason in <code>meta.notes</code>. No registry call.</p></article>
+        </div>
+        <div class="model-boundary">The LLM never sees registry data and never writes a number</div>
+        <div class="flow-row">
+          <article class="flow-box"><h4>Apply hints</h4><p>Structured hints override the plan filters.<br>A conflict returns HTTP 422.</p></article>
+          <p class="flow-note">Plan fields: <code>supported, analysis, group_by, measures, filters, comparison, top_n</code>.<br>Analysis: breakdown, trend, network, histogram, scatter, total.</p>
+        </div>
+        <div class="flow-row">
+          <article class="flow-box"><h4>Compiler</h4><p>Plan → ClinicalTrials.gov search parameters.<br>One search per compared value; select only needed API fields.</p></article>
+          <p class="flow-note">Each compared value becomes its own series. A trial matching several values can appear in each series.</p>
+        </div>
+        <div class="flow-row fetch-row">
+          <article class="flow-box"><h4>Fetcher <small>CTGovClient</small></h4><p>Pages of 1000, up to 3000 records per series.<br>Throttle, retry with backoff, and honor <code>Retry-After</code>.</p></article>
+          <div class="registry-branch side-branch">
+            <article class="flow-box data-box"><h4>In-memory cache</h4><p>1 hour. A hit reuses saved records.</p></article>
+            <div class="branch-arrow">miss ↓</div>
+            <article class="flow-box data-box"><h4>ClinicalTrials.gov</h4><p>Registry API. Bursts can return HTTP 429.</p></article>
+            <p class="return-label">Records return to the fetcher; results are cached.</p>
+          </div>
+        </div>
+        <div class="flow-row">
+          <article class="flow-box"><h4>Field registry</h4><p>Extract and normalize each dimension; drugs and conditions map to MeSH.<br>Attach <code>{nct_id, field, excerpt, title}</code> to each value.</p></article>
+          <p class="flow-note">The excerpt is the exact value at the cited API field path. Normalized labels keep the original evidence.</p>
+        </div>
+        <div class="flow-row">
+          <article class="flow-box"><h4>Aggregator</h4><p>Counts, cross-tabs, yearly trends, networks, bins, scatter points, total.<br>Every group keeps its citations.</p></article>
+          <p class="flow-note">Networks can be bipartite or co-occurrence. A total uses the registry's <code>totalCount</code>; other analyses count fetched records.</p>
+        </div>
+        <div class="flow-row">
+          <article class="flow-box"><h4>Chart selector</h4><p>Fixed rules map the plan shape to a chart type.<br>The LLM does not choose the chart.</p></article>
+          <p class="flow-note"><code>bar_chart, grouped_bar_chart, time_series, histogram, scatter_plot, network_graph, metric</code></p>
+        </div>
+        <div class="flow-row">
+          <article class="flow-box"><h4>Spec builder</h4><p>Write <code>visualization {type, title, encoding, data}</code> and <code>meta</code>.<br>Each datum has up to 5 trial citations and <code>citation_count</code>.</p></article>
+          <p class="flow-note">Meta: plan, filters, api_query, data_timestamp, records_used, total_matching, truncated, notes, and LLM cost.</p>
+        </div>
+        <div class="flow-row last-row">
+          <article class="flow-box"><h4>Frontend</h4><p>D3 renders each chart type.<br>Click a mark to see its citations.</p></article>
+          <p class="flow-note">The Ask tab shows the chart, source panel, caveats, and the plan and API query behind the answer.</p>
+        </div>
+      </div>
+
+      <h3 class="flow-heading">How the system is evaluated</h3>
+      <div class="eval-flow" aria-label="Golden dataset feeds planner and end-to-end evals, followed by the gates">
+        <article class="flow-box data-box eval-golden"><h4>Golden dataset</h4><p>27 hand-written cases + 45 synthetic cases.</p><p class="eval-detail">TASK.md appendix, taxonomy, edge cases, regressions. Synthetic tuples: intent × entity × filter × phrasing style. Code derives expected plans; gpt-5.4 writes only question text.</p></article>
+        <div class="eval-checks">
+          <article class="flow-box"><h4>Planner evals</h4><p>Deterministic plan checks.<br>pass@k and pass^k, k=3; 95% Wilson intervals.</p><p class="eval-detail">Per intent, failure categories, cost per success, p50/p95 latency.</p></article>
+          <article class="flow-box"><h4>End-to-end evals</h4><p>Full pipeline against the live registry.<br>Check chart type, citations, and meta invariants.</p></article>
+        </div>
+        <article class="flow-box eval-gate"><h4>Gates</h4><p>GitHub CI: lint and offline tests on every push.</p><p class="eval-detail">Local gate: <code>planner_eval --runs 3 --gate</code> uses the key in <code>.env</code> and fails if an intent falls below its floor in <code>evals/thresholds.json</code>. Run before changing the prompt, plan schema, or model.</p></article>
+      </div>
+
+      <h3 class="flow-heading">A real request, stage by stage</h3>
+      <p class="how-intro">Loaded from <a href="../examples/02-compare-phases.json">02-compare-phases.json</a>, a saved system run. All example values below come from that file.</p>
+      <div id="worked-example" aria-live="polite"><p class="hint">Loading the saved example…</p></div>
+    </div>
+  </section>
   <script src="render.js"></script>
   <script src="app.js"></script>
+  <script src="how.js"></script>
 </body>
 </html>
