@@ -53,6 +53,7 @@ class Citation(BaseModel):
     nct_id: str = Field(description="Trial ID. Link: https://clinicaltrials.gov/study/{nct_id}")
     field: str = Field(description="JSON path of the cited value in the API study record.")
     excerpt: str = Field(description="Exact value of that field in the API response.")
+    title: str | None = Field(default=None, description="Trial brief title, for display.")
 
 
 class Channel(BaseModel):

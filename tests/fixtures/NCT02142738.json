@@ -1,0 +1,112 @@
+{
+ "protocolSection": {
+  "identificationModule": {
+   "nctId": "NCT02142738",
+   "briefTitle": "Study of Pembrolizumab (MK-3475) Compared to Platinum-Based Chemotherapies in Participants With Metastatic Non-Small Cell Lung Cancer (MK-3475-024/KEYNOTE-024)"
+  },
+  "statusModule": {
+   "overallStatus": "COMPLETED",
+   "startDateStruct": {
+    "date": "2014-08-25",
+    "type": "ACTUAL"
+   },
+   "completionDateStruct": {
+    "date": "2021-05-27",
+    "type": "ACTUAL"
+   }
+  },
+  "sponsorCollaboratorsModule": {
+   "leadSponsor": {
+    "name": "Merck Sharp & Dohme LLC",
+    "class": "INDUSTRY"
+   }
+  },
+  "conditionsModule": {
+   "conditions": [
+    "Non-Small Cell Lung Carcinoma"
+   ]
+  },
+  "designModule": {
+   "studyType": "INTERVENTIONAL",
+   "phases": [
+    "PHASE3"
+   ],
+   "enrollmentInfo": {
+    "count": 305,
+    "type": "ACTUAL"
+   }
+  },
+  "armsInterventionsModule": {
+   "interventions": [
+    {
+     "type": "DRUG",
+     "name": "Pembrolizumab",
+     "otherNames": [
+      "MK-3475",
+      "SCH 900475",
+      "KEYTRUDA\u00ae"
+     ]
+    },
+    {
+     "type": "DRUG",
+     "name": "Paclitaxel"
+    },
+    {
+     "type": "DRUG",
+     "name": "Carboplatin"
+    },
+    {
+     "type": "DRUG",
+     "name": "Pemetrexed"
+    },
+    {
+     "type": "DRUG",
+     "name": "Cisplatin"
+    },
+    {
+     "type": "DRUG",
+     "name": "Gemcitabine"
+    }
+   ]
+  },
+  "contactsLocationsModule": {}
+ },
+ "derivedSection": {
+  "conditionBrowseModule": {
+   "meshes": [
+    {
+     "id": "D002289",
+     "term": "Carcinoma, Non-Small-Cell Lung"
+    }
+   ]
+  },
+  "interventionBrowseModule": {
+   "meshes": [
+    {
+     "id": "C582435",
+     "term": "pembrolizumab"
+    },
+    {
+     "id": "D017239",
+     "term": "Paclitaxel"
+    },
+    {
+     "id": "D016190",
+     "term": "Carboplatin"
+    },
+    {
+     "id": "D000068437",
+     "term": "Pemetrexed"
+    },
+    {
+     "id": "D002945",
+     "term": "Cisplatin"
+    },
+    {
+     "id": "D000093542",
+     "term": "Gemcitabine"
+    }
+   ]
+  }
+ }
+}
