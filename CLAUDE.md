@@ -32,7 +32,11 @@ Allowed models (the key works only for these): `gpt-4o-mini`, `gpt-4o-2024-08-06
 
 Dev model is `gpt-5.4-nano`. Swap targets are `gpt-5.4-mini`, `gpt-5.4`, and `gpt-5.1`. Send only the parameters that all four accept: `max_completion_tokens` (the API rejects `max_tokens` on the 5.x models), `temperature=0`, `reasoning_effort="none"`, and `response_format` with a strict `json_schema`. `gpt-5` and `gpt-5-mini` reject `temperature=0` and `reasoning_effort="none"`, so they need a different parameter set. Do not use them.
 
-API exploration notes: [docs/01-data-source.md](docs/01-data-source.md).
+## Docs to keep current
+
+- [docs/02-implementation-plan.md](docs/02-implementation-plan.md): pipeline, question taxonomy, milestones. Update the milestone status when one finishes.
+- [docs/decisions.md](docs/decisions.md): decision log and assumptions. Add an entry for every design decision the user and you agree on. Never rewrite an old entry: mark it superseded and add a new one.
+- [docs/01-data-source.md](docs/01-data-source.md): API facts and data-quality gotchas.
 
 ## Decision drivers from TASK.md
 
