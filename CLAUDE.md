@@ -56,4 +56,4 @@ Grading weights steer trade-offs: system design 35%, AI/agent design 20%, code q
 
 The README must document: how to run, the request and response schemas, design decisions and trade-offs, limitations, and the AI-tool usage note (tools used, how correctness was validated, what was designed vs generated). The submission also needs 3–5 example queries with the actual JSON output the system produced, not hand-written output.
 
-Planner evals: `uv run python -m evals.planner_eval [--model X] [--only id ...]`. Cases are in `evals/planner_cases.py`. Results go to `evals/results/` and are committed. Run them after every prompt or plan-schema change, and bump `PROMPT_VERSION` first.
+Evals (method: [docs/03-evals.md](docs/03-evals.md)): `uv run python -m evals.planner_eval --runs 3 [--model X] [--only id ...] [--gate]` and `uv run python -m evals.e2e_eval`. Hand-written cases: `evals/planner_cases.py` (add a `META` entry). Synthetic: `evals/synth.py` -> `evals/data/synthetic.json`. Bump `PROMPT_VERSION` on prompt changes and `DATASET_VERSION` (`evals/dataset.py`) on case changes. Every failure found becomes a `source: regression` case. Commit `evals/results/`.

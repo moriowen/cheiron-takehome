@@ -114,6 +114,18 @@ GitHub Pages serves the repo root from `main` (`.nojekyll` keeps files as they a
 2026-11-12. Accepted.
 Live review of the lung cancer co-occurrence network showed "Chemotherapy" as a drug node: sponsors enter category words as DRUG interventions, and they have no MeSH term. A short stoplist (`GENERIC_DRUG_NAMES` in the registry) drops them.
 
+### D28. Eval methodology
+2026-11-12. Accepted.
+Evals follow the practices mapped in [03-evals.md](03-evals.md): failure categories from error analysis, a versioned and stratified golden set (`DATASET_VERSION` with intent, difficulty, and source metadata), synthetic cases generated from explicit dimension tuples with code-derived labels, deterministic checks only (no LLM judge), pass@k and pass^k with k=3, Wilson confidence intervals, cost per success and p50/p95 latency, a per-intent CI gate, and regression cases for every failure seen. Multi-turn simulation, judge alignment, pairwise judging, and online evals do not apply to a single-turn system with no judge and no production traffic.
+
+### D29. Keep `gpt-5.4-mini` after the k=3 comparison
+2026-11-12. Accepted. Refines D21.
+On 72 cases x 3 runs (prompt .4): mini pass^k 100% (95% CI 94.9 to 100), nano 95.8% (88.5 to 98.6) at 29% of the cost per success. The intervals overlap, so the overall difference is not proven. But nano's failures concentrate in two intents (network scope refusals, cross-tab), and the per-intent gate fails it on cross-tab. Mini stays the default.
+
+### D30. Answer the answerable part of a request
+2026-11-12. Accepted. Prompt .4.
+The first k=3 run found a planner that marked a whole network question unsupported because it also asked for trial names. The prompt now says to plan the answerable part and keep `supported=true`. Trial titles are already in every citation. A regression case pins this.
+
 ## Assumptions
 
 | ID | Assumption | If false |

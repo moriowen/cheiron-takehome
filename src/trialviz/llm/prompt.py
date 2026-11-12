@@ -5,7 +5,7 @@ import json
 from trialviz.plan import ENTITY_DIMENSIONS, Dimension, Measure
 from trialviz.schemas import QueryRequest
 
-PROMPT_VERSION = "2026-11-12.3"
+PROMPT_VERSION = "2026-11-12.4"
 
 _DIMENSIONS = ", ".join(d.value for d in Dimension)
 _ENTITIES = ", ".join(sorted(d.value for d in ENTITY_DIMENSIONS))
@@ -46,6 +46,10 @@ Comparison: set when the user compares 2-4 named drugs, conditions, or sponsors
 - Comparison works with breakdown (exactly one group_by), trend, and total.
 
 top_n: set when the user asks for the "top", "most common", or "most" items (default 10 then).
+
+If a question also asks for something the plan cannot express (trial names, a summary, extra
+details), plan the part that can be answered and keep supported=true. Every chart already
+links each value to its trials and their titles.
 
 If registry data cannot answer the question (efficacy, safety outcomes, prices, approvals,
 anything outside trial registration records), set supported=false, analysis null, and give a

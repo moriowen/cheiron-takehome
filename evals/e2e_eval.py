@@ -5,6 +5,10 @@ Checks response invariants, not exact numbers (the registry changes daily):
 - data is non-empty; every datum has citation_count == its count and cites >= 1 trial
 - every citation has an NCT ID, a field path, and a non-empty excerpt
 - meta has the data timestamp, the API query, and records_used <= total_matching
+- regression (D27): no network node is a generic intervention name such as "Chemotherapy"
+
+Reports pass rate with a 95% Wilson interval and p50/p95 latency. Uses the hand-written cases
+only (each one calls the live registry); the synthetic set is for planner evals.
 
 Run: uv run python -m evals.e2e_eval [--model X] [--only id ...]
 """
@@ -14,13 +18,15 @@ import json
 import re
 import time
 
-from evals.planner_cases import CASES
+from evals import stats
+from evals.dataset import DATASET_VERSION, load_cases
 from evals.planner_eval import RESULTS_DIR
 from trialviz.config import AppSettings, LLMSettings
 from trialviz.ctgov.client import CTGovClient
 from trialviz.llm.openai_planner import OpenAIPlanner
 from trialviz.llm.prompt import PROMPT_VERSION
 from trialviz.pipeline import Pipeline
+from trialviz.registry import GENERIC_DRUG_NAMES
 from trialviz.schemas import NetworkData, QueryRequest, QueryResponse
 
 NCT = re.compile(r"^NCT\d{8}$")
@@ -60,6 +66,10 @@ def check_response(resp: QueryResponse, expect: dict) -> list[str]:
                 errors.append(f"bad citation {c}")
     if not m.data_timestamp or not m.api_query:
         errors.append("meta missing data_timestamp or api_query")
+    if isinstance(v.data, NetworkData):
+        generic = [n.label for n in v.data.nodes if n.label.lower() in GENERIC_DRUG_NAMES]
+        if generic:
+            errors.append(f"generic intervention names as nodes: {generic}")
     if m.records_used > m.total_matching:
         errors.append("records_used > total_matching")
     return errors[:10]
@@ -79,7 +89,7 @@ def main() -> None:
         max_records=app.max_records,
     )
     results = []
-    for case in CASES:
+    for case in load_cases(synthetic=False):
         if args.only and case["id"] not in args.only:
             continue
         started = time.perf_counter()
@@ -107,24 +117,29 @@ def main() -> None:
 
     passed = sum(r["passed"] for r in results)
     cost = sum(r["cost_usd"] for r in results)
+    latencies = [r["latency_s"] for r in results]
+    lo, hi = stats.wilson(passed, len(results))
+    summary = {
+        "model": settings.llm_model,
+        "prompt_version": PROMPT_VERSION,
+        "dataset_version": DATASET_VERSION,
+        "passed": passed,
+        "total": len(results),
+        "ci95": (lo, hi),
+        "latency_p50_s": stats.percentile(latencies, 50),
+        "latency_p95_s": stats.percentile(latencies, 95),
+        "llm_cost_usd": cost,
+        "results": results,
+    }
     print(
-        f"\n{settings.llm_model} prompt={PROMPT_VERSION}: {passed}/{len(results)} passed, "
+        f"\n{settings.llm_model} prompt={PROMPT_VERSION} dataset={DATASET_VERSION}: "
+        f"{passed}/{len(results)} passed (95% CI {lo:.0%}-{hi:.0%}), "
+        f"latency p50 {summary['latency_p50_s']:.1f}s p95 {summary['latency_p95_s']:.1f}s, "
         f"LLM cost ${cost:.4f}"
     )
     RESULTS_DIR.mkdir(exist_ok=True)
-    out = RESULTS_DIR / f"e2e-{settings.llm_model}-{PROMPT_VERSION}.json"
-    out.write_text(
-        json.dumps(
-            {
-                "model": settings.llm_model,
-                "prompt_version": PROMPT_VERSION,
-                "passed": passed,
-                "total": len(results),
-                "results": results,
-            },
-            indent=2,
-        )
-    )
+    out = RESULTS_DIR / f"e2e-{settings.llm_model}-p{PROMPT_VERSION}-d{DATASET_VERSION}.json"
+    out.write_text(json.dumps(summary, indent=2))
     print(f"wrote {out}")
 
 

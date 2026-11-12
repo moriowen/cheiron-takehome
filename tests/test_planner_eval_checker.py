@@ -1,10 +1,10 @@
-from evals.planner_cases import CASES
+from evals.dataset import load_cases
 from evals.planner_eval import check_plan
 from tests.test_plan import NO_FILTERS, valid
 
 
 def test_case_ids_are_unique():
-    ids = [c["id"] for c in CASES]
+    ids = [c["id"] for c in load_cases()]
     assert len(ids) == len(set(ids))
 
 
@@ -26,7 +26,7 @@ def test_group_by_is_order_insensitive_except_trend():
 def test_invented_filter_fails_unless_allowed():
     plan = valid(filters=NO_FILTERS | {"drug": "x", "country": "Germany"})
     errors = check_plan(plan, {"filters": {"drug": "x"}})
-    assert any("country" in e for e in errors)
+    assert any("country" in e.detail for e in errors)
     assert check_plan(plan, {"filters": {"drug": "x"}, "allow_extra_filters": True}) == []
 
 

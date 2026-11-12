@@ -1,0 +1,1070 @@
+{
+  "generator_model": "gpt-5.4",
+  "seed": 7,
+  "cases": [
+    {
+      "id": "syn_000_trend",
+      "query": "Could you provide an analysis of how the number of metformin clinical trials changed by start year, limited to only phase 3 trials?",
+      "expect": {
+        "analysis": "trend",
+        "group_by": [
+          "start_year"
+        ],
+        "filters": {
+          "phase": [
+            "PHASE3"
+          ],
+          "drug": "metformin"
+        }
+      },
+      "intent": "trend",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "trend",
+        "entity": "drug",
+        "filter": "phase",
+        "style": "formal"
+      }
+    },
+    {
+      "id": "syn_001_distribution",
+      "query": "How are currently recruiting psoriasis trials distributed across phases?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "phase"
+        ],
+        "filters": {
+          "status": [
+            "RECRUITING"
+          ],
+          "condition": "psoriasis"
+        }
+      },
+      "intent": "distribution",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "distribution",
+        "entity": "condition",
+        "filter": "status",
+        "style": "conversational"
+      }
+    },
+    {
+      "id": "syn_002_top_n",
+      "query": "Top sponsors heart failure currently recruiting trials",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "lead_sponsor"
+        ],
+        "top_n_set": true,
+        "filters": {
+          "status": [
+            "RECRUITING"
+          ],
+          "condition": "heart failure"
+        }
+      },
+      "intent": "top_n",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "top_n",
+        "entity": "condition",
+        "filter": "status",
+        "style": "terse"
+      }
+    },
+    {
+      "id": "syn_003_geographic",
+      "query": "which countries host the most trials for remdesivir, and can you show the counts by counrty?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "country"
+        ],
+        "filters": {
+          "drug": "remdesivir"
+        }
+      },
+      "intent": "geographic",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "geographic",
+        "entity": "drug",
+        "filter": "none",
+        "style": "lowercase_typo"
+      }
+    },
+    {
+      "id": "syn_004_comparison",
+      "query": "Could you show how asthma and migraine stack up when you look across the different trial phases?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "phase"
+        ],
+        "comparison": {
+          "field": "condition",
+          "values": [
+            "asthma",
+            "migraine"
+          ]
+        },
+        "filters": {}
+      },
+      "intent": "comparison",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "comparison",
+        "entity": "condition",
+        "filter": "none",
+        "style": "indirect"
+      }
+    },
+    {
+      "id": "syn_005_network",
+      "query": "Can you show me a network linking sponsors to the drugs they\u2019re testing for lupus, but only for trials that are currently recruiting?",
+      "expect": {
+        "analysis": "network",
+        "group_by": [
+          "lead_sponsor",
+          "drug"
+        ],
+        "filters": {
+          "status": [
+            "RECRUITING"
+          ],
+          "condition": "lupus"
+        }
+      },
+      "intent": "network",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "network",
+        "entity": "condition",
+        "filter": "status",
+        "style": "conversational"
+      }
+    },
+    {
+      "id": "syn_006_histogram",
+      "query": "For semaglutide, among trials that are currently recruiting, how do the study enrollment sizes tend to spread out?",
+      "expect": {
+        "analysis": "histogram",
+        "measures": [
+          "enrollment"
+        ],
+        "filters": {
+          "status": [
+            "RECRUITING"
+          ],
+          "drug": "semaglutide"
+        }
+      },
+      "intent": "histogram",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "histogram",
+        "entity": "drug",
+        "filter": "status",
+        "style": "indirect"
+      }
+    },
+    {
+      "id": "syn_007_total",
+      "query": "how many phase 3 trials are there for metformin only?",
+      "expect": {
+        "analysis": "total",
+        "filters": {
+          "phase": [
+            "PHASE3"
+          ],
+          "drug": "metformin"
+        }
+      },
+      "intent": "total",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "total",
+        "entity": "drug",
+        "filter": "phase",
+        "style": "lowercase_typo"
+      }
+    },
+    {
+      "id": "syn_008_out_of_scope",
+      "query": "Can you help me get a sense of how trastuzumab stacks up against other options, and whether there\u2019s any indication of what people might end up paying for it?",
+      "expect": {
+        "supported": false
+      },
+      "intent": "out_of_scope",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "out_of_scope",
+        "entity": "drug",
+        "filter": "none",
+        "style": "indirect"
+      }
+    },
+    {
+      "id": "syn_009_trend",
+      "query": "Pfizer recruiting trials count by start year?",
+      "expect": {
+        "analysis": "trend",
+        "group_by": [
+          "start_year"
+        ],
+        "filters": {
+          "status": [
+            "RECRUITING"
+          ],
+          "sponsor": "Pfizer"
+        }
+      },
+      "intent": "trend",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "trend",
+        "entity": "sponsor",
+        "filter": "status",
+        "style": "terse"
+      }
+    },
+    {
+      "id": "syn_010_distribution",
+      "query": "For lupus, among only trials that started in 2018 or later, how does the spread look across the different trial phases?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "phase"
+        ],
+        "filters": {
+          "start_year": 2018,
+          "condition": "lupus"
+        }
+      },
+      "intent": "distribution",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "distribution",
+        "entity": "condition",
+        "filter": "years",
+        "style": "indirect"
+      }
+    },
+    {
+      "id": "syn_011_top_n",
+      "query": "Who are the top sponsors running psoriasis trials, but only looking at trials that started in 2018 or later?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "lead_sponsor"
+        ],
+        "top_n_set": true,
+        "filters": {
+          "start_year": 2018,
+          "condition": "psoriasis"
+        }
+      },
+      "intent": "top_n",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "top_n",
+        "entity": "condition",
+        "filter": "years",
+        "style": "conversational"
+      }
+    },
+    {
+      "id": "syn_012_geographic",
+      "query": "Could you identify which countries host the highest number of phase 3 clinical trials for asthma?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "country"
+        ],
+        "filters": {
+          "phase": [
+            "PHASE3"
+          ],
+          "condition": "asthma"
+        }
+      },
+      "intent": "geographic",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "geographic",
+        "entity": "condition",
+        "filter": "phase",
+        "style": "formal"
+      }
+    },
+    {
+      "id": "syn_013_comparison",
+      "query": "Could you provide a comparison of semaglutide and adalimumab across trial phases, limited to trials that are currently recruiting?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "phase"
+        ],
+        "comparison": {
+          "field": "drug",
+          "values": [
+            "semaglutide",
+            "adalimumab"
+          ]
+        },
+        "filters": {
+          "status": [
+            "RECRUITING"
+          ]
+        }
+      },
+      "intent": "comparison",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "comparison",
+        "entity": "drug",
+        "filter": "status",
+        "style": "formal"
+      }
+    },
+    {
+      "id": "syn_014_network",
+      "query": "Could you show which sponsors tend to be connected through the treatments they study for heart failure, limited to only phase 3 trials?",
+      "expect": {
+        "analysis": "network",
+        "group_by": [
+          "lead_sponsor",
+          "drug"
+        ],
+        "filters": {
+          "phase": [
+            "PHASE3"
+          ],
+          "condition": "heart failure"
+        }
+      },
+      "intent": "network",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "network",
+        "entity": "condition",
+        "filter": "phase",
+        "style": "indirect"
+      }
+    },
+    {
+      "id": "syn_015_histogram",
+      "query": "Please provide the distribution of trial enrollment sizes for semaglutide, limited to trials that are currently recruiting.",
+      "expect": {
+        "analysis": "histogram",
+        "measures": [
+          "enrollment"
+        ],
+        "filters": {
+          "status": [
+            "RECRUITING"
+          ],
+          "drug": "semaglutide"
+        }
+      },
+      "intent": "histogram",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "histogram",
+        "entity": "drug",
+        "filter": "status",
+        "style": "formal"
+      }
+    },
+    {
+      "id": "syn_016_total",
+      "query": "how many trials mention nivolumab and only include those that started in 2018 or ltaer?",
+      "expect": {
+        "analysis": "total",
+        "filters": {
+          "start_year": 2018,
+          "drug": "nivolumab"
+        }
+      },
+      "intent": "total",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "total",
+        "entity": "drug",
+        "filter": "years",
+        "style": "lowercase_typo"
+      }
+    },
+    {
+      "id": "syn_017_out_of_scope",
+      "query": "does semaglutide work better than alternatives or what dose it costs?",
+      "expect": {
+        "supported": false
+      },
+      "intent": "out_of_scope",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "out_of_scope",
+        "entity": "drug",
+        "filter": "none",
+        "style": "lowercase_typo"
+      }
+    },
+    {
+      "id": "syn_018_trend",
+      "query": "trastuzumab phase 3 trials by start year counts",
+      "expect": {
+        "analysis": "trend",
+        "group_by": [
+          "start_year"
+        ],
+        "filters": {
+          "phase": [
+            "PHASE3"
+          ],
+          "drug": "trastuzumab"
+        }
+      },
+      "intent": "trend",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "trend",
+        "entity": "drug",
+        "filter": "phase",
+        "style": "terse"
+      }
+    },
+    {
+      "id": "syn_019_distribution",
+      "query": "heart failure recruiting trials distribution across phases",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "phase"
+        ],
+        "filters": {
+          "status": [
+            "RECRUITING"
+          ],
+          "condition": "heart failure"
+        }
+      },
+      "intent": "distribution",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "distribution",
+        "entity": "condition",
+        "filter": "status",
+        "style": "terse"
+      }
+    },
+    {
+      "id": "syn_020_top_n",
+      "query": "Could you show which sponsors are leading the asthma trials?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "lead_sponsor"
+        ],
+        "top_n_set": true,
+        "filters": {
+          "condition": "asthma"
+        }
+      },
+      "intent": "top_n",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "top_n",
+        "entity": "condition",
+        "filter": "none",
+        "style": "indirect"
+      }
+    },
+    {
+      "id": "syn_021_geographic",
+      "query": "Trastuzumab phase 3 trials: which countries host most?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "country"
+        ],
+        "filters": {
+          "phase": [
+            "PHASE3"
+          ],
+          "drug": "trastuzumab"
+        }
+      },
+      "intent": "geographic",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "geographic",
+        "entity": "drug",
+        "filter": "phase",
+        "style": "terse"
+      }
+    },
+    {
+      "id": "syn_022_comparison",
+      "query": "Can you compare asthma and psoriasis across the different trial phases?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "phase"
+        ],
+        "comparison": {
+          "field": "condition",
+          "values": [
+            "asthma",
+            "psoriasis"
+          ]
+        },
+        "filters": {}
+      },
+      "intent": "comparison",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "comparison",
+        "entity": "condition",
+        "filter": "none",
+        "style": "conversational"
+      }
+    },
+    {
+      "id": "syn_023_network",
+      "query": "can you show me a network linking sponsors to the drugs they test for migraine, using only trials that are currently recruiting, and include teh trial names too?",
+      "expect": {
+        "analysis": "network",
+        "group_by": [
+          "lead_sponsor",
+          "drug"
+        ],
+        "filters": {
+          "status": [
+            "RECRUITING"
+          ],
+          "condition": "migraine"
+        }
+      },
+      "intent": "network",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "network",
+        "entity": "condition",
+        "filter": "status",
+        "style": "lowercase_typo"
+      }
+    },
+    {
+      "id": "syn_024_histogram",
+      "query": "Could you provide the distribution of trial enrollment sizes for migraine, limited to trials that are currently recruiting?",
+      "expect": {
+        "analysis": "histogram",
+        "measures": [
+          "enrollment"
+        ],
+        "filters": {
+          "status": [
+            "RECRUITING"
+          ],
+          "condition": "migraine"
+        }
+      },
+      "intent": "histogram",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "histogram",
+        "entity": "condition",
+        "filter": "status",
+        "style": "formal"
+      }
+    },
+    {
+      "id": "syn_025_total",
+      "query": "Could you tell me how many trials involving trastuzumab are currently recruiting?",
+      "expect": {
+        "analysis": "total",
+        "filters": {
+          "status": [
+            "RECRUITING"
+          ],
+          "drug": "trastuzumab"
+        }
+      },
+      "intent": "total",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "total",
+        "entity": "drug",
+        "filter": "status",
+        "style": "indirect"
+      }
+    },
+    {
+      "id": "syn_026_out_of_scope",
+      "query": "As a market analyst, I would like to determine whether semaglutide works better than available alternatives or what it costs.",
+      "expect": {
+        "supported": false
+      },
+      "intent": "out_of_scope",
+      "difficulty": "easy",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "out_of_scope",
+        "entity": "drug",
+        "filter": "none",
+        "style": "formal"
+      }
+    },
+    {
+      "id": "syn_027_trend",
+      "query": "Mayo Clinic trials count by start year",
+      "expect": {
+        "analysis": "trend",
+        "group_by": [
+          "start_year"
+        ],
+        "filters": {
+          "sponsor": "Mayo Clinic"
+        }
+      },
+      "intent": "trend",
+      "difficulty": "easy",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "trend",
+        "entity": "sponsor",
+        "filter": "none",
+        "style": "terse"
+      }
+    },
+    {
+      "id": "syn_028_distribution",
+      "query": "How are clinical trials for asthma distributed across phases?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "phase"
+        ],
+        "filters": {
+          "condition": "asthma"
+        }
+      },
+      "intent": "distribution",
+      "difficulty": "easy",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "distribution",
+        "entity": "condition",
+        "filter": "none",
+        "style": "conversational"
+      }
+    },
+    {
+      "id": "syn_029_top_n",
+      "query": "Who are the top sponsors running trials of nivolumab, but only including studies that started in 2018 or later?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "lead_sponsor"
+        ],
+        "top_n_set": true,
+        "filters": {
+          "start_year": 2018,
+          "drug": "nivolumab"
+        }
+      },
+      "intent": "top_n",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "top_n",
+        "entity": "drug",
+        "filter": "years",
+        "style": "conversational"
+      }
+    },
+    {
+      "id": "syn_030_geographic",
+      "query": "asthma phase 3 trials by country most hosted?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "country"
+        ],
+        "filters": {
+          "phase": [
+            "PHASE3"
+          ],
+          "condition": "asthma"
+        }
+      },
+      "intent": "geographic",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "geographic",
+        "entity": "condition",
+        "filter": "phase",
+        "style": "terse"
+      }
+    },
+    {
+      "id": "syn_031_comparison",
+      "query": "Could you provide a comparison of lupus and psoriasis across clinical trial phases?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "phase"
+        ],
+        "comparison": {
+          "field": "condition",
+          "values": [
+            "lupus",
+            "psoriasis"
+          ]
+        },
+        "filters": {}
+      },
+      "intent": "comparison",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "comparison",
+        "entity": "condition",
+        "filter": "none",
+        "style": "formal"
+      }
+    },
+    {
+      "id": "syn_032_network",
+      "query": "Could you provide a network linking sponsors to the drugs they test in clinical trials about glioblastoma, limited to only phase 3 trials?",
+      "expect": {
+        "analysis": "network",
+        "group_by": [
+          "lead_sponsor",
+          "drug"
+        ],
+        "filters": {
+          "phase": [
+            "PHASE3"
+          ],
+          "condition": "glioblastoma"
+        }
+      },
+      "intent": "network",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "network",
+        "entity": "condition",
+        "filter": "phase",
+        "style": "formal"
+      }
+    },
+    {
+      "id": "syn_033_histogram",
+      "query": "Could you provide the distribution of trial enrollment sizes for adalimumab, limited to only phase 3 trials?",
+      "expect": {
+        "analysis": "histogram",
+        "measures": [
+          "enrollment"
+        ],
+        "filters": {
+          "phase": [
+            "PHASE3"
+          ],
+          "drug": "adalimumab"
+        }
+      },
+      "intent": "histogram",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "histogram",
+        "entity": "drug",
+        "filter": "phase",
+        "style": "formal"
+      }
+    },
+    {
+      "id": "syn_034_total",
+      "query": "How many studies would remain if we narrowed things down to only phase 3 trials involving nivolumab?",
+      "expect": {
+        "analysis": "total",
+        "filters": {
+          "phase": [
+            "PHASE3"
+          ],
+          "drug": "nivolumab"
+        }
+      },
+      "intent": "total",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "total",
+        "entity": "drug",
+        "filter": "phase",
+        "style": "indirect"
+      }
+    },
+    {
+      "id": "syn_035_out_of_scope",
+      "query": "Does trastuzumab work better than alternatives, or what does it cost?",
+      "expect": {
+        "supported": false
+      },
+      "intent": "out_of_scope",
+      "difficulty": "easy",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "out_of_scope",
+        "entity": "drug",
+        "filter": "none",
+        "style": "conversational"
+      }
+    },
+    {
+      "id": "syn_036_trend",
+      "query": "Pfizer phase 3 trials count by start year",
+      "expect": {
+        "analysis": "trend",
+        "group_by": [
+          "start_year"
+        ],
+        "filters": {
+          "phase": [
+            "PHASE3"
+          ],
+          "sponsor": "Pfizer"
+        }
+      },
+      "intent": "trend",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "trend",
+        "entity": "sponsor",
+        "filter": "phase",
+        "style": "terse"
+      }
+    },
+    {
+      "id": "syn_037_distribution",
+      "query": "lupus trials distributed across phases",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "phase"
+        ],
+        "filters": {
+          "condition": "lupus"
+        }
+      },
+      "intent": "distribution",
+      "difficulty": "easy",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "distribution",
+        "entity": "condition",
+        "filter": "none",
+        "style": "terse"
+      }
+    },
+    {
+      "id": "syn_038_top_n",
+      "query": "what are the top sponsors running trials about metformin, only including trials that are currently recruiting? pls inlcude the sponsor names",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "lead_sponsor"
+        ],
+        "top_n_set": true,
+        "filters": {
+          "status": [
+            "RECRUITING"
+          ],
+          "drug": "metformin"
+        }
+      },
+      "intent": "top_n",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "top_n",
+        "entity": "drug",
+        "filter": "status",
+        "style": "lowercase_typo"
+      }
+    },
+    {
+      "id": "syn_039_geographic",
+      "query": "which countries host the most phase 3 trials for lupus, and only include teh phase 3 studies?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "country"
+        ],
+        "filters": {
+          "phase": [
+            "PHASE3"
+          ],
+          "condition": "lupus"
+        }
+      },
+      "intent": "geographic",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "geographic",
+        "entity": "condition",
+        "filter": "phase",
+        "style": "lowercase_typo"
+      }
+    },
+    {
+      "id": "syn_040_comparison",
+      "query": "Can you compare remdesivir and nivolumab across trial phases, but only include trials that started in 2018 or later?",
+      "expect": {
+        "analysis": "breakdown",
+        "group_by": [
+          "phase"
+        ],
+        "comparison": {
+          "field": "drug",
+          "values": [
+            "remdesivir",
+            "nivolumab"
+          ]
+        },
+        "filters": {
+          "start_year": 2018
+        }
+      },
+      "intent": "comparison",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "comparison",
+        "entity": "drug",
+        "filter": "years",
+        "style": "conversational"
+      }
+    },
+    {
+      "id": "syn_041_network",
+      "query": "can you show me a network linking sponsors to the drugs they test for asthma, only phase 3 trails?",
+      "expect": {
+        "analysis": "network",
+        "group_by": [
+          "lead_sponsor",
+          "drug"
+        ],
+        "filters": {
+          "phase": [
+            "PHASE3"
+          ],
+          "condition": "asthma"
+        }
+      },
+      "intent": "network",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "network",
+        "entity": "condition",
+        "filter": "phase",
+        "style": "lowercase_typo"
+      }
+    },
+    {
+      "id": "syn_042_histogram",
+      "query": "what is the distribution of trial enrollment sizes for lupus, and can you breifly summarize it?",
+      "expect": {
+        "analysis": "histogram",
+        "measures": [
+          "enrollment"
+        ],
+        "filters": {
+          "condition": "lupus"
+        }
+      },
+      "intent": "histogram",
+      "difficulty": "hard",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "histogram",
+        "entity": "condition",
+        "filter": "none",
+        "style": "lowercase_typo"
+      }
+    },
+    {
+      "id": "syn_043_total",
+      "query": "lupus trials in Germany count?",
+      "expect": {
+        "analysis": "total",
+        "filters": {
+          "country": "Germany",
+          "condition": "lupus"
+        }
+      },
+      "intent": "total",
+      "difficulty": "medium",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "total",
+        "entity": "condition",
+        "filter": "country",
+        "style": "terse"
+      }
+    },
+    {
+      "id": "syn_044_out_of_scope",
+      "query": "remdesivir better than alternatives or cost",
+      "expect": {
+        "supported": false
+      },
+      "intent": "out_of_scope",
+      "difficulty": "easy",
+      "source": "synthetic",
+      "tuple": {
+        "intent": "out_of_scope",
+        "entity": "drug",
+        "filter": "none",
+        "style": "terse"
+      }
+    }
+  ],
+  "rejected": []
+}
