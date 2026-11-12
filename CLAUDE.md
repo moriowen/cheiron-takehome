@@ -12,7 +12,7 @@ State: no code yet. Language, framework, and layout are not chosen. When they ar
 
 Provider is OpenAI only. The key is `OPENAI_API_KEY` in `.env` (git-ignored; template in `.env.example`). Never read, print, or commit `.env`. A local `.git/hooks/pre-commit` blocks staged `.env` files and `sk-...` strings.
 
-Allowed models (the key works only for these): `gpt-4o-mini`, `gpt-4o-2024-08-06`, `gpt-4.1-nano`, `gpt-4.1-mini`, `gpt-4.1`, `gpt-5-mini`, `gpt-5`, `gpt-5.1`, `gpt-5.2`, `gpt-5.4-nano`, `gpt-5.4-mini`, `gpt-5.4`. Keep the model name in config, not in code, so evals can compare models.
+Allowed models (the key works only for these): `gpt-4o-mini`, `gpt-4o-2024-08-06`, `gpt-4.1-nano`, `gpt-4.1-mini`, `gpt-4.1`, `gpt-5-mini`, `gpt-5`, `gpt-5.1`, `gpt-5.2`, `gpt-5.4-nano`, `gpt-5.4-mini`, `gpt-5.4`. `gpt-4.1-nano` is on the list but returns 404 for this key (checked 2026-11-12). The key cannot read billing or usage, so log token usage per call to track spend. Keep the model name in config, not in code, so evals can compare models.
 
 API exploration notes: [docs/01-data-source.md](docs/01-data-source.md).
 
