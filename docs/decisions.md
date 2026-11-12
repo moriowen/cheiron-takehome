@@ -106,6 +106,14 @@ Entity breakdowns (sponsor, drug, condition, country) keep the top 15 groups unl
 2026-11-12. Accepted.
 Invalid request: 422 (FastAPI validation, or D22 conflicts). Planner failure or ClinicalTrials.gov failure: 502 with the cause. An unanswerable question is not an error: 200 with `status: "unsupported"` (D14).
 
+### D26. Static demo on GitHub Pages
+2026-11-12. Accepted.
+GitHub Pages serves the repo root from `main` (`.nojekyll` keeps files as they are). The frontend calls `../health`; when no backend answers, it replays `examples/*.json`, which are real system outputs. With the backend, FastAPI serves the same page at `/ui/` and mounts `/examples`, so one frontend works in both modes. URL: https://moriowen.github.io/cheiron-takehome/frontend/
+
+### D27. Generic intervention names are not drugs
+2026-11-12. Accepted.
+Live review of the lung cancer co-occurrence network showed "Chemotherapy" as a drug node: sponsors enter category words as DRUG interventions, and they have no MeSH term. A short stoplist (`GENERIC_DRUG_NAMES` in the registry) drops them.
+
 ## Assumptions
 
 | ID | Assumption | If false |
