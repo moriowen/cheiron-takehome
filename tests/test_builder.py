@@ -139,3 +139,17 @@ def test_unsupported_plan():
     resp = build_response(plan, [], TS, LLM)
     assert resp.status == "unsupported" and resp.visualization is None
     assert resp.meta.notes == ["Efficacy is not in the registry."]
+
+
+def test_title_uses_phase_labels_and_starts_capitalized():
+    plan = valid(filters=NO_FILTERS | {"drug": "pembrolizumab", "phase": ["PHASE3"]})
+    title = build_response(plan, fetched(plan), TS, LLM).visualization.title
+    assert title[0].isupper()
+    assert "Phase 3" in title and "phase3" not in title.lower()
+
+
+def test_missing_note_grammar():
+    plan = valid(analysis="histogram", group_by=[], measures=["enrollment"])
+    one_missing = PEMBRO[:3] + [{"protocolSection": {"identificationModule": {"nctId": "NCTX"}}}]
+    notes = build_response(plan, [(None, FetchResult(one_missing, 4, False))], TS, LLM).meta.notes
+    assert "1 trial has no enrollment and is not shown." in notes

@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Take-home assignment: a backend service that turns a natural-language clinical-trials question into a structured visualization spec, backed by the ClinicalTrials.gov Data API (https://clinicaltrials.gov/data-api/api). The spec is in [TASK.md](TASK.md). It is the single source of truth for requirements, deliverables, and grading. Read it before any design decision.
 
-Stack: Python 3.12, uv, Pydantic v2, OpenAI SDK. FastAPI service and Dockerfile come later.
+Stack: Python 3.12, uv, Pydantic v2, OpenAI SDK, FastAPI, httpx. Docker via `docker compose up`.
 
 ## Commands
 
@@ -16,9 +16,14 @@ uv run pytest                             # offline tests (default excludes `liv
 uv run pytest tests/test_plan.py::test_valid_plan_parses   # one test
 uv run pytest -m live                     # real OpenAI calls, costs < $0.01
 uv run ruff check . && uv run ruff format .
+uv run uvicorn --factory trialviz.api:build_app --reload   # API on :8000, docs at /docs
 ```
 
-## Architecture (so far)
+## Architecture
+
+Pipeline (`pipeline.py`): planner (LLM) -> `apply_hints` -> `compiler.py` (plan -> `StudyQuery` per series + fields) -> `CTGovClient.fetch_studies` (cached) -> `aggregate.py` (tables with citations) -> `builder.py` (`select_viz` picks the chart by rules, builders write rows, encoding, title, meta notes). `registry.py` holds every dimension and measure: API fields, extraction, normalization, and the exact-value citation. A new dimension is one registry entry. Fixtures in `tests/fixtures/` are real API records (`scripts/record_fixtures.py`).
+
+Earlier notes:
 
 The LLM produces only a `QueryPlan` (`src/trialviz/plan.py`). Code does fetching, counting, chart choice, and citations. Callers depend on the `Planner` protocol (`llm/planner.py`). `OpenAIPlanner` is the only module that imports `openai`. `StubPlanner` serves tests. A plan that fails Pydantic validation gets one repair retry with the errors fed back. Each call logs tokens and cost (`llm/usage.py`). Bump `PROMPT_VERSION` in `llm/prompt.py` on every prompt change. `QueryPlan` and `QueryRequest` are provisional until the question taxonomy is settled.
 

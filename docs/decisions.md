@@ -90,6 +90,22 @@ First planner eval (nano, prompt .2): 17/19. Both failures were comparisons: the
 2026-11-12. Accepted.
 Planner evals, prompt .3, 19 cases: nano 18/19 ($0.0073 per run, unstable on the cross-tab case across runs), mini 19/19 ($0.0268 per run, about $0.0014 per query). The quality gain is worth the cost. Nano stays available via `LLM_MODEL` for cheap iteration. Results: `evals/results/`.
 
+### D22. Structured hints override the LLM's filters
+2026-11-12. Accepted.
+After planning, code copies each request hint (`drug_name`, `phase`, ...) into the plan filters, then re-validates the plan. A hint is a fact from the caller, so it wins over what the LLM read from the text. A hint for the field being compared is skipped. A hint that makes the plan invalid (for example `start_year` after the question's end year) returns HTTP 422.
+
+### D23. A `total` answer uses the registry count
+2026-11-12. Accepted.
+For a single number, the value is the API's `totalCount` (exact), and only 25 records are fetched to cite. Every other analysis counts fetched records (D08).
+
+### D24. Readability caps
+2026-11-12. Accepted.
+Entity breakdowns (sponsor, drug, condition, country) keep the top 15 groups unless the user gives a number. A cross-tab keeps 8 series. Networks keep the 15 heaviest nodes per group (25 for a co-occurrence network) and drop nodes left without links. Every cap adds a note to `meta.notes`. Each datum cites at most 5 trials; `citation_count` is the full number.
+
+### D25. HTTP errors
+2026-11-12. Accepted.
+Invalid request: 422 (FastAPI validation, or D22 conflicts). Planner failure or ClinicalTrials.gov failure: 502 with the cause. An unanswerable question is not an error: 200 with `status: "unsupported"` (D14).
+
 ## Assumptions
 
 | ID | Assumption | If false |

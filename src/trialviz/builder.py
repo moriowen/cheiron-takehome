@@ -11,7 +11,7 @@ from trialviz import aggregate as agg
 from trialviz.compiler import compile_plan
 from trialviz.ctgov.client import FetchResult
 from trialviz.plan import ENTITY_DIMENSIONS, Analysis, Dimension, QueryPlan
-from trialviz.registry import DIMENSIONS, MEASURES, DimensionSpec
+from trialviz.registry import DIMENSIONS, MEASURES, PHASE_LABELS, DimensionSpec
 from trialviz.schemas import (
     Channel,
     Citation,
@@ -132,7 +132,7 @@ def _title(plan: QueryPlan) -> str:
     if f.status:
         scope += " (" + ", ".join(s.value.replace("_", " ").lower() for s in f.status) + ")"
     if f.phase:
-        scope += " in " + ", ".join(p.value.replace("_", " ").lower() for p in f.phase)
+        scope += " in " + ", ".join(PHASE_LABELS[p.value] for p in f.phase)
     if f.start_year and f.end_year:
         scope += f", {f.start_year} to {f.end_year}"
     elif f.start_year:
@@ -162,7 +162,7 @@ def _title(plan: QueryPlan) -> str:
             title = f"Number of {scope.lower()}"
     if plan.comparison:
         title += ": " + " vs ".join(plan.comparison.values)
-    return title
+    return title[0].upper() + title[1:]
 
 
 # --- shared helpers -------------------------------------------------------------------------
@@ -213,7 +213,9 @@ def _studies(fetched: Fetched) -> list[dict]:
 
 
 def _missing_note(missing: int, what: str, notes: list[str]) -> None:
-    if missing:
+    if missing == 1:
+        notes.append(f"1 trial has no {what} and is not shown.")
+    elif missing:
         notes.append(f"{missing} trials have no {what} and are not shown.")
 
 

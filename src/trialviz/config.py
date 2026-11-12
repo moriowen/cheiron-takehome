@@ -24,3 +24,11 @@ class LLMSettings(BaseSettings):
         if v not in SUPPORTED_MODELS:
             raise ValueError(f"model {v!r} is not supported; use one of {sorted(SUPPORTED_MODELS)}")
         return v
+
+
+class AppSettings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+
+    max_records: int = 3000  # fetch cap per series (D08)
+    cache_ttl_s: float = 3600.0
+    ctgov_min_interval_s: float = 0.2
