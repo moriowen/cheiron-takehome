@@ -161,6 +161,10 @@ A corrected name is searched at once, the title uses it, and the first note says
 - Each request has a time budget for registry calls (`REQUEST_BUDGET_S`, 90 s). Past it, the next call raises `BudgetExceeded`, and the API returns HTTP 504 with a hint to narrow the question.
 The service stays synchronous. Nothing measured so far needs async; the registry's 1 request/s limit, not the server, is the bottleneck.
 
+### D37. Completeness, sampling, and citations are separate fields
+2026-11-12. Accepted. Replaces `records_used` and `truncated`.
+One flag mixed three things: how many records were downloaded, how many trials the counts cover, and whether a datum lists all its trials. That made a `total` answer look truncated (it fetches 25 records to cite, but its number is the exact registry count). `meta` now has `total_matching`, `trials_counted`, `count_completeness` (exact or sample), `count_method`, `records_fetched`, `citation_limit`, and `coverage` with the same fields per series. `visualization.subtitle` states completeness on the chart ("Partly sampled, SAMPLE of 3,000 of 124,749 trials"), so a sample cannot be missed. The e2e eval checks that these fields agree with each other.
+
 ## Assumptions
 
 | ID | Assumption | If false |

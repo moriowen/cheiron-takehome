@@ -4,7 +4,8 @@ Checks response invariants, not exact numbers (the registry changes daily):
 - status matches `expect.supported`; the chart type matches the expected analysis
 - data is non-empty; every datum has citation_count == its count and cites >= 1 trial
 - every citation has an NCT ID, a field path, and a non-empty excerpt
-- meta has the data timestamp, the API query, and records_used <= total_matching
+- meta has the data timestamp, the API query, trials_counted <= total_matching, coverage per
+  series that sums to the totals, and an exact count says so in the subtitle
 - exact counts (D32): a phase breakdown's bars sum to total_matching (every trial has one
   phase bucket, "Not reported" included); a single-valued breakdown never sums above it
 - entity check (D34): `entity_used` must be the name searched; `entity_note` must be in a note
@@ -73,8 +74,14 @@ def check_response(resp: QueryResponse, expect: dict) -> list[str]:
         generic = [n.label for n in v.data.nodes if n.label.lower() in GENERIC_DRUG_NAMES]
         if generic:
             errors.append(f"generic intervention names as nodes: {generic}")
-    if m.records_used > m.total_matching:
-        errors.append("records_used > total_matching")
+    if m.trials_counted > m.total_matching:
+        errors.append("trials_counted > total_matching")
+    if sum(c.total_matching for c in m.coverage) != m.total_matching:
+        errors.append("coverage does not sum to total_matching")
+    if (m.count_completeness == "exact") != (m.trials_counted == m.total_matching):
+        errors.append(f"count_completeness {m.count_completeness} disagrees with counts")
+    if m.count_completeness == "sample" and "SAMPLE" not in (v.subtitle or ""):
+        errors.append("a sampled chart does not say so in its subtitle")
     errors += _check_exact_counts(resp)
     if want := expect.get("entity_used"):
         used = [e.used.lower() for e in m.entities]
@@ -88,7 +95,7 @@ def check_response(resp: QueryResponse, expect: dict) -> list[str]:
 def _check_exact_counts(resp: QueryResponse) -> list[str]:
     m, plan = resp.meta, resp.meta.plan
     one_dim = plan.analysis.value == "breakdown" and len(plan.group_by) == 1
-    if not one_dim or plan.comparison or m.multi_valued or m.count_method == "sample":
+    if not one_dim or plan.comparison or m.multi_valued or m.count_completeness == "sample":
         return []
     total = sum(row["trial_count"] for row in resp.visualization.data)
     if total > m.total_matching:

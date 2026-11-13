@@ -22,6 +22,7 @@ from trialviz.schemas import (
     NetworkData,
     Node,
     QueryResponse,
+    SeriesCoverage,
     Visualization,
     VizType,
 )
@@ -83,11 +84,13 @@ def build_response(
             "One trial can count in several groups, so group totals can exceed the "
             "number of trials."
         )
-    if meta.records_used == 0:
+    if meta.total_matching == 0:
         notes.append("No trials matched the query.")
     meta.notes = notes  # Meta copied the list on construction; later notes go in here
     meta.entities = list(entities)
-    viz = Visualization(type=viz_type, title=_title(plan), encoding=encoding, data=data)
+    viz = Visualization(
+        type=viz_type, title=_title(plan), subtitle=_subtitle(meta), encoding=encoding, data=data
+    )
     return QueryResponse(status="ok", visualization=viz, meta=meta)
 
 
@@ -102,10 +105,21 @@ def _base_meta(plan, fetched: Fetched, ts, llm, notes: list[str]) -> Meta:
         if plan.comparison
         else params[0]
     )
-    used = sum(r.records_used for _, r in fetched)
-    total = sum(r.total_count for _, r in fetched)
-    truncated = any(r.truncated for _, r in fetched)
-    methods = {r.method for _, r in fetched}
+    coverage = [
+        SeriesCoverage(
+            series=name,
+            total_matching=r.total_count,
+            trials_counted=r.trials_counted,
+            count_completeness="exact" if r.exact else "sample",
+            count_method=r.method,
+            records_fetched=len(r.studies),
+        )
+        for name, r in fetched
+    ]
+    counted = sum(c.trials_counted for c in coverage)
+    total = sum(c.total_matching for c in coverage)
+    sampled = [c for c in coverage if c.count_completeness == "sample"]
+    methods = {c.count_method for c in coverage}
     method = next((m for m in _WEAKEST_FIRST if m in methods), None)
     bucket_clauses = {}
     if any(r.bucket_counts is not None for _, r in fetched):
@@ -115,9 +129,12 @@ def _base_meta(plan, fetched: Fetched, ts, llm, notes: list[str]) -> Meta:
             f"Exact registry counts: one count query per {dim} value. Each bar cites up to "
             f"{MAX_CITATIONS} of its trials."
         )
-    if truncated:
-        what = "Citations list" if plan.analysis is Analysis.TOTAL else "Based on"
-        notes.append(f"{what} the first {used} of {total} matching trials (API relevance order).")
+    for c in sampled:
+        where = f"{c.series}: " if c.series else ""
+        notes.append(
+            f"{where}Sample: counts use the first {c.trials_counted:,} of {c.total_matching:,} "
+            "matching trials (API relevance order), not all of them."
+        )
     if plan.comparison:
         notes.append(
             "Each series is a separate registry search; a trial matching several "
@@ -128,14 +145,32 @@ def _base_meta(plan, fetched: Fetched, ts, llm, notes: list[str]) -> Meta:
         filters=plan.filters.model_dump(mode="json", exclude_none=True),
         api_query=api_query,
         data_timestamp=ts,
-        records_used=used,
         total_matching=total,
-        truncated=truncated,
+        trials_counted=counted,
+        count_completeness=("sample" if sampled else "exact") if coverage else None,
         count_method=method,
+        records_fetched=sum(c.records_fetched for c in coverage),
+        citation_limit=MAX_CITATIONS,
+        coverage=coverage,
         bucket_clauses=bucket_clauses,
         units={"trial_count": "trials"},
         notes=notes,
         llm=llm,
+    )
+
+
+def _subtitle(meta: Meta) -> str:
+    """Coverage in one line, so a sample is visible on the chart itself, not only in meta."""
+
+    def part(c: SeriesCoverage) -> str:
+        name = f"{c.series}: " if c.series else ""
+        if c.count_completeness == "sample":
+            return f"{name}SAMPLE of {c.trials_counted:,} of {c.total_matching:,} trials"
+        return f"{name}all {c.total_matching:,} trials"
+
+    exact = meta.count_completeness == "exact"
+    return ("Exact counts, " if exact else "Partly sampled, ") + "; ".join(
+        part(c) for c in meta.coverage
     )
 
 

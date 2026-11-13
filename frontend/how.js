@@ -44,9 +44,12 @@
         "Each comparison value has its own registry search."));
       fragment.appendChild(traceStep("Fetch → snapshot and limits", {
         data_timestamp: meta.data_timestamp,
-        records_used: meta.records_used,
         total_matching: meta.total_matching,
-        truncated: meta.truncated,
+        trials_counted: meta.trials_counted,
+        count_completeness: meta.count_completeness,
+        count_method: meta.count_method,
+        records_fetched: meta.records_fetched,
+        coverage: meta.coverage,
         notes: meta.notes,
       }));
       const datum = traceStep("Aggregate → one data row", values,

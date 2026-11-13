@@ -53,13 +53,18 @@ function renderAnswer(box, resp) {
   } else {
     const v = resp.visualization;
     box.insertAdjacentHTML("beforeend", `<h3>${escapeHtml(v.title)}</h3>`);
+    if (v.subtitle) {
+      const sampled = m.count_completeness === "sample";
+      box.insertAdjacentHTML("beforeend", `<p class="subtitle${sampled ? " sampled" : ""}">${escapeHtml(v.subtitle)}</p>`);
+    }
     (m.entities || []).filter((e) => e.note).forEach((e) =>
       box.insertAdjacentHTML("beforeend", `<p class="correction">${escapeHtml(e.note)}</p>`));
     const chart = document.createElement("div");
     chart.className = "chart";
     box.appendChild(chart);
     renderViz(chart, v, showCitations);
-    const summary = `${m.records_used.toLocaleString()} of ${m.total_matching.toLocaleString()} matching trials` +
+    const counted = m.trials_counted ?? m.records_used;  // older saved examples use records_used
+    const summary = `${counted.toLocaleString()} of ${m.total_matching.toLocaleString()} matching trials counted` +
       ` · data as of ${(m.data_timestamp || "").slice(0, 10)}` + (m.llm ? ` · planned by ${m.llm.model}` : "");
     box.insertAdjacentHTML("beforeend", `<div class="hint">${summary}. Click any mark to see its sources.</div>`);
   }

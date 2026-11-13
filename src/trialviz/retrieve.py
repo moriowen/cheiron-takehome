@@ -18,14 +18,14 @@ import time
 from collections import OrderedDict
 from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Any, Literal
+from typing import Any
 
 from trialviz.ctgov.client import MAX_PAGE_SIZE, CTGovClient, StudyQuery
 from trialviz.registry import nct_id
+from trialviz.schemas import CountMethod
 
 log = logging.getLogger(__name__)
 
-CountMethod = Literal["registry_count", "all_records", "sample"]
 CITATIONS_PER_BUCKET = 5  # records fetched per bucket count, to cite (= builder MAX_CITATIONS)
 
 
@@ -33,14 +33,17 @@ CITATIONS_PER_BUCKET = 5  # records fetched per bucket count, to cite (= builder
 class Retrieved:
     studies: list[dict]
     total_count: int  # all registry matches for the query
-    truncated: bool = False  # True when `studies` is a cut of the matches and counts use it
     method: CountMethod = "all_records"
     bucket_counts: dict[str, int] | None = None  # registry count per bucket key
 
     @property
-    def records_used(self) -> int:
-        """Trials the counts cover: every match for exact methods, else the fetched ones."""
-        return self.total_count if self.method == "registry_count" else len(self.studies)
+    def exact(self) -> bool:
+        return self.method != "sample"
+
+    @property
+    def trials_counted(self) -> int:
+        """Trials the counts cover: every match when exact, else the fetched sample."""
+        return self.total_count if self.exact else len(self.studies)
 
 
 class TTLCache:
@@ -107,7 +110,7 @@ class Retriever:
             out = Retrieved(r.studies, r.total_count)
         else:
             r = self._fetch(query, fields, self._sample_records)
-            out = Retrieved(r.studies, r.total_count, truncated=r.truncated, method="sample")
+            out = Retrieved(r.studies, r.total_count, method="sample")
         log.info(
             "%s: %d matches, %d records in %.1fs: %s",
             out.method,
@@ -121,7 +124,7 @@ class Retriever:
     def citations(self, query: StudyQuery, fields: tuple[str, ...], n: int) -> Retrieved:
         """The registry count, plus the first `n` records to cite (for a `total` answer)."""
         r = self._fetch(query, fields, n)
-        return Retrieved(r.studies, r.total_count, truncated=r.truncated, method="registry_count")
+        return Retrieved(r.studies, r.total_count, method="registry_count")
 
     def count(self, query: StudyQuery) -> int:
         """Registry matches for a query (cached)."""

@@ -141,6 +141,7 @@ HTTP status codes: 200 for any answer, including `unsupported`. 422 for an inval
 ### `visualization`
 
 - `type`: one of the chart types below.
+- `subtitle`: how complete the counts are, for example "Exact counts, all 14,719 trials" or "Partly sampled, SAMPLE of 3,000 of 124,749 trials".
 - `title`: generated from the plan, for example "Trials for multiple sclerosis (recruiting) by country".
 - `encoding`: maps channel names to data fields. Each channel is `{field, type, title, sort}`, where `type` is `nominal`, `ordinal`, `quantitative`, or `temporal`.
 - `data`: a list of rows, or `{nodes, edges}` for `network_graph`. Rows come in display order.
@@ -174,8 +175,12 @@ In a network, node weight is the number of trials that include the entity, and e
 | `filters` | Filters applied (after hints). |
 | `api_query` | Exact ClinicalTrials.gov parameters. With a comparison, one set per series. |
 | `source`, `data_timestamp` | `clinicaltrials.gov` and the registry snapshot time. |
-| `records_used`, `total_matching`, `truncated` | Trials the counts cover, all matches, and whether the counts use only a sample. |
+| `total_matching` | All registry matches for the query (summed over series). |
+| `trials_counted`, `count_completeness` | Trials the counts cover, and `exact` (all of `total_matching`) or `sample` (only `trials_counted` of them). A sample is also stated in `visualization.subtitle`. |
 | `count_method` | `registry_count` (one exact count query per bucket), `all_records` (every matching record counted), or `sample` (the first `SAMPLE_RECORDS` only). |
+| `records_fetched` | Records downloaded. Smaller than `trials_counted` when counts come from the registry and records only supply citations. |
+| `citation_limit` | Most trials cited per datum (5). Each datum's `citation_count` is the full number of supporting trials. |
+| `coverage` | The fields above per series, so a comparison shows which series is exact and which is sampled. |
 | `bucket_clauses` | With `registry_count`: the Essie clause added to `api_query` for each bucket, so every count can be reproduced. |
 | `multi_valued` | True when one trial can count in several groups (countries, drugs, conditions). |
 | `units`, `sort`, `time_granularity` | Rendering hints. |

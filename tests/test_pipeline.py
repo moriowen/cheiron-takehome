@@ -57,6 +57,8 @@ PLANS = {
     "network?": valid(analysis="network", group_by=["lead_sponsor", "drug"]),
     "countries?": valid(group_by=["country"]),
     "typo?": valid(filters=NO_FILTERS | {"drug": "pembrolizimab"}),
+    "how many?": valid(analysis="total", group_by=[]),
+    "compare?": valid(filters=NO_FILTERS, comparison={"field": "drug", "values": ["a", "b"]}),
     "efficacy?": valid(supported=False, unsupported_reason="Not in registry.", analysis=None),
 }
 
@@ -114,8 +116,8 @@ def phase_counts(resp) -> dict[str, int]:
 def test_small_query_counts_every_record():
     resp = pipeline().run(QueryRequest(query=PHASE_Q))
     m = resp.meta
-    assert m.count_method == "all_records" and not m.truncated
-    assert m.records_used == m.total_matching == 200
+    assert m.count_method == "all_records" and m.count_completeness == "exact"
+    assert m.trials_counted == m.total_matching == m.records_fetched == 200
     assert sum(phase_counts(resp).values()) == 200  # phase is single-valued
 
 
@@ -123,8 +125,9 @@ def test_large_query_uses_exact_registry_counts_per_bucket():
     calls = []
     resp = pipeline(calls, max_records=100).run(QueryRequest(query=PHASE_Q))
     m = resp.meta
-    assert m.count_method == "registry_count" and not m.truncated
-    assert m.records_used == m.total_matching == 200
+    assert m.count_method == "registry_count" and m.count_completeness == "exact"
+    assert m.trials_counted == m.total_matching == 200 and m.records_fetched < 200
+    assert resp.visualization.subtitle == "Exact counts, all 200 trials"
     assert phase_counts(resp) == phase_counts(pipeline().run(QueryRequest(query=PHASE_Q)))
     assert m.bucket_clauses["PHASE2"].startswith("AREA[Phase]PHASE2 AND NOT")
     assert any("Exact registry counts" in n for n in m.notes)
@@ -136,9 +139,10 @@ def test_large_query_uses_exact_registry_counts_per_bucket():
 def test_large_query_without_buckets_falls_back_to_a_sample():
     resp = pipeline(max_records=100, sample_records=50).run(QueryRequest(query="countries?"))
     m = resp.meta
-    assert m.count_method == "sample" and m.truncated
-    assert (m.records_used, m.total_matching) == (50, 200)
+    assert m.count_method == "sample" and m.count_completeness == "sample"
+    assert (m.trials_counted, m.total_matching) == (50, 200)
     assert any("first 50 of 200" in n for n in m.notes)
+    assert resp.visualization.subtitle == "Partly sampled, SAMPLE of 50 of 200 trials"
 
 
 def test_hints_override_plan_filters():
@@ -223,3 +227,19 @@ def test_budget_exceeded_is_504():
     p = Pipeline(StubPlanner(PLANS), fake_ctgov(), budget_s=1e-9)
     r = TestClient(create_app(p)).post("/query", json={"query": PHASE_Q})
     assert r.status_code == 504 and "budget" in r.json()["detail"]
+
+
+def test_total_is_exact_even_though_only_a_few_records_are_fetched_to_cite():
+    """Regression: a `total` used to say truncated=True because it fetches 25 records."""
+    m = pipeline().run(QueryRequest(query="how many?")).meta
+    assert m.count_completeness == "exact" and m.trials_counted == m.total_matching == 200
+    assert m.records_fetched == 25
+    assert not any("first" in n for n in m.notes)
+
+
+def test_comparison_reports_coverage_per_series():
+    resp = pipeline().run(QueryRequest(query="compare?"))
+    cov = resp.meta.coverage
+    assert [c.series for c in cov] == ["a", "b"]
+    assert all(c.count_completeness == "exact" for c in cov)
+    assert resp.visualization.subtitle == "Exact counts, a: all 200 trials; b: all 200 trials"

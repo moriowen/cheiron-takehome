@@ -20,6 +20,8 @@ main { flex: 1; display: flex; min-height: 0; }
 .bot { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
 .bot h3 { margin: 0 0 8px; font-size: 16px; }
 .bot .error { color: var(--warn); }
+.subtitle { margin: -4px 0 8px; font-size: 13px; color: var(--muted); }
+.subtitle.sampled { color: var(--warn); font-weight: 600; }
 .correction { margin: 0 0 10px; padding: 6px 10px; font-size: 13px; border-left: 3px solid var(--warn);
               background: var(--bg); border-radius: 4px; }
 .notes { color: var(--muted); font-size: 13px; margin: 8px 0 0; padding-left: 18px; }

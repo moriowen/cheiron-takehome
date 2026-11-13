@@ -51,7 +51,7 @@ status: "ok" | "unsupported"
 visualization: {type, title, encoding, data} | null
 meta: {
   plan, filters, api_query, source, data_timestamp,
-  records_used, total_matching, truncated, multi_valued,
+  total_matching, trials_counted, count_completeness, count_method, records_fetched, coverage, multi_valued,
   units, sort, time_granularity, notes[],
   llm: {model, prompt_version, attempts, cost_usd}
 }

@@ -126,6 +126,20 @@ class LLMInfo(BaseModel):
     cost_usd: float
 
 
+CountMethod = Literal["registry_count", "all_records", "sample"]
+
+
+class SeriesCoverage(BaseModel):
+    """How completely one series was counted."""
+
+    series: str | None = Field(description="Compared value, or null without a comparison.")
+    total_matching: int
+    trials_counted: int
+    count_completeness: Literal["exact", "sample"]
+    count_method: CountMethod
+    records_fetched: int
+
+
 class EntityCheck(BaseModel):
     """How one name from the question was checked against the registry (D34)."""
 
@@ -148,15 +162,29 @@ class Meta(BaseModel):
     )
     source: str = "clinicaltrials.gov"
     data_timestamp: str | None = Field(default=None, description="Registry snapshot time.")
-    records_used: int = Field(default=0, description="Trials the counts cover.")
     total_matching: int = Field(default=0, description="All registry matches for the query.")
-    truncated: bool = Field(
-        default=False, description="True if counts use only part of the matches (a sample)."
+    trials_counted: int = Field(
+        default=0, description="Trials the counts cover (= total_matching when exact)."
     )
-    count_method: Literal["registry_count", "all_records", "sample"] | None = Field(
+    count_completeness: Literal["exact", "sample"] | None = Field(
+        default=None,
+        description="exact: counts cover every matching trial; sample: only trials_counted.",
+    )
+    count_method: CountMethod | None = Field(
         default=None,
         description="registry_count: exact count queries per bucket; all_records: counted "
         "from every matching record; sample: counted from the first records only.",
+    )
+    records_fetched: int = Field(
+        default=0, description="Study records downloaded (for counting and for citations)."
+    )
+    citation_limit: int = Field(
+        default=5,
+        description="Most trials cited per datum. A datum's citation_count is the number of "
+        "trials supporting it; `citations` lists up to this many of them.",
+    )
+    coverage: list[SeriesCoverage] = Field(
+        default_factory=list, description="Per series (one entry without a comparison)."
     )
     bucket_clauses: dict[str, str] = Field(
         default_factory=dict,

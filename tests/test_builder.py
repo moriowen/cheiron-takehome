@@ -20,8 +20,7 @@ def fetched(plan, studies=PEMBRO, total=3006):
     names = plan.comparison.values if plan.comparison else [None]
     halves = [studies[i::n] for i in range(n)]
     return [
-        (name, Retrieved(h, total, truncated=True, method="sample"))
-        for name, h in zip(names, halves, strict=True)
+        (name, Retrieved(h, total, method="sample")) for name, h in zip(names, halves, strict=True)
     ]
 
 
@@ -62,8 +61,9 @@ def test_every_taxonomy_row_builds_a_valid_response(name):
             assert d["citations"], "a non-empty datum must cite something"
 
     m = resp.meta
-    assert m.records_used > 0 and m.total_matching >= m.records_used
-    assert m.truncated and any("first" in n for n in m.notes)
+    assert m.trials_counted > 0 and m.total_matching >= m.trials_counted
+    assert m.count_completeness == "sample" and any("first" in n for n in m.notes)
+    assert "SAMPLE" in resp.visualization.subtitle
     assert m.plan == plan and m.llm == LLM and m.data_timestamp == TS
 
 
@@ -130,7 +130,7 @@ def test_title_names_the_scope():
 
 def test_no_matches_is_ok_with_a_note():
     plan = valid()
-    resp = build_response(plan, [(None, Retrieved([], 0, False))], TS, LLM)
+    resp = build_response(plan, [(None, Retrieved([], 0))], TS, LLM)
     assert resp.status == "ok" and resp.visualization.data == []
     assert any("No trials" in n for n in resp.meta.notes)
 
@@ -154,5 +154,5 @@ def test_title_uses_phase_labels_and_starts_capitalized():
 def test_missing_note_grammar():
     plan = valid(analysis="histogram", group_by=[], measures=["enrollment"])
     one_missing = PEMBRO[:3] + [{"protocolSection": {"identificationModule": {"nctId": "NCTX"}}}]
-    notes = build_response(plan, [(None, Retrieved(one_missing, 4, False))], TS, LLM).meta.notes
+    notes = build_response(plan, [(None, Retrieved(one_missing, 4))], TS, LLM).meta.notes
     assert "1 trial has no enrollment and is not shown." in notes
