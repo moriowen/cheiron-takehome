@@ -243,3 +243,8 @@ def test_comparison_reports_coverage_per_series():
     assert [c.series for c in cov] == ["a", "b"]
     assert all(c.count_completeness == "exact" for c in cov)
     assert resp.visualization.subtitle == "Exact counts, a: all 200 trials; b: all 200 trials"
+
+
+def test_ignored_comparison_hint_is_disclosed():
+    response = pipeline().run(QueryRequest(query="compare?", drug_name="c"))
+    assert any("drug_name='c' was not applied" in note for note in response.meta.notes)

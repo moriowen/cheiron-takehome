@@ -78,6 +78,8 @@ def build_response(
         )
     notes += [e.note for e in entities if e.note]  # then spelling fixes
     notes += plan.interpretation_notes
+    if plan.top_n is not None and plan.analysis not in {Analysis.BREAKDOWN, Analysis.NETWORK}:
+        notes.append(f"top_n={plan.top_n} was not applied: this chart does not rank entities.")
     viz_type = select_viz(plan)
     meta = _base_meta(plan, fetched, data_timestamp, llm, notes)
     builder = _BUILDERS[viz_type]
@@ -415,7 +417,8 @@ def _time_series(plan: QueryPlan, fetched: Fetched, notes: list[str]):
 def _network(plan: QueryPlan, fetched: Fetched, notes: list[str]):
     a, b = (DIMENSIONS[d] for d in plan.group_by)
     same = a.dimension == b.dimension
-    net = agg.network(_studies(fetched), a, b, max_nodes_per_group=25 if same else 15)
+    limit = plan.top_n or (25 if same else 15)
+    net = agg.network(_studies(fetched), a, b, max_nodes_per_group=limit)
     nodes = [
         Node(
             id=n.id,
@@ -442,7 +445,7 @@ def _network(plan: QueryPlan, fetched: Fetched, notes: list[str]):
         + ("drugs (combination or multi-arm studies)." if same else "ends.")
     )
     notes.append(
-        f"Only the {25 if same else 15} most frequent entities per group are shown; "
+        f"At most the {limit} most frequent entities per group are shown; "
         "entities with no links are dropped."
     )
     enc = {

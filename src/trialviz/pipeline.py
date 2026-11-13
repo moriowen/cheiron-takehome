@@ -37,7 +37,7 @@ class PipelineError(Exception):
 def apply_hints(plan: QueryPlan, request: QueryRequest) -> QueryPlan:
     """Structured hints are facts from the caller, so they override what the LLM extracted.
 
-    A hint for the field being compared is skipped: the comparison already names the values.
+    A hint for the field being compared is skipped and disclosed in interpretation_notes.
     """
     if not plan.supported:
         return plan
@@ -45,7 +45,12 @@ def apply_hints(plan: QueryPlan, request: QueryRequest) -> QueryPlan:
     compared = plan.comparison.field if plan.comparison else None
     for hint, filter_field in _HINTS.items():
         value = getattr(request, hint)
-        if value is not None and filter_field != compared:
+        if value is not None and filter_field == compared:
+            data["interpretation_notes"].append(
+                f"Structured field {hint}={value!r} was not applied because "
+                f"{filter_field} is the comparison field."
+            )
+        elif value is not None:
             data["filters"][filter_field] = (
                 [v.value for v in value] if isinstance(value, list) else value
             )
@@ -85,7 +90,7 @@ class Pipeline:
             cost_usd=round(result.cost_usd, 6),
         )
         if not plan.supported:
-            return build_response(plan, [], self._data_timestamp(), llm)
+            return build_response(plan, [], None, llm)
 
         with budget(self._budget_s):  # registry calls past the budget raise BudgetExceeded
             return self._execute(plan, llm)

@@ -76,3 +76,14 @@ def test_budget_stops_registry_calls():
         time.sleep(0.001)
         client.count(StudyQuery())
     assert client.count(StudyQuery()) == 1  # no budget outside the block
+
+
+def test_empty_configured_cache_is_used_and_keeps_its_bound():
+    cache = TTLCache(ttl_s=3600, max_entries=1)
+    client = SlowClient()
+    retriever = Retriever(client, cache=cache)
+    retriever.count(StudyQuery(condition="a"))
+    retriever.count(StudyQuery(condition="b"))
+    assert len(cache) == 1
+    assert retriever.count(StudyQuery(condition="b")) == 5
+    assert client.calls == 2

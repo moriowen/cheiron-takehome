@@ -165,3 +165,14 @@ def test_ignored_constraints_are_disclosed_first_and_in_the_subtitle():
     assert resp.meta.notes[0].startswith("Not applied: randomized.")
     assert "read X as Y" in resp.meta.notes
     assert resp.visualization.subtitle.startswith("NOT APPLIED: randomized.")
+
+
+@pytest.mark.parametrize("dims", [["drug", "drug"], ["lead_sponsor", "drug"]])
+def test_network_honors_explicit_top_n_per_group(dims):
+    plan = valid(analysis="network", group_by=dims, top_n=3)
+    resp = build_response(plan, fetched(plan, MELANOMA), TS, LLM)
+    net = resp.visualization.data
+    assert net.nodes and net.edges
+    for group in set(n.group for n in net.nodes):
+        assert sum(n.group == group for n in net.nodes) <= 3
+    assert any("3 most frequent" in n for n in resp.meta.notes)

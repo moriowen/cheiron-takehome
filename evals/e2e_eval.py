@@ -18,6 +18,7 @@ Run: uv run python -m evals.e2e_eval [--model X] [--only id ...]
 """
 
 import argparse
+import copy
 import json
 import re
 import time
@@ -25,7 +26,8 @@ import time
 from evals import stats
 from evals.dataset import DATASET_VERSION, code_revision, load_cases
 from evals.heldout_cases import HELDOUT_VERSION
-from evals.planner_eval import RESULTS_DIR
+from evals.planner_eval import RESULTS_DIR, check_plan
+from trialviz.compiler import compile_plan
 from trialviz.config import AppSettings, LLMSettings
 from trialviz.ctgov.client import CTGovClient
 from trialviz.llm.openai_planner import OpenAIPlanner
@@ -45,6 +47,60 @@ CHART_FOR_ANALYSIS = {
 }
 
 
+class RecordingPlanner:
+    """Keep interpretation separate from hint application and entity correction."""
+
+    def __init__(self, planner):
+        self.planner = planner
+        self.last_plan = None
+
+    def plan(self, request):
+        self.last_plan = None
+        result = self.planner.plan(request)
+        self.last_plan = result.plan
+        return result
+
+
+class RecordingClient(CTGovClient):
+    """Record queries that fetched chart records, including earlier cache fills."""
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.fetch_queries = []
+
+    def iter_pages(self, query, **kwargs):
+        self.fetch_queries.append(query.to_params())
+        yield from super().iter_pages(query, **kwargs)
+
+
+def check_execution(resp: QueryResponse, fetched_queries: list[dict]) -> list[str]:
+    """Check the executed cohort, independently of chart values."""
+    plan = resp.meta.plan
+    if not plan or not plan.supported:
+        return []
+    compiled = compile_plan(plan)
+    params = [q.query.to_params() for q in compiled.queries]
+    expected = (
+        dict(zip(plan.comparison.values, params, strict=True)) if plan.comparison else params[0]
+    )
+    errors = []
+    if resp.meta.api_query != expected:
+        errors.append("metadata query differs from the compiled filters")
+    if resp.meta.filters != plan.filters.model_dump(mode="json", exclude_none=True):
+        errors.append("metadata filters differ from executed plan")
+    for q, cov in zip(compiled.queries, resp.meta.coverage, strict=False):
+        queries = [q.query]
+        if cov.count_method == "registry_count" and compiled.buckets:
+            queries = [q.query.and_advanced(clause) for _, clause in compiled.buckets]
+        if any(query.to_params() not in fetched_queries for query in queries):
+            errors.append(f"series {q.series!r}: cohort query was never fetched")
+    return errors
+
+
+def check_interpretation(plan, expect: dict) -> list[str]:
+    return [str(f) for f in check_plan(plan, expect)]
+
+
 def check_response(resp: QueryResponse, expect: dict) -> list[str]:
     errors = []
     want_ok = expect.get("supported", True)
@@ -54,11 +110,30 @@ def check_response(resp: QueryResponse, expect: dict) -> list[str]:
         return [] if resp.meta.notes else ["unsupported response has no reason"]
 
     v, m = resp.visualization, resp.meta
+    if m.plan is None:
+        return ["missing executed plan"]
+    # Entity correction is an explicit execution step, so compare its final name here.
+    final_expect = copy.deepcopy(expect)
+    for entity in m.entities:
+        filters = final_expect.get("filters", {})
+        if entity.corrected and filters.get(entity.field, "").lower() == entity.value.lower():
+            filters[entity.field] = entity.used
+    errors += check_interpretation(m.plan, final_expect)
+    if m.plan.analysis.value == "breakdown":
+        first = m.plan.group_by[0].value
+        fields = {v.encoding[axis].field for axis in ("x", "y")}
+        if first not in fields:
+            errors.append(f"chart does not group by {first}")
+    if m.plan.analysis.value == "scatter":
+        fields = {v.encoding[axis].field for axis in ("x", "y")}
+        if fields != {measure.value for measure in m.plan.measures}:
+            errors.append("scatter axes differ from requested measures")
     if "analysis" in expect and v.type.value not in CHART_FOR_ANALYSIS[expect["analysis"]]:
         errors.append(f"chart: {v.type.value} does not fit analysis {expect['analysis']}")
     data = v.data.nodes + v.data.edges if isinstance(v.data, NetworkData) else v.data
     if not data:
-        errors.append("no data")
+        if m.total_matching:
+            errors.append("no data despite matching trials")
     for d in data:
         d = d if isinstance(d, dict) else d.model_dump()
         count = d.get("trial_count", d.get("weight", d.get("citation_count")))
@@ -72,6 +147,8 @@ def check_response(resp: QueryResponse, expect: dict) -> list[str]:
     if not m.data_timestamp or not m.api_query:
         errors.append("meta missing data_timestamp or api_query")
     if isinstance(v.data, NetworkData):
+        if any(n.group not in {d.value for d in m.plan.group_by} for n in v.data.nodes):
+            errors.append("network contains an unrequested dimension")
         generic = [
             n.label
             for n in v.data.nodes
@@ -84,6 +161,28 @@ def check_response(resp: QueryResponse, expect: dict) -> list[str]:
         errors.append("trials_counted > total_matching")
     if sum(c.total_matching for c in m.coverage) != m.total_matching:
         errors.append("coverage does not sum to total_matching")
+    if sum(c.trials_counted for c in m.coverage) != m.trials_counted:
+        errors.append("coverage does not sum to trials_counted")
+    wanted_series = m.plan.comparison.values if m.plan.comparison else [None]
+    if [c.series for c in m.coverage] != wanted_series:
+        errors.append("coverage series differ from the comparison")
+    if m.ignored_constraints != m.plan.ignored_constraints:
+        errors.append("omitted constraints missing from metadata")
+    if m.ignored_constraints and "NOT APPLIED" not in (v.subtitle or ""):
+        errors.append("omitted constraints missing from subtitle")
+    if m.plan.top_n:
+        if isinstance(v.data, NetworkData):
+            for group in set(n.group for n in v.data.nodes):
+                if sum(n.group == group for n in v.data.nodes) > m.plan.top_n:
+                    errors.append("network exceeds top_n per group")
+        elif m.plan.analysis.value == "breakdown":
+            field = m.plan.group_by[0].value
+            if len({row[field] for row in v.data}) > m.plan.top_n:
+                errors.append("breakdown exceeds top_n")
+    if m.plan.comparison and not isinstance(v.data, NetworkData):
+        got = {row.get("series") for row in v.data}
+        if got != set(wanted_series):
+            errors.append("chart series differ from requested comparison")
     if (m.count_completeness == "exact") != (m.trials_counted == m.total_matching):
         errors.append(f"count_completeness {m.count_completeness} disagrees with counts")
     if m.count_completeness == "sample" and "SAMPLE" not in (v.subtitle or ""):
@@ -121,11 +220,14 @@ def main() -> None:
 
     settings = LLMSettings(**({"llm_model": args.model} if args.model else {}))
     app = AppSettings()
+    planner = RecordingPlanner(OpenAIPlanner(settings))
+    client = RecordingClient(rate_per_s=app.ctgov_rate_per_s, burst=app.ctgov_burst)
     pipeline = Pipeline(
-        OpenAIPlanner(settings),
-        CTGovClient(rate_per_s=app.ctgov_rate_per_s, burst=app.ctgov_burst),
+        planner,
+        client,
         max_records=app.max_records,
         sample_records=app.sample_records,
+        budget_s=app.request_budget_s,
     )
     results = []
     for case in load_cases(synthetic=False, heldout=args.heldout):
@@ -134,17 +236,24 @@ def main() -> None:
         started = time.perf_counter()
         try:
             resp = pipeline.run(QueryRequest(query=case["query"], **case.get("hints", {})))
-            errors = check_response(resp, case["expect"])
+            stages = {
+                "interpretation": check_interpretation(planner.last_plan, case["expect"]),
+                "execution": check_execution(resp, client.fetch_queries),
+                "answer": check_response(resp, case["expect"]),
+            }
+            errors = [f"{stage}: {error}" for stage, es in stages.items() for error in es]
             cost = resp.meta.llm.cost_usd if resp.meta.llm else 0.0
             chart = resp.visualization.type.value if resp.visualization else None
         except Exception as e:  # noqa: BLE001 - an eval records every failure
             errors, cost, chart = [f"{type(e).__name__}: {e}"], 0.0, None
+            stages = {"pipeline": errors}
         latency = round(time.perf_counter() - started, 1)
         results.append(
             {
                 "id": case["id"],
                 "passed": not errors,
                 "errors": errors,
+                "stages": stages,
                 "chart": chart,
                 "latency_s": latency,
                 "cost_usd": cost,
@@ -172,7 +281,7 @@ def main() -> None:
         "results": results,
     }
     print(
-        f"\n{settings.llm_model} prompt={PROMPT_VERSION} dataset={DATASET_VERSION}: "
+        f"\n{settings.llm_model} prompt={PROMPT_VERSION} dataset={summary['dataset_version']}: "
         f"{passed}/{len(results)} passed (95% CI {lo:.0%}-{hi:.0%}), "
         f"latency p50 {summary['latency_p50_s']:.1f}s p95 {summary['latency_p95_s']:.1f}s, "
         f"LLM cost ${cost:.4f}"
@@ -182,6 +291,8 @@ def main() -> None:
     out = RESULTS_DIR / f"e2e-{settings.llm_model}-p{PROMPT_VERSION}-{dataset}.json"
     out.write_text(json.dumps(summary, indent=2))
     print(f"wrote {out}")
+    if passed != len(results):
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

@@ -97,36 +97,36 @@ def test_encoding_fields_must_exist_in_rows():
 
 
 def test_network_uses_nodes_and_edges():
+    citation = bar().data[0]["citations"][0]
     data = NetworkData(
         nodes=[
             {
-                "id": "s:Merck",
-                "label": "Merck",
-                "group": "lead_sponsor",
-                "weight": 2,
-                "citation_count": 0,
-                "citations": [],
-            },
-            {
-                "id": "d:pembrolizumab",
-                "label": "pembrolizumab",
+                "id": nid,
+                "label": nid,
                 "group": "drug",
                 "weight": 2,
-                "citation_count": 0,
-                "citations": [],
-            },
+                "citation_count": 2,
+                "citations": [citation],
+            }
+            for nid in ("a", "b")
         ],
         edges=[
             {
-                "source": "s:Merck",
-                "target": "d:pembrolizumab",
+                "source": "a",
+                "target": "b",
                 "weight": 2,
-                "citation_count": 0,
-                "citations": [],
+                "citation_count": 2,
+                "citations": [citation],
             }
         ],
     )
-    Visualization(type=VizType.NETWORK_GRAPH, title="t", encoding={}, data=data)
+    from tests.test_builder import fetched
+    from tests.test_plan import valid
+    from trialviz.builder import build_response
+
+    plan = valid(analysis="network", group_by=["lead_sponsor", "drug"])
+    encoding = build_response(plan, fetched(plan), "TS", None).visualization.encoding
+    Visualization(type=VizType.NETWORK_GRAPH, title="t", encoding=encoding, data=data)
 
 
 def test_network_edges_reference_known_nodes():
@@ -151,3 +151,29 @@ def test_network_edges_reference_known_nodes():
 def test_json_schema_exports():
     schema = QueryResponse.model_json_schema()
     assert "visualization" in schema["properties"]
+
+
+@pytest.mark.parametrize(
+    "mutation",
+    [
+        lambda v: v["encoding"].pop("y"),
+        lambda v: v["data"][0].update(trial_count=-1),
+        lambda v: v["data"][0].update(trial_count=1.5),
+        lambda v: v["data"][0].update(citation_count=2),
+        lambda v: v["data"][0].update(citations=[]),
+        lambda v: v["data"][0]["citations"][0].update(nct_id="bad"),
+        lambda v: v["data"][0]["citations"][0].update(field=""),
+        lambda v: v["encoding"]["y"].update(type="nominal"),
+        lambda v: v.update(type="histogram"),
+    ],
+)
+def test_invalid_chart_contract_is_rejected(mutation):
+    payload = bar().model_dump()
+    mutation(payload)
+    with pytest.raises(ValidationError):
+        Visualization.model_validate(payload)
+
+
+def test_openapi_exports_typed_rows():
+    defs = QueryResponse.model_json_schema()["$defs"]
+    assert {"CountRow", "TrendRow", "HistogramRow", "ScatterRow", "MetricRow"} <= defs.keys()

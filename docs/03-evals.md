@@ -6,9 +6,9 @@ How we measure the system, and how the setup maps to common eval practice. The s
 
 | Command | What it checks | Cost |
 |---|---|---|
-| `uv run pytest` | 215 offline tests on recorded real API data, including the eval harness itself | free, about 2 s |
-| `uv run python -m evals.planner_eval --runs 3` | 74 golden cases x 3 runs, plan checked field by field | about $0.32 on gpt-5.4-mini |
-| `uv run python -m evals.e2e_eval` | 29 hand-written cases through the full pipeline, live registry | about $0.04 LLM, about 5 min |
+| `uv run pytest` | 253 offline tests on recorded real API data, including the eval harness itself | free, about 2 s |
+| `uv run python -m evals.planner_eval --runs 3` | 79 development cases x 3 runs, plan checked field by field | about $0.32 on gpt-5.4-mini |
+| `uv run python -m evals.e2e_eval` | 34 hand-written cases through the full pipeline, live registry | about $0.04 LLM, about 5 min |
 | `uv run python -m evals.synth --n 45` | regenerates the synthetic cases (review before committing) | about $0.10 |
 
 Results are committed in `evals/results/`. File names carry the model, the prompt version, the dataset version, and k, so every score can be traced to the exact code and data that produced it.
@@ -52,3 +52,11 @@ Earlier single-run results (prompt .2 and .3, 19 cases) are also in `evals/resul
 1. Add the case to `evals/planner_cases.py` with its `META` entry (intent, difficulty, source). For a failure seen anywhere, use `source: regression` and a comment saying where it came from.
 2. Bump `DATASET_VERSION` in `evals/dataset.py`.
 3. Run `uv run python -m evals.planner_eval --runs 3` and commit the results file.
+
+## Trustworthiness checks
+
+The end-to-end runner now reports three stages separately: interpretation (the raw plan against labeled expectations), execution (compiled filters against metadata and observed record-fetch queries, including cache fills), and answer (chart dimensions, comparison series, requested limits, constraint disclosure, counts, citations, and per-series completeness). A run exits nonzero if any case fails. These checks detect cohort mistakes but do not establish every live population count independently.
+
+For independent known answers, `tests/test_cohort_correctness.py` defines six hand-labeled records, including a diabetes distractor, overlapping drugs, multiple countries, and a missing year. Its mock registry applies filters directly to those labels without calling production extraction or compilation code. Assertions pin exact cohorts, phase counts, country ranking, zero-filled trends, comparison overlap, and network weights. Mutation checks prove the evaluator rejects a wrong cohort and wrong requested limit even when the chart shape is valid.
+
+`uv run python -m evals.planner_eval --heldout --runs 3` and `uv run python -m evals.e2e_eval --heldout` score only the 15 adversarial cases written before prompt .5. They never load into development evals. Held-out failures are reported without changing the prompt or relabeling cases. Results include the git revision, marked `+dirty` if the working tree changed. A development rerun of prompt .7 scored 78/79 pass^3 (236/237 attempts), with one missing ranking limit. The held-out planner scored 14/15 pass^3: forecasting was incorrectly accepted in all three runs. This is a known scope limitation, not evidence that forecasting works.

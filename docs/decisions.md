@@ -179,6 +179,18 @@ The old rule matched a name to any MeSH term it contained or was contained in. O
 4. Otherwise free text: the cleaned name.
 Exact wins over alias, so "CC-486" (otherName "Oral Azacitidine") is one drug, not two. Drug-class terms (last word "inhibitors", "agents", "therapy", ...) are never drug values. Every drug and condition citation records the rule in `match`. On the 400 fixture records, 60 labels changed; each change was reviewed, and the regression tests pin the cases above. Cost: some true synonyms stay separate when the record gives no evidence ("5-fluorouracil" and "Fluorouracil", "Mitomycin C" and "Mitomycin").
 
+### D40. Disclose constraints that no filter can execute
+2026-11-12. Implemented under the trustworthiness priorities.
+The planner records `ignored_constraints` and `interpretation_notes`. A useful partial registry chart stays supported, with omitted constraints visible in metadata, its subtitle, and the UI. A request whose central answer is unavailable returns `unsupported`. A held-out adversarial set was written before this prompt work and remains outside development runs.
+
+### D41. Verify interpretation, execution, and answer separately
+2026-11-12. Implemented under the trustworthiness priorities.
+Live end-to-end checks inspect the raw plan, observed cohort fetches, and final chart separately. Six hand-labeled records pin known counts independently of the production extraction logic. The public schema exports typed rows and validates chart channels, integer counts, citation consistency, and network references. Network `top_n` applies per entity group; ignored hints and controls produce notes. Unsupported questions skip registry requests.
+
+### D42. Package a revision with reproducible evidence
+2026-11-12. Implemented under the submission priorities.
+The ZIP contains tracked project files plus a code revision manifest. Environment secrets, dependencies, caches, and git history are excluded. Validation reports distinguish development from held-out results and saved demo playback from live execution. A fresh planner run exposed a ranking failure that the earlier perfect run missed, so both the result and the limitation are disclosed.
+
 ## Assumptions
 
 | ID | Assumption | If false |

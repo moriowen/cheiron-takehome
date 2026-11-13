@@ -89,7 +89,7 @@ class Retriever:
         self._client = client
         self._max_records = max_records
         self._sample_records = sample_records
-        self._cache = cache or TTLCache(3600)
+        self._cache = cache if cache is not None else TTLCache(3600)
         self._inflight: dict[Any, threading.Lock] = {}
         self._inflight_lock = threading.Lock()
 

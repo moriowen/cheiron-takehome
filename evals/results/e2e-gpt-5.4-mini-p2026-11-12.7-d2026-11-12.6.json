@@ -1,0 +1,459 @@
+{
+  "model": "gpt-5.4-mini",
+  "prompt_version": "2026-11-12.7",
+  "dataset_version": "2026-11-12.6",
+  "code_revision": "29ca895+dirty",
+  "passed": 34,
+  "total": 34,
+  "ci95": [
+    0.8984820937803899,
+    1.0
+  ],
+  "latency_p50_s": 4.75,
+  "latency_p95_s": 22.795000000000005,
+  "llm_cost_usd": 0.060528,
+  "results": [
+    {
+      "id": "trend_drug_since",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "time_series",
+      "latency_s": 3.5,
+      "cost_usd": 0.001768
+    },
+    {
+      "id": "trend_condition",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "time_series",
+      "latency_s": 11.3,
+      "cost_usd": 0.001752
+    },
+    {
+      "id": "phase_distribution",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 8.1,
+      "cost_usd": 0.001747
+    },
+    {
+      "id": "intervention_types",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 16.1,
+      "cost_usd": 0.001753
+    },
+    {
+      "id": "compare_drugs_phase",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "grouped_bar_chart",
+      "latency_s": 10.1,
+      "cost_usd": 0.001809
+    },
+    {
+      "id": "compare_conditions_sponsor_class",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "grouped_bar_chart",
+      "latency_s": 26.3,
+      "cost_usd": 0.001802
+    },
+    {
+      "id": "countries_recruiting",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 3.8,
+      "cost_usd": 0.001762
+    },
+    {
+      "id": "network_sponsor_drug",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "network_graph",
+      "latency_s": 6.8,
+      "cost_usd": 0.001762
+    },
+    {
+      "id": "network_drug_cooccurrence",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "network_graph",
+      "latency_s": 19.8,
+      "cost_usd": 0.00175
+    },
+    {
+      "id": "hint_drug_trend",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "time_series",
+      "latency_s": 4.6,
+      "cost_usd": 0.001764
+    },
+    {
+      "id": "histogram_enrollment",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "histogram",
+      "latency_s": 4.0,
+      "cost_usd": 0.001769
+    },
+    {
+      "id": "scatter_enrollment_duration",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "scatter_plot",
+      "latency_s": 2.6,
+      "cost_usd": 0.001772
+    },
+    {
+      "id": "total_recruiting",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "metric",
+      "latency_s": 1.9,
+      "cost_usd": 0.001753
+    },
+    {
+      "id": "top_sponsors",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 21.5,
+      "cost_usd": 0.001753
+    },
+    {
+      "id": "crosstab_phase_status",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "grouped_bar_chart",
+      "latency_s": 15.6,
+      "cost_usd": 0.001762
+    },
+    {
+      "id": "trend_comparison",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "time_series",
+      "latency_s": 6.1,
+      "cost_usd": 0.001816
+    },
+    {
+      "id": "network_drug_condition_sponsor",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "network_graph",
+      "latency_s": 9.6,
+      "cost_usd": 0.001751
+    },
+    {
+      "id": "unsupported_efficacy",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": null,
+      "latency_s": 1.2,
+      "cost_usd": 0.001821
+    },
+    {
+      "id": "unsupported_price",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": null,
+      "latency_s": 0.9,
+      "cost_usd": 0.001774
+    },
+    {
+      "id": "constraint_randomized_double_blind",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 2.1,
+      "cost_usd": 0.001786
+    },
+    {
+      "id": "constraint_open_label_recruiting",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "metric",
+      "latency_s": 1.1,
+      "cost_usd": 0.001766
+    },
+    {
+      "id": "constraint_pediatric_trend",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "time_series",
+      "latency_s": 4.9,
+      "cost_usd": 0.001767
+    },
+    {
+      "id": "constraint_age_countries",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 20.1,
+      "cost_usd": 0.001777
+    },
+    {
+      "id": "unsupported_primary_endpoint",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": null,
+      "latency_s": 1.1,
+      "cost_usd": 0.001801
+    },
+    {
+      "id": "misspelled_drug_corrected",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 1.2,
+      "cost_usd": 0.001762
+    },
+    {
+      "id": "unknown_drug_reported",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "metric",
+      "latency_s": 3.4,
+      "cost_usd": 0.001743
+    },
+    {
+      "id": "brand_name_kept_as_written",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "metric",
+      "latency_s": 2.5,
+      "cost_usd": 0.001802
+    },
+    {
+      "id": "prompt_injection_ignored",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 7.7,
+      "cost_usd": 0.001754
+    },
+    {
+      "id": "regression_compare_condition_not_dimension",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "grouped_bar_chart",
+      "latency_s": 9.0,
+      "cost_usd": 0.001822
+    },
+    {
+      "id": "regression_compare_single_dimension",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "grouped_bar_chart",
+      "latency_s": 6.4,
+      "cost_usd": 0.001804
+    },
+    {
+      "id": "scatter_duration_vs_enrollment",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "scatter_plot",
+      "latency_s": 3.7,
+      "cost_usd": 0.001768
+    },
+    {
+      "id": "crosstab_phase_sponsor_class",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "grouped_bar_chart",
+      "latency_s": 25.2,
+      "cost_usd": 0.001767
+    },
+    {
+      "id": "regression_partial_request_still_supported",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "network_graph",
+      "latency_s": 2.6,
+      "cost_usd": 0.001871
+    },
+    {
+      "id": "unsupported_safety",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": null,
+      "latency_s": 1.1,
+      "cost_usd": 0.001898
+    }
+  ]
+}

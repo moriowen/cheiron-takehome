@@ -104,6 +104,8 @@ def check_plan(plan: QueryPlan, expect: dict) -> list[Failure]:
 
     if "top_n_set" in expect and (plan.top_n is not None) != expect["top_n_set"]:
         out.append(Failure(F.WRONG_TOP_N, f"expected set={expect['top_n_set']}, got {plan.top_n}"))
+    if "top_n" in expect and plan.top_n != expect["top_n"]:
+        out.append(Failure(F.WRONG_TOP_N, f"expected {expect['top_n']}, got {plan.top_n}"))
     if not expect.get("constraints_ambiguous"):  # wording that may or may not be a condition
         out += _check_constraints(plan.ignored_constraints, expect.get("ignored_contains", []))
     return out
@@ -257,7 +259,8 @@ def main() -> None:
 
     lo, hi = overall["pass_hat_k_ci95"]
     print(
-        f"\n{settings.llm_model}  prompt={PROMPT_VERSION}  dataset={DATASET_VERSION}  "
+        f"\n{settings.llm_model}  prompt={PROMPT_VERSION}  "
+        f"dataset={HELDOUT_VERSION if args.heldout else DATASET_VERSION}  "
         f"k={args.runs}  cases={overall['cases']}"
     )
     print(
