@@ -8,7 +8,7 @@ from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
 from trialviz.config import AppSettings, LLMSettings
-from trialviz.ctgov.client import CTGovClient, CTGovError
+from trialviz.ctgov.client import BudgetExceeded, CTGovClient, CTGovError
 from trialviz.llm.openai_planner import OpenAIPlanner
 from trialviz.llm.planner import PlannerError
 from trialviz.pipeline import Pipeline, PipelineError
@@ -35,6 +35,8 @@ def create_app(pipeline: Pipeline) -> FastAPI:
             raise HTTPException(422, str(e)) from e
         except PlannerError as e:
             raise HTTPException(502, f"Planner failed: {e}") from e
+        except BudgetExceeded as e:
+            raise HTTPException(504, f"{e}; try a narrower question") from e
         except CTGovError as e:
             raise HTTPException(502, f"ClinicalTrials.gov failed: {e}") from e
 
@@ -67,5 +69,7 @@ def build_app() -> FastAPI:
             max_records=app_settings.max_records,
             sample_records=app_settings.sample_records,
             cache_ttl_s=app_settings.cache_ttl_s,
+            cache_max_entries=app_settings.cache_max_entries,
+            budget_s=app_settings.request_budget_s,
         )
     )

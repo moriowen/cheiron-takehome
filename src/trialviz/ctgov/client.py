@@ -12,10 +12,13 @@ about plans, charts, or citations. API facts this code relies on (probed 2026-11
   backoff, and Retry-After support.
 """
 
+import contextvars
 import logging
 import re
+import threading
 import time
 from collections.abc import Iterator, Sequence
+from contextlib import contextmanager
 from dataclasses import dataclass, replace
 from typing import Any
 
@@ -27,12 +30,34 @@ BASE_URL = "https://clinicaltrials.gov/api/v2"
 MAX_PAGE_SIZE = 1000
 _NCT_ID = re.compile(r"^NCT\d{8}$")
 _RETRY_STATUS = {429, 500, 502, 503, 504}
+# Monotonic deadline for the current request's registry work (set per thread by `budget`).
+_DEADLINE: contextvars.ContextVar[float | None] = contextvars.ContextVar("deadline", default=None)
 
 
 class CTGovError(Exception):
     def __init__(self, message: str, *, status_code: int | None = None):
         super().__init__(message)
         self.status_code = status_code
+
+
+class BudgetExceeded(CTGovError):
+    """The request's time budget for registry calls ran out."""
+
+
+@contextmanager
+def budget(seconds: float | None):
+    """Registry calls made inside this block fail once `seconds` have passed."""
+    token = _DEADLINE.set(time.monotonic() + seconds if seconds else None)
+    try:
+        yield
+    finally:
+        _DEADLINE.reset(token)
+
+
+def _check_budget() -> None:
+    deadline = _DEADLINE.get()
+    if deadline is not None and time.monotonic() > deadline:
+        raise BudgetExceeded("time budget for ClinicalTrials.gov calls exceeded")
 
 
 @dataclass(frozen=True)
@@ -78,15 +103,24 @@ class DataVersion:
 
 
 class RateLimiter:
-    """Token bucket: up to `burst` requests at once, then `rate_per_s` sustained."""
+    """Token bucket: up to `burst` requests at once, then `rate_per_s` sustained.
+
+    Shared by every request thread (FastAPI runs sync endpoints in a thread pool), so the
+    lock makes the bucket one global budget. Waiting inside the lock queues callers in order.
+    """
 
     def __init__(self, rate_per_s: float, burst: int):
         self._rate = rate_per_s
         self._burst = burst
         self._tokens = float(burst)
         self._last: float | None = None
+        self._lock = threading.Lock()
 
     def acquire(self) -> None:
+        with self._lock:
+            self._acquire()
+
+    def _acquire(self) -> None:
         now = time.monotonic()
         if self._last is not None:
             self._tokens = min(self._burst, self._tokens + (now - self._last) * self._rate)
@@ -188,6 +222,7 @@ class CTGovClient:
     def _get(self, path: str, params: dict[str, str]) -> Any:
         for attempt in range(self._max_retries + 1):
             last = attempt == self._max_retries
+            _check_budget()
             if self._limiter:
                 self._limiter.acquire()
             try:

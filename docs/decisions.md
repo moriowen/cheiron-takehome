@@ -153,6 +153,14 @@ The suggest endpoint is not in the documented API (the user accepted that). If i
 2026-11-12. Accepted. The user chose this over a `needs_clarification` status.
 A corrected name is searched at once, the title uses it, and the first note says what changed: `"pembrolizimab" matches only 3 trials; searched for "pembrolizumab" (3,006 trials), the registry's closest drug name, instead.` The UI shows that note above the chart. The response schema keeps two statuses. Cost: a user who meant the rare spelling cannot opt out in this version. A correction that would make two compared values equal is skipped.
 
+### D36. Shared resources are safe under concurrent requests
+2026-11-12. Accepted. Fixes a bug: FastAPI runs the sync `/query` endpoint in a thread pool, and the token bucket (D33) had no lock, so concurrent requests could each spend the same tokens and exceed the API limit together.
+- The rate limiter takes a lock, so all requests share one budget and wait in order.
+- The cache is bounded (`CACHE_MAX_ENTRIES`, 512, least recently used out) and thread-safe.
+- Single flight: concurrent requests for the same count or fetch wait for one registry call instead of each sending it. A test runs 6 identical requests at once and sees 2 calls (1 count, 1 fetch).
+- Each request has a time budget for registry calls (`REQUEST_BUDGET_S`, 90 s). Past it, the next call raises `BudgetExceeded`, and the API returns HTTP 504 with a hint to narrow the question.
+The service stays synchronous. Nothing measured so far needs async; the registry's 1 request/s limit, not the server, is the bottleneck.
+
 ## Assumptions
 
 | ID | Assumption | If false |

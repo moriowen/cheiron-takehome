@@ -13,9 +13,12 @@ method below is chosen by how many requests it needs:
 
 import logging
 import math
+import threading
 import time
-from dataclasses import dataclass, field
-from typing import Literal
+from collections import OrderedDict
+from collections.abc import Callable
+from dataclasses import dataclass
+from typing import Any, Literal
 
 from trialviz.ctgov.client import MAX_PAGE_SIZE, CTGovClient, StudyQuery
 from trialviz.registry import nct_id
@@ -40,19 +43,35 @@ class Retrieved:
         return self.total_count if self.method == "registry_count" else len(self.studies)
 
 
-@dataclass
 class TTLCache:
-    ttl_s: float
-    entries: dict = field(default_factory=dict)
+    """Thread-safe cache with a lifetime per entry and a size bound (least recently used out)."""
+
+    def __init__(self, ttl_s: float, max_entries: int = 512):
+        self.ttl_s = ttl_s
+        self.max_entries = max_entries
+        self._entries: OrderedDict = OrderedDict()
+        self._lock = threading.Lock()
 
     def get(self, key):
-        hit = self.entries.get(key)
-        if hit and time.monotonic() - hit[0] < self.ttl_s:
+        with self._lock:
+            hit = self._entries.get(key)
+            if hit is None:
+                return None
+            if time.monotonic() - hit[0] >= self.ttl_s:
+                del self._entries[key]
+                return None
+            self._entries.move_to_end(key)
             return hit[1]
-        return None
 
     def put(self, key, value) -> None:
-        self.entries[key] = (time.monotonic(), value)
+        with self._lock:
+            self._entries[key] = (time.monotonic(), value)
+            self._entries.move_to_end(key)
+            while len(self._entries) > self.max_entries:
+                self._entries.popitem(last=False)
+
+    def __len__(self) -> int:
+        return len(self._entries)
 
 
 class Retriever:
@@ -68,6 +87,8 @@ class Retriever:
         self._max_records = max_records
         self._sample_records = sample_records
         self._cache = cache or TTLCache(3600)
+        self._inflight: dict[Any, threading.Lock] = {}
+        self._inflight_lock = threading.Lock()
 
     def retrieve(
         self,
@@ -109,10 +130,7 @@ class Retriever:
     def suggest(self, text: str, dictionary: str) -> list[str]:
         """The registry's autocomplete names for `text` (cached; see CTGovClient.suggest)."""
         key = ("suggest", text.lower(), dictionary)
-        if (hit := self._cache.get(key)) is None:
-            hit = self._client.suggest(text, dictionary)
-            self._cache.put(key, hit)
-        return hit
+        return self._cached(key, lambda: self._client.suggest(text, dictionary))
 
     def _bucket_counts(self, query, fields, buckets, total: int) -> Retrieved:
         studies: dict[str, dict] = {}  # by NCT ID: a multi-valued trial can be in 2 samples
@@ -128,14 +146,25 @@ class Retriever:
 
     def _count(self, query: StudyQuery) -> int:
         key = ("count", tuple(sorted(query.to_params().items())))
-        if (hit := self._cache.get(key)) is None:
-            hit = self._client.count(query)
-            self._cache.put(key, hit)
-        return hit
+        return self._cached(key, lambda: self._client.count(query))
 
     def _fetch(self, query: StudyQuery, fields: tuple[str, ...], limit: int | None):
         key = ("fetch", tuple(sorted(query.to_params().items())), fields, limit)
-        if (hit := self._cache.get(key)) is None:
-            hit = self._client.fetch_studies(query, fields=fields, limit=limit)
-            self._cache.put(key, hit)
+        return self._cached(
+            key, lambda: self._client.fetch_studies(query, fields=fields, limit=limit)
+        )
+
+    def _cached(self, key, load: Callable[[], Any]) -> Any:
+        """Cache hit, or load once: concurrent requests for the same key wait for one call
+        instead of each sending it (single flight)."""
+        if (hit := self._cache.get(key)) is not None:
+            return hit
+        with self._inflight_lock:
+            lock = self._inflight.setdefault(key, threading.Lock())
+        with lock:
+            if (hit := self._cache.get(key)) is None:
+                hit = load()
+                self._cache.put(key, hit)
+        with self._inflight_lock:
+            self._inflight.pop(key, None)
         return hit

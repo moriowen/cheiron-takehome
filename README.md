@@ -64,6 +64,8 @@ Optional settings in `.env`:
 | `MAX_RECORDS` | `20000` | Up to this many matches, every record is fetched and counts are exact. |
 | `SAMPLE_RECORDS` | `3000` | Above `MAX_RECORDS`, charts that need records use this many, in relevance order. |
 | `CACHE_TTL_S` | `3600` | In-memory cache lifetime for registry fetches. |
+| `CACHE_MAX_ENTRIES` | `512` | Cache size bound; least recently used entries are evicted. |
+| `REQUEST_BUDGET_S` | `90` | Registry time per request; past it the API returns HTTP 504. |
 | `CTGOV_RATE_PER_S`, `CTGOV_BURST` | `0.8`, `8` | Token bucket for ClinicalTrials.gov requests (the measured limit). |
 
 ## How it works

@@ -217,3 +217,9 @@ def test_planner_failure_is_502(http):
 
 def test_health(http):
     assert http.get("/health").json() == {"status": "ok"}
+
+
+def test_budget_exceeded_is_504():
+    p = Pipeline(StubPlanner(PLANS), fake_ctgov(), budget_s=1e-9)
+    r = TestClient(create_app(p)).post("/query", json={"query": PHASE_Q})
+    assert r.status_code == 504 and "budget" in r.json()["detail"]

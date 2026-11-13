@@ -6,7 +6,7 @@ from pydantic import ValidationError
 
 from trialviz.builder import build_response
 from trialviz.compiler import compile_plan
-from trialviz.ctgov.client import CTGovClient
+from trialviz.ctgov.client import CTGovClient, budget
 from trialviz.llm.planner import Planner
 from trialviz.plan import Analysis, QueryPlan
 from trialviz.resolve import resolve_entities
@@ -64,10 +64,13 @@ class Pipeline:
         max_records: int = 20_000,
         sample_records: int = 3000,
         cache_ttl_s: float = 3600,
+        cache_max_entries: int = 512,
+        budget_s: float | None = 90,
     ):
         self._planner = planner
         self._client = client
-        self._cache = TTLCache(cache_ttl_s)
+        self._cache = TTLCache(cache_ttl_s, cache_max_entries)
+        self._budget_s = budget_s
         self._retriever = Retriever(
             client, max_records=max_records, sample_records=sample_records, cache=self._cache
         )
@@ -84,6 +87,10 @@ class Pipeline:
         if not plan.supported:
             return build_response(plan, [], self._data_timestamp(), llm)
 
+        with budget(self._budget_s):  # registry calls past the budget raise BudgetExceeded
+            return self._execute(plan, llm)
+
+    def _execute(self, plan: QueryPlan, llm: LLMInfo) -> QueryResponse:
         plan, entities = resolve_entities(plan, self._retriever)
         compiled = compile_plan(plan)
         if plan.analysis is Analysis.TOTAL:

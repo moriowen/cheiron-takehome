@@ -16,7 +16,8 @@ HELDOUT_VERSION = "2026-11-12.1"
 HELDOUT: list[dict] = [
     {
         "id": "ho_randomized_constraint",
-        "query": "Show me Phase 2 and 3 psoriasis trials by sponsor class, but only randomized ones",
+        "query": "Show me Phase 2 and 3 psoriasis trials by sponsor class, "
+        "but only randomized ones",
         "expect": {
             "analysis": "breakdown",
             "group_by": ["sponsor_class"],
