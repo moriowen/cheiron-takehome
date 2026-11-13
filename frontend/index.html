@@ -8,31 +8,129 @@
   <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Trial Explorer</h1>
-    <span id="mode" class="mode"></span>
+  <header class="app-header">
+    <div class="brand">
+      <h1>Trial Explorer</h1>
+      <p class="tagline">Clinical-trial questions to cited charts, from ClinicalTrials.gov registry data</p>
+    </div>
+    <span id="mode" class="mode-badge" role="status">Checking backend…</span>
   </header>
-  <nav class="tabs" role="tablist" aria-label="Demo">
+  <nav class="tabs" role="tablist" aria-label="Views">
     <button id="ask-tab" role="tab" aria-selected="true" aria-controls="ask-panel" tabindex="0">Ask</button>
+    <button id="api-tab" role="tab" aria-selected="false" aria-controls="api-panel" tabindex="-1">API response</button>
     <button id="how-tab" role="tab" aria-selected="false" aria-controls="how-panel" tabindex="-1">How it works</button>
   </nav>
   <div id="ask-panel" role="tabpanel" aria-labelledby="ask-tab">
   <main>
-    <section id="chat" aria-live="polite"></section>
+    <section id="chat" aria-live="polite">
+      <div class="empty-state">
+        <h2>Ask a question about clinical trials</h2>
+        <p>The answer is a chart built from registry records. Click any bar, point, node, or edge to see the trials behind it and the exact registry value.</p>
+        <p id="mode-detail" class="hint"></p>
+      </div>
+    </section>
     <aside id="citations" hidden>
       <div class="cite-head">
         <h2 id="cite-title">Sources</h2>
-        <button id="cite-close" aria-label="Close sources">×</button>
+        <button id="cite-close" type="button" aria-label="Close sources">×</button>
       </div>
       <ol id="cite-list"></ol>
     </aside>
   </main>
-  <div id="presets" class="presets"></div>
-  <form id="ask">
-    <input id="q" autocomplete="off" placeholder="Ask about clinical trials, e.g. Which countries have the most recruiting trials for asthma?" maxlength="500">
-    <button type="submit">Ask</button>
-  </form>
+  <div class="composer">
+    <details id="guide" class="guide">
+      <summary>What can I ask?</summary>
+      <div class="guide-body">
+        <div class="guide-groups">
+          <section><h3>Trends over time</h3>
+            <button type="button" data-preset="01-trend-with-hint">Pembrolizumab trials per year since 2015</button>
+            <button type="button" class="text-only" data-example="Trials per year for semaglutide versus tirzepatide since 2018.">Per year: semaglutide vs tirzepatide</button>
+          </section>
+          <section><h3>Distributions</h3>
+            <button type="button" data-preset="08-exact-phase-counts">Lung cancer trials by phase</button>
+            <button type="button" data-preset="06-enrollment-histogram">Enrollment sizes, phase 3 asthma</button>
+            <button type="button" class="text-only" data-example="What are the most common intervention types for diabetes trials?">Intervention types, diabetes</button>
+          </section>
+          <section><h3>Comparisons and cross-tabs</h3>
+            <button type="button" data-preset="02-compare-phases">Phases: nivolumab vs pembrolizumab</button>
+            <button type="button" class="text-only" data-example="Break down COVID-19 trials by phase and status.">COVID-19 trials by phase and status</button>
+          </section>
+          <section><h3>Geography and rankings</h3>
+            <button type="button" data-preset="03-countries-recruiting">Countries, recruiting multiple sclerosis trials</button>
+            <button type="button" class="text-only" data-example="Who are the top 10 sponsors of obesity trials?">Top 10 sponsors, obesity</button>
+          </section>
+          <section><h3>Networks</h3>
+            <button type="button" data-preset="04-sponsor-drug-network">Sponsors and drugs, melanoma</button>
+            <button type="button" data-preset="05-drug-cooccurrence-network">Drug co-occurrence, lung cancer</button>
+          </section>
+          <section><h3>Totals, scatter, corrections, limits</h3>
+            <button type="button" class="text-only" data-example="How many recruiting trials are there for glioblastoma?">Recruiting glioblastoma trials (total)</button>
+            <button type="button" class="text-only" data-example="Plot enrollment against trial duration for semaglutide trials.">Enrollment vs duration, semaglutide</button>
+            <button type="button" data-preset="09-misspelled-drug">Misspelled drug name</button>
+            <button type="button" data-preset="07-out-of-scope">Efficacy question (unsupported)</button>
+          </section>
+        </div>
+        <p class="hint"><span class="legend-saved">Solid buttons</span> have a saved run. <span class="legend-text">Dashed buttons</span> only fill in the question, and need the backend.</p>
+        <div class="guide-notes">
+          <div>
+            <h3>Filters</h3>
+            <p>Name them in the question, or send them as request fields: drug, condition, sponsor, country, phase, status, and a start-year range.</p>
+          </div>
+          <div>
+            <h3>Boundaries</h3>
+            <ul>
+              <li>Trends count trials by start year only.</li>
+              <li>Answers describe registrations, not efficacy or safety.</li>
+              <li>Conditions the registry filters cannot express (for example, randomized or adult-only) are not applied. The answer says so.</li>
+              <li>Broad searches above 20,000 matches can use a 3,000-record sample. The subtitle says so.</li>
+              <li>A network edge means two entities appear in the same trial, not that they were given together.</li>
+              <li>No forecasts, and no granularity other than years.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="hint"><a id="docs-link" href="../README.md">README: request and response schemas</a></p>
+      </div>
+    </details>
+    <form id="ask">
+      <label for="q" class="visually-hidden">Question</label>
+      <input id="q" autocomplete="off" placeholder="Ask about clinical trials, e.g. Which countries have the most recruiting trials for asthma?" maxlength="500">
+      <button id="ask-btn" type="submit">Ask</button>
+    </form>
   </div>
+  </div>
+  <section id="api-panel" role="tabpanel" aria-labelledby="api-tab" hidden>
+    <div class="inspect-content">
+      <h2>API response</h2>
+      <p class="how-intro">The exact request and the complete service response for one answer: visualization, data, citations, and meta. A renderer needs only this JSON.</p>
+      <div id="inspect-empty" class="empty-state">
+        <p>No answers yet. Ask a question or replay an example, then come back here, or use <strong>View API response</strong> on an answer.</p>
+      </div>
+      <div id="inspect-body" hidden>
+        <div class="inspect-toolbar">
+          <label for="inspect-select">Answer</label>
+          <select id="inspect-select"></select>
+        </div>
+        <div class="inspect-meta">
+          <span id="inspect-mode" class="mode-tag"></span>
+          <code id="inspect-endpoint"></code>
+          <span id="inspect-status"></span>
+          <span id="inspect-latency" class="hint"></span>
+        </div>
+        <div class="inspect-actions">
+          <button id="copy-request" type="button" class="secondary">Copy request</button>
+          <button id="copy-response" type="button" class="secondary">Copy response</button>
+          <button id="download-response" type="button" class="secondary">Download response JSON</button>
+          <button id="copy-curl" type="button" class="secondary">Copy curl</button>
+          <span id="inspect-feedback" class="hint" role="status" aria-live="polite"></span>
+        </div>
+        <h3>Request body</h3>
+        <pre id="inspect-request" class="json" tabindex="0"></pre>
+        <h3>Response body</h3>
+        <p id="inspect-note" class="hint"></p>
+        <pre id="inspect-response" class="json" tabindex="0"></pre>
+      </div>
+    </div>
+  </section>
   <section id="how-panel" role="tabpanel" aria-labelledby="how-tab" hidden>
     <div class="how-content">
       <h2>How a question becomes a chart</h2>
@@ -112,7 +210,9 @@
     </div>
   </section>
   <script src="render.js"></script>
-  <script src="app.js"></script>
+  <script src="navigation.js"></script>
+  <script src="inspect.js"></script>
   <script src="how.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

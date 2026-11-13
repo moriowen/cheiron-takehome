@@ -1,11 +1,7 @@
-// Tab navigation and a trace of the saved comparison. Chat state stays in app.js.
+// Trace of the saved comparison for the How it works tab. Navigation lives in navigation.js.
 (() => {
   "use strict";
 
-  const askTab = document.getElementById("ask-tab");
-  const howTab = document.getElementById("how-tab");
-  const askPanel = document.getElementById("ask-panel");
-  const howPanel = document.getElementById("how-panel");
   const example = document.getElementById("worked-example");
   let exampleLoaded = false;
 
@@ -90,28 +86,5 @@
     }
   }
 
-  function syncTab() {
-    const how = location.hash === "#how";
-    askPanel.hidden = how;
-    howPanel.hidden = !how;
-    askTab.setAttribute("aria-selected", String(!how));
-    howTab.setAttribute("aria-selected", String(how));
-    askTab.tabIndex = how ? -1 : 0;
-    howTab.tabIndex = how ? 0 : -1;
-    if (how) loadExample();
-  }
-
-  for (const tab of [askTab, howTab]) {
-    tab.onclick = () => { location.hash = tab === howTab ? "how" : "ask"; };
-    tab.onkeydown = (event) => {
-      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
-      event.preventDefault();
-      const next = event.key === "Home" ? askTab : event.key === "End" ? howTab :
-        tab === askTab ? howTab : askTab;
-      next.focus();
-      next.click();
-    };
-  }
-  window.addEventListener("hashchange", syncTab);
-  syncTab();
+  Navigation.onChange((tab) => { if (tab === "how") loadExample(); });
 })();
