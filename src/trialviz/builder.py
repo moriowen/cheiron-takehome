@@ -70,7 +70,14 @@ def build_response(
         )
         return QueryResponse(status="unsupported", visualization=None, meta=meta)
 
-    notes: list[str] = [e.note for e in entities if e.note]  # spelling fixes come first
+    notes: list[str] = []
+    if plan.ignored_constraints:  # D40: a wider answer than asked must say so first
+        notes.append(
+            "Not applied: " + "; ".join(plan.ignored_constraints) + ". The registry filters "
+            "cannot express this, so the chart counts trials with or without it."
+        )
+    notes += [e.note for e in entities if e.note]  # then spelling fixes
+    notes += plan.interpretation_notes
     viz_type = select_viz(plan)
     meta = _base_meta(plan, fetched, data_timestamp, llm, notes)
     builder = _BUILDERS[viz_type]
@@ -91,8 +98,12 @@ def build_response(
         notes.append("No trials matched the query.")
     meta.notes = notes  # Meta copied the list on construction; later notes go in here
     meta.entities = list(entities)
+    meta.ignored_constraints = list(plan.ignored_constraints)
+    subtitle = _subtitle(meta)
+    if plan.ignored_constraints:
+        subtitle = "NOT APPLIED: " + "; ".join(plan.ignored_constraints) + ". " + subtitle
     viz = Visualization(
-        type=viz_type, title=_title(plan), subtitle=_subtitle(meta), encoding=encoding, data=data
+        type=viz_type, title=_title(plan), subtitle=subtitle, encoding=encoding, data=data
     )
     return QueryResponse(status="ok", visualization=viz, meta=meta)
 

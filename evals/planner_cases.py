@@ -193,6 +193,51 @@ CASES: list[dict] = [
         "query": "How much does a course of semaglutide cost in the US?",
         "expect": {"supported": False},
     },
+    # --- conditions no filter can express (D40); worded unlike the held-out set ---
+    {
+        "id": "constraint_randomized_double_blind",
+        "query": "Which sponsors run the most randomized, double-blind migraine trials?",
+        "expect": {
+            "analysis": "breakdown",
+            "group_by": ["lead_sponsor"],
+            "filters": {"condition": "migraine"},
+            "ignored_contains": ["randomized", "double-blind"],
+        },
+    },
+    {
+        "id": "constraint_open_label_recruiting",
+        "query": "How many open-label hemophilia trials are recruiting?",
+        "expect": {
+            "analysis": "total",
+            "filters": {"condition": "hemophilia", "status": ["RECRUITING"]},
+            "ignored_contains": ["open-label"],
+        },
+    },
+    {
+        "id": "constraint_pediatric_trend",
+        "query": "Show the trend of pediatric epilepsy trials since 2012",
+        "expect": {
+            "analysis": "trend",
+            "group_by": ["start_year"],
+            "filters": {"condition": "epilepsy", "start_year": 2012},
+            "ignored_contains": ["pediatric"],
+        },
+    },
+    {
+        "id": "constraint_age_countries",
+        "query": "Which countries have the most obesity trials enrolling people over 65?",
+        "expect": {
+            "analysis": "breakdown",
+            "group_by": ["country"],
+            "filters": {"condition": "obesity"},
+            "ignored_contains": ["65"],
+        },
+    },
+    {
+        "id": "unsupported_primary_endpoint",
+        "query": "How many psoriasis trials met their primary endpoint?",
+        "expect": {"supported": False},
+    },
     # --- edge cases and regressions ---
     {
         # D34: the planner may keep or fix the typo; the entity check must end on the real name
@@ -325,6 +370,11 @@ META: dict[str, tuple[str, str, str]] = {
     "scatter_duration_vs_enrollment": ("scatter", "medium", "taxonomy"),
     "crosstab_phase_sponsor_class": ("crosstab", "medium", "taxonomy"),
     "misspelled_drug_corrected": ("distribution", "medium", "edge_case"),
+    "constraint_randomized_double_blind": ("top_n", "hard", "edge_case"),
+    "constraint_open_label_recruiting": ("total", "medium", "edge_case"),
+    "constraint_pediatric_trend": ("trend", "medium", "edge_case"),
+    "constraint_age_countries": ("geographic", "hard", "edge_case"),
+    "unsupported_primary_endpoint": ("out_of_scope", "medium", "edge_case"),
     "unknown_drug_reported": ("total", "medium", "edge_case"),
 }
 

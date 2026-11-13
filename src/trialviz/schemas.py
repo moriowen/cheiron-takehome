@@ -209,6 +209,11 @@ class Meta(BaseModel):
     )
     sort: str | None = None
     time_granularity: str | None = None
+    ignored_constraints: list[str] = Field(
+        default_factory=list,
+        description="Conditions from the question that were not applied (no filter exists). "
+        "When set, the chart covers a wider set of trials than asked; the subtitle says so.",
+    )
     entities: list[EntityCheck] = Field(
         default_factory=list, description="Each name in the plan, counted; spelling fixes."
     )

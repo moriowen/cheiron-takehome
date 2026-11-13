@@ -24,7 +24,8 @@ from pathlib import Path
 from typing import NamedTuple
 
 from evals import stats
-from evals.dataset import DATASET_VERSION, load_cases
+from evals.dataset import DATASET_VERSION, code_revision, load_cases
+from evals.heldout_cases import HELDOUT_VERSION
 from trialviz.config import LLMSettings
 from trialviz.llm.openai_planner import OpenAIPlanner
 from trialviz.llm.planner import PlannerError
@@ -48,6 +49,8 @@ class FailureCategory(StrEnum):
     INVENTED_FILTER = "invented_filter"  # filter the question did not state
     WRONG_COMPARISON = "wrong_comparison"
     WRONG_TOP_N = "wrong_top_n"
+    MISSED_CONSTRAINT = "missed_constraint"  # a condition neither applied nor disclosed
+    SPURIOUS_CONSTRAINT = "spurious_constraint"  # disclosed a condition the question lacks
 
 
 class Failure(NamedTuple):
@@ -101,6 +104,21 @@ def check_plan(plan: QueryPlan, expect: dict) -> list[Failure]:
 
     if "top_n_set" in expect and (plan.top_n is not None) != expect["top_n_set"]:
         out.append(Failure(F.WRONG_TOP_N, f"expected set={expect['top_n_set']}, got {plan.top_n}"))
+    out += _check_constraints(plan.ignored_constraints, expect.get("ignored_contains", []))
+    return out
+
+
+def _check_constraints(ignored: list[str], wanted: list[str]) -> list[Failure]:
+    """Every expected unappliable condition is disclosed, and nothing else is (D40)."""
+    text = [c.lower() for c in ignored]
+    out = [
+        Failure(FailureCategory.MISSED_CONSTRAINT, f"{w!r} not in ignored_constraints {ignored}")
+        for w in wanted
+        if not any(w.lower() in c for c in text)
+    ]
+    extra = [c for c in ignored if not any(w.lower() in c.lower() for w in wanted)]
+    if extra:
+        out.append(Failure(FailureCategory.SPURIOUS_CONSTRAINT, f"unexpected: {extra}"))
     return out
 
 
@@ -200,13 +218,16 @@ def main() -> None:
     parser.add_argument("--only", nargs="*", help="Case IDs to run.")
     parser.add_argument("--no-synthetic", action="store_true")
     parser.add_argument("--gate", action="store_true", help="Exit 1 below thresholds.")
+    parser.add_argument(
+        "--heldout", action="store_true", help="Score the held-out set only (never tune on it)."
+    )
     args = parser.parse_args()
 
     settings = LLMSettings(**({"llm_model": args.model} if args.model else {}))
     planner = OpenAIPlanner(settings)
     cases = [
         c
-        for c in load_cases(synthetic=not args.no_synthetic)
+        for c in load_cases(synthetic=not args.no_synthetic, heldout=args.heldout)
         if not args.only or c["id"] in args.only
     ]
     jobs = [c for c in cases for _ in range(args.runs)]
@@ -258,15 +279,17 @@ def main() -> None:
     )
 
     RESULTS_DIR.mkdir(exist_ok=True)
-    out = RESULTS_DIR / (
-        f"planner-{settings.llm_model}-p{PROMPT_VERSION}-d{DATASET_VERSION}-k{args.runs}.json"
+    dataset = f"heldout{HELDOUT_VERSION}" if args.heldout else f"d{DATASET_VERSION}"
+    out = (
+        RESULTS_DIR / f"planner-{settings.llm_model}-p{PROMPT_VERSION}-{dataset}-k{args.runs}.json"
     )
     out.write_text(
         json.dumps(
             {
                 "model": settings.llm_model,
                 "prompt_version": PROMPT_VERSION,
-                "dataset_version": DATASET_VERSION,
+                "dataset_version": HELDOUT_VERSION if args.heldout else DATASET_VERSION,
+                "code_revision": code_revision(),
                 "runs_per_case": args.runs,
                 "overall": overall,
                 "by": by,

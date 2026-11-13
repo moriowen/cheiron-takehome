@@ -5,7 +5,7 @@ import json
 from trialviz.plan import ENTITY_DIMENSIONS, Dimension, Measure
 from trialviz.schemas import QueryRequest
 
-PROMPT_VERSION = "2026-11-12.4"
+PROMPT_VERSION = "2026-11-12.5"
 
 _DIMENSIONS = ", ".join(d.value for d in Dimension)
 _ENTITIES = ", ".join(sorted(d.value for d in ENTITY_DIMENSIONS))
@@ -47,13 +47,26 @@ Comparison: set when the user compares 2-4 named drugs, conditions, or sponsors
 
 top_n: set when the user asks for the "top", "most common", or "most" items (default 10 then).
 
+Conditions you cannot apply: the filters above are the only ones that exist. If the question
+narrows the trials by anything else (study design such as randomized, double-blind, open-label,
+placebo-controlled; participants such as adults, children, women, age; results posted;
+anything not in the filters), still plan the rest, keep supported=true, and list each such
+condition in ignored_constraints in the user's words. Never invent a filter for it. Never list a
+condition that a filter already applies. Leave ignored_constraints empty when every condition is
+applied.
+
+interpretation_notes: one short note for each reading a user might not expect ("after 2019"
+read as start_year 2020) and for each requested extra the chart cannot show (trial names, a
+summary). Leave it empty when the reading is direct.
+
 If a question also asks for something the plan cannot express (trial names, a summary, extra
 details), plan the part that can be answered and keep supported=true. Every chart already
 links each value to its trials and their titles.
 
-If registry data cannot answer the question (efficacy, safety outcomes, prices, approvals,
-anything outside trial registration records), set supported=false, analysis null, and give a
-one-sentence reason.
+Set supported=false, analysis null, and give a one-sentence reason only when the thing to
+measure or show is not in trial registration records: efficacy, comparative effectiveness,
+safety outcomes, prices, approvals, forecasts of the future. A wider set of trials is an
+acceptable answer; a different quantity is not.
 """
 
 

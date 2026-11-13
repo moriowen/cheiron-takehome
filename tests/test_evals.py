@@ -109,3 +109,17 @@ def test_generated_question_must_mention_every_entity_and_constraint():
     assert mentions_everything("semaglutide trials per year since 2018?", exp)
     assert not mentions_everything("GLP-1 trials per year since 2018?", exp)
     assert not mentions_everything("semaglutide trials per year?", exp)
+
+
+def test_constraint_disclosure_is_checked_both_ways():
+    plan = valid(ignored_constraints=["randomized"])
+    assert cats(plan, {"ignored_contains": ["randomiz"]}) == set()
+    assert cats(plan, {}) == {FailureCategory.SPURIOUS_CONSTRAINT}
+    assert cats(valid(), {"ignored_contains": ["adult"]}) == {FailureCategory.MISSED_CONSTRAINT}
+
+
+def test_heldout_cases_are_never_loaded_for_development():
+    dev = {c["id"] for c in load_cases()}
+    held = {c["id"] for c in load_cases(heldout=True)}
+    assert held and not dev & held
+    assert all(c["source"] == "heldout" for c in load_cases(heldout=True))

@@ -24,6 +24,7 @@ main { flex: 1; display: flex; min-height: 0; }
 .subtitle.sampled { color: var(--warn); font-weight: 600; }
 .correction { margin: 0 0 10px; padding: 6px 10px; font-size: 13px; border-left: 3px solid var(--warn);
               background: var(--bg); border-radius: 4px; }
+.correction.omitted { border-left-color: var(--accent); }
 .notes { color: var(--muted); font-size: 13px; margin: 8px 0 0; padding-left: 18px; }
 details { margin-top: 8px; font-size: 13px; color: var(--muted); }
 pre { white-space: pre-wrap; font-size: 12px; background: var(--bg); padding: 8px; border-radius: 6px; }

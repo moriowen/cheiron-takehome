@@ -58,6 +58,9 @@ function renderAnswer(box, resp) {
       const sampled = m.count_completeness === "sample";
       box.insertAdjacentHTML("beforeend", `<p class="subtitle${sampled ? " sampled" : ""}">${escapeHtml(v.subtitle)}</p>`);
     }
+    if ((m.ignored_constraints || []).length) {
+      box.insertAdjacentHTML("beforeend", `<p class="correction omitted"><strong>Not applied:</strong> ${escapeHtml(m.ignored_constraints.join("; "))}. The registry filters cannot express this, so the chart counts trials with or without it.</p>`);
+    }
     (m.entities || []).filter((e) => e.note).forEach((e) =>
       box.insertAdjacentHTML("beforeend", `<p class="correction">${escapeHtml(e.note)}</p>`));
     const chart = document.createElement("div");
@@ -69,8 +72,8 @@ function renderAnswer(box, resp) {
       ` · data as of ${(m.data_timestamp || "").slice(0, 10)}` + (m.llm ? ` · planned by ${m.llm.model}` : "");
     box.insertAdjacentHTML("beforeend", `<div class="hint">${summary}. Click any mark to see its sources.</div>`);
   }
-  const entityNotes = new Set((m.entities || []).map((e) => e.note));
-  const notes = m.notes.filter((n) => !entityNotes.has(n));  // shown above the chart
+  const shownAbove = new Set((m.entities || []).map((e) => e.note));
+  const notes = m.notes.filter((n) => !shownAbove.has(n) && !n.startsWith("Not applied:"));
   if (notes.length && resp.status === "ok") {
     const ul = document.createElement("ul");
     ul.className = "notes";

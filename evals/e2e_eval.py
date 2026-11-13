@@ -23,7 +23,8 @@ import re
 import time
 
 from evals import stats
-from evals.dataset import DATASET_VERSION, load_cases
+from evals.dataset import DATASET_VERSION, code_revision, load_cases
+from evals.heldout_cases import HELDOUT_VERSION
 from evals.planner_eval import RESULTS_DIR
 from trialviz.config import AppSettings, LLMSettings
 from trialviz.ctgov.client import CTGovClient
@@ -115,6 +116,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--model")
     parser.add_argument("--only", nargs="*")
+    parser.add_argument("--heldout", action="store_true", help="Held-out set only.")
     args = parser.parse_args()
 
     settings = LLMSettings(**({"llm_model": args.model} if args.model else {}))
@@ -126,7 +128,7 @@ def main() -> None:
         sample_records=app.sample_records,
     )
     results = []
-    for case in load_cases(synthetic=False):
+    for case in load_cases(synthetic=False, heldout=args.heldout):
         if args.only and case["id"] not in args.only:
             continue
         started = time.perf_counter()
@@ -159,7 +161,8 @@ def main() -> None:
     summary = {
         "model": settings.llm_model,
         "prompt_version": PROMPT_VERSION,
-        "dataset_version": DATASET_VERSION,
+        "dataset_version": HELDOUT_VERSION if args.heldout else DATASET_VERSION,
+        "code_revision": code_revision(),
         "passed": passed,
         "total": len(results),
         "ci95": (lo, hi),
@@ -175,7 +178,8 @@ def main() -> None:
         f"LLM cost ${cost:.4f}"
     )
     RESULTS_DIR.mkdir(exist_ok=True)
-    out = RESULTS_DIR / f"e2e-{settings.llm_model}-p{PROMPT_VERSION}-d{DATASET_VERSION}.json"
+    dataset = f"heldout{HELDOUT_VERSION}" if args.heldout else f"d{DATASET_VERSION}"
+    out = RESULTS_DIR / f"e2e-{settings.llm_model}-p{PROMPT_VERSION}-{dataset}.json"
     out.write_text(json.dumps(summary, indent=2))
     print(f"wrote {out}")
 

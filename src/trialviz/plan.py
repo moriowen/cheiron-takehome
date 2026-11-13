@@ -103,6 +103,17 @@ class QueryPlan(BaseModel):
     filters: Filters
     comparison: Comparison | None = Field(description="Set when the user compares 2-4 entities.")
     top_n: int | None = Field(ge=1, le=50, description="Keep only the N largest groups.")
+    ignored_constraints: list[str] = Field(
+        max_length=6,
+        description="Conditions the question states that no filter can express (e.g. "
+        "'randomized', 'adults only', 'with posted results'), in the user's words. The answer "
+        "then covers a wider set of trials. Empty when every condition is applied.",
+    )
+    interpretation_notes: list[str] = Field(
+        max_length=4,
+        description="Short notes on readings a user might not expect (e.g. 'after 2019' read "
+        "as start_year 2020), or requested extras the chart does not show. Empty if none.",
+    )
 
     @model_validator(mode="after")
     def _consistent(self) -> Self:

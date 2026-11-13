@@ -26,6 +26,8 @@ def make(**overrides) -> dict:
         "filters": NO_FILTERS | {"drug": "pembrolizumab"},
         "comparison": None,
         "top_n": None,
+        "ignored_constraints": [],
+        "interpretation_notes": [],
     }
     base.update(overrides)
     return base

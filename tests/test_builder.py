@@ -156,3 +156,12 @@ def test_missing_note_grammar():
     one_missing = PEMBRO[:3] + [{"protocolSection": {"identificationModule": {"nctId": "NCTX"}}}]
     notes = build_response(plan, [(None, Retrieved(one_missing, 4))], TS, LLM).meta.notes
     assert "1 trial has no enrollment and is not shown." in notes
+
+
+def test_ignored_constraints_are_disclosed_first_and_in_the_subtitle():
+    plan = valid(ignored_constraints=["randomized"], interpretation_notes=["read X as Y"])
+    resp = build_response(plan, fetched(plan), TS, LLM)
+    assert resp.meta.ignored_constraints == ["randomized"]
+    assert resp.meta.notes[0].startswith("Not applied: randomized.")
+    assert "read X as Y" in resp.meta.notes
+    assert resp.visualization.subtitle.startswith("NOT APPLIED: randomized.")
