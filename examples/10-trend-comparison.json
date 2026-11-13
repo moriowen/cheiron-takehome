@@ -1,0 +1,1029 @@
+{
+  "request": {
+    "query": "Trials per year for semaglutide versus tirzepatide since 2018."
+  },
+  "response": {
+    "status": "ok",
+    "visualization": {
+      "type": "time_series",
+      "title": "Trials since 2018 started per year: semaglutide vs tirzepatide",
+      "subtitle": "Exact counts, semaglutide: all 738 trials; tirzepatide: all 311 trials",
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "temporal",
+          "title": "Start year",
+          "sort": null
+        },
+        "y": {
+          "field": "trial_count",
+          "type": "quantitative",
+          "title": "Trials",
+          "sort": null
+        },
+        "series": {
+          "field": "series",
+          "type": "nominal",
+          "title": "Drug",
+          "sort": null
+        }
+      },
+      "data": [
+        {
+          "citation_count": 21,
+          "citations": [
+            {
+              "nct_id": "NCT03707990",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2018-10-15",
+              "title": "A Research Study of NNC0165-1875 Alone or Together With Semaglutide in People Who Are Overweight or Obese",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03600480",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2018-07-25",
+              "title": "A Research Study of How NNC0174-0833 Taken With Semaglutide Works in People Who Are Overweight or Obese",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03648281",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2018-08-24",
+              "title": "A Research Study Looking at How Semaglutide Works in People With Type 2 Diabetes in Denmark and Sweden, as Part of Local Clinical Practice (SURE DENMARK/SWEDEN)",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03292315",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2018-10-16",
+              "title": "Once Weekly GLP-1 in Persons With Spinal Cord Injury",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03457012",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2018-03-29",
+              "title": "A Research Study Looking at How Semaglutide Works in People With Type 2 Diabetes in Canada, as Part of Local Clinical Practice",
+              "match": null
+            }
+          ],
+          "trial_count": 21,
+          "year": "2018",
+          "estimated_count": 0,
+          "series": "semaglutide"
+        },
+        {
+          "citation_count": 41,
+          "citations": [
+            {
+              "nct_id": "NCT03951753",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2019-06-28",
+              "title": "A Study of Tirzepatide in Participants With Type 2 Diabetes Mellitus (T2DM)",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04102189",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2019-10-07",
+              "title": "A Research Study on How Well Semaglutide Works in Adolescents With Overweight or Obesity",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03811561",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2019-05-08",
+              "title": "A Research Study to Look at How Semaglutide Compared to Placebo Affects Diabetic Eye Disease in People With Type 2 Diabetes",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03659682",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2019-01-02",
+              "title": "GLP1R in Parkinson's Disease",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04109547",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2019-10-01",
+              "title": "A Research Study Comparing a New Medicine Oral Semaglutide to Placebo in People With Type 2 Diabetes",
+              "match": null
+            }
+          ],
+          "trial_count": 41,
+          "year": "2019",
+          "estimated_count": 2,
+          "series": "semaglutide"
+        },
+        {
+          "citation_count": 23,
+          "citations": [
+            {
+              "nct_id": "NCT04537624",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2020-08-24",
+              "title": "A Research Study Looking at How Oral Semaglutide Works in People With Type 2 Diabetes in Switzerland, as Part of Local Clinical Practice",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04559815",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2020-10-21",
+              "title": "A Research Study Looking at How Oral Semaglutide Works in People With Type 2 Diabetes in Canada, as Part of Local Clinical Practice",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04447859",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2020-02-23",
+              "title": "16-week Flexible vs. 8-week Semaglutide Titration",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04469855",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2020-07-27",
+              "title": "Post-Marketing Surveillance (Special Use-results Surveillance) on Long-term Use With Ozempic\u00ae",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04524832",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2020-09-29",
+              "title": "Research Study Comparing New Tablets of Semaglutide in New Doses, in Healthy People",
+              "match": null
+            }
+          ],
+          "trial_count": 23,
+          "year": "2020",
+          "estimated_count": 0,
+          "series": "semaglutide"
+        },
+        {
+          "citation_count": 49,
+          "citations": [
+            {
+              "nct_id": "NCT04788511",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2021-03-16",
+              "title": "Research Study to Investigate How Well Semaglutide Works in People Living With Heart Failure and Obesity",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05035095",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2021-09-13",
+              "title": "Research Study to Investigate How Well Semaglutide Tablets Taken Once Daily Work in People Who Are Overweight or Living With Obesity (OASIS 1)",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04707469",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2021-01-15",
+              "title": "Research Study to Compare Three Doses of Semaglutide Tablets Taken Once Daily in People With Type 2 Diabetes",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05161429",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2021-07-01",
+              "title": "BESTMED: Observational Evaluation of Second Line Therapy Medications in Diabetes",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05119179",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2021-11-22",
+              "title": "Pharmacogenetics of the Response to GLP-1 in Mexican-Americans With Prediabetes",
+              "match": null
+            }
+          ],
+          "trial_count": 49,
+          "year": "2021",
+          "estimated_count": 1,
+          "series": "semaglutide"
+        },
+        {
+          "citation_count": 69,
+          "citations": [
+            {
+              "nct_id": "NCT05435677",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2022-06-22",
+              "title": "A Research Study to Look at How Insulin Icodec and Semaglutide Work in the Body of People From China With Type 2 Diabetes When Given Alone or Together",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05520775",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2022-09-02",
+              "title": "Semaglutide for Alcohol Use Disorder",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04174755",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2022-06-22",
+              "title": "Semaglutide's Efficacy in Achieving Weight Loss for Those With HIV",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06301191",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2022-03-01",
+              "title": "The Effect of Semaglutide on Cardiovascular Markers and Liver Function",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07732218",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2022-07-04",
+              "title": "Efficacy of Once Weekly Semaglutide in Patients With Type 2 Diabetes: a Non Randomized Clinical Trial",
+              "match": null
+            }
+          ],
+          "trial_count": 69,
+          "year": "2022",
+          "estimated_count": 5,
+          "series": "semaglutide"
+        },
+        {
+          "citation_count": 88,
+          "citations": [
+            {
+              "nct_id": "NCT06354101",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2023-07-01",
+              "title": "The Purpose of This Registry Study is to Learn More About Metabolic Health: Approximately 15,000 Participants Who Are Overweight or Have Obesity With or Without Metabolic Diseases Are Expected to Participate in This Registry Study.",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06629688",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2023-11-01",
+              "title": "Semaglutide and Intestinal Iron Absorption",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06120556",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2023-06-10",
+              "title": "Efficacy of Glucagon-like Peptide-1 Receptor Agonists According to Type 2 Diabetes Subtypes",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05786521",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2023-04-01",
+              "title": "Effect of GLP1 Receptor Agonists on Physical Function, Body Composition, and Markers of Aging in Older Adults",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05877547",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2023-06-23",
+              "title": "A Clinical Study of Efinopegdutide in Participants With Precirrhotic Nonalcoholic Steatohepatitis (NASH) (MK-6024-013)",
+              "match": null
+            }
+          ],
+          "trial_count": 88,
+          "year": "2023",
+          "estimated_count": 3,
+          "series": "semaglutide"
+        },
+        {
+          "citation_count": 120,
+          "citations": [
+            {
+              "nct_id": "NCT06401746",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2024-05-01",
+              "title": "Body Surface Gastric Mapping in Patients on Semaglutide",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06640972",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2024-09-27",
+              "title": "Effects of RDX-002 on Postprandial Triglycerides in Patients Discontinuing GLP-1 Agonists",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05702931",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2024-09-19",
+              "title": "Semaglutide Treatment for Hyperglycaemia After Renal Transplantation",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06478550",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2024-06-26",
+              "title": "A Research Study to Understand How People With Type 2 Diabetes Take Ozempic\u00ae and if the Ozempic\u00aeApp Helps Them Stay on This Treatment",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06082063",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2024-07-01",
+              "title": "Multifactorial Intervention to Reduce Cardiovascular Disease in Type 1 Diabetes",
+              "match": null
+            }
+          ],
+          "trial_count": 120,
+          "year": "2024",
+          "estimated_count": 14,
+          "series": "semaglutide"
+        },
+        {
+          "citation_count": 134,
+          "citations": [
+            {
+              "nct_id": "NCT07011667",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2025-06-03",
+              "title": "A Research Study to Look at How Well CagriSema Helps People Living With Obesity Lose Weight and Maintain Weight Loss in the Long-term",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07091500",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2025-08-11",
+              "title": "Glucagon-like Peptide 1 (GLP-1) Receptor Agonist Therapy and Exercise Training in People With Obesity",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07096739",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2025-08-01",
+              "title": "Tolerance of a High Protein Nutrition Shake in Individuals on GLP-1",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07065383",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2025-08-01",
+              "title": "Rebalancing the Fat Content of the Heart and Muscles",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07297589",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2025-12-30",
+              "title": "Epicardial Cardiac Fat-CT (EPIC-CT)",
+              "match": null
+            }
+          ],
+          "trial_count": 134,
+          "year": "2025",
+          "estimated_count": 24,
+          "series": "semaglutide"
+        },
+        {
+          "citation_count": 175,
+          "citations": [
+            {
+              "nct_id": "NCT07465965",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-03-02",
+              "title": "A Clinical Study of Semaglutide Nasal Spray in Overweight or Obese Adults",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07389941",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-10",
+              "title": "Semaglutide PrIor to CathEeter Ablation in Patients With Atrial Fibrillation",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07755085",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-10-01",
+              "title": "GLP-1s in Hip and Knee Arthroplasty",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07845994",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-11",
+              "title": "SEMAFORCRANIO : Multicenter, Double-blind, Parallel, Randomized Controlled Trial of the Efficacy of Semaglutide in Hypothalamic Obesity Secondary to Craniopharyngioma in Children Aged 12 to 17 Years",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07817251",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-09-16",
+              "title": "Research Study on How People With Type 2 Diabetes Tolerate Switching From Semaglutide to Cagrisema",
+              "match": null
+            }
+          ],
+          "trial_count": 175,
+          "year": "2026",
+          "estimated_count": 79,
+          "series": "semaglutide"
+        },
+        {
+          "citation_count": 17,
+          "citations": [
+            {
+              "nct_id": "NCT07711548",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2027-03",
+              "title": "Can Two Dietary Interventions Maintain Weight Loss for 12 Months After GLP-1 Therapy in Adults With Overweight/Obesity?",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07929233",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2027-01",
+              "title": "24-hour Clear Liquid Diet vs. Standard Fasting for Upper Gastrointestinal Endoscopy in Patients Taking Agonists of the GLP-1 Receptor",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07731256",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2027-02-01",
+              "title": "Semaglutide for Low Back Pain",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05714683",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2027-01-31",
+              "title": "Regulatory Post Marketing Surveillance (rPMS) Study of Rybelsus (Oral Semaglutide) to Evaluate Safety and Effectiveness in Patients With Type 2 Diabetes Mellitus in Routine Clinical Practice in Korea",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07754045",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2027-02-15",
+              "title": "Evaluating the Efficacy and Safety of LUM-201 Plus Semaglutide Versus Semaglutide Plus Placebo in Older Obese Adults",
+              "match": null
+            }
+          ],
+          "trial_count": 17,
+          "year": "2027",
+          "estimated_count": 17,
+          "series": "semaglutide"
+        },
+        {
+          "citation_count": 1,
+          "citations": [
+            {
+              "nct_id": "NCT07586150",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2028-10",
+              "title": "Personalized Pharmaco-Lifestyle Interventions for Severe Mental Illnesses (LIFETRAIN)",
+              "match": null
+            }
+          ],
+          "trial_count": 1,
+          "year": "2028",
+          "estimated_count": 1,
+          "series": "semaglutide"
+        },
+        {
+          "citation_count": 2,
+          "citations": [
+            {
+              "nct_id": "NCT03482024",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2018-03-30",
+              "title": "A Study of Tirzepatide (LY3298176) in Participants With Impaired Kidney Function",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03730662",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2018-11-20",
+              "title": "A Study of Tirzepatide (LY3298176) Once a Week Versus Insulin Glargine Once a Day in Participants With Type 2 Diabetes and Increased Cardiovascular Risk",
+              "match": null
+            }
+          ],
+          "trial_count": 2,
+          "year": "2018",
+          "estimated_count": 0,
+          "series": "tirzepatide"
+        },
+        {
+          "citation_count": 13,
+          "citations": [
+            {
+              "nct_id": "NCT03951753",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2019-06-28",
+              "title": "A Study of Tirzepatide in Participants With Type 2 Diabetes Mellitus (T2DM)",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04184622",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2019-12-04",
+              "title": "A Study of Tirzepatide (LY3298176) in Participants With Obesity or Overweight",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03954834",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2019-06-03",
+              "title": "A Study of Tirzepatide (LY3298176) in Participants With Type 2 Diabetes Not Controlled With Diet and Exercise Alone",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03861052",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2019-05-07",
+              "title": "A Study of Tirzepatide (LY3298176) Compared to Dulaglutide in Participants With Type 2 Diabetes",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04004988",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2019-08-19",
+              "title": "A Study of Tirzepatide Administered by Two Different Devices in Healthy Participants",
+              "match": null
+            }
+          ],
+          "trial_count": 13,
+          "year": "2019",
+          "estimated_count": 0,
+          "series": "tirzepatide"
+        },
+        {
+          "citation_count": 9,
+          "citations": [
+            {
+              "nct_id": "NCT04311424",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2020-07-28",
+              "title": "Study of Tirzepatide in Healthy Participants",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04407234",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2020-09-15",
+              "title": "A Study to Measure Stomach Emptying in Overweight Non-diabetic and Diabetic Participants Using Tirzepatide",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04172987",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2020-02-26",
+              "title": "A Study of the Effect of Tirzepatide on How the Body Handles Birth Control Pills in Healthy Female Participants",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04235959",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2020-10-21",
+              "title": "A Study of Tirzepatide in Chinese Participants With Type 2 Diabetes Mellitus",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04255433",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2020-05-29",
+              "title": "A Study of Tirzepatide (LY3298176) Compared With Dulaglutide on Major Cardiovascular Events in Participants With Type 2 Diabetes",
+              "match": null
+            }
+          ],
+          "trial_count": 9,
+          "year": "2020",
+          "estimated_count": 0,
+          "series": "tirzepatide"
+        },
+        {
+          "citation_count": 6,
+          "citations": [
+            {
+              "nct_id": "NCT04844918",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2021-05-10",
+              "title": "A Study of Tirzepatide (LY3298176) in Participants With Obesity Disease",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04847557",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2021-04-20",
+              "title": "A Study of Tirzepatide (LY3298176) in Participants With Heart Failure With Preserved Ejection Fraction (HFpEF) and Obesity: The SUMMIT Trial",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04657003",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2021-03-29",
+              "title": "A Study of Tirzepatide (LY3298176) in Participants With Type 2 Diabetes Who Have Obesity or Are Overweight",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04657016",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2021-03-29",
+              "title": "A Study of Tirzepatide (LY3298176) In Participants After A Lifestyle Weight Loss Program",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04660643",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2021-03-29",
+              "title": "A Study of Tirzepatide (LY3298176) in Participants With Obesity or Overweight for the Maintenance of Weight Loss",
+              "match": null
+            }
+          ],
+          "trial_count": 6,
+          "year": "2021",
+          "estimated_count": 0,
+          "series": "tirzepatide"
+        },
+        {
+          "citation_count": 8,
+          "citations": [
+            {
+              "nct_id": "NCT05433584",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2022-08-01",
+              "title": "A Study of Tirzepatide Compared With Intensified Conventional Care in Adult Participants With Type 2 Diabetes",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05564039",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2022-11-30",
+              "title": "A Study of Tirzepatide (LY3298176) in Adult Participants With Type 2 Diabetes Switching From Dulaglutide (SURPASS-SWITCH)",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05260021",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2022-04-13",
+              "title": "A Study to Evaluate Tirzepatide (LY3298176) in Pediatric and Adolescent Participants With Type 2 Diabetes Mellitus Inadequately Controlled With Metformin or Basal Insulin or Both",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05412004",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2022-06-21",
+              "title": "Obstructive Sleep Apnea Master Protocol GPIF: A Study of Tirzepatide (LY3298176) in Participants With Obstructive Sleep Apnea",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05766358",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2022-10-06",
+              "title": "Role Of Metabolic Adaptation In Weight Regain",
+              "match": null
+            }
+          ],
+          "trial_count": 8,
+          "year": "2022",
+          "estimated_count": 0,
+          "series": "tirzepatide"
+        },
+        {
+          "citation_count": 22,
+          "citations": [
+            {
+              "nct_id": "NCT06354101",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2023-07-01",
+              "title": "The Purpose of This Registry Study is to Learn More About Metabolic Health: Approximately 15,000 Participants Who Are Overweight or Have Obesity With or Without Metabolic Diseases Are Expected to Participate in This Registry Study.",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06075667",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2023-10-16",
+              "title": "A Study of Tirzepatide (LY3298176) Once Weekly in Adolescent Participants Who Have Obesity or Overweight With Weight-Related Comorbidities",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05963022",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2023-08-21",
+              "title": "A Study of Tirzepatide (LY3298176) in Chinese Participants With Type 2 Diabetes (SURPASS-CN-MONO)",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05912621",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2023-11-09",
+              "title": "Tirzepatide: Reversal of Lipotoxicity and Adipose Tissue Dysfunction in Humans With Overweight/Obesity",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07309094",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2023-09-15",
+              "title": "Clinical, Morphometric and Biochemical Effects on Adiposopathy Associated With the Use of GLP-1RA in CKD",
+              "match": null
+            }
+          ],
+          "trial_count": 22,
+          "year": "2023",
+          "estimated_count": 1,
+          "series": "tirzepatide"
+        },
+        {
+          "citation_count": 45,
+          "citations": [
+            {
+              "nct_id": "NCT06640972",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2024-09-27",
+              "title": "Effects of RDX-002 on Postprandial Triglycerides in Patients Discontinuing GLP-1 Agonists",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06162715",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2024-10-30",
+              "title": "GLP-1 Receptor Agonists Post-Bariatric Surgery (GRABS) Pilot Trial",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06221969",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2024-01-16",
+              "title": "A Research Study to See How Much CagriSema Lowers Blood Sugar and Body Weight Compared to Tirzepatide in People With Type 2 Diabetes Treated With Metformin With or Without an SGLT2 Inhibitor",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07088718",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2024-10-01",
+              "title": "Prediction of the SURPASS-CVOT Cardiovascular Outcome Trial in Healthcare Claims Data",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06326060",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2024-03-18",
+              "title": "A Research Study Comparing How Well Different Doses of the Medicine NN0519-0130 Help People With Excess Body Weight Lose Weight",
+              "match": null
+            }
+          ],
+          "trial_count": 45,
+          "year": "2024",
+          "estimated_count": 1,
+          "series": "tirzepatide"
+        },
+        {
+          "citation_count": 77,
+          "citations": [
+            {
+              "nct_id": "NCT06939088",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2025-05-05",
+              "title": "Effects of Tirzepatide on Alcohol Intake in Patients Diagnosed With Schizophrenia and Alcohol Use Disorder",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07096908",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2025-07-31",
+              "title": "Tirzepatide Use in People With Obesity and Type 1 Diabetes",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06980623",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2025-01-01",
+              "title": "Comparative Effectiveness of Tirzepatide vs Semaglutide in Participants With Type 2 Diabetes and Heart Failure With Preserved Ejection Fraction",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06864026",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2025-03-06",
+              "title": "A Study to Investigate Effectiveness of Tirzepatide Following Initiation of Ixekizumab in Participants With Active Psoriatic Arthritis and Overweight or Obesity in Clinical Practice (TOGETHER AMPLIFY-PsA)",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07000955",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2025-06-17",
+              "title": "Tolerance and Pharmacokinetic/Pharmacokinetic Study of IBI362 15mg in Patients With Moderate to Severe Obesity",
+              "match": null
+            }
+          ],
+          "trial_count": 77,
+          "year": "2025",
+          "estimated_count": 3,
+          "series": "tirzepatide"
+        },
+        {
+          "citation_count": 120,
+          "citations": [
+            {
+              "nct_id": "NCT07099742",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-11",
+              "title": "Effectiveness and Safety of Tirzepatide Among Participants With Obesity With or Without Type 2 Diabetes Mellitus (T2DM)",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07387796",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-10",
+              "title": "Clinical and Neurobehavioral Changes With Weight Loss Drug Discontinuation and Reinitiation",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07809568",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-10-01",
+              "title": "Real-World Outcomes of Tirzepatide in Pakistani Adults With Obesity, Prediabetes, and Type 2 Diabetes",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07382024",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-06-16",
+              "title": "Tirzepatide to Reduce rEcurrence And Burden After Ablation of Atrial Fibrillation",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07527910",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-05-22",
+              "title": "A Phase 2a Study of ALN-PNP With and Without a GLP1R Agonist in Adult Patients With Homozygous PNPLA3-Related MASLD",
+              "match": null
+            }
+          ],
+          "trial_count": 120,
+          "year": "2026",
+          "estimated_count": 62,
+          "series": "tirzepatide"
+        },
+        {
+          "citation_count": 9,
+          "citations": [
+            {
+              "nct_id": "NCT07929233",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2027-01",
+              "title": "24-hour Clear Liquid Diet vs. Standard Fasting for Upper Gastrointestinal Endoscopy in Patients Taking Agonists of the GLP-1 Receptor",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07622992",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2027-01-01",
+              "title": "Preoperative Optimization With Tirzepatide, Ketogenic Diet, or Standard Care Before One Anastomosis Gastric Bypass Surgery",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07078838",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2027-01",
+              "title": "Tirzepatide in Women With Obesity and Endometrial Intra-epithelial Neoplasia or Grade 1 Endometrial Cancer",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07728318",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2027-12-12",
+              "title": "Efficacy, Safety, and Treatment Satisfaction of Once-Weekly Tirzepatide in Obese Type 2 Diabetic Patients",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07926152",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2027-02-01",
+              "title": "Exercise and Protein to Reduce Muscle Loss During GLP-1-Based Treatment in Type 2 Diabetes",
+              "match": null
+            }
+          ],
+          "trial_count": 9,
+          "year": "2027",
+          "estimated_count": 9,
+          "series": "tirzepatide"
+        },
+        {
+          "citation_count": 0,
+          "citations": [],
+          "trial_count": 0,
+          "year": "2028",
+          "estimated_count": 0,
+          "series": "tirzepatide"
+        }
+      ]
+    },
+    "meta": {
+      "plan": {
+        "supported": true,
+        "unsupported_reason": null,
+        "analysis": "trend",
+        "group_by": [
+          "start_year"
+        ],
+        "measures": [],
+        "filters": {
+          "drug": null,
+          "condition": null,
+          "sponsor": null,
+          "country": null,
+          "phase": null,
+          "status": null,
+          "start_year": 2018,
+          "end_year": null
+        },
+        "comparison": {
+          "field": "drug",
+          "values": [
+            "semaglutide",
+            "tirzepatide"
+          ]
+        },
+        "top_n": null,
+        "ignored_constraints": [],
+        "interpretation_notes": []
+      },
+      "filters": {
+        "start_year": 2018
+      },
+      "api_query": {
+        "semaglutide": {
+          "query.intr": "semaglutide",
+          "filter.advanced": "AREA[StartDate]RANGE[2018-01-01, MAX]"
+        },
+        "tirzepatide": {
+          "query.intr": "tirzepatide",
+          "filter.advanced": "AREA[StartDate]RANGE[2018-01-01, MAX]"
+        }
+      },
+      "source": "clinicaltrials.gov",
+      "data_timestamp": "2026-11-12T10:00:05",
+      "total_matching": 1049,
+      "trials_counted": 1049,
+      "count_completeness": "exact",
+      "count_method": "all_records",
+      "records_fetched": 1049,
+      "citation_limit": 5,
+      "coverage": [
+        {
+          "series": "semaglutide",
+          "total_matching": 738,
+          "trials_counted": 738,
+          "count_completeness": "exact",
+          "count_method": "all_records",
+          "records_fetched": 738
+        },
+        {
+          "series": "tirzepatide",
+          "total_matching": 311,
+          "trials_counted": 311,
+          "count_completeness": "exact",
+          "count_method": "all_records",
+          "records_fetched": 311
+        }
+      ],
+      "bucket_clauses": {},
+      "multi_valued": false,
+      "units": {
+        "trial_count": "trials"
+      },
+      "derivations": {},
+      "sort": "ascending by year",
+      "time_granularity": "year",
+      "ignored_constraints": [],
+      "entities": [
+        {
+          "field": "drug",
+          "value": "semaglutide",
+          "matches": 805,
+          "used": "semaglutide",
+          "used_matches": 805,
+          "corrected": false,
+          "note": null
+        },
+        {
+          "field": "drug",
+          "value": "tirzepatide",
+          "matches": 317,
+          "used": "tirzepatide",
+          "used_matches": 317,
+          "corrected": false,
+          "note": null
+        }
+      ],
+      "notes": [
+        "Each series is a separate registry search; a trial matching several compared values appears in each series.",
+        "estimated_count is the part of trial_count whose start date the registry marks ESTIMATED (planned, not yet confirmed)."
+      ],
+      "llm": {
+        "model": "gpt-5.4-mini",
+        "prompt_version": "2026-11-12.7",
+        "attempts": 1,
+        "cost_usd": 0.001816
+      }
+    }
+  },
+  "generated_at": "2026-11-13T01:56:57.804733+00:00",
+  "code_revision": "37e5145d8e53c13215f9678c092ff3c4d39dd3ff"
+}

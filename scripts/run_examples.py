@@ -55,6 +55,22 @@ EXAMPLES = [
         "misspelled-drug",  # "pembrolizimab" (3 trials) -> "pembrolizumab" (D34)
         {"query": "How are pembrolizimab trials distributed across phases?"},
     ),
+    # Saved runs for the remaining guide buttons, so the static demo replays every one.
+    (
+        "trend-comparison",
+        {"query": "Trials per year for semaglutide versus tirzepatide since 2018."},
+    ),
+    (
+        "intervention-types",
+        {"query": "What are the most common intervention types for diabetes trials?"},
+    ),
+    ("phase-by-status", {"query": "Break down COVID-19 trials by phase and status."}),
+    ("top-sponsors", {"query": "Who are the top 10 sponsors of obesity trials?"}),
+    ("recruiting-total", {"query": "How many recruiting trials are there for glioblastoma?"}),
+    (
+        "enrollment-vs-duration",
+        {"query": "Plot enrollment against trial duration for semaglutide trials."},
+    ),
 ]
 
 

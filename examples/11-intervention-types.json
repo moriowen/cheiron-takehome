@@ -1,0 +1,545 @@
+{
+  "request": {
+    "query": "What are the most common intervention types for diabetes trials?"
+  },
+  "response": {
+    "status": "ok",
+    "visualization": {
+      "type": "bar_chart",
+      "title": "Trials for diabetes by intervention type",
+      "subtitle": "Exact counts, all 24,647 trials",
+      "encoding": {
+        "x": {
+          "field": "trial_count",
+          "type": "quantitative",
+          "title": "Trials",
+          "sort": null
+        },
+        "y": {
+          "field": "intervention_type",
+          "type": "nominal",
+          "title": "Intervention type",
+          "sort": null
+        }
+      },
+      "data": [
+        {
+          "citation_count": 9245,
+          "citations": [
+            {
+              "nct_id": "NCT06812637",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DRUG",
+              "title": "Efficacy and Safety of Wharton's Jelly-Derived Mesenchymal Stem Cell Exosomes in the Treatment of Diabetic Foot Ulcers: A Double-blinded Randomized Controlled Clinical Trial",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04762719",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DRUG",
+              "title": "PET Imaging to Delineate Macrophage Activation in Diabetic Gastroparesis",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05759442",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DRUG",
+              "title": "Clinical Efficacy and Safety of Metformin Versus Apple Cider Vinegar (ACV) in Prediabetics",
+              "match": null
+            },
+            {
+              "nct_id": "NCT00487240",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DRUG",
+              "title": "Comparison of Two Basal Insulin Therapies for Patients With Type 1 Diabetes",
+              "match": null
+            },
+            {
+              "nct_id": "NCT01931982",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DRUG",
+              "title": "Effect of Glucagon-like Peptide 1 (GLP-1) on Microvascular Myocardial Function in Patients With Type 2 Diabetes.",
+              "match": null
+            }
+          ],
+          "trial_count": 9245,
+          "intervention_type": "Drug"
+        },
+        {
+          "citation_count": 4998,
+          "citations": [
+            {
+              "nct_id": "NCT06812637",
+              "field": "protocolSection.armsInterventionsModule.interventions[2].type",
+              "excerpt": "OTHER",
+              "title": "Efficacy and Safety of Wharton's Jelly-Derived Mesenchymal Stem Cell Exosomes in the Treatment of Diabetic Foot Ulcers: A Double-blinded Randomized Controlled Clinical Trial",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04307875",
+              "field": "protocolSection.armsInterventionsModule.interventions[2].type",
+              "excerpt": "OTHER",
+              "title": "Hypertension and Diabetes Assessment in the Rohingya Refugee Population and in the Host Communities in Bangladesh",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03188835",
+              "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+              "excerpt": "OTHER",
+              "title": "Effects of Fructose/Glucose-rich Diet on Brown Fat in Healthy Subjects (GB7)",
+              "match": null
+            },
+            {
+              "nct_id": "NCT02811289",
+              "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+              "excerpt": "OTHER",
+              "title": "Pharmacological Activation of Brown Adipose Tissue Metabolism",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05256303",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "OTHER",
+              "title": "Rural Hospital-Level Care at Home for Acutely Ill Adults",
+              "match": null
+            }
+          ],
+          "trial_count": 4998,
+          "intervention_type": "Other"
+        },
+        {
+          "citation_count": 3890,
+          "citations": [
+            {
+              "nct_id": "NCT03890991",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "BEHAVIORAL",
+              "title": "Self-Care for Older People With Diabetes Mellitus",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07800182",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "BEHAVIORAL",
+              "title": "A Randomized Controlled Trial of Prepared vs. Unprepared Food",
+              "match": null
+            },
+            {
+              "nct_id": "NCT00163683",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "BEHAVIORAL",
+              "title": "Effects of a Mediterranean Style Diet on Vascular Health in Type 2 Diabetes",
+              "match": null
+            },
+            {
+              "nct_id": "NCT01247753",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "BEHAVIORAL",
+              "title": "Walking Exercise and Nutrition to Reduce Diabetes Risk for You (WENDY)",
+              "match": null
+            },
+            {
+              "nct_id": "NCT00364312",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "BEHAVIORAL",
+              "title": "Lifestyle Interventions for Long Term Diabetes Control",
+              "match": null
+            }
+          ],
+          "trial_count": 3890,
+          "intervention_type": "Behavioral"
+        },
+        {
+          "citation_count": 2975,
+          "citations": [
+            {
+              "nct_id": "NCT06418880",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DEVICE",
+              "title": "Automated Insulin Delivery for Inpatients With Dysglycemia",
+              "match": null
+            },
+            {
+              "nct_id": "NCT01742741",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DEVICE",
+              "title": "Early Feasibility Study 2 of Outpatient Control-to-Range - Testing System Efficacy (France)",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03827902",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DEVICE",
+              "title": "Diabetic Foot Ulcer and Wound Infection",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04920253",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DEVICE",
+              "title": "Real World Evidence with the Debritom+ TM Novel Micro Water Jet Technology At a Single Wound Center",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07924436",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DEVICE",
+              "title": "Whole-Body Vibration Training in Women With Obesity With and Without Type 2 Diabetes",
+              "match": null
+            }
+          ],
+          "trial_count": 2975,
+          "intervention_type": "Device"
+        },
+        {
+          "citation_count": 1324,
+          "citations": [
+            {
+              "nct_id": "NCT01115088",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DIETARY_SUPPLEMENT",
+              "title": "Effects of Stevia on Satiety and Eating Attitudes in Healthy, Overweight and Obese Adults",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05759442",
+              "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+              "excerpt": "DIETARY_SUPPLEMENT",
+              "title": "Clinical Efficacy and Safety of Metformin Versus Apple Cider Vinegar (ACV) in Prediabetics",
+              "match": null
+            },
+            {
+              "nct_id": "NCT01698112",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DIETARY_SUPPLEMENT",
+              "title": "Does Flaxseed Supplementation Improve Glycemic Control in Individuals With Pre-diabetes?",
+              "match": null
+            },
+            {
+              "nct_id": "NCT02248714",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DIETARY_SUPPLEMENT",
+              "title": "The Efficacy of Glucerna SR in Chinese Drug-na\u00efve Subjects With Type 2 Diabetes",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04691219",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DIETARY_SUPPLEMENT",
+              "title": "Effects of Mulberry Leaves on Glycemic Control in Patients With Obesity and Patients With Type 2 Diabetes",
+              "match": null
+            }
+          ],
+          "trial_count": 1324,
+          "intervention_type": "Dietary supplement"
+        },
+        {
+          "citation_count": 1125,
+          "citations": [
+            {
+              "nct_id": "NCT07827521",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "PROCEDURE",
+              "title": "Seltoplasmid Plus Revascularization for Diabetic Infrapopliteal Chronic Limb-Threatening Ischemia",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04595396",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "PROCEDURE",
+              "title": "Laparoscopic Gastric Bypass as Metabolic Surgery in Obesity Class 1",
+              "match": null
+            },
+            {
+              "nct_id": "NCT00338702",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "PROCEDURE",
+              "title": "A Randomized, Controlled Trial of Autologous Platelet Gel Treatment in Diabetic Foot Ulcers",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06017544",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "PROCEDURE",
+              "title": "GLP-1RAs) and SGLT2is Combination Therapy and MACEs in Patients with Type 2 Diabetes.",
+              "match": null
+            },
+            {
+              "nct_id": "NCT01861392",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "PROCEDURE",
+              "title": "Analisys of Neuromuscular Response, Postural Balance and Quality of Life of Diabetics Type 2 After Sensory-motor Training: Blind Random Controled Clinical Trial",
+              "match": null
+            }
+          ],
+          "trial_count": 1125,
+          "intervention_type": "Procedure"
+        },
+        {
+          "citation_count": 654,
+          "citations": [
+            {
+              "nct_id": "NCT05369065",
+              "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+              "excerpt": "DIAGNOSTIC_TEST",
+              "title": "Ablation of Arteries for the Treatment of Type 2 Diabetes Mellitus and Its Comorbidities",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04307875",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DIAGNOSTIC_TEST",
+              "title": "Hypertension and Diabetes Assessment in the Rohingya Refugee Population and in the Host Communities in Bangladesh",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04762719",
+              "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+              "excerpt": "DIAGNOSTIC_TEST",
+              "title": "PET Imaging to Delineate Macrophage Activation in Diabetic Gastroparesis",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03654521",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DIAGNOSTIC_TEST",
+              "title": "Fetal Interventricular Septum Thickness and Maternal Gestational Diabetes Control",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03195400",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "DIAGNOSTIC_TEST",
+              "title": "Pathogenesis of Youth Onset Type 2 Diabetes and Prediabetes",
+              "match": null
+            }
+          ],
+          "trial_count": 654,
+          "intervention_type": "Diagnostic test"
+        },
+        {
+          "citation_count": 550,
+          "citations": [
+            {
+              "nct_id": "NCT00265473",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "BIOLOGICAL",
+              "title": "MGA031, Sirolimus and Tacrolimus in Islet Transplantation",
+              "match": null
+            },
+            {
+              "nct_id": "NCT01301456",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "BIOLOGICAL",
+              "title": "Single-Dose And Multiple-Dose Safety And Tolerability Study Of PF-04856883 In Type 2 Diabetic Adult Females",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07261475",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "BIOLOGICAL",
+              "title": "Crocus Sativus Tepals Water Extract in Obesity and Prediabetes",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04077671",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "BIOLOGICAL",
+              "title": "CHF6467 SAD and MAD in Patients With Diabetic Foot Ulcer",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05065892",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "BIOLOGICAL",
+              "title": "Evaluation of Immunogenicity and Safety of COVID-19 Vaccine (Produced in Wuhan) in Patients With Hypertension and/or Diabetes",
+              "match": null
+            }
+          ],
+          "trial_count": 550,
+          "intervention_type": "Biological"
+        },
+        {
+          "citation_count": 117,
+          "citations": [
+            {
+              "nct_id": "NCT05369065",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "COMBINATION_PRODUCT",
+              "title": "Ablation of Arteries for the Treatment of Type 2 Diabetes Mellitus and Its Comorbidities",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06812637",
+              "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+              "excerpt": "COMBINATION_PRODUCT",
+              "title": "Efficacy and Safety of Wharton's Jelly-Derived Mesenchymal Stem Cell Exosomes in the Treatment of Diabetic Foot Ulcers: A Double-blinded Randomized Controlled Clinical Trial",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04849845",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "COMBINATION_PRODUCT",
+              "title": "Afrezza\u00ae Dosing Optimization Study",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06418880",
+              "field": "protocolSection.armsInterventionsModule.interventions[1].type",
+              "excerpt": "COMBINATION_PRODUCT",
+              "title": "Automated Insulin Delivery for Inpatients With Dysglycemia",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05417425",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "COMBINATION_PRODUCT",
+              "title": "Omeza Products in Combination With Standard of Care for the Treatment of Diabetic Foot Ulcers",
+              "match": null
+            }
+          ],
+          "trial_count": 117,
+          "intervention_type": "Combination product"
+        },
+        {
+          "citation_count": 75,
+          "citations": [
+            {
+              "nct_id": "NCT05210972",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "RADIATION",
+              "title": "Coronary Artery Disease Severity in Newly Diagnosed Dysglycemia",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05083013",
+              "field": "protocolSection.armsInterventionsModule.interventions[2].type",
+              "excerpt": "RADIATION",
+              "title": "Diabetes In Relation to Hospitalized COVID-19 Patents At Assiut University Hospital",
+              "match": null
+            },
+            {
+              "nct_id": "NCT02473991",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].type",
+              "excerpt": "RADIATION",
+              "title": "Correlation Between Placental Thickness in the Second and Third Trimester and Fetal Weight",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03188835",
+              "field": "protocolSection.armsInterventionsModule.interventions[2].type",
+              "excerpt": "RADIATION",
+              "title": "Effects of Fructose/Glucose-rich Diet on Brown Fat in Healthy Subjects (GB7)",
+              "match": null
+            },
+            {
+              "nct_id": "NCT02811289",
+              "field": "protocolSection.armsInterventionsModule.interventions[2].type",
+              "excerpt": "RADIATION",
+              "title": "Pharmacological Activation of Brown Adipose Tissue Metabolism",
+              "match": null
+            }
+          ],
+          "trial_count": 75,
+          "intervention_type": "Radiation"
+        }
+      ]
+    },
+    "meta": {
+      "plan": {
+        "supported": true,
+        "unsupported_reason": null,
+        "analysis": "breakdown",
+        "group_by": [
+          "intervention_type"
+        ],
+        "measures": [],
+        "filters": {
+          "drug": null,
+          "condition": "diabetes",
+          "sponsor": null,
+          "country": null,
+          "phase": null,
+          "status": null,
+          "start_year": null,
+          "end_year": null
+        },
+        "comparison": null,
+        "top_n": 10,
+        "ignored_constraints": [],
+        "interpretation_notes": []
+      },
+      "filters": {
+        "condition": "diabetes"
+      },
+      "api_query": {
+        "query.cond": "diabetes"
+      },
+      "source": "clinicaltrials.gov",
+      "data_timestamp": "2026-11-12T10:00:05",
+      "total_matching": 24647,
+      "trials_counted": 24647,
+      "count_completeness": "exact",
+      "count_method": "registry_count",
+      "records_fetched": 59,
+      "citation_limit": 5,
+      "coverage": [
+        {
+          "series": null,
+          "total_matching": 24647,
+          "trials_counted": 24647,
+          "count_completeness": "exact",
+          "count_method": "registry_count",
+          "records_fetched": 59
+        }
+      ],
+      "bucket_clauses": {
+        "BEHAVIORAL": "AREA[InterventionType]BEHAVIORAL",
+        "BIOLOGICAL": "AREA[InterventionType]BIOLOGICAL",
+        "COMBINATION_PRODUCT": "AREA[InterventionType]COMBINATION_PRODUCT",
+        "DEVICE": "AREA[InterventionType]DEVICE",
+        "DIAGNOSTIC_TEST": "AREA[InterventionType]DIAGNOSTIC_TEST",
+        "DIETARY_SUPPLEMENT": "AREA[InterventionType]DIETARY_SUPPLEMENT",
+        "DRUG": "AREA[InterventionType]DRUG",
+        "GENETIC": "AREA[InterventionType]GENETIC",
+        "PROCEDURE": "AREA[InterventionType]PROCEDURE",
+        "RADIATION": "AREA[InterventionType]RADIATION",
+        "OTHER": "AREA[InterventionType]OTHER",
+        "(missing)": "AREA[InterventionType]MISSING"
+      },
+      "multi_valued": true,
+      "units": {
+        "trial_count": "trials"
+      },
+      "derivations": {},
+      "sort": "descending by trial_count",
+      "time_granularity": null,
+      "ignored_constraints": [],
+      "entities": [
+        {
+          "field": "condition",
+          "value": "diabetes",
+          "matches": 24647,
+          "used": "diabetes",
+          "used_matches": 24647,
+          "corrected": false,
+          "note": null
+        }
+      ],
+      "notes": [
+        "Exact registry counts: one count query per intervention type value. Each bar cites up to 5 of its trials.",
+        "2351 trials have no intervention type and are not shown.",
+        "1 smaller intervention type groups not shown (top 10 kept).",
+        "One trial can count in several groups, so group totals can exceed the number of trials."
+      ],
+      "llm": {
+        "model": "gpt-5.4-mini",
+        "prompt_version": "2026-11-12.7",
+        "attempts": 1,
+        "cost_usd": 0.001753
+      }
+    }
+  },
+  "generated_at": "2026-11-13T01:57:14.619774+00:00",
+  "code_revision": "37e5145d8e53c13215f9678c092ff3c4d39dd3ff"
+}

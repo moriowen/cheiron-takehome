@@ -1,0 +1,153 @@
+{
+  "request": {
+    "query": "How many recruiting trials are there for glioblastoma?"
+  },
+  "response": {
+    "status": "ok",
+    "visualization": {
+      "type": "metric",
+      "title": "Number of trials for glioblastoma (recruiting)",
+      "subtitle": "Exact counts, all 321 trials",
+      "encoding": {
+        "value": {
+          "field": "trial_count",
+          "type": "quantitative",
+          "title": "Trials",
+          "sort": null
+        },
+        "label": {
+          "field": "label",
+          "type": "nominal",
+          "title": null,
+          "sort": null
+        }
+      },
+      "data": [
+        {
+          "citation_count": 321,
+          "citations": [
+            {
+              "nct_id": "NCT07318818",
+              "field": "protocolSection.identificationModule.nctId",
+              "excerpt": "NCT07318818",
+              "title": "A Clinical Trial of P134 Cells in Recurrent Glioblastoma",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07628647",
+              "field": "protocolSection.identificationModule.nctId",
+              "excerpt": "NCT07628647",
+              "title": "Living Well With Brain Cancer: A Group-Based Intervention to Promote Whole-Person Well-Being",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05765812",
+              "field": "protocolSection.identificationModule.nctId",
+              "excerpt": "NCT05765812",
+              "title": "A Study of Zedoresertib (Debio 0123) in Combination With Temozolomide in Adult Participants With Recurrent or Progressive Glioblastoma and of Zedoresertib (Debio 0123) in Combination With Temozolomide and Radiotherapy in Adult Participants With Newly Diagnosed Glioblastoma",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03861299",
+              "field": "protocolSection.identificationModule.nctId",
+              "excerpt": "NCT03861299",
+              "title": "The SAFE-Trial: Awake Craniotomy Versus Surgery Under General Anesthesia for Glioblastoma Patients.",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07779798",
+              "field": "protocolSection.identificationModule.nctId",
+              "excerpt": "NCT07779798",
+              "title": "A Phase 1, Open-Label, Dose-Escalation Study to Evaluate Safety, Tolerability, and Clinical Activity of CBX-663 in Participants With Relapsed or Refractory Myeloid Malignancies, Advanced Solid Tumors, or Recurrent or Progressive Glioblastoma.",
+              "match": null
+            }
+          ],
+          "trial_count": 321,
+          "label": "Matching trials"
+        }
+      ]
+    },
+    "meta": {
+      "plan": {
+        "supported": true,
+        "unsupported_reason": null,
+        "analysis": "total",
+        "group_by": [],
+        "measures": [],
+        "filters": {
+          "drug": null,
+          "condition": "glioblastoma",
+          "sponsor": null,
+          "country": null,
+          "phase": null,
+          "status": [
+            "RECRUITING"
+          ],
+          "start_year": null,
+          "end_year": null
+        },
+        "comparison": null,
+        "top_n": null,
+        "ignored_constraints": [],
+        "interpretation_notes": []
+      },
+      "filters": {
+        "condition": "glioblastoma",
+        "status": [
+          "RECRUITING"
+        ]
+      },
+      "api_query": {
+        "query.cond": "glioblastoma",
+        "filter.overallStatus": "RECRUITING"
+      },
+      "source": "clinicaltrials.gov",
+      "data_timestamp": "2026-11-12T10:00:05",
+      "total_matching": 321,
+      "trials_counted": 321,
+      "count_completeness": "exact",
+      "count_method": "registry_count",
+      "records_fetched": 25,
+      "citation_limit": 5,
+      "coverage": [
+        {
+          "series": null,
+          "total_matching": 321,
+          "trials_counted": 321,
+          "count_completeness": "exact",
+          "count_method": "registry_count",
+          "records_fetched": 25
+        }
+      ],
+      "bucket_clauses": {},
+      "multi_valued": false,
+      "units": {
+        "trial_count": "trials"
+      },
+      "derivations": {},
+      "sort": null,
+      "time_granularity": null,
+      "ignored_constraints": [],
+      "entities": [
+        {
+          "field": "condition",
+          "value": "glioblastoma",
+          "matches": 2287,
+          "used": "glioblastoma",
+          "used_matches": 2287,
+          "corrected": false,
+          "note": null
+        }
+      ],
+      "notes": [],
+      "llm": {
+        "model": "gpt-5.4-mini",
+        "prompt_version": "2026-11-12.7",
+        "attempts": 1,
+        "cost_usd": 0.001753
+      }
+    }
+  },
+  "generated_at": "2026-11-13T01:57:53.462556+00:00",
+  "code_revision": "37e5145d8e53c13215f9678c092ff3c4d39dd3ff"
+}

@@ -1,0 +1,529 @@
+{
+  "request": {
+    "query": "Who are the top 10 sponsors of obesity trials?"
+  },
+  "response": {
+    "status": "ok",
+    "visualization": {
+      "type": "bar_chart",
+      "title": "Trials for obesity by lead sponsor",
+      "subtitle": "Exact counts, all 15,178 trials",
+      "encoding": {
+        "x": {
+          "field": "trial_count",
+          "type": "quantitative",
+          "title": "Trials",
+          "sort": null
+        },
+        "y": {
+          "field": "lead_sponsor",
+          "type": "nominal",
+          "title": "Lead sponsor",
+          "sort": null
+        }
+      },
+      "data": [
+        {
+          "citation_count": 218,
+          "citations": [
+            {
+              "nct_id": "NCT06064006",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Novo Nordisk A/S",
+              "title": "A Research Study to See How a New Medicine (NNC0487-0111) Works in People With Overweight or Obesity When Injected Under the Skin",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07011667",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Novo Nordisk A/S",
+              "title": "A Research Study to Look at How Well CagriSema Helps People Living With Obesity Lose Weight and Maintain Weight Loss in the Long-term",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07004322",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Novo Nordisk A/S",
+              "title": "A Research Study of the New Medicine NNC0519-0130 in Male Chinese Participants Living With Excess Body Weight",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04788511",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Novo Nordisk A/S",
+              "title": "Research Study to Investigate How Well Semaglutide Works in People Living With Heart Failure and Obesity",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06719011",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Novo Nordisk A/S",
+              "title": "A Study on How NNC0174-1213 Works in People With Overweight or Obesity.",
+              "match": null
+            }
+          ],
+          "trial_count": 218,
+          "lead_sponsor": "Novo Nordisk A/S"
+        },
+        {
+          "citation_count": 126,
+          "citations": [
+            {
+              "nct_id": "NCT03798522",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Cairo University",
+              "title": "Erector Spinae Plane Block Versus Opioid Based General Anesthesia During Laparoscopic Bariatric Surgery",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06555705",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Cairo University",
+              "title": "Effect of Omega 3 Supplementation on the Heart Rate Variability in Obese Children",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06913231",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Cairo University",
+              "title": "Impact of Whole-Body Vibration on Anthropometric Measurement and Body Composition in Overweight and Obese University Students",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05782608",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Cairo University",
+              "title": "IV Ibuprofen vs Ketorolac in Post Operative Pain in Colorectal Cancer Surgeries in Obese Patient",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04273074",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Cairo University",
+              "title": "Upper Airway Ultrasound in the Assessment of Difficult Visualization of the Larynx",
+              "match": null
+            }
+          ],
+          "trial_count": 126,
+          "lead_sponsor": "Cairo University"
+        },
+        {
+          "citation_count": 125,
+          "citations": [
+            {
+              "nct_id": "NCT06148272",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Eli Lilly and Company",
+              "title": "A Study of LY3971297 in Healthy Participants",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06075667",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Eli Lilly and Company",
+              "title": "A Study of Tirzepatide (LY3298176) Once Weekly in Adolescent Participants Who Have Obesity or Overweight With Weight-Related Comorbidities",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06864026",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Eli Lilly and Company",
+              "title": "A Study to Investigate Effectiveness of Tirzepatide Following Initiation of Ixekizumab in Participants With Active Psoriatic Arthritis and Overweight or Obesity in Clinical Practice (TOGETHER AMPLIFY-PsA)",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07357415",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Eli Lilly and Company",
+              "title": "A Study of Retatrutide (LY3437943) in Participants Without Type 2 Diabetes Who Have Obesity or Overweight",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06683508",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Eli Lilly and Company",
+              "title": "A Study to Investigate Weight Management With LY3549492 Compared With Placebo in Adult Participants With Obesity or Overweight",
+              "match": null
+            }
+          ],
+          "trial_count": 125,
+          "lead_sponsor": "Eli Lilly and Company"
+        },
+        {
+          "citation_count": 123,
+          "citations": [
+            {
+              "nct_id": "NCT03215173",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "University of Colorado, Denver",
+              "title": "Fit After Baby: Increasing Postpartum Weight Loss in Women at Increased Risk for Cardiometabolic Disease",
+              "match": null
+            },
+            {
+              "nct_id": "NCT02456870",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "University of Colorado, Denver",
+              "title": "Expandability of Aging Adipose Tissue",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04349475",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "University of Colorado, Denver",
+              "title": "Therapeutic Omegas for Triglyceride Suppression",
+              "match": null
+            },
+            {
+              "nct_id": "NCT03411356",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "University of Colorado, Denver",
+              "title": "Intermittent Fasting Versus Daily Caloric Restriction for Weight Loss",
+              "match": null
+            },
+            {
+              "nct_id": "NCT01766700",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "University of Colorado, Denver",
+              "title": "The Role of No-Calorie Beverages Within a Weight Loss Program",
+              "match": null
+            }
+          ],
+          "trial_count": 123,
+          "lead_sponsor": "University of Colorado, Denver"
+        },
+        {
+          "citation_count": 121,
+          "citations": [
+            {
+              "nct_id": "NCT06392854",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Mayo Clinic",
+              "title": "Regional Lipolysis Insulin Regulation",
+              "match": null
+            },
+            {
+              "nct_id": "NCT02128581",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Mayo Clinic",
+              "title": "A Dose-response of the Effects of Exendin-9,39 on GI Symptoms and Food Intake",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04784286",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Mayo Clinic",
+              "title": "Telemedicine Follow-up for Bariatric Surgery Patients: What Do Patients Prefer",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05264727",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Mayo Clinic",
+              "title": "Glucagon Suppression by Hyperglycemia in the Presence and Absence of Amino Acid Infusion",
+              "match": null
+            },
+            {
+              "nct_id": "NCT01682733",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Mayo Clinic",
+              "title": "Endoscopic Gastric Reduction for Weight Management",
+              "match": null
+            }
+          ],
+          "trial_count": 121,
+          "lead_sponsor": "Mayo Clinic"
+        },
+        {
+          "citation_count": 114,
+          "citations": [
+            {
+              "nct_id": "NCT00062764",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+              "title": "Treating Nonalcoholic Steatohepatitis With Pioglitazone",
+              "match": null
+            },
+            {
+              "nct_id": "NCT00656851",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+              "title": "Myocardial Function & FFA Metabolism in HIV Metabolic Syndrome",
+              "match": null
+            },
+            {
+              "nct_id": "NCT00063700",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+              "title": "Impact of Non-Commercialism Policy in Seattle Schools",
+              "match": null
+            },
+            {
+              "nct_id": "NCT00065676",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+              "title": "Investigating the Use of Quercetin on Glucose Absorption in Obesity, and Obesity With Type 2 Diabetes",
+              "match": null
+            },
+            {
+              "nct_id": "NCT01364350",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+              "title": "TODAY2 Phase 1 Immediate Post-Intervention Observational Follow-up Study",
+              "match": null
+            }
+          ],
+          "trial_count": 114,
+          "lead_sponsor": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)"
+        },
+        {
+          "citation_count": 101,
+          "citations": [
+            {
+              "nct_id": "NCT01796340",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Maastricht University Medical Center",
+              "title": "Cue Exposure Training for Overweight Children",
+              "match": null
+            },
+            {
+              "nct_id": "NCT02381340",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Maastricht University Medical Center",
+              "title": "ACE Stapler Sub Study",
+              "match": null
+            },
+            {
+              "nct_id": "NCT02491125",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Maastricht University Medical Center",
+              "title": "The Effect of Prebiotics on Gastrointestinal Functioning and Metabolism",
+              "match": null
+            },
+            {
+              "nct_id": "NCT01740050",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Maastricht University Medical Center",
+              "title": "Weight-loss and Gut-brain Interactions",
+              "match": null
+            },
+            {
+              "nct_id": "NCT06923644",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Maastricht University Medical Center",
+              "title": "Targeted Precision Nutrition Strategy To Prevent Chronic Metabolic Diseases",
+              "match": null
+            }
+          ],
+          "trial_count": 101,
+          "lead_sponsor": "Maastricht University Medical Center"
+        },
+        {
+          "citation_count": 101,
+          "citations": [
+            {
+              "nct_id": "NCT01115088",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Pennington Biomedical Research Center",
+              "title": "Effects of Stevia on Satiety and Eating Attitudes in Healthy, Overweight and Obese Adults",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05394467",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Pennington Biomedical Research Center",
+              "title": "Adipose Cellular Kinetics of Lipedema",
+              "match": null
+            },
+            {
+              "nct_id": "NCT00565149",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Pennington Biomedical Research Center",
+              "title": "PROOF: PROtein OverFeeding Effect on Body Weight",
+              "match": null
+            },
+            {
+              "nct_id": "NCT00412269",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Pennington Biomedical Research Center",
+              "title": "Healthy Transitions: Menopause Effect on Obesity, Energy Balance, and Insulin",
+              "match": null
+            },
+            {
+              "nct_id": "NCT02740660",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Pennington Biomedical Research Center",
+              "title": "Body Composition Changes With Albuterol and Caffeine Versus Placebo in Adolescents",
+              "match": null
+            }
+          ],
+          "trial_count": 101,
+          "lead_sponsor": "Pennington Biomedical Research Center"
+        },
+        {
+          "citation_count": 100,
+          "citations": [
+            {
+              "nct_id": "NCT01184170",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Washington University School of Medicine",
+              "title": "Metabolically Normal and Metabolically Abnormal Obesity",
+              "match": null
+            },
+            {
+              "nct_id": "NCT07091500",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Washington University School of Medicine",
+              "title": "Glucagon-like Peptide 1 (GLP-1) Receptor Agonist Therapy and Exercise Training in People With Obesity",
+              "match": null
+            },
+            {
+              "nct_id": "NCT02706288",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Washington University School of Medicine",
+              "title": "Effects of a Calorie Restricted, Very Low Fat Plant-based Diet and Multi-component Exercise Program on Metabolic Health",
+              "match": null
+            },
+            {
+              "nct_id": "NCT04530825",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Washington University School of Medicine",
+              "title": "PREVENT Tool Study: Late Effects Clinic",
+              "match": null
+            },
+            {
+              "nct_id": "NCT05933707",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Washington University School of Medicine",
+              "title": "Small Extracellular Vesicles and Insulin Action",
+              "match": null
+            }
+          ],
+          "trial_count": 100,
+          "lead_sponsor": "Washington University School of Medicine"
+        },
+        {
+          "citation_count": 92,
+          "citations": [
+            {
+              "nct_id": "NCT01673113",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Massachusetts General Hospital",
+              "title": "Characterization of Transient Alterations of Cutaneous Sensory Nerve Function by Cryolipolysis",
+              "match": null
+            },
+            {
+              "nct_id": "NCT00675506",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Massachusetts General Hospital",
+              "title": "Effectiveness of Growth Hormone Releasing Hormone in Reducing Abdominal Fat in People Who Are Obese",
+              "match": null
+            },
+            {
+              "nct_id": "NCT02530385",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Massachusetts General Hospital",
+              "title": "Fecal Microbiota Transplant for Improvement of Metabolism",
+              "match": null
+            },
+            {
+              "nct_id": "NCT01627925",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Massachusetts General Hospital",
+              "title": "Safety Study of Positive Airway Pressure Via a Nasal Mask in Obese Patients",
+              "match": null
+            },
+            {
+              "nct_id": "NCT02492113",
+              "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+              "excerpt": "Massachusetts General Hospital",
+              "title": "Effects of Different PEEP Levels on Work of Breathing in Morbidly Obese Patients Prior to and After Extubation",
+              "match": null
+            }
+          ],
+          "trial_count": 92,
+          "lead_sponsor": "Massachusetts General Hospital"
+        }
+      ]
+    },
+    "meta": {
+      "plan": {
+        "supported": true,
+        "unsupported_reason": null,
+        "analysis": "breakdown",
+        "group_by": [
+          "lead_sponsor"
+        ],
+        "measures": [],
+        "filters": {
+          "drug": null,
+          "condition": "obesity",
+          "sponsor": null,
+          "country": null,
+          "phase": null,
+          "status": null,
+          "start_year": null,
+          "end_year": null
+        },
+        "comparison": null,
+        "top_n": 10,
+        "ignored_constraints": [],
+        "interpretation_notes": []
+      },
+      "filters": {
+        "condition": "obesity"
+      },
+      "api_query": {
+        "query.cond": "obesity"
+      },
+      "source": "clinicaltrials.gov",
+      "data_timestamp": "2026-11-12T10:00:05",
+      "total_matching": 15178,
+      "trials_counted": 15178,
+      "count_completeness": "exact",
+      "count_method": "all_records",
+      "records_fetched": 15178,
+      "citation_limit": 5,
+      "coverage": [
+        {
+          "series": null,
+          "total_matching": 15178,
+          "trials_counted": 15178,
+          "count_completeness": "exact",
+          "count_method": "all_records",
+          "records_fetched": 15178
+        }
+      ],
+      "bucket_clauses": {},
+      "multi_valued": false,
+      "units": {
+        "trial_count": "trials"
+      },
+      "derivations": {},
+      "sort": "descending by trial_count",
+      "time_granularity": null,
+      "ignored_constraints": [],
+      "entities": [
+        {
+          "field": "condition",
+          "value": "obesity",
+          "matches": 15178,
+          "used": "obesity",
+          "used_matches": 15178,
+          "corrected": false,
+          "note": null
+        }
+      ],
+      "notes": [
+        "3503 smaller lead sponsor groups not shown (top 10 kept)."
+      ],
+      "llm": {
+        "model": "gpt-5.4-mini",
+        "prompt_version": "2026-11-12.7",
+        "attempts": 1,
+        "cost_usd": 0.001753
+      }
+    }
+  },
+  "generated_at": "2026-11-13T01:57:51.082970+00:00",
+  "code_revision": "37e5145d8e53c13215f9678c092ff3c4d39dd3ff"
+}
