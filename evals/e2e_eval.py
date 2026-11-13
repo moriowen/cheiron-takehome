@@ -5,6 +5,8 @@ Checks response invariants, not exact numbers (the registry changes daily):
 - data is non-empty; every datum has citation_count == its count and cites >= 1 trial
 - every citation has an NCT ID, a field path, and a non-empty excerpt
 - meta has the data timestamp, the API query, and records_used <= total_matching
+- exact counts (D32): a phase breakdown's bars sum to total_matching (every trial has one
+  phase bucket, "Not reported" included); a single-valued breakdown never sums above it
 - regression (D27): no network node is a generic intervention name such as "Chemotherapy"
 
 Reports pass rate with a 95% Wilson interval and p50/p95 latency. Uses the hand-written cases
@@ -72,7 +74,22 @@ def check_response(resp: QueryResponse, expect: dict) -> list[str]:
             errors.append(f"generic intervention names as nodes: {generic}")
     if m.records_used > m.total_matching:
         errors.append("records_used > total_matching")
+    errors += _check_exact_counts(resp)
     return errors[:10]
+
+
+def _check_exact_counts(resp: QueryResponse) -> list[str]:
+    m, plan = resp.meta, resp.meta.plan
+    one_dim = plan.analysis.value == "breakdown" and len(plan.group_by) == 1
+    if not one_dim or plan.comparison or m.multi_valued or m.count_method == "sample":
+        return []
+    total = sum(row["trial_count"] for row in resp.visualization.data)
+    if total > m.total_matching:
+        return [f"bars sum to {total} > total_matching {m.total_matching}"]
+    cut = any("not shown" in n for n in m.notes)
+    if plan.group_by[0].value == "phase" and not cut and total != m.total_matching:
+        return [f"phase bars sum to {total}, total_matching is {m.total_matching}"]
+    return []
 
 
 def main() -> None:
@@ -85,8 +102,9 @@ def main() -> None:
     app = AppSettings()
     pipeline = Pipeline(
         OpenAIPlanner(settings),
-        CTGovClient(min_interval_s=app.ctgov_min_interval_s),
+        CTGovClient(rate_per_s=app.ctgov_rate_per_s, burst=app.ctgov_burst),
         max_records=app.max_records,
+        sample_records=app.sample_records,
     )
     results = []
     for case in load_cases(synthetic=False):

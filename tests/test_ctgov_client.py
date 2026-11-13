@@ -208,14 +208,25 @@ def test_retry_after_header_sets_the_delay(monkeypatch):
     assert slept == [7.0]
 
 
-def test_min_interval_spaces_requests(monkeypatch):
-    clock = iter([0.0, 0.0, 0.1, 0.1, 0.2, 0.2])
+def test_rate_limiter_allows_a_burst_then_the_sustained_rate(monkeypatch):
+    now = [0.0]
     slept = []
-    monkeypatch.setattr("trialviz.ctgov.client.time.monotonic", lambda: next(clock))
-    monkeypatch.setattr("trialviz.ctgov.client.time.sleep", slept.append)
+
+    def sleep(s):
+        slept.append(s)
+        now[0] += s
+
+    monkeypatch.setattr("trialviz.ctgov.client.time.monotonic", lambda: now[0])
+    monkeypatch.setattr("trialviz.ctgov.client.time.sleep", sleep)
     client = make_client(
-        lambda r: httpx.Response(200, json={"totalCount": 1, "studies": []}), min_interval_s=0.5
+        lambda r: httpx.Response(200, json={"totalCount": 1, "studies": []}),
+        rate_per_s=2.0,
+        burst=3,
     )
-    client.count(StudyQuery())
-    client.count(StudyQuery())
-    assert slept == [pytest.approx(0.4)]  # second call waited 0.5 - 0.1
+    for _ in range(5):
+        client.count(StudyQuery())
+    assert slept == [pytest.approx(0.5), pytest.approx(0.5)]  # 3 at once, then 2 per second
+    now[0] += 10  # idle refills the bucket, capped at the burst size
+    for _ in range(3):
+        client.count(StudyQuery())
+    assert len(slept) == 2

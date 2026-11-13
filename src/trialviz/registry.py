@@ -15,6 +15,7 @@ from trialviz.plan import Dimension, Measure
 from trialviz.schemas import Citation
 
 ABSENT = "(field absent)"
+MISSING_BUCKET = "(missing)"  # bucket key for trials with no value (D32)
 DRUG_TYPES = {"DRUG", "BIOLOGICAL"}
 # Free-text "drug" names that name a category, not a drug. Matched only when no MeSH term exists.
 GENERIC_DRUG_NAMES = {
@@ -53,6 +54,10 @@ class DimensionSpec:
     channel_type: Literal["nominal", "ordinal", "temporal"] = "nominal"
     order: tuple[str, ...] = ()  # fixed key order for ordinal dimensions
     multi_valued: bool = False
+    # Fixed-value dimensions: (bucket key, Essie clause) for every possible value, so the
+    # registry can count each bucket exactly (D32). Keys match `extract`; MISSING_BUCKET is
+    # the trials with no value. Empty for open-ended dimensions (names, countries, years).
+    buckets: tuple[tuple[str, str], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -219,6 +224,41 @@ def _intervention_types(s: dict) -> list[Value]:
     return list(out.values())
 
 
+def _value_buckets(area: str, values: list[str]) -> tuple[tuple[str, str], ...]:
+    """One bucket per API enum value, plus the trials with no value."""
+    return (
+        *((v, f"AREA[{area}]{v}") for v in values),
+        (MISSING_BUCKET, f"AREA[{area}]MISSING"),
+    )
+
+
+# A phase key is the trial's whole phase list ("PHASE1|PHASE2"), so a bucket must exclude
+# the neighbouring phases. Checked live: the 9 counts sum to totalCount (docs/01).
+PHASE_BUCKETS = (
+    ("EARLY_PHASE1", "AREA[Phase]EARLY_PHASE1"),
+    ("PHASE1", "AREA[Phase]PHASE1 AND NOT AREA[Phase]PHASE2"),
+    ("PHASE1|PHASE2", "AREA[Phase]PHASE1 AND AREA[Phase]PHASE2"),
+    ("PHASE2", "AREA[Phase]PHASE2 AND NOT AREA[Phase]PHASE1 AND NOT AREA[Phase]PHASE3"),
+    ("PHASE2|PHASE3", "AREA[Phase]PHASE2 AND AREA[Phase]PHASE3"),
+    ("PHASE3", "AREA[Phase]PHASE3 AND NOT AREA[Phase]PHASE2"),
+    ("PHASE4", "AREA[Phase]PHASE4"),
+    ("NA", "AREA[Phase]NA"),
+    ("NOT_REPORTED", "AREA[Phase]MISSING"),
+)
+# API enum values, from GET /studies/enums (2026-11-12).
+OVERALL_STATUSES = [
+    "ACTIVE_NOT_RECRUITING", "COMPLETED", "ENROLLING_BY_INVITATION", "NOT_YET_RECRUITING",
+    "RECRUITING", "SUSPENDED", "TERMINATED", "WITHDRAWN", "AVAILABLE", "NO_LONGER_AVAILABLE",
+    "TEMPORARILY_NOT_AVAILABLE", "APPROVED_FOR_MARKETING", "WITHHELD", "UNKNOWN",
+]  # fmt: skip
+STUDY_TYPES = ["EXPANDED_ACCESS", "INTERVENTIONAL", "OBSERVATIONAL"]
+SPONSOR_CLASSES = ["NIH", "FED", "OTHER_GOV", "INDIV", "INDUSTRY", "NETWORK", "AMBIG", "OTHER",
+                   "UNKNOWN"]  # fmt: skip
+INTERVENTION_TYPES = [
+    "BEHAVIORAL", "BIOLOGICAL", "COMBINATION_PRODUCT", "DEVICE", "DIAGNOSTIC_TEST",
+    "DIETARY_SUPPLEMENT", "DRUG", "GENETIC", "PROCEDURE", "RADIATION", "OTHER",
+]  # fmt: skip
+
 SPONSOR_CLASS_LABELS = {
     "INDUSTRY": "Industry",
     "NIH": "NIH",
@@ -227,6 +267,7 @@ SPONSOR_CLASS_LABELS = {
     "INDIV": "Individual",
     "NETWORK": "Network",
     "OTHER": "Other (academic, hospital, nonprofit)",
+    "AMBIG": "Ambiguous",
     "UNKNOWN": "Unknown",
 }
 
@@ -241,15 +282,17 @@ DIMENSIONS: dict[Dimension, DimensionSpec] = {
     for spec in [
         DimensionSpec(
             Dimension.PHASE, "Phase", (f"{P}.designModule.phases",), _phase,
-            channel_type="ordinal", order=tuple(PHASE_LABELS),
+            channel_type="ordinal", order=tuple(PHASE_LABELS), buckets=PHASE_BUCKETS,
         ),
         DimensionSpec(
             Dimension.STATUS, "Overall status", (f"{P}.statusModule.overallStatus",),
             _enum(f"{P}.statusModule.overallStatus", {}),
+            buckets=_value_buckets("OverallStatus", OVERALL_STATUSES),
         ),
         DimensionSpec(
             Dimension.STUDY_TYPE, "Study type", (f"{P}.designModule.studyType",),
             _enum(f"{P}.designModule.studyType", {}),
+            buckets=_value_buckets("StudyType", STUDY_TYPES),
         ),
         DimensionSpec(
             Dimension.START_YEAR, "Start year", (f"{P}.statusModule.startDateStruct",),
@@ -264,10 +307,12 @@ DIMENSIONS: dict[Dimension, DimensionSpec] = {
             Dimension.SPONSOR_CLASS, "Sponsor class",
             (f"{P}.sponsorCollaboratorsModule.leadSponsor.class",),
             _enum(f"{P}.sponsorCollaboratorsModule.leadSponsor.class", SPONSOR_CLASS_LABELS),
+            buckets=_value_buckets("LeadSponsorClass", SPONSOR_CLASSES),
         ),
         DimensionSpec(
             Dimension.INTERVENTION_TYPE, "Intervention type", _INTERVENTIONS,
             _intervention_types, multi_valued=True,
+            buckets=_value_buckets("InterventionType", INTERVENTION_TYPES),
         ),
         DimensionSpec(
             Dimension.DRUG, "Drug",

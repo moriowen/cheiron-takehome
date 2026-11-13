@@ -10,6 +10,8 @@ from trialviz.api import create_app
 from trialviz.ctgov.client import CTGovClient
 from trialviz.llm.stub_planner import StubPlanner
 from trialviz.pipeline import Pipeline, PipelineError, apply_hints
+from trialviz.plan import Dimension
+from trialviz.registry import DIMENSIONS
 from trialviz.schemas import QueryRequest
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -17,14 +19,29 @@ PEMBRO = json.loads((FIXTURES / "pembrolizumab.json").read_text())
 
 
 def fake_ctgov(calls: list | None = None) -> CTGovClient:
-    """Serves the pembrolizumab fixture as a single page for any /studies query."""
+    """A tiny registry over the pembrolizumab fixture (200 records). It pages like the real
+    API and understands the phase bucket clauses, so bucket counts are real counts."""
+    phase = DIMENSIONS[Dimension.PHASE]
+    by_clause = {clause: key for key, clause in phase.buckets}
 
     def handler(req: httpx.Request):
+        params = dict(req.url.params)
         if calls is not None:
-            calls.append(dict(req.url.params))
+            calls.append(params)
         if req.url.path.endswith("/version"):
             return httpx.Response(200, json={"apiVersion": "2.0.5", "dataTimestamp": "TS"})
-        return httpx.Response(200, json={"totalCount": 3006, "studies": PEMBRO["studies"]})
+        studies = PEMBRO["studies"]
+        adv = params.get("filter.advanced", "")
+        for clause, key in by_clause.items():
+            if adv == clause or adv.endswith(f"AND ({clause})"):
+                studies = [s for s in studies if phase.extract(s)[0].key == key]
+        start, size = int(params.get("pageToken", 0)), int(params.get("pageSize", 1000))
+        body = {"studies": studies[start : start + size]}
+        if params.get("countTotal") == "true":
+            body["totalCount"] = len(studies)
+        if start + size < len(studies):
+            body["nextPageToken"] = str(start + size)
+        return httpx.Response(200, json=body)
 
     http = httpx.Client(transport=httpx.MockTransport(handler), base_url="https://ct.test")
     return CTGovClient(http=http, backoff_s=0)
@@ -34,12 +51,18 @@ PHASE_Q = "How are pembrolizumab trials distributed across phases?"
 PLANS = {
     PHASE_Q: valid(),
     "network?": valid(analysis="network", group_by=["lead_sponsor", "drug"]),
+    "countries?": valid(group_by=["country"]),
     "efficacy?": valid(supported=False, unsupported_reason="Not in registry.", analysis=None),
 }
 
 
-def pipeline(calls=None) -> Pipeline:
-    return Pipeline(StubPlanner(PLANS), fake_ctgov(calls), max_records=500)
+def pipeline(calls=None, **kw) -> Pipeline:
+    return Pipeline(StubPlanner(PLANS), fake_ctgov(calls), **{"max_records": 500, **kw})
+
+
+def fetches(calls: list) -> list[dict]:
+    """Record fetches, not counts (a count asks for 1 record) or the version call."""
+    return [c for c in calls if c.get("pageSize", "1") != "1"]
 
 
 # --- pipeline -------------------------------------------------------------------------------
@@ -64,16 +87,53 @@ def test_fetch_is_cached():
     calls = []
     p = pipeline(calls)
     p.run(QueryRequest(query=PHASE_Q))
+    n = len(calls)
     p.run(QueryRequest(query=PHASE_Q))
-    assert len([c for c in calls if "pageSize" in c]) == 1
+    assert len(calls) == n
 
 
-def test_fetch_asks_only_for_needed_fields_and_respects_cap():
+def test_fetch_asks_only_for_needed_fields():
     calls = []
     pipeline(calls).run(QueryRequest(query=PHASE_Q))
-    [fetch] = [c for c in calls if "pageSize" in c]
+    [fetch] = fetches(calls)
     assert "designModule.phases" in fetch["fields"] and "locations" not in fetch["fields"]
-    assert int(fetch["pageSize"]) <= 500
+
+
+# --- counting methods (D32, D33) ------------------------------------------------------------
+
+
+def phase_counts(resp) -> dict[str, int]:
+    return {row["phase"]: row["trial_count"] for row in resp.visualization.data}
+
+
+def test_small_query_counts_every_record():
+    resp = pipeline().run(QueryRequest(query=PHASE_Q))
+    m = resp.meta
+    assert m.count_method == "all_records" and not m.truncated
+    assert m.records_used == m.total_matching == 200
+    assert sum(phase_counts(resp).values()) == 200  # phase is single-valued
+
+
+def test_large_query_uses_exact_registry_counts_per_bucket():
+    calls = []
+    resp = pipeline(calls, max_records=100).run(QueryRequest(query=PHASE_Q))
+    m = resp.meta
+    assert m.count_method == "registry_count" and not m.truncated
+    assert m.records_used == m.total_matching == 200
+    assert phase_counts(resp) == phase_counts(pipeline().run(QueryRequest(query=PHASE_Q)))
+    assert m.bucket_clauses["PHASE2"].startswith("AREA[Phase]PHASE2 AND NOT")
+    assert any("Exact registry counts" in n for n in m.notes)
+    assert all(int(c["pageSize"]) <= 5 for c in fetches(calls))  # counts + a few to cite
+    for row in resp.visualization.data:  # each bar cites trials of that phase only
+        assert row["citations"] and row["citation_count"] == row["trial_count"]
+
+
+def test_large_query_without_buckets_falls_back_to_a_sample():
+    resp = pipeline(max_records=100, sample_records=50).run(QueryRequest(query="countries?"))
+    m = resp.meta
+    assert m.count_method == "sample" and m.truncated
+    assert (m.records_used, m.total_matching) == (50, 200)
+    assert any("first 50 of 200" in n for n in m.notes)
 
 
 def test_hints_override_plan_filters():

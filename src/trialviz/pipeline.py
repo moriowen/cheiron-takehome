@@ -1,21 +1,20 @@
 """Pipeline: QueryRequest -> QueryResponse. Wires the planner, compiler, client, and builder."""
 
 import logging
-import time
-from dataclasses import dataclass, field
 
 from pydantic import ValidationError
 
 from trialviz.builder import build_response
 from trialviz.compiler import compile_plan
-from trialviz.ctgov.client import CTGovClient, FetchResult, StudyQuery
+from trialviz.ctgov.client import CTGovClient
 from trialviz.llm.planner import Planner
 from trialviz.plan import Analysis, QueryPlan
+from trialviz.retrieve import Retriever, TTLCache
 from trialviz.schemas import LLMInfo, QueryRequest, QueryResponse
 
 log = logging.getLogger(__name__)
 
-TOTAL_CITATION_RECORDS = 25  # a `total` answer uses the registry count; fetch a few to cite
+TOTAL_CITATIONS = 25  # a `total` answer uses the registry count; fetch a few to cite
 
 # QueryRequest hint -> Filters field
 _HINTS = {
@@ -55,34 +54,22 @@ def apply_hints(plan: QueryPlan, request: QueryRequest) -> QueryPlan:
         raise PipelineError(f"structured hints conflict with the question: {e}") from e
 
 
-@dataclass
-class _Cache:
-    ttl_s: float
-    entries: dict = field(default_factory=dict)
-
-    def get(self, key):
-        hit = self.entries.get(key)
-        if hit and time.monotonic() - hit[0] < self.ttl_s:
-            return hit[1]
-        return None
-
-    def put(self, key, value) -> None:
-        self.entries[key] = (time.monotonic(), value)
-
-
 class Pipeline:
     def __init__(
         self,
         planner: Planner,
         client: CTGovClient,
         *,
-        max_records: int = 3000,
+        max_records: int = 20_000,
+        sample_records: int = 3000,
         cache_ttl_s: float = 3600,
     ):
         self._planner = planner
         self._client = client
-        self._max_records = max_records
-        self._cache = _Cache(cache_ttl_s)
+        self._cache = TTLCache(cache_ttl_s)
+        self._retriever = Retriever(
+            client, max_records=max_records, sample_records=sample_records, cache=self._cache
+        )
 
     def run(self, request: QueryRequest) -> QueryResponse:
         result = self._planner.plan(request)  # PlannerError propagates
@@ -97,27 +84,17 @@ class Pipeline:
             return build_response(plan, [], self._data_timestamp(), llm)
 
         compiled = compile_plan(plan)
-        limit = TOTAL_CITATION_RECORDS if plan.analysis is Analysis.TOTAL else self._max_records
-        fetched = [
-            (q.series, self._fetch(q.query, compiled.fields, limit)) for q in compiled.queries
-        ]
+        if plan.analysis is Analysis.TOTAL:
+            fetched = [
+                (q.series, self._retriever.citations(q.query, compiled.fields, TOTAL_CITATIONS))
+                for q in compiled.queries
+            ]
+        else:
+            fetched = [
+                (q.series, self._retriever.retrieve(q.query, compiled.fields, compiled.buckets))
+                for q in compiled.queries
+            ]
         return build_response(plan, fetched, self._data_timestamp(), llm)
-
-    def _fetch(self, query: StudyQuery, fields: tuple[str, ...], limit: int) -> FetchResult:
-        key = ("fetch", tuple(sorted(query.to_params().items())), fields, limit)
-        if (hit := self._cache.get(key)) is not None:
-            return hit
-        started = time.perf_counter()
-        result = self._client.fetch_studies(query, fields=fields, limit=limit)
-        log.info(
-            "fetched %d of %d studies in %.1fs: %s",
-            len(result.studies),
-            result.total_count,
-            time.perf_counter() - started,
-            query.to_params(),
-        )
-        self._cache.put(key, result)
-        return result
 
     def _data_timestamp(self) -> str | None:
         if (hit := self._cache.get("version")) is not None:

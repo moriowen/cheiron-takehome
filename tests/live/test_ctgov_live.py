@@ -1,15 +1,17 @@
-"""Real ClinicalTrials.gov calls. Run with `uv run pytest -m live`. Free, about 5 seconds."""
+"""Real ClinicalTrials.gov calls. Run with `uv run pytest -m live`. Free, about 40 s (1 req/s)."""
 
 import pytest
 
 from trialviz.ctgov.client import CTGovClient, CTGovError, StudyQuery
+from trialviz.plan import Dimension
+from trialviz.registry import DIMENSIONS
 
 pytestmark = pytest.mark.live
 
 
 @pytest.fixture(scope="module")
 def client():
-    return CTGovClient()
+    return CTGovClient(rate_per_s=1.0)
 
 
 def test_version(client):
@@ -38,3 +40,11 @@ def test_advanced_filter_narrows(client):
 def test_bad_field_is_a_clear_error(client):
     with pytest.raises(CTGovError, match="invalid field name"):
         client.fetch_studies(StudyQuery(), fields=["Bogus"], limit=1)
+
+
+@pytest.mark.parametrize("dim", [Dimension.PHASE, Dimension.STATUS, Dimension.SPONSOR_CLASS])
+def test_bucket_clauses_partition_the_registry(client, dim):
+    """D32: the bucket counts of a single-valued dimension sum to the query's totalCount."""
+    q = StudyQuery(condition="asthma", advanced="AREA[StartDate]RANGE[2015-01-01, MAX]")
+    parts = [client.count(q.and_advanced(clause)) for _, clause in DIMENSIONS[dim].buckets]
+    assert sum(parts) == client.count(q)

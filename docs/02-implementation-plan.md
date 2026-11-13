@@ -8,7 +8,7 @@ Why each choice was made lives in [decisions.md](decisions.md) (cited as Dnn). T
 POST /query (QueryRequest)
   1. Planner (LLM)      question -> QueryPlan                                  D02, D03
   2. Plan compiler      QueryPlan -> StudyQuery + list of API fields
-  3. Fetcher            CTGovClient + cache -> study records (capped)          D07, D08
+  3. Retriever          CTGovClient + cache -> bucket counts or study records  D07, D32, D33
   4. Field registry     per Dimension: record -> [(value, citation)]           D09-D11, D15
   5. Aggregator         breakdown / trend / network / histogram / scatter tables
   6. Chart selector     plan shape -> visualization type (rules)               D13

@@ -58,12 +58,12 @@
           <p class="flow-note">Each compared value becomes its own series. A trial matching several values can appear in each series.</p>
         </div>
         <div class="flow-row fetch-row">
-          <article class="flow-box"><h4>Fetcher <small>CTGovClient</small></h4><p>Pages of 1000, up to 3000 records per series.<br>Throttle, retry with backoff, and honor <code>Retry-After</code>.</p></article>
+          <article class="flow-box"><h4>Retriever <small>CTGovClient</small></h4><p>Picks the exact method with the fewest requests: one count per phase/status/… bucket, or every record up to 20,000 (a 3,000-record sample above that).<br>Token bucket under the measured limit (0.8 request/s, burst 8); retry with backoff.</p></article>
           <div class="registry-branch side-branch">
             <article class="flow-box data-box"><h4>In-memory cache</h4><p>1 hour. A hit reuses saved records.</p></article>
             <div class="branch-arrow">miss ↓</div>
             <article class="flow-box data-box"><h4>ClinicalTrials.gov</h4><p>Registry API. Bursts can return HTTP 429.</p></article>
-            <p class="return-label">Records return to the fetcher; results are cached.</p>
+            <p class="return-label">Records and counts return to the retriever; results are cached.</p>
           </div>
         </div>
         <div class="flow-row">
@@ -80,7 +80,7 @@
         </div>
         <div class="flow-row">
           <article class="flow-box"><h4>Spec builder</h4><p>Write <code>visualization {type, title, encoding, data}</code> and <code>meta</code>.<br>Each datum has up to 5 trial citations and <code>citation_count</code>.</p></article>
-          <p class="flow-note">Meta: plan, filters, api_query, data_timestamp, records_used, total_matching, truncated, notes, and LLM cost.</p>
+          <p class="flow-note">Meta: plan, filters, api_query, count_method, bucket_clauses, data_timestamp, records_used, total_matching, truncated, notes, and LLM cost.</p>
         </div>
         <div class="flow-row last-row">
           <article class="flow-box"><h4>Frontend</h4><p>D3 renders each chart type.<br>Click a mark to see its citations.</p></article>

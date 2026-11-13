@@ -61,3 +61,10 @@ def test_quotes_are_stripped_from_user_text_in_essie():
     plan = valid(filters=NO_FILTERS | {"country": 'Ger"many'})
     [q] = compile_plan(plan).queries
     assert 'AREA[LocationCountry]"Germany"' in q.query.to_params()["filter.advanced"]
+
+
+def test_single_fixed_value_breakdown_carries_bucket_clauses():
+    assert compile_plan(valid()).buckets[0] == ("EARLY_PHASE1", "AREA[Phase]EARLY_PHASE1")
+    assert not compile_plan(valid(group_by=["country"])).buckets
+    assert not compile_plan(valid(group_by=["phase", "overall_status"])).buckets
+    assert not compile_plan(valid(analysis="trend", group_by=["start_year"])).buckets

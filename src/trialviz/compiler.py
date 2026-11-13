@@ -1,12 +1,14 @@
 """Plan compiler: QueryPlan -> ClinicalTrials.gov queries and the fields to fetch.
 
-Deterministic. A comparison becomes one query per compared value (one series each).
+Deterministic. A comparison becomes one query per compared value (one series each). A
+breakdown on one fixed-value dimension also carries that dimension's bucket clauses, so the
+retriever can count each bucket in the registry instead of counting records (D32).
 """
 
 from dataclasses import dataclass
 
 from trialviz.ctgov.client import StudyQuery
-from trialviz.plan import Filters, QueryPlan
+from trialviz.plan import Analysis, Filters, QueryPlan
 from trialviz.registry import BASE_FIELDS, DIMENSIONS, MEASURES
 
 
@@ -20,6 +22,7 @@ class SeriesQuery:
 class CompiledPlan:
     queries: list[SeriesQuery]
     fields: tuple[str, ...]
+    buckets: tuple[tuple[str, str], ...] = ()  # (key, Essie clause); empty: count records
 
 
 def compile_plan(plan: QueryPlan) -> CompiledPlan:
@@ -40,7 +43,10 @@ def compile_plan(plan: QueryPlan) -> CompiledPlan:
         fields += DIMENSIONS[dim].fields
     for m in plan.measures:
         fields += MEASURES[m].fields
-    return CompiledPlan(queries, tuple(dict.fromkeys(fields)))
+    buckets = ()
+    if plan.analysis is Analysis.BREAKDOWN and len(plan.group_by) == 1:
+        buckets = DIMENSIONS[plan.group_by[0]].buckets
+    return CompiledPlan(queries, tuple(dict.fromkeys(fields)), buckets)
 
 
 def filters_to_query(f: Filters) -> StudyQuery:

@@ -8,16 +8,16 @@
     0.8754409628553641,
     1.0
   ],
-  "latency_p50_s": 2.7,
-  "latency_p95_s": 5.8999999999999995,
-  "llm_cost_usd": 0.039159,
+  "latency_p50_s": 4.6,
+  "latency_p95_s": 18.59,
+  "llm_cost_usd": 0.039158,
   "results": [
     {
       "id": "trend_drug_since",
       "passed": true,
       "errors": [],
       "chart": "time_series",
-      "latency_s": 3.8,
+      "latency_s": 5.1,
       "cost_usd": 0.001444
     },
     {
@@ -25,7 +25,7 @@
       "passed": true,
       "errors": [],
       "chart": "time_series",
-      "latency_s": 2.7,
+      "latency_s": 4.6,
       "cost_usd": 0.001428
     },
     {
@@ -33,7 +33,7 @@
       "passed": true,
       "errors": [],
       "chart": "bar_chart",
-      "latency_s": 2.5,
+      "latency_s": 10.1,
       "cost_usd": 0.001423
     },
     {
@@ -41,7 +41,7 @@
       "passed": true,
       "errors": [],
       "chart": "bar_chart",
-      "latency_s": 6.2,
+      "latency_s": 14.0,
       "cost_usd": 0.001429
     },
     {
@@ -49,7 +49,7 @@
       "passed": true,
       "errors": [],
       "chart": "grouped_bar_chart",
-      "latency_s": 5.2,
+      "latency_s": 10.1,
       "cost_usd": 0.001485
     },
     {
@@ -57,7 +57,7 @@
       "passed": true,
       "errors": [],
       "chart": "grouped_bar_chart",
-      "latency_s": 4.9,
+      "latency_s": 21.9,
       "cost_usd": 0.001478
     },
     {
@@ -65,7 +65,7 @@
       "passed": true,
       "errors": [],
       "chart": "bar_chart",
-      "latency_s": 1.4,
+      "latency_s": 2.2,
       "cost_usd": 0.001438
     },
     {
@@ -73,7 +73,7 @@
       "passed": true,
       "errors": [],
       "chart": "network_graph",
-      "latency_s": 3.0,
+      "latency_s": 5.3,
       "cost_usd": 0.001438
     },
     {
@@ -81,7 +81,7 @@
       "passed": true,
       "errors": [],
       "chart": "network_graph",
-      "latency_s": 4.0,
+      "latency_s": 15.2,
       "cost_usd": 0.001426
     },
     {
@@ -89,7 +89,7 @@
       "passed": true,
       "errors": [],
       "chart": "time_series",
-      "latency_s": 3.4,
+      "latency_s": 4.3,
       "cost_usd": 0.00144
     },
     {
@@ -97,7 +97,7 @@
       "passed": true,
       "errors": [],
       "chart": "histogram",
-      "latency_s": 1.9,
+      "latency_s": 2.3,
       "cost_usd": 0.001445
     },
     {
@@ -105,7 +105,7 @@
       "passed": true,
       "errors": [],
       "chart": "scatter_plot",
-      "latency_s": 1.5,
+      "latency_s": 2.0,
       "cost_usd": 0.001448
     },
     {
@@ -113,7 +113,7 @@
       "passed": true,
       "errors": [],
       "chart": "metric",
-      "latency_s": 1.1,
+      "latency_s": 1.3,
       "cost_usd": 0.001429
     },
     {
@@ -121,7 +121,7 @@
       "passed": true,
       "errors": [],
       "chart": "bar_chart",
-      "latency_s": 2.8,
+      "latency_s": 17.4,
       "cost_usd": 0.001429
     },
     {
@@ -129,7 +129,7 @@
       "passed": true,
       "errors": [],
       "chart": "grouped_bar_chart",
-      "latency_s": 2.8,
+      "latency_s": 12.2,
       "cost_usd": 0.001438
     },
     {
@@ -137,7 +137,7 @@
       "passed": true,
       "errors": [],
       "chart": "time_series",
-      "latency_s": 1.9,
+      "latency_s": 3.8,
       "cost_usd": 0.001492
     },
     {
@@ -145,7 +145,7 @@
       "passed": true,
       "errors": [],
       "chart": "network_graph",
-      "latency_s": 7.2,
+      "latency_s": 7.5,
       "cost_usd": 0.001427
     },
     {
@@ -153,7 +153,7 @@
       "passed": true,
       "errors": [],
       "chart": null,
-      "latency_s": 1.3,
+      "latency_s": 1.2,
       "cost_usd": 0.001484
     },
     {
@@ -162,14 +162,14 @@
       "errors": [],
       "chart": null,
       "latency_s": 1.1,
-      "cost_usd": 0.001477
+      "cost_usd": 0.001454
     },
     {
       "id": "brand_name_kept_as_written",
       "passed": true,
       "errors": [],
       "chart": "metric",
-      "latency_s": 1.4,
+      "latency_s": 1.2,
       "cost_usd": 0.001429
     },
     {
@@ -177,7 +177,7 @@
       "passed": true,
       "errors": [],
       "chart": "bar_chart",
-      "latency_s": 2.5,
+      "latency_s": 4.4,
       "cost_usd": 0.001429
     },
     {
@@ -185,7 +185,7 @@
       "passed": true,
       "errors": [],
       "chart": "grouped_bar_chart",
-      "latency_s": 3.7,
+      "latency_s": 7.1,
       "cost_usd": 0.001499
     },
     {
@@ -193,7 +193,7 @@
       "passed": true,
       "errors": [],
       "chart": "grouped_bar_chart",
-      "latency_s": 2.8,
+      "latency_s": 5.9,
       "cost_usd": 0.00148
     },
     {
@@ -201,7 +201,7 @@
       "passed": true,
       "errors": [],
       "chart": "scatter_plot",
-      "latency_s": 2.2,
+      "latency_s": 2.8,
       "cost_usd": 0.001444
     },
     {
@@ -209,7 +209,7 @@
       "passed": true,
       "errors": [],
       "chart": "grouped_bar_chart",
-      "latency_s": 3.8,
+      "latency_s": 19.1,
       "cost_usd": 0.001443
     },
     {
@@ -217,7 +217,7 @@
       "passed": true,
       "errors": [],
       "chart": "network_graph",
-      "latency_s": 2.0,
+      "latency_s": 2.9,
       "cost_usd": 0.001439
     },
     {
@@ -225,8 +225,8 @@
       "passed": true,
       "errors": [],
       "chart": null,
-      "latency_s": 0.9,
-      "cost_usd": 0.001498
+      "latency_s": 1.3,
+      "cost_usd": 0.00152
     }
   ]
 }

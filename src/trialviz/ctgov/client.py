@@ -6,8 +6,10 @@ about plans, charts, or citations. API facts this code relies on (probed 2026-11
 - `totalCount` comes back only on the first page, and only with `countTotal=true`.
 - The last page has no `nextPageToken`.
 - Errors are text/plain: 400 for a bad parameter, 404 for an unknown NCT ID.
-- The rate limit is undocumented (not in the OpenAPI spec). A burst of calls got HTTP 429,
-  which cleared within seconds. Hence the min interval, backoff, and Retry-After support.
+- The rate limit is undocumented (not in the OpenAPI spec). Measured: about 10 requests in a
+  burst, then about 1 request/s sustained; 2 requests/s got HTTP 429 on 35% of calls, and a
+  429 clears in about 9 s. 429 responses carry no Retry-After. Hence the token bucket,
+  backoff, and Retry-After support.
 """
 
 import logging
@@ -74,6 +76,28 @@ class DataVersion:
     data_timestamp: str
 
 
+class RateLimiter:
+    """Token bucket: up to `burst` requests at once, then `rate_per_s` sustained."""
+
+    def __init__(self, rate_per_s: float, burst: int):
+        self._rate = rate_per_s
+        self._burst = burst
+        self._tokens = float(burst)
+        self._last: float | None = None
+
+    def acquire(self) -> None:
+        now = time.monotonic()
+        if self._last is not None:
+            self._tokens = min(self._burst, self._tokens + (now - self._last) * self._rate)
+        self._last = now
+        if self._tokens < 1:
+            wait = (1 - self._tokens) / self._rate
+            time.sleep(wait)
+            self._last = now + wait
+            self._tokens = 1.0
+        self._tokens -= 1
+
+
 class CTGovClient:
     def __init__(
         self,
@@ -82,13 +106,15 @@ class CTGovClient:
         timeout_s: float = 30.0,
         max_retries: int = 4,
         backoff_s: float = 1.0,
-        min_interval_s: float = 0.0,
+        rate_per_s: float | None = None,
+        burst: int = 8,
     ):
+        """`rate_per_s=None` sends requests without a limit (tests). Production passes the
+        measured limit from settings."""
         self._http = http or httpx.Client(base_url=BASE_URL, timeout=timeout_s)
         self._max_retries = max_retries
         self._backoff_s = backoff_s
-        self._min_interval_s = min_interval_s
-        self._last_request_at: float | None = None
+        self._limiter = RateLimiter(rate_per_s, burst) if rate_per_s else None
 
     def count(self, query: StudyQuery) -> int:
         params = {**query.to_params(), "countTotal": "true", "pageSize": "1", "fields": "NCTId"}
@@ -150,7 +176,8 @@ class CTGovClient:
     def _get(self, path: str, params: dict[str, str]) -> dict:
         for attempt in range(self._max_retries + 1):
             last = attempt == self._max_retries
-            self._throttle()
+            if self._limiter:
+                self._limiter.acquire()
             try:
                 resp = self._http.get(path, params=params)
             except httpx.TransportError as e:
@@ -168,14 +195,6 @@ class CTGovClient:
                 )
             return resp.json()
         raise AssertionError("unreachable")
-
-    def _throttle(self) -> None:
-        now = time.monotonic()
-        if self._last_request_at is not None:
-            wait = self._min_interval_s - (now - self._last_request_at)
-            if wait > 0:
-                time.sleep(wait)
-        self._last_request_at = time.monotonic()
 
     def _sleep(self, attempt: int, reason: str, retry_after: float | None = None) -> None:
         delay = retry_after if retry_after is not None else self._backoff_s * 2**attempt

@@ -9,9 +9,9 @@ from typing import Any
 
 from trialviz import aggregate as agg
 from trialviz.compiler import compile_plan
-from trialviz.ctgov.client import FetchResult
 from trialviz.plan import ENTITY_DIMENSIONS, Analysis, Dimension, QueryPlan
 from trialviz.registry import DIMENSIONS, MEASURES, PHASE_LABELS, DimensionSpec
+from trialviz.retrieve import CountMethod, Retrieved
 from trialviz.schemas import (
     Channel,
     Citation,
@@ -29,7 +29,8 @@ MAX_CITATIONS = 5  # trials cited per datum; citation_count has the full number
 DEFAULT_TOP_N = 15  # cap for entity breakdowns when the user did not ask for a number
 MAX_SERIES_GROUPS = 8  # cap for the second dimension of a cross-tab
 
-Fetched = Sequence[tuple[str | None, FetchResult]]
+Fetched = Sequence[tuple[str | None, Retrieved]]
+_WEAKEST_FIRST: tuple[CountMethod, ...] = ("sample", "all_records", "registry_count")
 
 
 def select_viz(plan: QueryPlan) -> VizType:
@@ -95,9 +96,19 @@ def _base_meta(plan, fetched: Fetched, ts, llm, notes: list[str]) -> Meta:
         if plan.comparison
         else params[0]
     )
-    used = sum(len(r.studies) for _, r in fetched)
+    used = sum(r.records_used for _, r in fetched)
     total = sum(r.total_count for _, r in fetched)
     truncated = any(r.truncated for _, r in fetched)
+    methods = {r.method for _, r in fetched}
+    method = next((m for m in _WEAKEST_FIRST if m in methods), None)
+    bucket_clauses = {}
+    if any(r.bucket_counts is not None for _, r in fetched):
+        bucket_clauses = dict(compiled.buckets)
+        dim = DIMENSIONS[plan.group_by[0]].title.lower()
+        notes.append(
+            f"Exact registry counts: one count query per {dim} value. Each bar cites up to "
+            f"{MAX_CITATIONS} of its trials."
+        )
     if truncated:
         what = "Citations list" if plan.analysis is Analysis.TOTAL else "Based on"
         notes.append(f"{what} the first {used} of {total} matching trials (API relevance order).")
@@ -114,6 +125,8 @@ def _base_meta(plan, fetched: Fetched, ts, llm, notes: list[str]) -> Meta:
         records_used=used,
         total_matching=total,
         truncated=truncated,
+        count_method=method,
+        bucket_clauses=bucket_clauses,
         units={"trial_count": "trials"},
         notes=notes,
         llm=llm,
@@ -208,6 +221,15 @@ def _top(buckets: list[agg.Bucket], spec: DimensionSpec, top_n: int | None, note
     return [b for b in buckets if b.key in kept]
 
 
+def _merge(tables: list[list[agg.Bucket]], spec: DimensionSpec) -> list[agg.Bucket]:
+    """Buckets summed over series, to pick and order the groups every series shows."""
+    out: dict[str, agg.Bucket] = {}
+    for buckets in tables:
+        for b in buckets:
+            out.setdefault(b.key, agg.Bucket(b.key, b.label)).count += b.count
+    return agg.sort_buckets(list(out.values()), spec)
+
+
 def _studies(fetched: Fetched) -> list[dict]:
     return [s for _, r in fetched for s in r.studies]
 
@@ -235,7 +257,8 @@ def _bar(plan: QueryPlan, fetched: Fetched, notes: list[str]):
         return enc, rows, {"sort": "none"}
 
     spec = DIMENSIONS[plan.group_by[0]]
-    table = agg.breakdown(_studies(fetched), spec)
+    [(_, r)] = fetched
+    table = agg.breakdown(r.studies, spec, r.bucket_counts)
     _missing_note(table.missing, spec.title.lower(), notes)
     buckets = _top(table.buckets, spec, plan.top_n, notes)
     field = spec.dimension.value
@@ -251,8 +274,8 @@ def _bar(plan: QueryPlan, fetched: Fetched, notes: list[str]):
 def _grouped(plan: QueryPlan, fetched: Fetched, notes: list[str]):
     if plan.comparison:
         spec = DIMENSIONS[plan.group_by[0]]
-        per_series = {name: agg.breakdown(r.studies, spec) for name, r in fetched}
-        merged = agg.breakdown(_studies(fetched), spec).buckets
+        per_series = {name: agg.breakdown(r.studies, spec, r.bucket_counts) for name, r in fetched}
+        merged = _merge([t.buckets for t in per_series.values()], spec)
         keep = [b.key for b in _top(merged, spec, plan.top_n, notes)]
         labels = {b.key: b.label for b in merged}
         rows = []

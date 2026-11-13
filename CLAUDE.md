@@ -21,7 +21,7 @@ uv run uvicorn --factory trialviz.api:build_app --reload   # API on :8000, docs 
 
 ## Architecture
 
-Pipeline (`pipeline.py`): planner (LLM) -> `apply_hints` -> `compiler.py` (plan -> `StudyQuery` per series + fields) -> `CTGovClient.fetch_studies` (cached) -> `aggregate.py` (tables with citations) -> `builder.py` (`select_viz` picks the chart by rules, builders write rows, encoding, title, meta notes). `registry.py` holds every dimension and measure: API fields, extraction, normalization, and the exact-value citation. A new dimension is one registry entry. Fixtures in `tests/fixtures/` are real API records (`scripts/record_fixtures.py`).
+Pipeline (`pipeline.py`): planner (LLM) -> `apply_hints` -> `compiler.py` (plan -> `StudyQuery` per series + fields) -> `retrieve.py` (`Retriever` picks exact bucket counts, every record up to 20k, or a sample; cached; the client has a token bucket at the measured ~1 req/s limit) -> `aggregate.py` (tables with citations) -> `builder.py` (`select_viz` picks the chart by rules, builders write rows, encoding, title, meta notes). `registry.py` holds every dimension and measure: API fields, extraction, normalization, and the exact-value citation. A new dimension is one registry entry. Fixtures in `tests/fixtures/` are real API records (`scripts/record_fixtures.py`).
 
 Earlier notes:
 

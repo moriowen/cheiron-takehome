@@ -8,7 +8,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from itertools import combinations
 
-from trialviz.registry import DimensionSpec, MeasureSpec, Value, cite, nct_id
+from trialviz.registry import MISSING_BUCKET, DimensionSpec, MeasureSpec, Value, cite, nct_id
 from trialviz.schemas import Citation
 
 
@@ -97,7 +97,11 @@ class Total:
 # --- categorical ----------------------------------------------------------------------------
 
 
-def breakdown(studies: list[dict], spec: DimensionSpec) -> Breakdown:
+def breakdown(
+    studies: list[dict], spec: DimensionSpec, counts: dict[str, int] | None = None
+) -> Breakdown:
+    """Counts trials per value. With `counts` (registry counts per bucket, D32), those are
+    the counts, and `studies` (a few records per bucket) only supply labels and citations."""
     buckets: dict[str, Bucket] = {}
     missing = 0
     for s in studies:
@@ -109,7 +113,14 @@ def breakdown(studies: list[dict], spec: DimensionSpec) -> Breakdown:
             b.count += 1
             b.estimated += v.estimated
             b.citations.append(v.citation)
-    return Breakdown(_sorted(list(buckets.values()), spec), missing)
+    if counts is None:
+        return Breakdown(sort_buckets(list(buckets.values()), spec), missing)
+    exact = []
+    for key, n in counts.items():
+        if key != MISSING_BUCKET and n:
+            sample = buckets.get(key) or Bucket(key, key)
+            exact.append(Bucket(key, sample.label, n, citations=sample.citations))
+    return Breakdown(sort_buckets(exact, spec), counts.get(MISSING_BUCKET, 0))
 
 
 def crosstab(studies: list[dict], a: DimensionSpec, b: DimensionSpec) -> list[Cell]:
@@ -127,7 +138,7 @@ def crosstab(studies: list[dict], a: DimensionSpec, b: DimensionSpec) -> list[Ce
     return list(cells.values())
 
 
-def _sorted(buckets: list[Bucket], spec: DimensionSpec) -> list[Bucket]:
+def sort_buckets(buckets: list[Bucket], spec: DimensionSpec) -> list[Bucket]:
     if spec.order:
         rank = {k: i for i, k in enumerate(spec.order)}
         return sorted(buckets, key=lambda b: (rank.get(b.key, len(rank)), b.key))

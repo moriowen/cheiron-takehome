@@ -5,6 +5,7 @@
 const PRESETS = [
   "01-trend-with-hint", "02-compare-phases", "03-countries-recruiting", "04-sponsor-drug-network",
   "05-drug-cooccurrence-network", "06-enrollment-histogram", "07-out-of-scope",
+  "08-exact-phase-counts",
 ];
 const API = "../query";
 let live = false;

@@ -136,9 +136,21 @@ class Meta(BaseModel):
     )
     source: str = "clinicaltrials.gov"
     data_timestamp: str | None = Field(default=None, description="Registry snapshot time.")
-    records_used: int = Field(default=0, description="Study records the chart is built from.")
+    records_used: int = Field(default=0, description="Trials the counts cover.")
     total_matching: int = Field(default=0, description="All registry matches for the query.")
-    truncated: bool = Field(default=False, description="True if records_used < total_matching.")
+    truncated: bool = Field(
+        default=False, description="True if counts use only part of the matches (a sample)."
+    )
+    count_method: Literal["registry_count", "all_records", "sample"] | None = Field(
+        default=None,
+        description="registry_count: exact count queries per bucket; all_records: counted "
+        "from every matching record; sample: counted from the first records only.",
+    )
+    bucket_clauses: dict[str, str] = Field(
+        default_factory=dict,
+        description="With registry_count: bucket key -> Essie clause added to api_query "
+        "(filter.advanced) to count that bucket.",
+    )
     multi_valued: bool = Field(
         default=False, description="True if one trial can count in several groups."
     )

@@ -59,12 +59,13 @@ def build_app() -> FastAPI:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(message)s")
     app_settings = AppSettings()
     planner = OpenAIPlanner(LLMSettings())
-    client = CTGovClient(min_interval_s=app_settings.ctgov_min_interval_s)
+    client = CTGovClient(rate_per_s=app_settings.ctgov_rate_per_s, burst=app_settings.ctgov_burst)
     return create_app(
         Pipeline(
             planner,
             client,
             max_records=app_settings.max_records,
+            sample_records=app_settings.sample_records,
             cache_ttl_s=app_settings.cache_ttl_s,
         )
     )

@@ -8,7 +8,7 @@
     "meta": {
       "plan": {
         "supported": false,
-        "unsupported_reason": "ClinicalTrials.gov registry records do not provide comparative efficacy results to determine whether one drug is more effective than another.",
+        "unsupported_reason": "ClinicalTrials.gov registry records do not provide efficacy conclusions like whether one drug is more effective than another.",
         "analysis": null,
         "group_by": [],
         "measures": [],
@@ -32,18 +32,20 @@
       "records_used": 0,
       "total_matching": 0,
       "truncated": false,
+      "count_method": null,
+      "bucket_clauses": {},
       "multi_valued": false,
       "units": {},
       "sort": null,
       "time_granularity": null,
       "notes": [
-        "ClinicalTrials.gov registry records do not provide comparative efficacy results to determine whether one drug is more effective than another."
+        "ClinicalTrials.gov registry records do not provide efficacy conclusions like whether one drug is more effective than another."
       ],
       "llm": {
         "model": "gpt-5.4-mini",
-        "prompt_version": "2026-11-12.3",
+        "prompt_version": "2026-11-12.4",
         "attempts": 1,
-        "cost_usd": 0.001456
+        "cost_usd": 0.001484
       }
     }
   }

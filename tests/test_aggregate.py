@@ -170,3 +170,22 @@ def test_scatter_points():
 def test_total():
     t = agg.total(PEMBRO)
     assert t.count == len(PEMBRO) and len(t.citations) == len(PEMBRO)
+
+
+def test_registry_counts_replace_record_counts_and_samples_supply_citations():
+    samples = [study("NCT1", phases=["PHASE2"]), study("NCT2", phases=["PHASE3"])]
+    counts = {"PHASE2": 4023, "PHASE3": 1240, "PHASE4": 0, "NOT_REPORTED": 3237}
+    t = agg.breakdown(samples, PHASE, counts)
+    assert [(b.key, b.count) for b in t.buckets] == [
+        ("PHASE2", 4023),
+        ("PHASE3", 1240),
+        ("NOT_REPORTED", 3237),
+    ]  # phase order kept; empty bucket dropped
+    assert [c.nct_id for c in t.buckets[0].citations] == ["NCT1"]
+    assert t.buckets[2].label == "NOT_REPORTED"  # no sample record: the key is the label
+
+
+def test_registry_missing_bucket_is_the_missing_count():
+    status = DIMENSIONS[Dimension.STATUS]
+    t = agg.breakdown([], status, {"RECRUITING": 5, "(missing)": 2})
+    assert t.missing == 2 and [b.key for b in t.buckets] == ["RECRUITING"]

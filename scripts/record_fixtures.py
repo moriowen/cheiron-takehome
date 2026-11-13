@@ -16,7 +16,7 @@ SETS = {
 }
 LIMIT = 200
 
-client = CTGovClient(min_interval_s=0.3)
+client = CTGovClient(rate_per_s=1.0)
 version = client.version()
 for name, query in SETS.items():
     r = client.fetch_studies(query, fields=ALL_FIELDS, limit=LIMIT)

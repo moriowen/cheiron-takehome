@@ -1,0 +1,423 @@
+{
+  "request": {
+    "query": "How are lung cancer trials distributed across phases?"
+  },
+  "response": {
+    "status": "ok",
+    "visualization": {
+      "type": "bar_chart",
+      "title": "Trials for lung cancer by phase",
+      "subtitle": null,
+      "encoding": {
+        "x": {
+          "field": "phase",
+          "type": "ordinal",
+          "title": "Phase",
+          "sort": null
+        },
+        "y": {
+          "field": "trial_count",
+          "type": "quantitative",
+          "title": "Trials",
+          "sort": null
+        }
+      },
+      "data": [
+        {
+          "phase": "Early Phase 1",
+          "trial_count": 137,
+          "citation_count": 137,
+          "citations": [
+            {
+              "nct_id": "NCT02628080",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"EARLY_PHASE1\"]",
+              "title": "Atovaquone as Tumour HypOxia Modifier"
+            },
+            {
+              "nct_id": "NCT05341492",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"EARLY_PHASE1\"]",
+              "title": "EGFR/B7H3 CAR-T on Lung Cancer and Triple Negative Breast Cancer"
+            },
+            {
+              "nct_id": "NCT06928922",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"EARLY_PHASE1\"]",
+              "title": "mRNA Vaccine for Advanced Lung Cancer and Pulmonary Metastases of Solid Tumors"
+            },
+            {
+              "nct_id": "NCT01380795",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"EARLY_PHASE1\"]",
+              "title": "Feasibility of the Research for Mutation of K-ras and EGFR in CTCs From Metastatic Non Small Cells Bronchial Carcinomas"
+            },
+            {
+              "nct_id": "NCT07007325",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"EARLY_PHASE1\"]",
+              "title": "Evaluation of the Value of [68Ga]Ga-PENTIXAFOR PET-CT in Patients With Metastatic Small Cell Lung Cancer (SCLC)"
+            }
+          ]
+        },
+        {
+          "phase": "Phase 1",
+          "trial_count": 2002,
+          "citation_count": 2002,
+          "citations": [
+            {
+              "nct_id": "NCT03634982",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE1\"]",
+              "title": "Dose Escalation of RMC-4630 Monotherapy in Relapsed/Refractory Solid Tumors"
+            },
+            {
+              "nct_id": "NCT02498665",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE1\"]",
+              "title": "A Study of DSP-7888 Dosing Emulsion in Adult Patients With Advanced Malignancies"
+            },
+            {
+              "nct_id": "NCT00476216",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE1\"]",
+              "title": "Fondaparinux (Arixtra) With Chemotherapy for Advanced Non-Small Cell Lung Cancer"
+            },
+            {
+              "nct_id": "NCT05049863",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE1\"]",
+              "title": "Chemotherapy in Patients With Relapsed Small Cell Lung Cancer in Combination With Allopurinol and MycoPhenolate (CLAMP Trial)"
+            },
+            {
+              "nct_id": "NCT03080311",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE1\"]",
+              "title": "A Study of APG-1252 in Patients With SCLC or Other Solid Tumors"
+            }
+          ]
+        },
+        {
+          "phase": "Phase 1/2",
+          "trial_count": 1199,
+          "citation_count": 1199,
+          "citations": [
+            {
+              "nct_id": "NCT02321540",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+              "title": "A Phase I/II Study of Ibrutinib in Previously Treated Epidermal Growth Factor Receptor (EGFR) Mutant Non-Small Cell Lung Cancer"
+            },
+            {
+              "nct_id": "NCT00256841",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+              "title": "Hypo-Hyperfractionated Chest Radiation for Non Small Cell Lung Cancer With Taxotere/Xeloda Combination Chemotherapy"
+            },
+            {
+              "nct_id": "NCT07594522",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+              "title": "A Study of Ivonescimab in People With Non-Small Cell Lung Cancer"
+            },
+            {
+              "nct_id": "NCT01970865",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+              "title": "A Study Of PF-06463922 An ALK/ROS1 Inhibitor In Patients With Advanced Non Small Cell Lung Cancer With Specific Molecular Alterations"
+            },
+            {
+              "nct_id": "NCT02758587",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+              "title": "Study of FAK (Defactinib) and PD-1 (Pembrolizumab) Inhibition in Advanced Solid Malignancies (FAK-PD1)"
+            }
+          ]
+        },
+        {
+          "phase": "Phase 2",
+          "trial_count": 4023,
+          "citation_count": 4023,
+          "citations": [
+            {
+              "nct_id": "NCT02705820",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE2\"]",
+              "title": "Switch Maintenance Pembrolizumab in Patients With NSCLC After First Line Platinum Doublet Chemotherapy"
+            },
+            {
+              "nct_id": "NCT02735980",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE2\"]",
+              "title": "A Study of Prexasertib (LY2606368) in Participants With Extensive Stage Disease Small Cell Lung Cancer"
+            },
+            {
+              "nct_id": "NCT00298688",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE2\"]",
+              "title": "A Study of IRESSA in Relapsed and Refractory Small Cell Lung Cancer"
+            },
+            {
+              "nct_id": "NCT06195683",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE2\"]",
+              "title": "Serplulimab for Patients With Non-small Cell Lung Cancer (NSCLC) With TPS \u2265 50%: a Prospective, Single-center, Single-arm Phase 2 Study."
+            },
+            {
+              "nct_id": "NCT06654050",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE2\"]",
+              "title": "Alrizomadlin (APG-115) in Subjects With BAP1 Cancer Syndrome and Early-Stage Mesothelioma"
+            }
+          ]
+        },
+        {
+          "phase": "Phase 2/3",
+          "trial_count": 174,
+          "citation_count": 174,
+          "citations": [
+            {
+              "nct_id": "NCT06872541",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE2\", \"PHASE3\"]",
+              "title": "Evaluation of Platelet Aggregability in Patients with Non-small Cell Lung Carcinomas"
+            },
+            {
+              "nct_id": "NCT07662811",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE2\", \"PHASE3\"]",
+              "title": "SYHX2011 in Combination With Carboplatin and Enlonstobart as First-Line Therapy for Squamous Non-Small Cell Lung Cancer"
+            },
+            {
+              "nct_id": "NCT04939857",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE2\", \"PHASE3\"]",
+              "title": "Effect of Trimetazidine on Radiotherapy-induced Heart Damage."
+            },
+            {
+              "nct_id": "NCT05893888",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE2\", \"PHASE3\"]",
+              "title": "A Study Evaluating the Safety and Efficacy of PRV111, PRV211, and PRV131 in Subjects With Oral and Lung Cancers"
+            },
+            {
+              "nct_id": "NCT05661240",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE2\", \"PHASE3\"]",
+              "title": "Phase \u2161/\u2162 Clinical Study of Tumor Treating Fields \uff08EFE-P100\uff09Combined With Docetaxel in the Treatment of Stage IV Non-small Cell Lung Cancer Patients With Disease Progression After Platinum-based Chemotherapy and Anti-programmed Death 1\uff08PD-1)/Programmed Cell Death-Ligand 1(PD-L1) Antibody Treatment"
+            }
+          ]
+        },
+        {
+          "phase": "Phase 3",
+          "trial_count": 1240,
+          "citation_count": 1240,
+          "citations": [
+            {
+              "nct_id": "NCT04385368",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE3\"]",
+              "title": "Phase III Study to Determine the Efficacy of Durvalumab in Combination With Chemotherapy in Completely Resected Stage II-III Non-small Cell Lung Cancer (NSCLC)"
+            },
+            {
+              "nct_id": "NCT02576574",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE3\"]",
+              "title": "Avelumab in First-line NSCLC (JAVELIN Lung 100)"
+            },
+            {
+              "nct_id": "NCT05132413",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE3\"]",
+              "title": "A Study of SHR-1701 Plus Bevacizumab and Chemotherapy in Non-Small-Cell-Lung-Cancer"
+            },
+            {
+              "nct_id": "NCT03533127",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE3\"]",
+              "title": "A Study of LY01008 and Bevacizumab Combined With Paclitaxel and Carboplatin for Treatment of Na\u00efve Subjects With Metastatic or Recurrent Nonsquamous Non-small Cell Lung Cancer"
+            },
+            {
+              "nct_id": "NCT03195491",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE3\"]",
+              "title": "A Study of Non-Small Cell Lung Cancer (NSCLC) Patients Receiving Second-Line Nivolumab Monotherapy in Asia"
+            }
+          ]
+        },
+        {
+          "phase": "Phase 4",
+          "trial_count": 248,
+          "citation_count": 248,
+          "citations": [
+            {
+              "nct_id": "NCT02194556",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE4\"]",
+              "title": "Sequential and Maintenance Icotinib Plus Chemotherapy Versus Icotinib Maintenance After Chemotherapy in Advanced NSCLC"
+            },
+            {
+              "nct_id": "NCT07761351",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE4\"]",
+              "title": "A Randomized Controlled Trial Comparing Percutaneous CT-Guided Biopsy and Shape-Sensing Robotic-Assisted Bronchoscopy"
+            },
+            {
+              "nct_id": "NCT01203917",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE4\"]",
+              "title": "Efficacy, Safety, Tolerability of Gefitinib as 1st Line in Caucasian Patients With EGFR Mutation Positive Advanced NSCLC"
+            },
+            {
+              "nct_id": "NCT03853551",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE4\"]",
+              "title": "Osimertinib Study in Indian Patients"
+            },
+            {
+              "nct_id": "NCT03444766",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"PHASE4\"]",
+              "title": "Study of Nivolumab for Advanced Cancers in India"
+            }
+          ]
+        },
+        {
+          "phase": "Not applicable",
+          "trial_count": 2459,
+          "citation_count": 2459,
+          "citations": [
+            {
+              "nct_id": "NCT07354854",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"NA\"]",
+              "title": "Evaluation of the Safety and Effectiveness of the Tri-staple Technology inThoracic Surgery Clinical Investigation"
+            },
+            {
+              "nct_id": "NCT02954809",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"NA\"]",
+              "title": "Feasibility of Bright Light Therapy on Fatigue, Sleep and Circadian Activity Rhythms in Lung Cancer Survivors"
+            },
+            {
+              "nct_id": "NCT05031533",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"NA\"]",
+              "title": "Dose-painting Radiation for LA-NSCLC"
+            },
+            {
+              "nct_id": "NCT06451536",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"NA\"]",
+              "title": "Ga-68 FAPI PET Before Immunotherapy"
+            },
+            {
+              "nct_id": "NCT00246116",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "[\"NA\"]",
+              "title": "Functional Imaging of Treatment Effects: A Companion Protocol to a Study of Extracranial Stereotactic Radioablation in Early Stage Non-Small Cell Lung Cancer"
+            }
+          ]
+        },
+        {
+          "phase": "Not reported",
+          "trial_count": 3237,
+          "citation_count": 3237,
+          "citations": [
+            {
+              "nct_id": "NCT01932918",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "(field absent)",
+              "title": "Antinociceptive Modalities on Ischemia Reperfusion Injury"
+            },
+            {
+              "nct_id": "NCT02618590",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "(field absent)",
+              "title": "A Retrospective Study About Treatment Strategy After First/Second Line EGFR-TKI Failure"
+            },
+            {
+              "nct_id": "NCT02368990",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "(field absent)",
+              "title": "T790M Mutation Positive 2nd Line STandard of cAre Registry"
+            },
+            {
+              "nct_id": "NCT03979170",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "(field absent)",
+              "title": "Patient-derived Organoids of Lung Cancer to Test Drug Response"
+            },
+            {
+              "nct_id": "NCT07720102",
+              "field": "protocolSection.designModule.phases",
+              "excerpt": "(field absent)",
+              "title": "Patient Reported Outcomes Following Percutaneous Lung Ablation"
+            }
+          ]
+        }
+      ]
+    },
+    "meta": {
+      "plan": {
+        "supported": true,
+        "unsupported_reason": null,
+        "analysis": "breakdown",
+        "group_by": [
+          "phase"
+        ],
+        "measures": [],
+        "filters": {
+          "drug": null,
+          "condition": "lung cancer",
+          "sponsor": null,
+          "country": null,
+          "phase": null,
+          "status": null,
+          "start_year": null,
+          "end_year": null
+        },
+        "comparison": null,
+        "top_n": null
+      },
+      "filters": {
+        "condition": "lung cancer"
+      },
+      "api_query": {
+        "query.cond": "lung cancer"
+      },
+      "source": "clinicaltrials.gov",
+      "data_timestamp": "2026-11-12T10:00:05",
+      "records_used": 14719,
+      "total_matching": 14719,
+      "truncated": false,
+      "count_method": "registry_count",
+      "bucket_clauses": {
+        "EARLY_PHASE1": "AREA[Phase]EARLY_PHASE1",
+        "PHASE1": "AREA[Phase]PHASE1 AND NOT AREA[Phase]PHASE2",
+        "PHASE1|PHASE2": "AREA[Phase]PHASE1 AND AREA[Phase]PHASE2",
+        "PHASE2": "AREA[Phase]PHASE2 AND NOT AREA[Phase]PHASE1 AND NOT AREA[Phase]PHASE3",
+        "PHASE2|PHASE3": "AREA[Phase]PHASE2 AND AREA[Phase]PHASE3",
+        "PHASE3": "AREA[Phase]PHASE3 AND NOT AREA[Phase]PHASE2",
+        "PHASE4": "AREA[Phase]PHASE4",
+        "NA": "AREA[Phase]NA",
+        "NOT_REPORTED": "AREA[Phase]MISSING"
+      },
+      "multi_valued": false,
+      "units": {
+        "trial_count": "trials"
+      },
+      "sort": "phase order",
+      "time_granularity": null,
+      "notes": [
+        "Exact registry counts: one count query per phase value. Each bar cites up to 5 of its trials."
+      ],
+      "llm": {
+        "model": "gpt-5.4-mini",
+        "prompt_version": "2026-11-12.4",
+        "attempts": 1,
+        "cost_usd": 0.001418
+      }
+    }
+  }
+}

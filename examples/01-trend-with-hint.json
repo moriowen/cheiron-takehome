@@ -556,6 +556,8 @@
       "records_used": 2940,
       "total_matching": 2940,
       "truncated": false,
+      "count_method": "all_records",
+      "bucket_clauses": {},
       "multi_valued": false,
       "units": {
         "trial_count": "trials"
@@ -567,9 +569,9 @@
       ],
       "llm": {
         "model": "gpt-5.4-mini",
-        "prompt_version": "2026-11-12.3",
+        "prompt_version": "2026-11-12.4",
         "attempts": 1,
-        "cost_usd": 0.001414
+        "cost_usd": 0.00145
       }
     }
   }

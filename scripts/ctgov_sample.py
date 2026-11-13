@@ -7,7 +7,7 @@ from collections import Counter
 
 from trialviz.ctgov.client import CTGovClient, StudyQuery
 
-client = CTGovClient(min_interval_s=0.2)
+client = CTGovClient(rate_per_s=1.0)
 query = StudyQuery(intervention="pembrolizumab")
 
 print("data version:", client.version())

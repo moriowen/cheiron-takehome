@@ -6,9 +6,9 @@ How we measure the system, and how the setup maps to common eval practice. The s
 
 | Command | What it checks | Cost |
 |---|---|---|
-| `uv run pytest` | 188 offline tests on recorded real API data, including the eval harness itself | free, about 2 s |
+| `uv run pytest` | 202 offline tests on recorded real API data, including the eval harness itself | free, about 2 s |
 | `uv run python -m evals.planner_eval --runs 3` | 72 golden cases x 3 runs, plan checked field by field | about $0.31 on gpt-5.4-mini |
-| `uv run python -m evals.e2e_eval` | 27 hand-written cases through the full pipeline, live registry | about $0.04 LLM, about 1.5 min |
+| `uv run python -m evals.e2e_eval` | 27 hand-written cases through the full pipeline, live registry | about $0.04 LLM, about 4 min |
 | `uv run python -m evals.synth --n 45` | regenerates the synthetic cases (review before committing) | about $0.10 |
 
 Results are committed in `evals/results/`. File names carry the model, the prompt version, the dataset version, and k, so every score can be traced to the exact code and data that produced it.
@@ -21,6 +21,7 @@ Results are committed in `evals/results/`. File names carry the model, the promp
 | Planner | gpt-5.4-mini | .4 | .3 (72 cases) | 100% | 94.9 to 100 | 100% | $0.00145 | 1.1 / 1.5 s | none |
 | Planner | gpt-5.4-nano | .4 | .3 (72 cases) | 95.8% | 88.5 to 98.6 | 97.2% | $0.00042 | 1.3 / 2.0 s | scope 6, wrong_dimensions 1 |
 | End-to-end | gpt-5.4-mini | .4 | .3 (27 cases) | 27/27 | 88 to 100 | | | 2.7 / 5.9 s | none |
+| End-to-end, exact counts (D32, D33) | gpt-5.4-mini | .4 | .3 (27 cases) | 27/27 | 88 to 100 | | | 4.6 / 18.6 s | none; adds the exact-count check |
 
 Earlier single-run results (prompt .2 and .3, 19 cases) are also in `evals/results/`.
 

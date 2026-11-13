@@ -35,7 +35,7 @@ The project key cannot read billing (credit endpoints need a browser session, th
 `CTGovClient` knows API parameters, paging, and errors, and nothing about plans or charts. It throttles requests, backs off on 429/5xx, and honors `Retry-After`, because a burst of calls got HTTP 429 and the limit is not documented anywhere we could find.
 
 ### D08. Fetch slim records up to a cap and count locally
-2026-11-12. Accepted.
+2026-11-12. Accepted. Partly superseded by D32 (exact bucket counts) and D33 (fetch every record up to 20,000).
 We fetch matching studies with a `fields=` projection up to a cap (default 3,000) and aggregate in code. `meta` reports records used, total matches, and whether the fetch was truncated. Why: it gives one consistent counting method for every chart type, it is the only way to build networks, and it gives citations for every datum. Rejected: one exact `count()` call per bucket. It cannot produce citations, it costs many calls against an undocumented rate limit, and multi-phase trials make bucket counts disagree with the total (pembrolizumab per-phase counts sum to 3,295 while the total is 3,006).
 
 ### D09. Multi-valued fields
@@ -130,14 +130,28 @@ The first k=3 run found a planner that marked a whole network question unsupport
 2026-11-12. Accepted. Supersedes the `eval-gate.yml` workflow from D28.
 The OpenAI key lives only in the git-ignored `.env`. A GitHub gate would need the key stored as a repository secret. The user chose to keep evals local: `uv run python -m evals.planner_eval --runs 3 --gate` before committing prompt, plan, or model changes. GitHub CI keeps lint and offline tests, which need no key.
 
+### D32. Exact registry counts per bucket for fixed-value dimensions
+2026-11-12. Accepted. Supersedes the rejection of per-bucket counts in D08.
+A breakdown on one fixed-value dimension (phase, overall status, study type, sponsor class, intervention type) can count each bucket in the registry: the user's filters AND the bucket's Essie clause, with `countTotal=true`. Each dimension lists a clause for every API enum value plus a `MISSING` bucket (`registry.py`). The three reasons D08 gave against this no longer hold:
+- Citations: the count call asks for 5 records (`pageSize=5`), so each bucket's count and its citations come from the same query.
+- Multi-phase trials: phase clauses exclude the neighbouring phases (`AREA[Phase]PHASE2 AND NOT AREA[Phase]PHASE1 AND NOT AREA[Phase]PHASE3`), so a Phase 1/2 trial falls only in the Phase 1/2 bucket. For lung cancer the 9 phase counts sum to 14,719, the exact total. A live test checks this for phase, status, and sponsor class.
+- Rate limit: the method is used only when it needs fewer requests than fetching the records (buckets < pages of 1,000), or when the query matches more than `max_records`.
+
+So "lung cancer by phase" costs 10 requests and is exact, where it was a 3,000-record sample before. `meta.count_method` says which method made the counts, and `meta.bucket_clauses` makes each count reproducible.
+
+### D33. Fetch every record up to 20,000 matches; no parallel fetch
+2026-11-12. Accepted. The user approved a 20,000 cap. Changes the plan reviewed with the user, which had parallel date-range shards.
+Up to `max_records` (20,000) matches, the retriever fetches every record, so the counts are exact for every chart type. Above it, a chart that needs records (names, countries, years, networks, histograms, scatter plots) uses the first `sample_records` (3,000) in relevance order, as before (A05).
+We measured the rate limit before building the parallel fetch: about 10 requests in a burst, then about 1 request/s. At 2 requests/s, 35% of requests got HTTP 429, and a 429 takes about 9 s to clear. A page of 1,000 records already takes about 0.9 s, so a sequential fetch is close to the limit. Parallel shards would gain a few seconds from the burst and then hit 429s. The client now has a token bucket (burst 8, 0.8 request/s) in place of the fixed gap, so bursts of count calls do not trigger 429s. At 1.0 request/s, the e2e eval still got 10 retries in 27 cases, so the server's refill is likely a little under 1/s. Cost: a 20,000-record fetch takes about 20 to 25 s, cached for an hour. The e2e p95 latency went from 5.9 s to 18.6 s; that is the price of exact counts on broad record charts (top sponsors, cross-tabs).
+
 ## Assumptions
 
 | ID | Assumption | If false |
 |---|---|---|
 | A01 | `query.intr` and `query.cond` synonym expansion is good enough for entity matching (pembrolizumab, Keytruda, MK-3475 all return 3,006). | Add an entity-resolution step against MeSH. |
-| A02 | A 3,000-record cap keeps a response under about 10 seconds. A 1,000-record page took about 1 second. | Lower the cap or add the cache earlier. |
-| A03 | The ClinicalTrials.gov rate limit allows a few requests per second from one client. | Raise `min_interval_s`, add caching. |
+| A02 | ~~A 3,000-record cap keeps a response under about 10 seconds.~~ Replaced by D33: a 20,000-record fetch takes about 20 s; registry counts are used where they are cheaper. | Lower `MAX_RECORDS`. |
+| A03 | ~~The rate limit allows a few requests per second.~~ False: measured about 1 request/s sustained with a burst of about 10 (D33). The client's token bucket follows that. | Lower `CTGOV_RATE_PER_S`. |
 | A04 | Reviewers judge the backend and the JSON spec. The frontend is a bonus. | Spend more time on the UI. |
-| A05 | Relevance order (the API default) is a fair sample when a fetch is truncated. | Fetch by a neutral sort, or report counts only from exact totals. |
+| A05 | Relevance order (the API default) is a fair sample when a fetch is truncated. Now applies only above 20,000 matches, and only to dimensions without bucket clauses (D32, D33). | Fetch by a neutral sort. |
 | A07 | Deadline is 2026-11-13 morning (about 12 hours from 2026-11-12 evening). Scope favors breadth of query classes over polish. | Re-plan milestones. |
 | A06 | A model upgrade fixes interpretation errors, not design errors. Evals separate the two. | n/a (this is how we read eval results) |

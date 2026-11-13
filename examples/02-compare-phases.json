@@ -411,9 +411,9 @@
         },
         {
           "phase": "Phase 1",
-          "trial_count": 577,
+          "trial_count": 578,
           "series": "pembrolizumab",
-          "citation_count": 577,
+          "citation_count": 578,
           "citations": [
             {
               "nct_id": "NCT06307093",
@@ -487,9 +487,9 @@
         },
         {
           "phase": "Phase 2",
-          "trial_count": 1272,
+          "trial_count": 1276,
           "series": "pembrolizumab",
-          "citation_count": 1272,
+          "citation_count": 1276,
           "citations": [
             {
               "nct_id": "NCT02705820",
@@ -563,9 +563,9 @@
         },
         {
           "phase": "Phase 3",
-          "trial_count": 326,
+          "trial_count": 327,
           "series": "pembrolizumab",
-          "citation_count": 326,
+          "citation_count": 327,
           "citations": [
             {
               "nct_id": "NCT03712605",
@@ -754,9 +754,11 @@
       },
       "source": "clinicaltrials.gov",
       "data_timestamp": "2026-11-12T10:00:05",
-      "records_used": 5043,
+      "records_used": 5049,
       "total_matching": 5049,
-      "truncated": true,
+      "truncated": false,
+      "count_method": "all_records",
+      "bucket_clauses": {},
       "multi_valued": false,
       "units": {
         "trial_count": "trials"
@@ -764,14 +766,13 @@
       "sort": "phase order",
       "time_granularity": null,
       "notes": [
-        "Based on the first 5043 of 5049 matching trials (API relevance order).",
         "Each series is a separate registry search; a trial matching several compared values appears in each series."
       ],
       "llm": {
         "model": "gpt-5.4-mini",
-        "prompt_version": "2026-11-12.3",
+        "prompt_version": "2026-11-12.4",
         "attempts": 1,
-        "cost_usd": 0.001449
+        "cost_usd": 0.001485
       }
     }
   }

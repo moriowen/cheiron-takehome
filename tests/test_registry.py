@@ -204,3 +204,16 @@ def test_generic_intervention_names_are_not_drugs():
         }
     }
     assert keys(Dimension.DRUG, s) == ["docetaxel"]
+
+
+def test_fixed_value_dimensions_have_a_bucket_for_every_value():
+    from trialviz.registry import MISSING_BUCKET, PHASE_LABELS
+
+    phase = DIMENSIONS[Dimension.PHASE]
+    assert [k for k, _ in phase.buckets] == list(PHASE_LABELS)  # same keys as extract
+    for dim in (Dimension.STATUS, Dimension.STUDY_TYPE, Dimension.SPONSOR_CLASS,
+                Dimension.INTERVENTION_TYPE):  # fmt: skip
+        keys = [k for k, _ in DIMENSIONS[dim].buckets]
+        assert len(keys) == len(set(keys)) and keys[-1] == MISSING_BUCKET
+    for dim in (Dimension.DRUG, Dimension.COUNTRY, Dimension.START_YEAR):
+        assert not DIMENSIONS[dim].buckets  # open-ended: counted from records

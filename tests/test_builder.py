@@ -5,7 +5,7 @@ import pytest
 
 from tests.test_plan import NO_FILTERS, TAXONOMY, valid
 from trialviz.builder import MAX_CITATIONS, build_response, select_viz
-from trialviz.ctgov.client import FetchResult
+from trialviz.retrieve import Retrieved
 from trialviz.schemas import LLMInfo, NetworkData, QueryResponse, VizType
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -19,7 +19,10 @@ def fetched(plan, studies=PEMBRO, total=3006):
     n = len(plan.comparison.values) if plan.comparison else 1
     names = plan.comparison.values if plan.comparison else [None]
     halves = [studies[i::n] for i in range(n)]
-    return [(name, FetchResult(h, total, True)) for name, h in zip(names, halves, strict=True)]
+    return [
+        (name, Retrieved(h, total, truncated=True, method="sample"))
+        for name, h in zip(names, halves, strict=True)
+    ]
 
 
 EXPECTED_TYPE = {
@@ -127,7 +130,7 @@ def test_title_names_the_scope():
 
 def test_no_matches_is_ok_with_a_note():
     plan = valid()
-    resp = build_response(plan, [(None, FetchResult([], 0, False))], TS, LLM)
+    resp = build_response(plan, [(None, Retrieved([], 0, False))], TS, LLM)
     assert resp.status == "ok" and resp.visualization.data == []
     assert any("No trials" in n for n in resp.meta.notes)
 
@@ -151,5 +154,5 @@ def test_title_uses_phase_labels_and_starts_capitalized():
 def test_missing_note_grammar():
     plan = valid(analysis="histogram", group_by=[], measures=["enrollment"])
     one_missing = PEMBRO[:3] + [{"protocolSection": {"identificationModule": {"nctId": "NCTX"}}}]
-    notes = build_response(plan, [(None, FetchResult(one_missing, 4, False))], TS, LLM).meta.notes
+    notes = build_response(plan, [(None, Retrieved(one_missing, 4, False))], TS, LLM).meta.notes
     assert "1 trial has no enrollment and is not shown." in notes

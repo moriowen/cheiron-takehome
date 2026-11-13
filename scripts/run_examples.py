@@ -1,10 +1,11 @@
 """Runs the example queries through the real pipeline and saves request + response JSON.
 
-Run: uv run python scripts/run_examples.py
+Run: uv run python scripts/run_examples.py [slug ...]   (no slug: all examples)
 Output: examples/NN-<slug>.json (actual system output, not hand-written).
 """
 
 import json
+import sys
 from pathlib import Path
 
 from trialviz.config import AppSettings, LLMSettings
@@ -44,6 +45,10 @@ EXAMPLES = [
         {"query": "What is the distribution of enrollment sizes in phase 3 asthma trials?"},
     ),
     ("out-of-scope", {"query": "Is pembrolizumab more effective than nivolumab?"}),
+    (
+        "exact-phase-counts",  # 14,719 matches: exact registry counts per phase (D32)
+        {"query": "How are lung cancer trials distributed across phases?"},
+    ),
 ]
 
 
@@ -51,11 +56,15 @@ def main() -> None:
     app = AppSettings()
     pipeline = Pipeline(
         OpenAIPlanner(LLMSettings()),
-        CTGovClient(min_interval_s=app.ctgov_min_interval_s),
+        CTGovClient(rate_per_s=app.ctgov_rate_per_s, burst=app.ctgov_burst),
         max_records=app.max_records,
+        sample_records=app.sample_records,
     )
     OUT.mkdir(exist_ok=True)
+    only = set(sys.argv[1:])
     for i, (slug, body) in enumerate(EXAMPLES, 1):
+        if only and slug not in only:
+            continue
         resp = pipeline.run(QueryRequest(**body))
         path = OUT / f"{i:02d}-{slug}.json"
         path.write_text(
