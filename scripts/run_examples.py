@@ -5,7 +5,9 @@ Output: examples/NN-<slug>.json (actual system output, not hand-written).
 """
 
 import json
+import subprocess
 import sys
+from datetime import UTC, datetime
 from pathlib import Path
 
 from trialviz.config import AppSettings, LLMSettings
@@ -63,6 +65,9 @@ def main() -> None:
         CTGovClient(rate_per_s=app.ctgov_rate_per_s, burst=app.ctgov_burst),
         max_records=app.max_records,
         sample_records=app.sample_records,
+        cache_ttl_s=app.cache_ttl_s,
+        cache_max_entries=app.cache_max_entries,
+        budget_s=app.request_budget_s,
     )
     OUT.mkdir(exist_ok=True)
     only = set(sys.argv[1:])
@@ -72,7 +77,17 @@ def main() -> None:
         resp = pipeline.run(QueryRequest(**body))
         path = OUT / f"{i:02d}-{slug}.json"
         path.write_text(
-            json.dumps({"request": body, "response": resp.model_dump(mode="json")}, indent=2)
+            json.dumps(
+                {
+                    "request": body,
+                    "response": resp.model_dump(mode="json"),
+                    "generated_at": datetime.now(UTC).isoformat(),
+                    "code_revision": subprocess.check_output(
+                        ["git", "rev-parse", "HEAD"], cwd=OUT.parent, text=True
+                    ).strip(),
+                },
+                indent=2,
+            )
         )
         kind = resp.visualization.type.value if resp.visualization else resp.status
         print(f"{path.name}: {kind}, {path.stat().st_size // 1024} KB")

@@ -1,0 +1,219 @@
+{
+  "model": "gpt-5.4-mini",
+  "prompt_version": "2026-11-12.7",
+  "dataset_version": "2026-11-12.1",
+  "code_revision": "c90d529+dirty",
+  "passed": 14,
+  "total": 15,
+  "ci95": [
+    0.7018292244757601,
+    0.9881334113938051
+  ],
+  "latency_p50_s": 3.2,
+  "latency_p95_s": 13.960000000000015,
+  "llm_cost_usd": 0.0269,
+  "results": [
+    {
+      "id": "ho_randomized_constraint",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 2.3,
+      "cost_usd": 0.001804
+    },
+    {
+      "id": "ho_spanish_question",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "metric",
+      "latency_s": 1.4,
+      "cost_usd": 0.001836
+    },
+    {
+      "id": "ho_double_blind_top_words",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 6.6,
+      "cost_usd": 0.001775
+    },
+    {
+      "id": "ho_adult_only_after_year",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "metric",
+      "latency_s": 2.3,
+      "cost_usd": 0.00183
+    },
+    {
+      "id": "ho_sponsor_comparison_country",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 5.0,
+      "cost_usd": 0.001789
+    },
+    {
+      "id": "ho_injection_and_pediatric",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 7.9,
+      "cost_usd": 0.001851
+    },
+    {
+      "id": "ho_efficacy_head_to_head",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": null,
+      "latency_s": 1.2,
+      "cost_usd": 0.001832
+    },
+    {
+      "id": "ho_top_three_terminated_countries",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 2.3,
+      "cost_usd": 0.001768
+    },
+    {
+      "id": "ho_telegraphic",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 2.5,
+      "cost_usd": 0.001749
+    },
+    {
+      "id": "ho_placebo_trend",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "time_series",
+      "latency_s": 28.1,
+      "cost_usd": 0.001769
+    },
+    {
+      "id": "ho_cooccurrence_country",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "network_graph",
+      "latency_s": 3.7,
+      "cost_usd": 0.001755
+    },
+    {
+      "id": "ho_forecast",
+      "passed": false,
+      "errors": [
+        "interpretation: [scope] supported: expected False, got True",
+        "answer: status: expected unsupported, got ok"
+      ],
+      "stages": {
+        "interpretation": [
+          "[scope] supported: expected False, got True"
+        ],
+        "execution": [],
+        "answer": [
+          "status: expected unsupported, got ok"
+        ]
+      },
+      "chart": "time_series",
+      "latency_s": 3.2,
+      "cost_usd": 0.001857
+    },
+    {
+      "id": "ho_phase3_lupus_histogram",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "histogram",
+      "latency_s": 3.9,
+      "cost_usd": 0.001769
+    },
+    {
+      "id": "ho_results_posted",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 3.6,
+      "cost_usd": 0.001752
+    },
+    {
+      "id": "ho_female_only_countries",
+      "passed": true,
+      "errors": [],
+      "stages": {
+        "interpretation": [],
+        "execution": [],
+        "answer": []
+      },
+      "chart": "bar_chart",
+      "latency_s": 2.9,
+      "cost_usd": 0.001764
+    }
+  ]
+}
