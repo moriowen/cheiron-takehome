@@ -42,16 +42,16 @@
       <div class="request-flow" aria-label="Request path, from question to chart">
         <div class="flow-row">
           <article class="flow-box"><h4>Request</h4><p><code>POST /query</code> with a <code>QueryRequest</code>.<br>Required: <code>query</code>, 1 to 500 characters.</p></article>
-          <p class="flow-note">Optional hints: <code>drug_name, condition, sponsor, country, phase, status, start_year, end_year</code>.</p>
+          <p class="flow-note">Optional hints: <code>drug_name, condition, sponsor, country, phase, status, start_year, end_year</code>.<br>Errors: 422 invalid request or invalid plan after hints; 502 planner or registry failure; 504 registry time budget exceeded.</p>
         </div>
         <div class="flow-row planner-row">
-          <article class="flow-box model-box"><h4>Planner (LLM) <small>gpt-5.4-mini</small></h4><p>OpenAI Structured Outputs: strict JSON schema → <code>QueryPlan</code>.<br>Pydantic checks rules; one repair retry with validation errors.</p></article>
+          <article class="flow-box model-box"><h4>Planner (LLM) <small>gpt-5.4-mini</small></h4><p>OpenAI Structured Outputs: strict JSON schema → <code>QueryPlan</code>.<br>Pydantic checks rules; one repair retry with validation errors.<br>Constraints no filter can express go to <code>ignored_constraints</code>.</p></article>
           <article class="flow-box exit-box side-branch"><h4>Unsupported exit</h4><p><code>supported=false</code> → status <code>unsupported</code>.<br>Reason in <code>meta.notes</code>. No registry call.</p></article>
         </div>
         <div class="model-boundary">The LLM never sees registry data and never writes a number</div>
         <div class="flow-row">
-          <article class="flow-box"><h4>Apply hints</h4><p>Structured hints override the plan filters.<br>A conflict returns HTTP 422.</p></article>
-          <p class="flow-note">Plan fields: <code>supported, analysis, group_by, measures, filters, comparison, top_n</code>.<br>Analysis: breakdown, trend, network, histogram, scatter, total.</p>
+          <article class="flow-box"><h4>Apply hints</h4><p>Structured hints override the plan filters.<br>A hint for the compared field is skipped with a note. A hint that makes the plan invalid returns HTTP 422.</p></article>
+          <p class="flow-note">Plan fields: <code>supported, unsupported_reason, analysis, group_by, measures, filters, comparison, top_n, ignored_constraints, interpretation_notes</code>.<br>Analysis: breakdown, trend, network, histogram, scatter, total.</p>
         </div>
         <div class="flow-row">
           <article class="flow-box"><h4>Entity check</h4><p>Count each drug, condition, and sponsor name in the registry.<br>Fewer than 20 matches: ask the registry's autocomplete, and switch to a name with 10× more trials.</p></article>
@@ -62,21 +62,21 @@
           <p class="flow-note">Each compared value becomes its own series. A trial matching several values can appear in each series.</p>
         </div>
         <div class="flow-row fetch-row">
-          <article class="flow-box"><h4>Retriever <small>CTGovClient</small></h4><p>Picks the exact method with the fewest requests: one count per phase/status/… bucket, or every record up to 20,000 (a 3,000-record sample above that).<br>Token bucket under the measured limit (0.8 request/s, burst 8); retry with backoff.</p></article>
+          <article class="flow-box"><h4>Retriever <small>CTGovClient</small></h4><p>Picks the exact method with the fewest requests: one count per phase/status/… bucket, or every record up to 20,000 (a 3,000-record sample above that). A total needs only <code>totalCount</code> and a few citation records.<br>Token bucket under the measured limit (0.8 request/s, burst 8); retry with backoff. Identical concurrent fetches share one request.<br>90 s registry budget per request, then HTTP 504.</p></article>
           <div class="registry-branch side-branch">
-            <article class="flow-box data-box"><h4>In-memory cache</h4><p>1 hour. A hit reuses saved records.</p></article>
+            <article class="flow-box data-box"><h4>In-memory cache</h4><p>1 hour, at most 512 entries (least recently used are evicted). A hit reuses saved records.</p></article>
             <div class="branch-arrow">miss ↓</div>
             <article class="flow-box data-box"><h4>ClinicalTrials.gov</h4><p>Registry API. Bursts can return HTTP 429.</p></article>
             <p class="return-label">Records and counts return to the retriever; results are cached.</p>
           </div>
         </div>
         <div class="flow-row">
-          <article class="flow-box"><h4>Field registry</h4><p>Extract and normalize each dimension; drugs and conditions map to MeSH.<br>Attach <code>{nct_id, field, excerpt, title}</code> to each value.</p></article>
-          <p class="flow-note">The excerpt is the exact value at the cited API field path. Normalized labels keep the original evidence.</p>
+          <article class="flow-box"><h4>Field registry</h4><p>Extract and normalize each dimension. Drugs and conditions map to MeSH only on evidence of identity (same words, or a name the sponsor gave); otherwise the free-text name is the label.<br>Attach <code>{nct_id, field, excerpt, title, match}</code> to each value.</p></article>
+          <p class="flow-note">The excerpt is the exact value at the cited API field path. <code>match</code> is <code>exact</code>, <code>alias</code>, <code>broader</code>, or <code>free_text</code>. A derived duration cites both dates.</p>
         </div>
         <div class="flow-row">
           <article class="flow-box"><h4>Aggregator</h4><p>Counts, cross-tabs, yearly trends, networks, bins, scatter points, total.<br>Every group keeps its citations.</p></article>
-          <p class="flow-note">Networks can be bipartite or co-occurrence. A total uses the registry's <code>totalCount</code>; other analyses count fetched records.</p>
+          <p class="flow-note">Networks can be bipartite or co-occurrence. A total uses the registry's <code>totalCount</code>. A breakdown by phase, status, study type, sponsor class, or intervention type can use one registry count per bucket. Other analyses count fetched records.</p>
         </div>
         <div class="flow-row">
           <article class="flow-box"><h4>Chart selector</h4><p>Fixed rules map the plan shape to a chart type.<br>The LLM does not choose the chart.</p></article>
@@ -84,22 +84,26 @@
         </div>
         <div class="flow-row">
           <article class="flow-box"><h4>Spec builder</h4><p>Write <code>visualization {type, title, encoding, data}</code> and <code>meta</code>.<br>Each datum has up to 5 trial citations and <code>citation_count</code>.</p></article>
-          <p class="flow-note">Meta: plan, filters, api_query, count_method, bucket_clauses, data_timestamp, total_matching, trials_counted, count_completeness, records_fetched, coverage per series, notes, and LLM cost.</p>
+          <p class="flow-note">Meta: plan, filters, api_query, count_method, bucket_clauses, data_timestamp, total_matching, trials_counted, count_completeness, records_fetched, coverage per series, entities, ignored_constraints, derivations, multi_valued, units, sort, notes, and LLM cost.</p>
+        </div>
+        <div class="flow-row">
+          <article class="flow-box"><h4>Contract check</h4><p>Pydantic validates the response before it is sent.<br>Typed rows, required channels, nonnegative integer counts, <code>citation_count</code> equal to the count, edges that reference real nodes.</p></article>
+          <p class="flow-note">A spec that breaks the contract is never returned, so a renderer can trust the fields it reads.</p>
         </div>
         <div class="flow-row last-row">
-          <article class="flow-box"><h4>Frontend</h4><p>D3 renders each chart type.<br>Click a mark to see its citations.</p></article>
-          <p class="flow-note">The Ask tab shows the chart, source panel, caveats, and the plan and API query behind the answer.</p>
+          <article class="flow-box"><h4>Frontend</h4><p>D3 renders each chart type from <code>encoding</code> and <code>data</code>.<br>Click a mark to see its citations.</p></article>
+          <p class="flow-note">The Ask tab shows the chart, source panel, and caveats. The API response tab shows the complete JSON the backend returned.</p>
         </div>
       </div>
 
       <h3 class="flow-heading">How the system is evaluated</h3>
       <div class="eval-flow" aria-label="Golden dataset feeds planner and end-to-end evals, followed by the gates">
-        <article class="flow-box data-box eval-golden"><h4>Golden dataset</h4><p>29 hand-written cases + 45 synthetic cases.</p><p class="eval-detail">TASK.md appendix, taxonomy, edge cases, regressions. Synthetic tuples: intent × entity × filter × phrasing style. Code derives expected plans; gpt-5.4 writes only question text.</p></article>
+        <article class="flow-box data-box eval-golden"><h4>Golden dataset</h4><p>34 hand-written + 45 synthetic development cases, and a separate 15-case adversarial set.</p><p class="eval-detail">TASK.md appendix, taxonomy, edge cases, regressions. Synthetic tuples: intent × entity × filter × phrasing style. Code derives expected plans; gpt-5.4 writes only question text.</p></article>
         <div class="eval-checks">
           <article class="flow-box"><h4>Planner evals</h4><p>Deterministic plan checks.<br>pass@k and pass^k, k=3; 95% Wilson intervals.</p><p class="eval-detail">Per intent, failure categories, cost per success, p50/p95 latency.</p></article>
-          <article class="flow-box"><h4>End-to-end evals</h4><p>Full pipeline against the live registry.<br>Check chart type, citations, and meta invariants.</p></article>
+          <article class="flow-box"><h4>End-to-end evals</h4><p>Full pipeline against the live registry on the 34 hand-written cases.<br>Check chart type, citations, and meta invariants.</p></article>
         </div>
-        <article class="flow-box eval-gate"><h4>Gates</h4><p>GitHub CI: lint and offline tests on every push.</p><p class="eval-detail">Local gate: <code>planner_eval --runs 3 --gate</code> uses the key in <code>.env</code> and fails if an intent falls below its floor in <code>evals/thresholds.json</code>. Run before changing the prompt, plan schema, or model.</p></article>
+        <article class="flow-box eval-gate"><h4>Gates</h4><p>GitHub CI: lint and offline tests on every push.</p><p class="eval-detail">Local gate: <code>planner_eval --runs 3 --gate</code> uses the key in <code>.env</code> and fails if an intent falls below its floor in <code>evals/thresholds.json</code>. Run before changing the prompt, plan schema, or model.</p><p class="eval-detail"><code>--heldout</code> scores the 15 adversarial cases with both evals. That set is never used to tune the prompt.</p></article>
       </div>
 
       <h3 class="flow-heading">A real request, stage by stage</h3>
