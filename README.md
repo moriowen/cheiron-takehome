@@ -163,7 +163,9 @@ Channels and row fields per type:
 | `network_graph` | `node_id`, `node_label`, `node_color`, `node_size`, `edge_width` | Nodes: `id`, `label`, `group` (dimension), `weight`. Edges: `source`, `target`, `weight`. |
 | `metric` | `value`, `label` | `label`, `trial_count` |
 
-`<dimension>` is the plan dimension name: `phase`, `overall_status`, `study_type`, `lead_sponsor`, `sponsor_class`, `intervention_type`, `drug`, `condition`, or `country`. Measures are `enrollment` (participants) and `duration_months` (start to completion date).
+`<dimension>` is the plan dimension name: `phase`, `overall_status`, `study_type`, `lead_sponsor`, `sponsor_class`, `intervention_type`, `drug`, `condition`, or `country`. Measures are `enrollment` (participants) and `duration_months` (start to completion date). Duration is derived, so it cites both dates at their own paths, and `meta.derivations` gives the formula.
+
+Citation rules: every `citations` entry is `{nct_id, field, excerpt, title}`, where `excerpt` is exactly the value at `field` in that trial's API record (a test checks this for every dimension and measure on more than 1,000 real citations). A missing value is cited as `(field absent)`. A value derived from several fields cites each of them. A cross-tab cell or a network edge cites the values for both of its dimensions.
 
 In a network, node weight is the number of trials that include the entity, and edge weight is the number of trials that include both ends. In a co-occurrence network (drug to drug), an edge means both drugs appear in the same trial.
 
@@ -185,6 +187,7 @@ In a network, node weight is the number of trials that include the entity, and e
 | `multi_valued` | True when one trial can count in several groups (countries, drugs, conditions). |
 | `units`, `sort`, `time_granularity` | Rendering hints. |
 | `entities` | Each drug, condition, or sponsor name in the plan: as asked, its registry matches, the name searched, and whether it was corrected (with the note). |
+| `derivations` | For derived measures: how the value is computed from the cited fields. |
 | `notes` | Plain-language caveats: truncation, groups not shown, trials missing a value, how to read estimated counts. For `unsupported`, the reason. |
 | `llm` | Model, prompt version, attempts, and cost in USD of the planner call. |
 

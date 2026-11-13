@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 import pytest
@@ -129,10 +130,15 @@ def test_sponsor_class_label():
 
 def test_measures():
     e = MEASURES[Measure.ENROLLMENT].extract(EDGE)
-    assert (e.value, e.citation.excerpt) == (305.0, "305")
+    assert (e.value, [c.excerpt for c in e.citations]) == (305.0, ["305"])
     d = MEASURES[Measure.DURATION_MONTHS].extract(EDGE)
     assert d.value == 81  # 2014-08 -> 2021-05
-    assert "2014-08-25" in d.citation.excerpt and "2021-05-27" in d.citation.excerpt
+    # derived value: both source dates cited, each at its own path with its exact value
+    assert [(c.field.split(".")[-2], c.excerpt) for c in d.citations] == [
+        ("startDateStruct", "2014-08-25"),
+        ("completionDateStruct", "2021-05-27"),
+    ]
+    assert MEASURES[Measure.DURATION_MONTHS].derivation
 
 
 # --- every real record ----------------------------------------------------------------------
@@ -217,3 +223,48 @@ def test_fixed_value_dimensions_have_a_bucket_for_every_value():
         assert len(keys) == len(set(keys)) and keys[-1] == MISSING_BUCKET
     for dim in (Dimension.DRUG, Dimension.COUNTRY, Dimension.START_YEAR):
         assert not DIMENSIONS[dim].buckets  # open-ended: counted from records
+
+
+# --- the citation contract (D15, D38) -------------------------------------------------------
+
+_INDEX = re.compile(r"^(\w+)\[(\d+)\]$")
+
+
+def resolve(study: dict, path: str):
+    """Follows a citation path, including list indexes such as `interventions[2].name`."""
+    node = study
+    for part in path.split("."):
+        if m := _INDEX.match(part):
+            node = (node or {}).get(m[1]) or []
+            node = node[int(m[2])] if int(m[2]) < len(node) else None
+        else:
+            node = node.get(part) if isinstance(node, dict) else None
+    return node
+
+
+def _all_citations(study):
+    for spec in DIMENSIONS.values():
+        for v in spec.extract(study):
+            yield v.citation
+    for spec in MEASURES.values():
+        if mv := spec.extract(study):
+            yield from mv.citations
+
+
+@pytest.mark.parametrize("fixture", ["pembrolizumab", "melanoma"])
+def test_every_citation_quotes_the_exact_value_at_its_path(fixture):
+    """For every dimension and measure of every real record: the cited path exists and holds
+    exactly the excerpt. A missing value is cited as ABSENT, and its path really is empty."""
+    studies = json.loads((FIXTURES / f"{fixture}.json").read_text())["studies"] + [EDGE]
+    checked = 0
+    for s in studies:
+        for c in _all_citations(s):
+            actual = resolve(s, c.field)
+            if c.excerpt == ABSENT:
+                assert actual in (None, []), c
+            else:
+                expected = actual if isinstance(actual, str) else json.dumps(actual)
+                assert c.excerpt in (expected, str(actual)), c
+            assert c.nct_id == nct_id(s)
+            checked += 1
+    assert checked > 1000

@@ -76,6 +76,9 @@ def build_response(
     builder = _BUILDERS[viz_type]
     encoding, data, extra = builder(plan, fetched, notes)
     meta.units |= extra.get("units", {})
+    meta.derivations = {
+        m.value: MEASURES[m].derivation for m in plan.measures if MEASURES[m].derivation
+    }
     meta.sort = extra.get("sort")
     meta.time_granularity = extra.get("time_granularity")
     meta.multi_valued = any(DIMENSIONS[d].multi_valued for d in plan.group_by)

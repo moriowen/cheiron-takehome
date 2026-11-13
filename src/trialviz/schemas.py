@@ -195,6 +195,10 @@ class Meta(BaseModel):
         default=False, description="True if one trial can count in several groups."
     )
     units: dict[str, str] = Field(default_factory=dict, description="Field -> unit.")
+    derivations: dict[str, str] = Field(
+        default_factory=dict,
+        description="Measure -> how it is computed from the cited fields (derived values).",
+    )
     sort: str | None = None
     time_granularity: str | None = None
     entities: list[EntityCheck] = Field(

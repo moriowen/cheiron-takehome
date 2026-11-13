@@ -164,7 +164,10 @@ def test_scatter_points():
     pts = agg.scatter(PEMBRO, MEASURES[Measure.ENROLLMENT], MEASURES[Measure.DURATION_MONTHS])
     assert len(pts.points) > 50
     p = pts.points[0]
-    assert len(p.citations) == 2 and p.citations[0].nct_id == p.nct_id
+    assert len(p.citations) == 3 and {c.nct_id for c in p.citations} == {p.nct_id}
+    assert [c.field.rsplit(".", 2)[-2] for c in p.citations] == [
+        "enrollmentInfo", "startDateStruct", "completionDateStruct",
+    ]  # fmt: skip
 
 
 def test_total():

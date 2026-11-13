@@ -134,7 +134,7 @@ def crosstab(studies: list[dict], a: DimensionSpec, b: DimensionSpec) -> list[Ce
                         Bucket(va.key, va.label), Bucket(vb.key, vb.label), 0, []
                     )
                 cell.count += 1
-                cell.citations.append(vb.citation)
+                cell.citations += [va.citation, vb.citation]  # evidence for both dimensions
     return list(cells.values())
 
 
@@ -216,7 +216,7 @@ def histogram(studies: list[dict], spec: MeasureSpec) -> Histogram:
         for b in bins:
             if mv.value >= b.lo and (b.hi is None or mv.value < b.hi):
                 b.count += 1
-                b.citations.append(mv.citation)
+                b.citations += mv.citations
                 break
     return Histogram(bins, missing)
 
@@ -228,9 +228,8 @@ def scatter(studies: list[dict], x: MeasureSpec, y: MeasureSpec) -> Scatter:
         if vx is None or vy is None:
             missing += 1
             continue
-        points.append(
-            Point(nct_id(s), vx.citation.title, vx.value, vy.value, [vx.citation, vy.citation])
-        )
+        title = vx.citations[0].title
+        points.append(Point(nct_id(s), title, vx.value, vy.value, [*vx.citations, *vy.citations]))
     return Scatter(points, missing)
 
 

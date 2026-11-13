@@ -42,7 +42,7 @@ class Value:
 @dataclass(frozen=True)
 class MeasureValue:
     value: float
-    citation: Citation
+    citations: tuple[Citation, ...]  # every source field the value is computed from
 
 
 @dataclass(frozen=True)
@@ -68,6 +68,7 @@ class MeasureSpec:
     fields: tuple[str, ...]
     extract: Callable[[dict], MeasureValue | None]
     bins: tuple[float, ...] = field(default=())  # histogram bin edges
+    derivation: str | None = None  # how a derived value is computed from its cited fields
 
 
 # --- record access --------------------------------------------------------------------------
@@ -340,23 +341,30 @@ def _enrollment(s: dict) -> MeasureValue | None:
     n = get(s, path)
     if n is None:
         return None
-    return MeasureValue(float(n), cite(s, path, str(n)))
+    return MeasureValue(float(n), (cite(s, path, str(n)),))
 
 
 def _months(date: str) -> int:
     return int(date[:4]) * 12 + int(date[5:7]) - 1
 
 
+_START = f"{P}.statusModule.startDateStruct.date"
+_COMPLETION = f"{P}.statusModule.completionDateStruct.date"
+DURATION_DERIVATION = (
+    f"(year*12 + month of {_COMPLETION}) - (year*12 + month of {_START}); days are ignored. "
+    "Trials with a date missing, without a month, or ending before they start are left out."
+)
+
+
 def _duration_months(s: dict) -> MeasureValue | None:
-    start = get(s, f"{P}.statusModule.startDateStruct.date")
-    end = get(s, f"{P}.statusModule.completionDateStruct.date")
+    """Derived: both source dates are cited, each with its exact value."""
+    start, end = get(s, _START), get(s, _COMPLETION)
     if not start or not end or len(start) < 7 or len(end) < 7:
         return None
     months = _months(end) - _months(start)
     if months < 0:
         return None
-    excerpt = f"startDate {start}; completionDate {end}"
-    return MeasureValue(float(months), cite(s, f"{P}.statusModule", excerpt))
+    return MeasureValue(float(months), (cite(s, _START, start), cite(s, _COMPLETION, end)))
 
 
 MEASURES: dict[Measure, MeasureSpec] = {
@@ -369,6 +377,7 @@ MEASURES: dict[Measure, MeasureSpec] = {
         Measure.DURATION_MONTHS, "Duration", "months",
         (f"{P}.statusModule.startDateStruct", f"{P}.statusModule.completionDateStruct"),
         _duration_months, bins=(0, 6, 12, 24, 36, 48, 60, 84, 120),
+        derivation=DURATION_DERIVATION,
     ),
 }  # fmt: skip
 

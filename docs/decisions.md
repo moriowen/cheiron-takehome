@@ -165,6 +165,10 @@ The service stays synchronous. Nothing measured so far needs async; the registry
 2026-11-12. Accepted. Replaces `records_used` and `truncated`.
 One flag mixed three things: how many records were downloaded, how many trials the counts cover, and whether a datum lists all its trials. That made a `total` answer look truncated (it fetches 25 records to cite, but its number is the exact registry count). `meta` now has `total_matching`, `trials_counted`, `count_completeness` (exact or sample), `count_method`, `records_fetched`, `citation_limit`, and `coverage` with the same fields per series. `visualization.subtitle` states completeness on the chart ("Partly sampled, SAMPLE of 3,000 of 124,749 trials"), so a sample cannot be missed. The e2e eval checks that these fields agree with each other.
 
+### D38. Derived values cite every source field; cells cite both dimensions
+2026-11-12. Accepted. Completes D15.
+Duration used to cite a made-up path (`statusModule`) with a composed excerpt ("startDate X; completionDate Y"), which broke the rule that an excerpt is the exact value at its path. It now cites `startDateStruct.date` and `completionDateStruct.date` separately, and `meta.derivations` states the formula. A cross-tab cell used to cite only its second dimension; it now cites both, like network edges. A test resolves every citation path (with list indexes) on the real fixtures and checks that the excerpt equals the value there.
+
 ## Assumptions
 
 | ID | Assumption | If false |
