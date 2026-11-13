@@ -5,7 +5,7 @@ import json
 from trialviz.plan import ENTITY_DIMENSIONS, Dimension, Measure
 from trialviz.schemas import QueryRequest
 
-PROMPT_VERSION = "2026-11-12.5"
+PROMPT_VERSION = "2026-11-12.6"
 
 _DIMENSIONS = ", ".join(d.value for d in Dimension)
 _ENTITIES = ", ".join(sorted(d.value for d in ENTITY_DIMENSIONS))
@@ -53,7 +53,8 @@ placebo-controlled; participants such as adults, children, women, age; results p
 anything not in the filters), still plan the rest, keep supported=true, and list each such
 condition in ignored_constraints in the user's words. Never invent a filter for it. Never list a
 condition that a filter already applies. Leave ignored_constraints empty when every condition is
-applied.
+applied. A population or design word is never part of a condition or drug name: "elderly heart
+failure trials" -> condition "heart failure", ignored_constraints ["elderly"].
 
 interpretation_notes: one short note for each reading a user might not expect ("after 2019"
 read as start_year 2020) and for each requested extra the chart cannot show (trial names, a
