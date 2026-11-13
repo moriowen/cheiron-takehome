@@ -54,6 +54,14 @@ class Citation(BaseModel):
     field: str = Field(description="JSON path of the cited value in the API study record.")
     excerpt: str = Field(description="Exact value of that field in the API response.")
     title: str | None = Field(default=None, description="Trial brief title, for display.")
+    match: Literal["exact", "alias", "broader", "free_text"] | None = Field(
+        default=None,
+        description="Drugs and conditions only: how the excerpt maps to the datum's label. "
+        "exact: same words as the MeSH term; alias: a name the sponsor gave as the same thing "
+        "(otherNames, parentheses, list item, reordered words); broader: a condition grouped "
+        "under a MeSH term whose words all appear in it; free_text: no MeSH match, the "
+        "cleaned excerpt is the label.",
+    )
 
 
 class Channel(BaseModel):

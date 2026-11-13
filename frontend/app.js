@@ -29,7 +29,8 @@ function showCitations(datum, heading) {
     const li = document.createElement("li");
     li.innerHTML = `<a target="_blank" rel="noopener" href="https://clinicaltrials.gov/study/${c.nct_id}">${c.nct_id}</a>
       ${c.title ? `<div>${escapeHtml(c.title)}</div>` : ""}
-      <code>${escapeHtml(c.field)}</code> = <strong>${escapeHtml(c.excerpt)}</strong>`;
+      <code>${escapeHtml(c.field)}</code> = <strong>${escapeHtml(c.excerpt)}</strong>
+      ${c.match && c.match !== "exact" ? `<span class="hint"> (mapped as ${escapeHtml(c.match.replace("_", " "))})</span>` : ""}`;
     list.appendChild(li);
   }
   const shown = new Set((datum.citations || []).map((c) => c.nct_id)).size;

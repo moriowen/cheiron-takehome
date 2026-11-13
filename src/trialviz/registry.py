@@ -87,13 +87,14 @@ def nct_id(study: dict) -> str:
     return get(study, "protocolSection.identificationModule.nctId")
 
 
-def cite(study: dict, path: str, value: Any) -> Citation:
+def cite(study: dict, path: str, value: Any, *, match: str | None = None) -> Citation:
     excerpt = value if isinstance(value, str) else json.dumps(value)
     return Citation(
         nct_id=nct_id(study),
         field=path,
         excerpt=excerpt,
         title=get(study, "protocolSection.identificationModule.briefTitle"),
+        match=match,
     )
 
 
@@ -106,19 +107,101 @@ def _display(label: str) -> str:
     return label[0].upper() + label[1:] if label.islower() else label
 
 
-def _tokens(text: str) -> frozenset[str]:
-    return frozenset(re.findall(r"[a-z0-9]+", text.lower()))
+def _tokens(text: str) -> tuple[str, ...]:
+    return tuple(re.findall(r"[a-z0-9]+", text.lower().replace("®", " ").replace("™", " ")))
 
 
-def _mesh_matches(names: list[str], meshes: list[str]) -> list[str]:
-    """MeSH terms that a free-text name refers to: substring either way, or the same words in
-    another order ("Non-Small Cell Lung Carcinoma" ~ "Carcinoma, Non-Small-Cell Lung")."""
-    lowered = [n.lower() for n in names if len(n) >= 3]
-    return [
-        m
-        for m in meshes
-        if any(m.lower() in n or n in m.lower() or _tokens(m) == _tokens(n) for n in lowered)
-    ]
+# --- name -> MeSH mapping (D39) --------------------------------------------------------------
+# Conservative: a MeSH term labels a free-text name only on evidence of identity.
+#   exact: the name, as words, equals the term ("Pembrolizumab" = "pembrolizumab").
+#   alias: the term equals words the sponsor gave as the same thing: an `otherNames` entry, a
+#          parenthesised name ("MK-3475 (pembrolizumab)"), one item of a list name
+#          ("pembrolizumab, pemetrexed"), or the name's words in another order
+#          ("Non-Small Cell Lung Carcinoma" = "Carcinoma, Non-Small-Cell Lung").
+#   free_text: no evidence; the cleaned name itself is the label.
+# A substring is not evidence: "Paclitaxel" is not "Albumin-Bound Paclitaxel", and "Insulin"
+# is not "Insulin Glargine". Conditions alone may also map to a broader term whose words all
+# appear in the name ("Stage IV Melanoma" -> "Melanoma"), recorded as `broader`.
+
+MatchMethod = str  # "exact" | "alias" | "broader" | "free_text"
+_LIST_SEPARATORS = re.compile(
+    r"\s*(?:\bin combination with\b|\bcombined with\b|,|;|\+|/|&|\band\b|\bor\b|"
+    r"\bplus\b|\bwith\b)\s*",
+    re.I,
+)
+# A label ending in one of these words names a drug class, not a drug ("Immune Checkpoint
+# Inhibitors", "Antineoplastic Agents"). Classes are never drug values (like D27's names).
+_CLASS_WORDS = {
+    "inhibitor", "inhibitors", "agents", "antibodies", "drugs", "therapy", "therapies",
+    "immunotherapy", "chemotherapy", "regimen", "antineoplastics",
+}  # fmt: skip
+
+
+def is_drug_class(label: str) -> bool:
+    words = _tokens(label)
+    return bool(words) and words[-1] in _CLASS_WORDS
+
+
+def _same_words(a: str, b: str) -> bool:
+    """Same words, in any order, ignoring case and punctuation."""
+    ta, tb = _tokens(a), _tokens(b)
+    return bool(ta) and sorted(ta) == sorted(tb)
+
+
+def _alias_texts(name: str, other_names: list[str]) -> list[str]:
+    """Texts the sponsor gave as the same intervention as `name`."""
+    texts = list(other_names)
+    texts += re.findall(r"\(([^()]*)\)|\[([^\[\]]*)\]", name)  # "MK-3475 (pembrolizumab)"
+    outside = re.sub(r"\(.*?\)|\[.*?\]", " ", name)
+    texts = [t if isinstance(t, str) else "".join(t) for t in texts] + [outside]
+    items = [p for t in texts for p in _LIST_SEPARATORS.split(t) if p and p.strip()]  # split first
+    return [_strip(t) for t in [*texts, *items]]
+
+
+def _map_names(
+    name: str, other_names: list[str], meshes: list[str], *, broader: bool = False
+) -> list[tuple[str, MatchMethod]]:
+    """(label, method) pairs for one free-text name. Never empty: falls back to the name.
+    For drugs, class terms ("... Inhibitors") are skipped, so a class name with its drugs in
+    parentheses maps to the drugs."""
+    if not broader:
+        meshes = [m for m in meshes if not is_drug_class(m)]
+    bare = _strip(name)
+    same = [m for m in meshes if _same_words(m, bare)]
+    if same:  # same words in the same order is exact; reordered is an alias
+        return [(m, "exact" if _tokens(m) == _tokens(bare) else "alias") for m in same]
+    aliases = _alias_texts(name, other_names)
+    found = [m for m in meshes if any(_same_words(m, t) for t in aliases)]
+    if found:
+        return [(m, "alias") for m in found]
+    if broader:
+        words = set(_tokens(name))
+        wider = [m for m in meshes if _tokens(m) and set(_tokens(m)) <= words]
+        if wider:
+            return [(max(wider, key=lambda m: len(_tokens(m))), "broader")]
+    label = re.sub(r"\s+", " ", _STRENGTH.sub(" ", _clean_name(name))).strip(" ,;-")
+    return [(label or _clean_name(name), "free_text")]
+
+
+# Dose and strength ("200 mg", "75 mg/m^2", "AUC 5"), then route, dosage-form, and
+# combination words: none of them is part of a drug's identity.
+_STRENGTH = re.compile(
+    r"\b\d+(?:[.,]\d+)?\s*(?:mg|g|mcg|µg|ug|ng|ml|l|iu|units?|%)"
+    r"(?:\s*/\s*(?:m\^?2|m²|kg|day|d|dose|ml))?(?![a-z])"
+    r"|\b(?:auc|area under the curve)\s*(?:=\s*)?\d+(?:\.\d+)?",
+    re.I,
+)
+_FORM = re.compile(
+    r"\b(?:injections?|tablets?|capsules?|oral|intravenous|iv|infusion|subcutaneous|"
+    r"solution|for injection|i\.v\.|combination therapy|combination|monotherapy)\b",
+    re.I,
+)
+
+
+def _strip(name: str) -> str:
+    """The name without parenthesised or bracketed text, doses, routes, or dosage forms."""
+    name = re.sub(r"\(.*?\)|\[.*?\]|®|™|\(R\)", " ", name)
+    return re.sub(r"\s+", " ", _FORM.sub(" ", _STRENGTH.sub(" ", name))).strip(" ,;-")
 
 
 # --- dimensions -----------------------------------------------------------------------------
@@ -184,13 +267,11 @@ def _drugs(s: dict) -> list[Value]:
     for i, iv in enumerate(get(s, base) or []):
         if iv.get("type") not in DRUG_TYPES or not iv.get("name"):
             continue
-        names = [iv["name"], *iv.get("otherNames", [])]
-        labels = _mesh_matches(names, meshes) or [_clean_name(iv["name"])]
-        for label in labels:
+        for label, method in _map_names(iv["name"], iv.get("otherNames", []), meshes):
             key = label.lower()
-            if not key or "placebo" in key or key in GENERIC_DRUG_NAMES:
+            if not key or "placebo" in key or key in GENERIC_DRUG_NAMES or is_drug_class(key):
                 continue
-            citation = cite(s, f"{base}[{i}].name", iv["name"])
+            citation = cite(s, f"{base}[{i}].name", iv["name"], match=method)
             out.setdefault(key, Value(key, _display(label), citation))
     return list(out.values())
 
@@ -200,9 +281,10 @@ def _conditions(s: dict) -> list[Value]:
     meshes = [m["term"] for m in get(s, "derivedSection.conditionBrowseModule.meshes") or []]
     out: dict[str, Value] = {}
     for i, cond in enumerate(get(s, base) or []):
-        for label in _mesh_matches([cond], meshes) or [_clean_name(cond)]:
+        for label, method in _map_names(cond, [], meshes, broader=True):
             key = label.lower()
-            out.setdefault(key, Value(key, _display(label), cite(s, f"{base}[{i}]", cond)))
+            citation = cite(s, f"{base}[{i}]", cond, match=method)
+            out.setdefault(key, Value(key, _display(label), citation))
     return list(out.values())
 
 

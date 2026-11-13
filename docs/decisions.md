@@ -47,6 +47,7 @@ Phase uses combined buckets ("Phase 1/2"), because the registry records them as 
 Start dates can be `ESTIMATED` and in the future. Time buckets carry `actual` and `estimated` counts so a renderer can draw them differently. Years are the only time granularity, because 35% of dates have month precision only.
 
 ### D11. Drug identity is the intervention MeSH term
+(Matching rule superseded by D39.)
 2026-11-12. Accepted.
 Free-text names vary (`Keytruda®`, `MK-3475`, `cisplatin` vs `Cisplatin`). NLM's MeSH terms in `derivedSection` normalize them. Fallback when no MeSH term: the lowercased free-text name. DRUG and BIOLOGICAL intervention types both count as drugs.
 
@@ -168,6 +169,15 @@ One flag mixed three things: how many records were downloaded, how many trials t
 ### D38. Derived values cite every source field; cells cite both dimensions
 2026-11-12. Accepted. Completes D15.
 Duration used to cite a made-up path (`statusModule`) with a composed excerpt ("startDate X; completionDate Y"), which broke the rule that an excerpt is the exact value at its path. It now cites `startDateStruct.date` and `completionDateStruct.date` separately, and `meta.derivations` states the formula. A cross-tab cell used to cite only its second dimension; it now cites both, like network edges. A test resolves every citation path (with list indexes) on the real fixtures and checks that the excerpt equals the value there.
+
+### D39. Map names to MeSH only on evidence of identity
+2026-11-12. Accepted. Supersedes the matching rule in D11.
+The old rule matched a name to any MeSH term it contained or was contained in. On the fixtures, that added related formulations and categories as drugs: "Paclitaxel" also counted as "130-nm albumin-bound paclitaxel" in trials with both arms, a biosimilar code in `otherNames` (CT-P10) became a second drug next to rituximab, "Immunoglobulin G" came from bevacizumab's chemical name, and conditions collapsed into "Neoplasms". The new rule (`registry._map_names`):
+1. exact: the name's words equal the term's words, after removing doses, routes, dosage forms, brackets, and trademark signs.
+2. alias: the term equals words the sponsor gave as the same thing: an `otherNames` entry, a parenthesised or bracketed name, one item of a list name ("A + B", "A in combination with B"), or the same words reordered.
+3. Conditions only, broader: the most specific term whose words all appear in the name ("Stage IV Melanoma" -> "Melanoma").
+4. Otherwise free text: the cleaned name.
+Exact wins over alias, so "CC-486" (otherName "Oral Azacitidine") is one drug, not two. Drug-class terms (last word "inhibitors", "agents", "therapy", ...) are never drug values. Every drug and condition citation records the rule in `match`. On the 400 fixture records, 60 labels changed; each change was reviewed, and the regression tests pin the cases above. Cost: some true synonyms stay separate when the record gives no evidence ("5-fluorouracil" and "Fluorouracil", "Mitomycin C" and "Mitomycin").
 
 ## Assumptions
 

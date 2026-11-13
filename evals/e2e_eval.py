@@ -30,7 +30,7 @@ from trialviz.ctgov.client import CTGovClient
 from trialviz.llm.openai_planner import OpenAIPlanner
 from trialviz.llm.prompt import PROMPT_VERSION
 from trialviz.pipeline import Pipeline
-from trialviz.registry import GENERIC_DRUG_NAMES
+from trialviz.registry import GENERIC_DRUG_NAMES, is_drug_class
 from trialviz.schemas import NetworkData, QueryRequest, QueryResponse
 
 NCT = re.compile(r"^NCT\d{8}$")
@@ -71,7 +71,12 @@ def check_response(resp: QueryResponse, expect: dict) -> list[str]:
     if not m.data_timestamp or not m.api_query:
         errors.append("meta missing data_timestamp or api_query")
     if isinstance(v.data, NetworkData):
-        generic = [n.label for n in v.data.nodes if n.label.lower() in GENERIC_DRUG_NAMES]
+        generic = [
+            n.label
+            for n in v.data.nodes
+            if n.group == "drug"
+            and (n.label.lower() in GENERIC_DRUG_NAMES or is_drug_class(n.label))
+        ]  # D27, D39: categories and drug classes are never drug nodes
         if generic:
             errors.append(f"generic intervention names as nodes: {generic}")
     if m.trials_counted > m.total_matching:

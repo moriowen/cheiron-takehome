@@ -268,3 +268,80 @@ def test_every_citation_quotes_the_exact_value_at_its_path(fixture):
             assert c.nct_id == nct_id(s)
             checked += 1
     assert checked > 1000
+
+
+# --- conservative name mapping (D39): regressions from the old substring rule ---------------
+
+
+def drug_record(*interventions, meshes=()):
+    return {
+        "protocolSection": {
+            "identificationModule": {"nctId": "NCT9"},
+            "armsInterventionsModule": {
+                "interventions": [
+                    {"type": "DRUG", "name": n, **({"otherNames": o} if o else {})}
+                    for n, o in interventions
+                ]
+            },
+        },
+        "derivedSection": {"interventionBrowseModule": {"meshes": [{"term": m} for m in meshes]}},
+    }
+
+
+def drugs(*interventions, meshes=()):
+    vals = DIMENSIONS[Dimension.DRUG].extract(drug_record(*interventions, meshes=meshes))
+    return {v.label: v.citation.match for v in vals}
+
+
+def test_a_formulation_is_not_its_parent_drug_or_the_reverse():
+    meshes = ["Paclitaxel", "130-nm albumin-bound paclitaxel"]
+    assert drugs(("Paclitaxel", None), meshes=meshes) == {"Paclitaxel": "exact"}
+    assert drugs(("Nab-paclitaxel", None), meshes=["Paclitaxel"]) == {"Nab-paclitaxel": "free_text"}
+    assert drugs(("Insulin", None), meshes=["Insulin Glargine"]) == {"Insulin": "free_text"}
+
+
+def test_an_other_name_formulation_or_biosimilar_is_not_an_extra_drug():
+    meshes = ["Etoposide", "etoposide phosphate"]
+    assert drugs(("etoposide", ["Etoposide Phosphate"]), meshes=meshes) == {"Etoposide": "exact"}
+    meshes = ["Rituximab", "CT-P10"]
+    assert drugs(("Rituximab", ["CT-P10", "Truxima"]), meshes=meshes) == {"Rituximab": "exact"}
+
+
+def test_doses_routes_and_brackets_do_not_split_a_drug():
+    meshes = ["pembrolizumab"]
+    for name in ["Pembrolizumab 200 mg", "Pembrolizumab Injection [Keytruda]", "Keytruda®"]:
+        other = ["pembrolizumab"] if name == "Keytruda®" else None
+        assert list(drugs((name, other), meshes=meshes)) == ["Pembrolizumab"], name
+    assert drugs(("Pembrolizumab 200 mg", None), meshes=meshes) == {"Pembrolizumab": "exact"}
+    assert drugs(("Carboplatin AUC 5", None), meshes=["Carboplatin"]) == {"Carboplatin": "exact"}
+
+
+def test_list_names_map_each_drug_and_class_terms_are_dropped():
+    meshes = ["Immune Checkpoint Inhibitors", "pembrolizumab", "sintilimab"]
+    name = "Immune Checkpoint Inhibitors ( pembrolizumab, sintilimab)"
+    assert drugs((name, None), meshes=meshes) == {"Pembrolizumab": "alias", "Sintilimab": "alias"}
+    name = "Vilobelimab + pembrolizumab combination therapy"
+    assert set(drugs((name, None), meshes=["vilobelimab", "pembrolizumab"])) == {
+        "Vilobelimab",
+        "Pembrolizumab",
+    }
+    name = "HBI-8000 in combination with pembrolizumab"
+    assert set(drugs((name, None), meshes=["HBI-8000", "pembrolizumab"])) == {
+        "HBI-8000",
+        "Pembrolizumab",
+    }
+    assert drugs(("Chemotherapy", None)) == {} and drugs(("PD-1 inhibitor", None)) == {}
+
+
+def test_condition_maps_to_a_broader_term_only_when_all_its_words_appear():
+    s = {
+        "protocolSection": {
+            "identificationModule": {"nctId": "NCT8"},
+            "conditionsModule": {"conditions": ["Stage IV Melanoma", "Uveal neoplasm"]},
+        },
+        "derivedSection": {
+            "conditionBrowseModule": {"meshes": [{"term": "Melanoma"}, {"term": "Neoplasms"}]}
+        },
+    }
+    got = {v.label: v.citation.match for v in DIMENSIONS[Dimension.CONDITION].extract(s)}
+    assert got == {"Melanoma": "broader", "Uveal neoplasm": "free_text"}  # no "Neoplasms"
