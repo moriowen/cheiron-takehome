@@ -2,7 +2,7 @@
 // as documented in the README. `onPick(datum)` opens the citations panel.
 "use strict";
 
-const PALETTE = ["#1f8a80", "#e07b39", "#2f6fdf", "#c44e8a", "#8a6fdf", "#6b8e23", "#b8860b", "#5f9ea0"];
+const PALETTE = ["#2f6fdf", "#e07b39", "#2a9d8f", "#c44e8a", "#8a6fdf", "#6b8e23", "#b8860b", "#5f9ea0"];
 const W = 900;
 
 function svg(el, height) {

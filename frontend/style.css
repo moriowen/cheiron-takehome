@@ -1,25 +1,25 @@
 :root {
-  --bg: #f6f4ef; --panel: #ffffff; --panel-2: #fbfaf7; --text: #1f2421; --muted: #646b67;
-  --line: #e2ded5; --accent: #0f766e; --accent-strong: #0b5e58; --accent-soft: #e3f1ef;
-  --user: #e6f0ee; --warn: #9a5800; --warn-soft: #fdf3e3; --danger: #b42318;
-  --code-bg: #f3f1ec; --focus: #0f766e; --on-accent: #ffffff;
+  --bg: #f5f6f8; --panel: #ffffff; --panel-2: #f9fafb; --text: #1c1f24; --muted: #5f6672;
+  --line: #e1e4e9; --accent: #2563eb; --accent-strong: #1d4ed8; --accent-soft: #eaf0fb;
+  --user: #eaf0fb; --warn: #9a5800; --warn-soft: #fdf3e3; --danger: #b42318;
+  --code-bg: #f2f4f7; --focus: #2563eb; --on-accent: #ffffff;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #161816; --panel: #1f2220; --panel-2: #232624; --text: #e9ebe8; --muted: #a0a6a2;
-    --line: #343935; --accent: #4fb3a9; --accent-strong: #79cbc2; --accent-soft: #1f3532;
-    --user: #22332f; --warn: #e3a64f; --warn-soft: #33291a; --danger: #f08b80;
-    --code-bg: #191b19; --focus: #79cbc2; --on-accent: #0d1b19;
+    --bg: #15171a; --panel: #1e2125; --panel-2: #22262b; --text: #e7e9ec; --muted: #9ba1aa;
+    --line: #30353c; --accent: #6b9cf5; --accent-strong: #93b6f8; --accent-soft: #1d2a40;
+    --user: #1f2b3e; --warn: #e3a64f; --warn-soft: #33291a; --danger: #f08b80;
+    --code-bg: #181a1e; --focus: #93b6f8; --on-accent: #0b1220;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #161816; --panel: #1f2220; --panel-2: #232624; --text: #e9ebe8; --muted: #a0a6a2;
-  --line: #343935; --accent: #4fb3a9; --accent-strong: #79cbc2; --accent-soft: #1f3532;
-  --user: #22332f; --warn: #e3a64f; --warn-soft: #33291a; --danger: #f08b80;
-  --code-bg: #191b19; --focus: #79cbc2; --on-accent: #0d1b19;
+  --bg: #15171a; --panel: #1e2125; --panel-2: #22262b; --text: #e7e9ec; --muted: #9ba1aa;
+    --line: #30353c; --accent: #6b9cf5; --accent-strong: #93b6f8; --accent-soft: #1d2a40;
+    --user: #1f2b3e; --warn: #e3a64f; --warn-soft: #33291a; --danger: #f08b80;
+    --code-bg: #181a1e; --focus: #93b6f8; --on-accent: #0b1220;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
