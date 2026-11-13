@@ -13,7 +13,11 @@
       <h1>Trial Explorer</h1>
       <p class="tagline">Clinical-trial questions to cited charts, from ClinicalTrials.gov registry data</p>
     </div>
-    <span id="mode" class="mode-badge" role="status">Checking backend…</span>
+    <div class="header-actions">
+      <span id="mode" class="mode-badge" role="status">Checking backend…</span>
+      <button id="new-chat" type="button" class="secondary">New conversation</button>
+      <button id="theme-toggle" type="button" class="secondary" aria-label="Color theme: system">Theme: system</button>
+    </div>
   </header>
   <nav class="tabs" role="tablist" aria-label="Views">
     <button id="ask-tab" role="tab" aria-selected="true" aria-controls="ask-panel" tabindex="0">Ask</button>
@@ -44,33 +48,33 @@
         <div class="guide-groups">
           <section><h3>Trends over time</h3>
             <button type="button" data-preset="01-trend-with-hint">Pembrolizumab trials per year since 2015</button>
-            <button type="button" class="text-only" data-example="Trials per year for semaglutide versus tirzepatide since 2018.">Per year: semaglutide vs tirzepatide</button>
+            <button type="button" data-preset="10-trend-comparison">Per year: semaglutide vs tirzepatide</button>
           </section>
           <section><h3>Distributions</h3>
             <button type="button" data-preset="08-exact-phase-counts">Lung cancer trials by phase</button>
             <button type="button" data-preset="06-enrollment-histogram">Enrollment sizes, phase 3 asthma</button>
-            <button type="button" class="text-only" data-example="What are the most common intervention types for diabetes trials?">Intervention types, diabetes</button>
+            <button type="button" data-preset="11-intervention-types">Intervention types, diabetes</button>
           </section>
           <section><h3>Comparisons and cross-tabs</h3>
             <button type="button" data-preset="02-compare-phases">Phases: nivolumab vs pembrolizumab</button>
-            <button type="button" class="text-only" data-example="Break down COVID-19 trials by phase and status.">COVID-19 trials by phase and status</button>
+            <button type="button" data-preset="12-phase-by-status">COVID-19 trials by phase and status</button>
           </section>
           <section><h3>Geography and rankings</h3>
             <button type="button" data-preset="03-countries-recruiting">Countries, recruiting multiple sclerosis trials</button>
-            <button type="button" class="text-only" data-example="Who are the top 10 sponsors of obesity trials?">Top 10 sponsors, obesity</button>
+            <button type="button" data-preset="13-top-sponsors">Top 10 sponsors, obesity</button>
           </section>
           <section><h3>Networks</h3>
             <button type="button" data-preset="04-sponsor-drug-network">Sponsors and drugs, melanoma</button>
             <button type="button" data-preset="05-drug-cooccurrence-network">Drug co-occurrence, lung cancer</button>
           </section>
           <section><h3>Totals, scatter, corrections, limits</h3>
-            <button type="button" class="text-only" data-example="How many recruiting trials are there for glioblastoma?">Recruiting glioblastoma trials (total)</button>
-            <button type="button" class="text-only" data-example="Plot enrollment against trial duration for semaglutide trials.">Enrollment vs duration, semaglutide</button>
+            <button type="button" data-preset="14-recruiting-total">Recruiting glioblastoma trials (total)</button>
+            <button type="button" data-preset="15-enrollment-vs-duration">Enrollment vs duration, semaglutide</button>
             <button type="button" data-preset="09-misspelled-drug">Misspelled drug name</button>
             <button type="button" data-preset="07-out-of-scope">Efficacy question (unsupported)</button>
           </section>
         </div>
-        <p class="hint"><span class="legend-saved">Solid buttons</span> have a saved run. <span class="legend-text">Dashed buttons</span> only fill in the question, and need the backend.</p>
+        <p class="hint">Each button replays a saved run of the real system. With the backend running, it sends the same question live instead.</p>
         <div class="guide-notes">
           <div>
             <h3>Filters</h3>

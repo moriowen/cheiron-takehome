@@ -6,7 +6,8 @@
 const PRESETS = [
   "01-trend-with-hint", "02-compare-phases", "03-countries-recruiting", "04-sponsor-drug-network",
   "05-drug-cooccurrence-network", "06-enrollment-histogram", "07-out-of-scope",
-  "08-exact-phase-counts", "09-misspelled-drug",
+  "08-exact-phase-counts", "09-misspelled-drug", "10-trend-comparison", "11-intervention-types",
+  "12-phase-by-status", "13-top-sponsors", "14-recruiting-total", "15-enrollment-vs-duration",
 ];
 const API = "../query";
 let live = false;
@@ -14,6 +15,7 @@ const presetCache = {};
 
 const $ = (id) => document.getElementById(id);
 const chat = $("chat");
+const emptyState = chat.querySelector(".empty-state").cloneNode(true);
 
 function addMsg(cls) {
   chat.querySelector(".empty-state")?.remove();
@@ -200,6 +202,37 @@ function setMode() {
     : "Saved demo: use an example button, or start the backend to ask your own question";
 }
 
+// Color theme: system, light, or dark. The choice is a per-browser convenience only.
+const THEMES = ["system", "light", "dark"];
+
+function applyTheme(theme) {
+  if (theme === "system") delete document.documentElement.dataset.theme;
+  else document.documentElement.dataset.theme = theme;
+  const label = `Theme: ${theme}`;
+  $("theme-toggle").textContent = label;
+  $("theme-toggle").setAttribute("aria-label", `Color theme: ${theme}. Click to change.`);
+}
+
+function initTheme() {
+  let theme = "system";
+  try { theme = localStorage.getItem("theme") || "system"; } catch { /* storage blocked */ }
+  if (!THEMES.includes(theme)) theme = "system";
+  applyTheme(theme);
+  $("theme-toggle").onclick = () => {
+    theme = THEMES[(THEMES.indexOf(theme) + 1) % THEMES.length];
+    applyTheme(theme);
+    try { localStorage.setItem("theme", theme); } catch { /* storage blocked */ }
+  };
+}
+
+// Clear the chat. The API response tab keeps its history.
+function newConversation() {
+  chat.replaceChildren(emptyState.cloneNode(true));
+  $("citations").hidden = true;
+  setMode();
+  $("q").focus();
+}
+
 // Collapse the guide after a pick so the answer is visible.
 function closeGuide() {
   $("guide").open = false;
@@ -213,20 +246,10 @@ async function initExamples() {
     loadPreset(btn.dataset.preset).then((ex) => { btn.title = ex.request.query; })
       .catch(() => { btn.disabled = true; btn.title = "Saved example file not found"; });
   }
-  for (const btn of document.querySelectorAll("[data-example]")) {
-    btn.onclick = () => {
-      closeGuide();
-      $("q").value = btn.dataset.example;
-      $("q").focus();
-      if (!live) {
-        addMsg("bot").textContent = "This example has no saved run. Start the backend to send it live.";
-        chat.scrollTop = chat.scrollHeight;
-      }
-    };
-  }
 }
 
 async function init() {
+  initTheme();
   Inspector.init();
   Navigation.init();
   try {
@@ -243,7 +266,8 @@ async function init() {
     addMsg("user").textContent = q;
     addMsg("bot").textContent = "Saved demo mode can only replay the saved examples. Start the backend (see README) to ask new questions.";
   };
-  $("cite-close").onclick = () => { $("citations").hidden = true; };
+  $("cite-close").onclick = () => { $("citations").hidden = true; clearSelection(); };
+  $("new-chat").onclick = newConversation;
   // ?replay renders every saved example, without calling the backend.
   if (new URLSearchParams(location.search).has("replay")) {
     for (const name of PRESETS) await playPreset(name, true);

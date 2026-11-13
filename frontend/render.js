@@ -161,11 +161,17 @@ function network(el, spec, onPick) {
   node.append("text").attr("x", (n) => r(n.weight) + 3).attr("y", 4)
     .text((n) => (n.label.length > 28 ? n.label.slice(0, 27) + "…" : n.label));
   node.call(tooltip, (n) => `${n.label} (${n.group}): ${n.weight} trials`);
-  sim.on("tick", () => {
+  const draw = () => {
     nodes.forEach((n) => { n.x = Math.max(20, Math.min(W - 20, n.x)); n.y = Math.max(20, Math.min(h - 20, n.y)); });
     link.attr("x1", (e) => e.source.x).attr("y1", (e) => e.source.y).attr("x2", (e) => e.target.x).attr("y2", (e) => e.target.y);
     node.attr("transform", (n) => `translate(${n.x},${n.y})`);
-  });
+  };
+  // Settle the layout before the first paint, so the graph does not drift on screen.
+  // The simulation runs again only while a node is dragged.
+  sim.stop();
+  for (let i = 0; i < 300; i++) sim.tick();
+  draw();
+  sim.on("tick", draw);
   legend(el, groups, color);
   d3.select(el).append("div").attr("class", "hint").text("Node size: trials with the entity. Line width: trials with both. Drag nodes; click for sources.");
 }
@@ -180,8 +186,19 @@ function metric(el, spec, onPick) {
 const RENDERERS = { bar_chart: bar, grouped_bar_chart: grouped, time_series: timeSeries,
                     histogram, scatter_plot: scatter, network_graph: network, metric };
 
+// Only one mark on the page is marked as selected: the one whose sources are open.
+function clearSelection() {
+  document.querySelectorAll(".chart .selected").forEach((n) => n.classList.remove("selected"));
+}
+
 function renderViz(el, spec, onPick) {
   const fn = RENDERERS[spec.type];
   if (!fn) { el.textContent = `No renderer for ${spec.type}`; return; }
   fn(el, spec, onPick);
+  el.addEventListener("click", (event) => {
+    const mark = event.target.closest(".clickable");
+    if (!mark || !el.contains(mark)) return;
+    clearSelection();
+    mark.classList.add("selected");
+  });
 }

@@ -37,10 +37,13 @@ button { font: inherit; }
 .brand { min-width: 0; }
 h1 { font-size: 18px; margin: 0; letter-spacing: -.01em; }
 .tagline { margin: 0; font-size: 12.5px; color: var(--muted); }
+.header-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
 .mode-badge { flex-shrink: 0; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
               border: 1px solid var(--line); color: var(--muted); background: var(--panel-2); }
-body[data-mode="live"] .mode-badge { color: var(--accent-strong); border-color: var(--accent); background: var(--accent-soft); }
-body[data-mode="saved"] .mode-badge { color: var(--warn); border-color: var(--warn); background: var(--warn-soft); }
+body[data-mode="live"] .header-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.mode-badge { color: var(--accent-strong); border-color: var(--accent); background: var(--accent-soft); }
+body[data-mode="saved"] .header-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.mode-badge { color: var(--warn); border-color: var(--warn); background: var(--warn-soft); }
 .tabs { display: flex; padding: 0 20px; gap: 4px; border-bottom: 1px solid var(--line);
         background: var(--panel); flex-shrink: 0; overflow-x: auto; }
 .tabs button { color: var(--muted); background: none; border: 0; white-space: nowrap;
@@ -95,6 +98,9 @@ pre { white-space: pre-wrap; font: 12px/1.5 var(--mono); background: var(--code-
 .chart .axis path, .chart .axis line { stroke: var(--muted); }
 .chart .clickable { cursor: pointer; }
 .chart .clickable:hover { opacity: .75; }
+.chart rect.selected, .chart circle.selected, .chart line.selected { stroke: var(--text); stroke-width: 2.5px; }
+.chart g.selected circle { stroke: var(--text); stroke-width: 3px; }
+.chart .metric.selected { color: var(--accent); }
 .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; margin-top: 8px; }
 .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px;
                        margin-right: 5px; background: var(--c); border-radius: 2px; }
@@ -124,9 +130,6 @@ aside { width: 380px; border-left: 1px solid var(--line); background: var(--pane
 .guide-groups button { border: 1px solid var(--line); background: var(--panel-2); color: var(--text); text-align: left;
                        border-radius: 14px; padding: 4px 11px; font-size: 12.5px; cursor: pointer; }
 .guide-groups button:hover:not(:disabled) { border-color: var(--accent); }
-.guide-groups button.text-only { border-style: dashed; background: none; }
-.legend-saved { border: 1px solid var(--line); border-radius: 8px; padding: 0 5px; }
-.legend-text { border: 1px dashed var(--line); border-radius: 8px; padding: 0 5px; }
 .guide-notes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 18px; margin-top: 12px; }
 .guide-notes p, .guide-notes ul { margin: 0; color: var(--muted); }
 .guide-notes ul { padding-left: 18px; }
@@ -158,6 +161,7 @@ pre.json { white-space: pre; overflow-x: auto; max-height: 70vh; overflow-y: aut
 @media (max-width: 760px) {
   .app-header { padding: 10px 16px; }
   .tagline { display: none; }
+  .header-actions .secondary { padding: 4px 8px; font-size: 12px; }
   .tabs { padding: 0 8px; }
   #chat { padding: 16px; }
   .bot { padding: 14px 16px; }
