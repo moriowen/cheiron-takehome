@@ -1,6 +1,6 @@
 # API discoverability and demo implementation plan
 
-Status: implemented (commits `bed9684` to `69ec899`). Offline tests, lint, JS syntax checks, a stub-DOM inspector check, and the clean-ZIP smoke check (uv and Docker Compose) ran. A manual browser check of the deployed page is still to do.
+Status: implemented (commits `bed9684` to `0605541`). Offline tests, lint, JS syntax checks, a stub-DOM inspector check, and the clean-ZIP smoke check (uv and Docker Compose) ran. A manual browser check of the deployed page is still to do.
 
 ## Goal and scope
 
