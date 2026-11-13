@@ -31,4 +31,4 @@ Other regression evidence covers the earlier paclitaxel/formulation normalizatio
 
 `scripts/package_submission.py` creates `dist/trialviz-submission.zip` from committed files with `SUBMISSION.json` recording the code revision. It excludes environment secrets and local build files. `scripts/smoke_submission.py` extracts it, installs locked dependencies, runs offline tests, then checks the actual uv and Docker Compose servers for health, OpenAPI, frontend assets, and saved examples. These startup checks use a dummy key and make no paid planner calls.
 
-A Docker image build passed. Final clean-ZIP smoke results and live end-to-end results are recorded after validation completes.
+The clean ZIP at revision `63ac57c` passed locked dependency installation and all 253 offline tests. Both documented startup paths, uv and Docker Compose, passed HTTP checks for health, exported OpenAPI row schemas, frontend assets, and saved examples. Test servers and Compose resources were removed afterward. The final packaging update changes documentation and validation records only; executable code and examples match this tested snapshot.

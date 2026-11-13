@@ -70,7 +70,7 @@ Each milestone ends with tests green, lint clean, a commit, and this file and `d
 | M3 | Recorded fixtures and field registry | Every Dimension and measure extracts values with citations from real fixtures | Done |
 | M4 | Aggregator | Breakdown, cross-tab, trend, network (bipartite and co-occurrence), histogram, scatter, total all tested on fixtures | Done |
 | M5 | Chart selector and spec builders | Every taxonomy row produces a valid `QueryResponse` from a fixed plan and fixtures | Done |
-| M6 | Pipeline, FastAPI `POST /query`, cache, Docker | End-to-end request works locally and in Docker | Done locally (9 query classes live); Docker build not yet run |
+| M6 | Pipeline, FastAPI `POST /query`, cache, Docker | End-to-end request works locally and in Docker | Done; extracted ZIP passes uv and Docker Compose startup checks |
 | M7 | End-to-end evals, example runs, README | 3 to 5 example JSON outputs committed from real runs; README covers every TASK.md item | Done (development e2e 34/34; held-out 14/15; 9 real examples) |
 | M8 | Chat frontend with D3, static deploy with presets | Every chart type renders; deployed URL works | Done (rendering checked in headless Chrome) |
 

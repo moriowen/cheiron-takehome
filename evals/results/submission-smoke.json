@@ -1,0 +1,20 @@
+{
+  "validated_at": "2026-11-13T01:21:58.884821+00:00",
+  "archive_revision": "63ac57c8000db07bfc935f339e36108fd1840135",
+  "offline_tests_passed": 253,
+  "uv": {
+    "health": true,
+    "openapi_typed_rows": true,
+    "frontend": true,
+    "saved_example": true
+  },
+  "docker_compose": {
+    "build": true,
+    "health": true,
+    "openapi_typed_rows": true,
+    "frontend": true,
+    "saved_example": true
+  },
+  "test_resources_cleaned_up": true,
+  "note": "Validation used a dummy planner key for startup checks. Live correctness results are saved separately."
+}

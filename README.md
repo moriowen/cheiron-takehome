@@ -283,4 +283,4 @@ This project was built with Claude Code (Anthropic) and Codex (OpenAI) as pair p
 4. Run `uv run pytest` and `uv run ruff check .`. For paid live checks, run the planner and end-to-end commands, adding `--heldout` to score the separate adversarial set.
 5. See [docs/submission-validation.md](docs/submission-validation.md) for validation results and a concrete failure, diagnosis, fix, and regression test.
 
-After committing changes, `uv run python scripts/package_submission.py` writes `dist/trialviz-submission.zip`. It includes a revision manifest and excludes `.env`, git history, dependencies, caches, and the private assignment.
+After committing changes, `uv run python scripts/package_submission.py` writes `dist/trialviz-submission.zip`. It includes a revision manifest and excludes `.env`, git history, dependencies, caches, and the private assignment. `uv run python scripts/smoke_submission.py` verifies an extracted ZIP through both startup paths using a dummy key. The packaged executable snapshot passed both checks and all 253 offline tests.
