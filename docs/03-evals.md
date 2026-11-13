@@ -6,9 +6,9 @@ How we measure the system, and how the setup maps to common eval practice. The s
 
 | Command | What it checks | Cost |
 |---|---|---|
-| `uv run pytest` | 202 offline tests on recorded real API data, including the eval harness itself | free, about 2 s |
-| `uv run python -m evals.planner_eval --runs 3` | 72 golden cases x 3 runs, plan checked field by field | about $0.31 on gpt-5.4-mini |
-| `uv run python -m evals.e2e_eval` | 27 hand-written cases through the full pipeline, live registry | about $0.04 LLM, about 4 min |
+| `uv run pytest` | 215 offline tests on recorded real API data, including the eval harness itself | free, about 2 s |
+| `uv run python -m evals.planner_eval --runs 3` | 74 golden cases x 3 runs, plan checked field by field | about $0.32 on gpt-5.4-mini |
+| `uv run python -m evals.e2e_eval` | 29 hand-written cases through the full pipeline, live registry | about $0.04 LLM, about 5 min |
 | `uv run python -m evals.synth --n 45` | regenerates the synthetic cases (review before committing) | about $0.10 |
 
 Results are committed in `evals/results/`. File names carry the model, the prompt version, the dataset version, and k, so every score can be traced to the exact code and data that produced it.
@@ -22,6 +22,8 @@ Results are committed in `evals/results/`. File names carry the model, the promp
 | Planner | gpt-5.4-nano | .4 | .3 (72 cases) | 95.8% | 88.5 to 98.6 | 97.2% | $0.00042 | 1.3 / 2.0 s | scope 6, wrong_dimensions 1 |
 | End-to-end | gpt-5.4-mini | .4 | .3 (27 cases) | 27/27 | 88 to 100 | | | 2.7 / 5.9 s | none |
 | End-to-end, exact counts (D32, D33) | gpt-5.4-mini | .4 | .3 (27 cases) | 27/27 | 88 to 100 | | | 4.6 / 18.6 s | none; adds the exact-count check |
+| Planner | gpt-5.4-mini | .4 | .4 (74 cases) | 100% | 95.1 to 100 | 100% | $0.00145 | 1.0 / 1.3 s | none; gate passes |
+| End-to-end, entity check (D34) | gpt-5.4-mini | .4 | .4 (29 cases) | 29/29 | 88 to 100 | | | 5.9 / 22.3 s | none; adds the typo and unknown-name cases |
 
 Earlier single-run results (prompt .2 and .3, 19 cases) are also in `evals/results/`.
 
@@ -39,7 +41,7 @@ Earlier single-run results (prompt .2 and .3, 19 cases) are also in `evals/resul
 | 8. Simulated users for multi-turn | Not applicable. The API is single-turn and stateless. | |
 | 9. Align the LLM judge | Not applicable. There is no LLM judge, because code can check every property we grade. If we add a judge later (for example, to grade a generated caption), it gets labeled examples, a train/dev/test split, and TPR/TNR reporting. | |
 | 10. Pairwise judge bias | Not applicable (no pairwise judging). Model comparisons run the same cases with deterministic checks. | |
-| 11. Statistics | Every pass rate comes with a 95% Wilson interval. With 72 cases, 100% still only bounds the true rate above 94.9%. The nano vs mini comparison has overlapping intervals, so we did not treat it as a proven overall difference. The decision rests on per-intent failures instead (D29). | `evals/stats.py` |
+| 11. Statistics | Every pass rate comes with a 95% Wilson interval. With 74 cases, 100% still only bounds the true rate above 95.1%. The nano vs mini comparison has overlapping intervals, so we did not treat it as a proven overall difference. The decision rests on per-intent failures instead (D29). | `evals/stats.py` |
 | 12. Gate changes | `ci.yml` runs lint and the offline tests on GitHub on every push (no key needed). The planner eval gate runs locally with the key in `.env`: `uv run python -m evals.planner_eval --runs 3 --gate` exits 1 if any intent falls below its floor in `evals/thresholds.json`. Run it before committing a change to the prompt, plan schema, model settings, or evals. Per-intent floors mean a gain in one intent cannot hide a regression in another. With the current results, the gate passes mini and fails nano (cross-tab 50% is below 75%). | `.github/workflows/ci.yml`, `evals/thresholds.json` |
 | 13. Online evals | Not built (nothing runs in production). The hooks exist: every response carries `meta.plan`, `meta.llm` (model, prompt version, cost), and its API query. Logging a sample of those and running the deterministic checks on them is the natural next step. | |
 | 14. Cost and latency as metrics | Reports give total cost, cost per successful case, and p50/p95 latency next to pass rates. | planner and e2e results |

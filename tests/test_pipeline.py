@@ -30,7 +30,11 @@ def fake_ctgov(calls: list | None = None) -> CTGovClient:
             calls.append(params)
         if req.url.path.endswith("/version"):
             return httpx.Response(200, json={"apiVersion": "2.0.5", "dataTimestamp": "TS"})
+        if req.url.path.endswith("/int/suggest"):
+            return httpx.Response(200, json=["pembrolizumab"])
         studies = PEMBRO["studies"]
+        if params.get("query.intr") == "pembrolizimab":  # a misspelling with no matches
+            studies = []
         adv = params.get("filter.advanced", "")
         for clause, key in by_clause.items():
             if adv == clause or adv.endswith(f"AND ({clause})"):
@@ -52,6 +56,7 @@ PLANS = {
     PHASE_Q: valid(),
     "network?": valid(analysis="network", group_by=["lead_sponsor", "drug"]),
     "countries?": valid(group_by=["country"]),
+    "typo?": valid(filters=NO_FILTERS | {"drug": "pembrolizimab"}),
     "efficacy?": valid(supported=False, unsupported_reason="Not in registry.", analysis=None),
 }
 
@@ -155,6 +160,27 @@ def test_conflicting_hint_is_a_pipeline_error():
     plan = valid(filters=NO_FILTERS | {"end_year": 2010})
     with pytest.raises(PipelineError):
         apply_hints(plan, QueryRequest(query="q", start_year=2015))
+
+
+# --- entity check (D34) --------------------------------------------------------------------
+
+
+def test_misspelled_drug_is_corrected_with_a_note():
+    resp = pipeline().run(QueryRequest(query="typo?"))
+    [check] = resp.meta.entities
+    assert check.corrected and (check.value, check.used) == ("pembrolizimab", "pembrolizumab")
+    assert resp.meta.plan.filters.drug == "pembrolizumab"
+    assert resp.meta.api_query["query.intr"] == "pembrolizumab"
+    assert resp.meta.notes[0].startswith('"pembrolizimab" matches no trials')
+    assert resp.meta.total_matching == 200
+
+
+def test_entity_counts_are_cached_with_the_fetch():
+    calls = []
+    p = pipeline(calls)
+    p.run(QueryRequest(query=PHASE_Q))
+    counts = [c for c in calls if c.get("pageSize") == "1"]
+    assert len(counts) == 1  # the entity check and the retriever share one count
 
 
 # --- HTTP API -------------------------------------------------------------------------------

@@ -17,6 +17,7 @@ import re
 import time
 from collections.abc import Iterator, Sequence
 from dataclasses import dataclass, replace
+from typing import Any
 
 import httpx
 
@@ -169,11 +170,22 @@ class CTGovClient:
         params = {"fields": ",".join(fields)} if fields else {}
         return self._get(f"/studies/{nct_id}", params)
 
+    def suggest(self, text: str, dictionary: str) -> list[str]:
+        """Names the registry's own autocomplete offers for `text` (typo-tolerant).
+
+        `/api/int/suggest` is the endpoint the clinicaltrials.gov search box uses. It is not
+        in the documented v2 API, so callers must cope with it failing. `dictionary` is one
+        of Condition, InterventionName, LeadSponsorName, LocationFacility.
+        """
+        url = str(self._http.base_url).rstrip("/").removesuffix("/v2") + "/int/suggest"
+        names = self._get(url, {"input": text, "dictionary": dictionary})
+        return [n.replace("\\", "") for n in names if isinstance(n, str)]
+
     def version(self) -> DataVersion:
         body = self._get("/version", {})
         return DataVersion(body["apiVersion"], body["dataTimestamp"])
 
-    def _get(self, path: str, params: dict[str, str]) -> dict:
+    def _get(self, path: str, params: dict[str, str]) -> Any:
         for attempt in range(self._max_retries + 1):
             last = attempt == self._max_retries
             if self._limiter:

@@ -9,7 +9,7 @@ from pathlib import Path
 
 from evals.planner_cases import CASES
 
-DATASET_VERSION = "2026-11-12.3"
+DATASET_VERSION = "2026-11-12.4"
 DATA_DIR = Path(__file__).parent / "data"
 SYNTHETIC_FILE = DATA_DIR / "synthetic.json"
 

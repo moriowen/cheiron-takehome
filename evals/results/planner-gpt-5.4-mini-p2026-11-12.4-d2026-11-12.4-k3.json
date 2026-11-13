@@ -1,0 +1,7071 @@
+{
+  "model": "gpt-5.4-mini",
+  "prompt_version": "2026-11-12.4",
+  "dataset_version": "2026-11-12.4",
+  "runs_per_case": 3,
+  "overall": {
+    "cases": 74,
+    "pass_at_k": 1.0,
+    "pass_hat_k": 1.0,
+    "pass_hat_k_ci95": [
+      0.9506484964337834,
+      0.9999999999999998
+    ],
+    "per_run_pass_rate": 1.0,
+    "per_run_ci95": [
+      0.9829898477516985,
+      1.0
+    ],
+    "cost_usd": 0.3222495,
+    "cost_per_success_usd": 0.0014515743243243245,
+    "latency_p50_s": 1.034,
+    "latency_p95_s": 1.31185,
+    "retry_rate": 0.0
+  },
+  "by": {
+    "intent": {
+      "comparison": {
+        "cases": 10,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.7224598312333834,
+          1.0
+        ]
+      },
+      "crosstab": {
+        "cases": 2,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.34237195288961925,
+          1.0
+        ]
+      },
+      "distribution": {
+        "cases": 8,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.6755843804891231,
+          1.0
+        ]
+      },
+      "geographic": {
+        "cases": 6,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.6096569663469354,
+          0.9999999999999999
+        ]
+      },
+      "histogram": {
+        "cases": 6,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.6096569663469354,
+          0.9999999999999999
+        ]
+      },
+      "network": {
+        "cases": 9,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.7008472464490407,
+          1.0
+        ]
+      },
+      "out_of_scope": {
+        "cases": 8,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.6755843804891231,
+          1.0
+        ]
+      },
+      "scatter": {
+        "cases": 2,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.34237195288961925,
+          1.0
+        ]
+      },
+      "top_n": {
+        "cases": 7,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.6456611570247934,
+          1.0
+        ]
+      },
+      "total": {
+        "cases": 8,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.6755843804891231,
+          1.0
+        ]
+      },
+      "trend": {
+        "cases": 8,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.6755843804891231,
+          1.0
+        ]
+      }
+    },
+    "difficulty": {
+      "easy": {
+        "cases": 14,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.7846829880728186,
+          1.0
+        ]
+      },
+      "hard": {
+        "cases": 25,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.8668035060468213,
+          1.0
+        ]
+      },
+      "medium": {
+        "cases": 35,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.9010957324106112,
+          1.0
+        ]
+      }
+    },
+    "source": {
+      "appendix": {
+        "cases": 9,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.7008472464490407,
+          1.0
+        ]
+      },
+      "edge_case": {
+        "cases": 5,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.5655085052479191,
+          1.0
+        ]
+      },
+      "regression": {
+        "cases": 3,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.43849391955098227,
+          1.0
+        ]
+      },
+      "synthetic": {
+        "cases": 45,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.9213457380593594,
+          1.0
+        ]
+      },
+      "taxonomy": {
+        "cases": 12,
+        "pass_hat_k": 1.0,
+        "ci95": [
+          0.7574992425007574,
+          1.0
+        ]
+      }
+    }
+  },
+  "failure_categories": {},
+  "cases": {
+    "trend_drug_since": {
+      "intent": "trend",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "pembrolizumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2015,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144375,
+          "attempts": 1,
+          "latency_s": 1.381
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "pembrolizumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2015,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144375,
+          "attempts": 1,
+          "latency_s": 1.549
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "pembrolizumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2015,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144375,
+          "attempts": 1,
+          "latency_s": 1.561
+        }
+      ]
+    },
+    "trend_condition": {
+      "intent": "trend",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "Alzheimer's disease",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001428,
+          "attempts": 1,
+          "latency_s": 1.599
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "Alzheimer's disease",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001428,
+          "attempts": 1,
+          "latency_s": 1.503
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "Alzheimer's disease",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001428,
+          "attempts": 1,
+          "latency_s": 1.309
+        }
+      ]
+    },
+    "phase_distribution": {
+      "intent": "distribution",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "breast cancer",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142275,
+          "attempts": 1,
+          "latency_s": 1.312
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "breast cancer",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142275,
+          "attempts": 1,
+          "latency_s": 1.461
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "breast cancer",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142275,
+          "attempts": 1,
+          "latency_s": 0.965
+        }
+      ]
+    },
+    "intervention_types": {
+      "intent": "top_n",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "intervention_type"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "diabetes",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00142875,
+          "attempts": 1,
+          "latency_s": 1.117
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "intervention_type"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "diabetes",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00142875,
+          "attempts": 1,
+          "latency_s": 0.915
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "intervention_type"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "diabetes",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00142875,
+          "attempts": 1,
+          "latency_s": 1.116
+        }
+      ]
+    },
+    "compare_drugs_phase": {
+      "intent": "comparison",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "nivolumab",
+                "pembrolizumab"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.001485,
+          "attempts": 1,
+          "latency_s": 1.174
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "nivolumab",
+                "pembrolizumab"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.001485,
+          "attempts": 1,
+          "latency_s": 1.252
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "nivolumab",
+                "pembrolizumab"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.001485,
+          "attempts": 1,
+          "latency_s": 1.02
+        }
+      ]
+    },
+    "compare_conditions_sponsor_class": {
+      "intent": "comparison",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "sponsor_class"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "lung cancer",
+                "breast cancer"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00147825,
+          "attempts": 1,
+          "latency_s": 0.98
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "sponsor_class"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "lung cancer",
+                "breast cancer"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00147825,
+          "attempts": 1,
+          "latency_s": 0.939
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "sponsor_class"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "lung cancer",
+                "breast cancer"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00147825,
+          "attempts": 1,
+          "latency_s": 1.161
+        }
+      ]
+    },
+    "countries_recruiting": {
+      "intent": "geographic",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "multiple sclerosis",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00143775,
+          "attempts": 1,
+          "latency_s": 1.051
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "multiple sclerosis",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00143775,
+          "attempts": 1,
+          "latency_s": 1.574
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "multiple sclerosis",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00143775,
+          "attempts": 1,
+          "latency_s": 0.984
+        }
+      ]
+    },
+    "network_sponsor_drug": {
+      "intent": "network",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "melanoma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143775,
+          "attempts": 1,
+          "latency_s": 0.973
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "melanoma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143775,
+          "attempts": 1,
+          "latency_s": 1.098
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "melanoma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143775,
+          "attempts": 1,
+          "latency_s": 0.97
+        }
+      ]
+    },
+    "network_drug_cooccurrence": {
+      "intent": "network",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "drug",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lung cancer",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142575,
+          "attempts": 1,
+          "latency_s": 0.996
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "drug",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lung cancer",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142575,
+          "attempts": 1,
+          "latency_s": 1.025
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "drug",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lung cancer",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142575,
+          "attempts": 1,
+          "latency_s": 0.988
+        }
+      ]
+    },
+    "hint_drug_trend": {
+      "intent": "trend",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "Pembrolizumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144,
+          "attempts": 1,
+          "latency_s": 1.018
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "Pembrolizumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144,
+          "attempts": 1,
+          "latency_s": 1.08
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "Pembrolizumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144,
+          "attempts": 1,
+          "latency_s": 1.23
+        }
+      ]
+    },
+    "histogram_enrollment": {
+      "intent": "histogram",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014445,
+          "attempts": 1,
+          "latency_s": 0.997
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014445,
+          "attempts": 1,
+          "latency_s": 1.113
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014445,
+          "attempts": 1,
+          "latency_s": 1.039
+        }
+      ]
+    },
+    "scatter_enrollment_duration": {
+      "intent": "scatter",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "scatter",
+            "group_by": [],
+            "measures": [
+              "enrollment",
+              "duration_months"
+            ],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014475,
+          "attempts": 1,
+          "latency_s": 1.059
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "scatter",
+            "group_by": [],
+            "measures": [
+              "enrollment",
+              "duration_months"
+            ],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014475,
+          "attempts": 1,
+          "latency_s": 1.027
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "scatter",
+            "group_by": [],
+            "measures": [
+              "enrollment",
+              "duration_months"
+            ],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014475,
+          "attempts": 1,
+          "latency_s": 0.996
+        }
+      ]
+    },
+    "total_recruiting": {
+      "intent": "total",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "glioblastoma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142875,
+          "attempts": 1,
+          "latency_s": 0.936
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "glioblastoma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142875,
+          "attempts": 1,
+          "latency_s": 1.063
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "glioblastoma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142875,
+          "attempts": 1,
+          "latency_s": 0.997
+        }
+      ]
+    },
+    "top_sponsors": {
+      "intent": "top_n",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "obesity",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00142875,
+          "attempts": 1,
+          "latency_s": 0.998
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "obesity",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00142875,
+          "attempts": 1,
+          "latency_s": 0.965
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "obesity",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00142875,
+          "attempts": 1,
+          "latency_s": 0.975
+        }
+      ]
+    },
+    "crosstab_phase_status": {
+      "intent": "crosstab",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase",
+              "overall_status"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "COVID-19",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143775,
+          "attempts": 1,
+          "latency_s": 0.977
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase",
+              "overall_status"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "COVID-19",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143775,
+          "attempts": 1,
+          "latency_s": 1.101
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase",
+              "overall_status"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "COVID-19",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143775,
+          "attempts": 1,
+          "latency_s": 0.987
+        }
+      ]
+    },
+    "trend_comparison": {
+      "intent": "comparison",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "semaglutide",
+                "tirzepatide"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.0014925,
+          "attempts": 1,
+          "latency_s": 1.281
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "semaglutide",
+                "tirzepatide"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.0014925,
+          "attempts": 1,
+          "latency_s": 0.973
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "semaglutide",
+                "tirzepatide"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.0014925,
+          "attempts": 1,
+          "latency_s": 1.154
+        }
+      ]
+    },
+    "network_drug_condition_sponsor": {
+      "intent": "network",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "drug",
+              "condition"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": "Merck",
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014265,
+          "attempts": 1,
+          "latency_s": 0.971
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "drug",
+              "condition"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": "Merck",
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014265,
+          "attempts": 1,
+          "latency_s": 1.034
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "drug",
+              "condition"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": "Merck",
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014265,
+          "attempts": 1,
+          "latency_s": 1.055
+        }
+      ]
+    },
+    "unsupported_efficacy": {
+      "intent": "out_of_scope",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry data does not provide efficacy conclusions like whether one drug is more effective than another.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014835,
+          "attempts": 1,
+          "latency_s": 1.088
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry data does not provide efficacy conclusions like whether one drug is more effective than another.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014835,
+          "attempts": 1,
+          "latency_s": 1.063
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry records do not provide efficacy conclusions like whether one drug is more effective than another.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014835,
+          "attempts": 1,
+          "latency_s": 1.009
+        }
+      ]
+    },
+    "unsupported_price": {
+      "intent": "out_of_scope",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov does not provide drug pricing or course cost information.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": "US",
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00146775,
+          "attempts": 1,
+          "latency_s": 1.085
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov does not provide drug pricing or course cost information.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": "US",
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00146775,
+          "attempts": 1,
+          "latency_s": 1.098
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry data does not provide drug pricing or course cost information.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": "US",
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00147675,
+          "attempts": 1,
+          "latency_s": 1.057
+        }
+      ]
+    },
+    "misspelled_drug_corrected": {
+      "intent": "distribution",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "pembrolizimab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014385,
+          "attempts": 1,
+          "latency_s": 1.053
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "pembrolizimab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014385,
+          "attempts": 1,
+          "latency_s": 1.006
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "pembrolizimab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014385,
+          "attempts": 1,
+          "latency_s": 0.921
+        }
+      ]
+    },
+    "unknown_drug_reported": {
+      "intent": "total",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "xqzvmab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001419,
+          "attempts": 1,
+          "latency_s": 0.927
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "xqzvmab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001419,
+          "attempts": 1,
+          "latency_s": 0.896
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "xqzvmab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001419,
+          "attempts": 1,
+          "latency_s": 0.992
+        }
+      ]
+    },
+    "brand_name_kept_as_written": {
+      "intent": "total",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "Keytruda",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142875,
+          "attempts": 1,
+          "latency_s": 1.007
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "Keytruda",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142875,
+          "attempts": 1,
+          "latency_s": 1.025
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "Keytruda",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142875,
+          "attempts": 1,
+          "latency_s": 1.359
+        }
+      ]
+    },
+    "prompt_injection_ignored": {
+      "intent": "distribution",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014295,
+          "attempts": 1,
+          "latency_s": 0.975
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014295,
+          "attempts": 1,
+          "latency_s": 1.075
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014295,
+          "attempts": 1,
+          "latency_s": 1.0
+        }
+      ]
+    },
+    "regression_compare_condition_not_dimension": {
+      "intent": "comparison",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "sponsor_class"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "Crohn's disease",
+                "ulcerative colitis"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.0014985,
+          "attempts": 1,
+          "latency_s": 1.217
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "sponsor_class"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "Crohn's disease",
+                "ulcerative colitis"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.0014985,
+          "attempts": 1,
+          "latency_s": 1.066
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "sponsor_class"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "Crohn's disease",
+                "ulcerative colitis"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.0014985,
+          "attempts": 1,
+          "latency_s": 0.977
+        }
+      ]
+    },
+    "regression_compare_single_dimension": {
+      "intent": "comparison",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "atezolizumab",
+                "durvalumab"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00147975,
+          "attempts": 1,
+          "latency_s": 1.023
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "atezolizumab",
+                "durvalumab"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00147975,
+          "attempts": 1,
+          "latency_s": 1.103
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "atezolizumab",
+                "durvalumab"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00147975,
+          "attempts": 1,
+          "latency_s": 1.126
+        }
+      ]
+    },
+    "scatter_duration_vs_enrollment": {
+      "intent": "scatter",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "scatter",
+            "group_by": [],
+            "measures": [
+              "duration_months",
+              "enrollment"
+            ],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144375,
+          "attempts": 1,
+          "latency_s": 1.069
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "scatter",
+            "group_by": [],
+            "measures": [
+              "duration_months",
+              "enrollment"
+            ],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144375,
+          "attempts": 1,
+          "latency_s": 1.072
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "scatter",
+            "group_by": [],
+            "measures": [
+              "duration_months",
+              "enrollment"
+            ],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144375,
+          "attempts": 1,
+          "latency_s": 1.137
+        }
+      ]
+    },
+    "crosstab_phase_sponsor_class": {
+      "intent": "crosstab",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase",
+              "sponsor_class"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "breast cancer",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001443,
+          "attempts": 1,
+          "latency_s": 1.199
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase",
+              "sponsor_class"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "breast cancer",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001443,
+          "attempts": 1,
+          "latency_s": 0.89
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase",
+              "sponsor_class"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "breast cancer",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001443,
+          "attempts": 1,
+          "latency_s": 1.007
+        }
+      ]
+    },
+    "regression_partial_request_still_supported": {
+      "intent": "network",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "migraine",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143925,
+          "attempts": 1,
+          "latency_s": 0.96
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "migraine",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143925,
+          "attempts": 1,
+          "latency_s": 0.97
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "migraine",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143925,
+          "attempts": 1,
+          "latency_s": 1.034
+        }
+      ]
+    },
+    "unsupported_safety": {
+      "intent": "out_of_scope",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry records do not provide a direct answer to common side effects; that requires safety/outcome data beyond trial registration fields.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00152925,
+          "attempts": 1,
+          "latency_s": 1.156
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry records do not provide a direct answer to common side effects; that requires safety/outcome data beyond trial registration fields.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00152925,
+          "attempts": 1,
+          "latency_s": 1.297
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry records do not provide side-effect frequency summaries; this question asks for adverse effects rather than trial registration data.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00152025,
+          "attempts": 1,
+          "latency_s": 1.135
+        }
+      ]
+    },
+    "syn_000_trend": {
+      "intent": "trend",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "metformin",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144525,
+          "attempts": 1,
+          "latency_s": 1.067
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "metformin",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144525,
+          "attempts": 1,
+          "latency_s": 1.115
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "metformin",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144525,
+          "attempts": 1,
+          "latency_s": 1.065
+        }
+      ]
+    },
+    "syn_001_distribution": {
+      "intent": "distribution",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "psoriasis",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001437,
+          "attempts": 1,
+          "latency_s": 1.105
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "psoriasis",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001437,
+          "attempts": 1,
+          "latency_s": 1.003
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "psoriasis",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001437,
+          "attempts": 1,
+          "latency_s": 1.223
+        }
+      ]
+    },
+    "syn_002_top_n": {
+      "intent": "top_n",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "heart failure",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.0014445,
+          "attempts": 1,
+          "latency_s": 1.235
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "heart failure",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.0014445,
+          "attempts": 1,
+          "latency_s": 1.142
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "heart failure",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.0014445,
+          "attempts": 1,
+          "latency_s": 1.03
+        }
+      ]
+    },
+    "syn_003_geographic": {
+      "intent": "geographic",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "remdesivir",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.0014325,
+          "attempts": 1,
+          "latency_s": 0.995
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "remdesivir",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.0014325,
+          "attempts": 1,
+          "latency_s": 1.0
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "remdesivir",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.0014325,
+          "attempts": 1,
+          "latency_s": 1.004
+        }
+      ]
+    },
+    "syn_004_comparison": {
+      "intent": "comparison",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "asthma",
+                "migraine"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.0014745,
+          "attempts": 1,
+          "latency_s": 1.017
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "asthma",
+                "migraine"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.0014745,
+          "attempts": 1,
+          "latency_s": 0.984
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "asthma",
+                "migraine"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.0014745,
+          "attempts": 1,
+          "latency_s": 1.438
+        }
+      ]
+    },
+    "syn_005_network": {
+      "intent": "network",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001467,
+          "attempts": 1,
+          "latency_s": 0.98
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001467,
+          "attempts": 1,
+          "latency_s": 1.103
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001467,
+          "attempts": 1,
+          "latency_s": 1.203
+        }
+      ]
+    },
+    "syn_006_histogram": {
+      "intent": "histogram",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001461,
+          "attempts": 1,
+          "latency_s": 0.978
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001461,
+          "attempts": 1,
+          "latency_s": 1.26
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001461,
+          "attempts": 1,
+          "latency_s": 1.139
+        }
+      ]
+    },
+    "syn_007_total": {
+      "intent": "total",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "metformin only",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142575,
+          "attempts": 1,
+          "latency_s": 1.015
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "metformin only",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142575,
+          "attempts": 1,
+          "latency_s": 1.004
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "metformin only",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142575,
+          "attempts": 1,
+          "latency_s": 1.017
+        }
+      ]
+    },
+    "syn_008_out_of_scope": {
+      "intent": "out_of_scope",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov can compare trastuzumab with other drugs in trial registrations, but it does not provide pricing or what people might pay.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0015315,
+          "attempts": 1,
+          "latency_s": 1.156
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov can compare trial characteristics for trastuzumab versus other drugs, but it does not provide pricing or what people might pay.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0015315,
+          "attempts": 1,
+          "latency_s": 1.167
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov can compare trial characteristics for trastuzumab versus other drugs, but it does not provide pricing or what people might pay.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0015315,
+          "attempts": 1,
+          "latency_s": 1.184
+        }
+      ]
+    },
+    "syn_009_trend": {
+      "intent": "trend",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": "Pfizer",
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143625,
+          "attempts": 1,
+          "latency_s": 1.03
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": "Pfizer",
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143625,
+          "attempts": 1,
+          "latency_s": 0.929
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": "Pfizer",
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143625,
+          "attempts": 1,
+          "latency_s": 0.955
+        }
+      ]
+    },
+    "syn_010_distribution": {
+      "intent": "distribution",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144,
+          "attempts": 1,
+          "latency_s": 1.296
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144,
+          "attempts": 1,
+          "latency_s": 1.002
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144,
+          "attempts": 1,
+          "latency_s": 1.09
+        }
+      ]
+    },
+    "syn_011_top_n": {
+      "intent": "top_n",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "psoriasis",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00144225,
+          "attempts": 1,
+          "latency_s": 0.954
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "psoriasis",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00144225,
+          "attempts": 1,
+          "latency_s": 0.995
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "psoriasis",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00144225,
+          "attempts": 1,
+          "latency_s": 0.948
+        }
+      ]
+    },
+    "syn_012_geographic": {
+      "intent": "geographic",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.001443,
+          "attempts": 1,
+          "latency_s": 1.022
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001443,
+          "attempts": 1,
+          "latency_s": 1.056
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001443,
+          "attempts": 1,
+          "latency_s": 0.919
+        }
+      ]
+    },
+    "syn_013_comparison": {
+      "intent": "comparison",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "semaglutide",
+                "adalimumab"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00150825,
+          "attempts": 1,
+          "latency_s": 0.986
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "semaglutide",
+                "adalimumab"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00150825,
+          "attempts": 1,
+          "latency_s": 1.118
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "semaglutide",
+                "adalimumab"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00150825,
+          "attempts": 1,
+          "latency_s": 1.097
+        }
+      ]
+    },
+    "syn_014_network": {
+      "intent": "network",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "heart failure",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001458,
+          "attempts": 1,
+          "latency_s": 1.206
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "heart failure",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001458,
+          "attempts": 1,
+          "latency_s": 1.226
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "heart failure",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001458,
+          "attempts": 1,
+          "latency_s": 1.096
+        }
+      ]
+    },
+    "syn_015_histogram": {
+      "intent": "histogram",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014595,
+          "attempts": 1,
+          "latency_s": 0.943
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014595,
+          "attempts": 1,
+          "latency_s": 1.072
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014595,
+          "attempts": 1,
+          "latency_s": 0.991
+        }
+      ]
+    },
+    "syn_016_total": {
+      "intent": "total",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "nivolumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014235,
+          "attempts": 1,
+          "latency_s": 0.912
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "nivolumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014235,
+          "attempts": 1,
+          "latency_s": 0.937
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "nivolumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014235,
+          "attempts": 1,
+          "latency_s": 1.072
+        }
+      ]
+    },
+    "syn_017_out_of_scope": {
+      "intent": "out_of_scope",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry data does not provide comparative efficacy ('works better') or drug prices/costs.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00150375,
+          "attempts": 1,
+          "latency_s": 1.17
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry data does not provide comparative efficacy ('works better') or drug prices/costs.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00150375,
+          "attempts": 1,
+          "latency_s": 1.139
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry records do not provide comparative efficacy ('works better') or drug prices/costs.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00150375,
+          "attempts": 1,
+          "latency_s": 1.204
+        }
+      ]
+    },
+    "syn_018_trend": {
+      "intent": "trend",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "trastuzumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014385,
+          "attempts": 1,
+          "latency_s": 0.994
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "trastuzumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014385,
+          "attempts": 1,
+          "latency_s": 1.0
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "trastuzumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014385,
+          "attempts": 1,
+          "latency_s": 1.043
+        }
+      ]
+    },
+    "syn_019_distribution": {
+      "intent": "distribution",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "heart failure",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014355,
+          "attempts": 1,
+          "latency_s": 1.028
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "heart failure",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014355,
+          "attempts": 1,
+          "latency_s": 1.074
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "heart failure",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014355,
+          "attempts": 1,
+          "latency_s": 0.939
+        }
+      ]
+    },
+    "syn_020_top_n": {
+      "intent": "top_n",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00143325,
+          "attempts": 1,
+          "latency_s": 1.208
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00143325,
+          "attempts": 1,
+          "latency_s": 1.329
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00143325,
+          "attempts": 1,
+          "latency_s": 1.029
+        }
+      ]
+    },
+    "syn_021_geographic": {
+      "intent": "geographic",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "Trastuzumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.0014445,
+          "attempts": 1,
+          "latency_s": 1.001
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "Trastuzumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.0014445,
+          "attempts": 1,
+          "latency_s": 1.001
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "Trastuzumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.0014445,
+          "attempts": 1,
+          "latency_s": 1.012
+        }
+      ]
+    },
+    "syn_022_comparison": {
+      "intent": "comparison",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "asthma",
+                "psoriasis"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00147,
+          "attempts": 1,
+          "latency_s": 1.025
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "asthma",
+                "psoriasis"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00147,
+          "attempts": 1,
+          "latency_s": 1.145
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "asthma",
+                "psoriasis"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00147,
+          "attempts": 1,
+          "latency_s": 1.083
+        }
+      ]
+    },
+    "syn_023_network": {
+      "intent": "network",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "migraine",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00146625,
+          "attempts": 1,
+          "latency_s": 1.07
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "migraine",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00146625,
+          "attempts": 1,
+          "latency_s": 1.008
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "migraine",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00146625,
+          "attempts": 1,
+          "latency_s": 1.114
+        }
+      ]
+    },
+    "syn_024_histogram": {
+      "intent": "histogram",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": null,
+              "condition": "migraine",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001449,
+          "attempts": 1,
+          "latency_s": 0.931
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": null,
+              "condition": "migraine",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001449,
+          "attempts": 1,
+          "latency_s": 0.917
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": null,
+              "condition": "migraine",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001449,
+          "attempts": 1,
+          "latency_s": 1.277
+        }
+      ]
+    },
+    "syn_025_total": {
+      "intent": "total",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "trastuzumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143175,
+          "attempts": 1,
+          "latency_s": 1.088
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "trastuzumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143175,
+          "attempts": 1,
+          "latency_s": 0.931
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "trastuzumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143175,
+          "attempts": 1,
+          "latency_s": 0.992
+        }
+      ]
+    },
+    "syn_026_out_of_scope": {
+      "intent": "out_of_scope",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry data does not provide comparative effectiveness conclusions or pricing/cost information.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00149325,
+          "attempts": 1,
+          "latency_s": 1.14
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry data does not provide comparative effectiveness conclusions or pricing/cost information.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00149325,
+          "attempts": 1,
+          "latency_s": 1.109
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry data does not provide comparative effectiveness or pricing information for semaglutide versus alternatives.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "semaglutide",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00151125,
+          "attempts": 1,
+          "latency_s": 1.035
+        }
+      ]
+    },
+    "syn_027_trend": {
+      "intent": "trend",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": "Mayo Clinic",
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142275,
+          "attempts": 1,
+          "latency_s": 1.109
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": "Mayo Clinic",
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142275,
+          "attempts": 1,
+          "latency_s": 0.959
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": "Mayo Clinic",
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00142275,
+          "attempts": 1,
+          "latency_s": 0.954
+        }
+      ]
+    },
+    "syn_028_distribution": {
+      "intent": "distribution",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014235,
+          "attempts": 1,
+          "latency_s": 1.156
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014235,
+          "attempts": 1,
+          "latency_s": 1.14
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014235,
+          "attempts": 1,
+          "latency_s": 1.089
+        }
+      ]
+    },
+    "syn_029_top_n": {
+      "intent": "top_n",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "nivolumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00144825,
+          "attempts": 1,
+          "latency_s": 0.916
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "nivolumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00144825,
+          "attempts": 1,
+          "latency_s": 0.955
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "nivolumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00144825,
+          "attempts": 1,
+          "latency_s": 1.013
+        }
+      ]
+    },
+    "syn_030_geographic": {
+      "intent": "geographic",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014385,
+          "attempts": 1,
+          "latency_s": 1.073
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.0014385,
+          "attempts": 1,
+          "latency_s": 1.025
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.0014385,
+          "attempts": 1,
+          "latency_s": 0.921
+        }
+      ]
+    },
+    "syn_031_comparison": {
+      "intent": "comparison",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "lupus",
+                "psoriasis"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.0014715,
+          "attempts": 1,
+          "latency_s": 1.055
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "lupus",
+                "psoriasis"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.0014715,
+          "attempts": 1,
+          "latency_s": 0.923
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "condition",
+              "values": [
+                "lupus",
+                "psoriasis"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.0014715,
+          "attempts": 1,
+          "latency_s": 1.007
+        }
+      ]
+    },
+    "syn_032_network": {
+      "intent": "network",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "glioblastoma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001464,
+          "attempts": 1,
+          "latency_s": 0.999
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "glioblastoma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001464,
+          "attempts": 1,
+          "latency_s": 1.059
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "glioblastoma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001464,
+          "attempts": 1,
+          "latency_s": 1.096
+        }
+      ]
+    },
+    "syn_033_histogram": {
+      "intent": "histogram",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": "adalimumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00145125,
+          "attempts": 1,
+          "latency_s": 0.959
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": "adalimumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00145125,
+          "attempts": 1,
+          "latency_s": 0.944
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": "adalimumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00145125,
+          "attempts": 1,
+          "latency_s": 1.054
+        }
+      ]
+    },
+    "syn_034_total": {
+      "intent": "total",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "nivolumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143175,
+          "attempts": 1,
+          "latency_s": 1.117
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "nivolumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143175,
+          "attempts": 1,
+          "latency_s": 2.105
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "nivolumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143175,
+          "attempts": 1,
+          "latency_s": 1.064
+        }
+      ]
+    },
+    "syn_035_out_of_scope": {
+      "intent": "out_of_scope",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry records do not provide efficacy comparisons like 'works better' or pricing/cost information.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "trastuzumab",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00149925,
+          "attempts": 1,
+          "latency_s": 1.039
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "Registry data does not provide efficacy comparisons like 'works better' or cost/pricing information.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00147675,
+          "attempts": 1,
+          "latency_s": 1.25
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry data does not provide efficacy comparisons like 'works better' or pricing/cost information.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00149025,
+          "attempts": 1,
+          "latency_s": 1.235
+        }
+      ]
+    },
+    "syn_036_trend": {
+      "intent": "trend",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": "Pfizer",
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143325,
+          "attempts": 1,
+          "latency_s": 1.015
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": "Pfizer",
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143325,
+          "attempts": 1,
+          "latency_s": 0.987
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "trend",
+            "group_by": [
+              "start_year"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": "Pfizer",
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00143325,
+          "attempts": 1,
+          "latency_s": 1.234
+        }
+      ]
+    },
+    "syn_037_distribution": {
+      "intent": "distribution",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001422,
+          "attempts": 1,
+          "latency_s": 0.911
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001422,
+          "attempts": 1,
+          "latency_s": 0.974
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.001422,
+          "attempts": 1,
+          "latency_s": 1.021
+        }
+      ]
+    },
+    "syn_038_top_n": {
+      "intent": "top_n",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "metformin",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00145875,
+          "attempts": 1,
+          "latency_s": 0.936
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "metformin",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00145875,
+          "attempts": 1,
+          "latency_s": 1.001
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "lead_sponsor"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": "metformin",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": [
+                "RECRUITING"
+              ],
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00145875,
+          "attempts": 1,
+          "latency_s": 1.184
+        }
+      ]
+    },
+    "syn_039_geographic": {
+      "intent": "geographic",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144525,
+          "attempts": 1,
+          "latency_s": 0.952
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": 10
+          },
+          "cost_usd": 0.00144525,
+          "attempts": 1,
+          "latency_s": 0.998
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "country"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00144525,
+          "attempts": 1,
+          "latency_s": 0.91
+        }
+      ]
+    },
+    "syn_040_comparison": {
+      "intent": "comparison",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "remdesivir",
+                "nivolumab"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00149025,
+          "attempts": 1,
+          "latency_s": 1.068
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "remdesivir",
+                "nivolumab"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00149025,
+          "attempts": 1,
+          "latency_s": 0.963
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "breakdown",
+            "group_by": [
+              "phase"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": 2018,
+              "end_year": null
+            },
+            "comparison": {
+              "field": "drug",
+              "values": [
+                "remdesivir",
+                "nivolumab"
+              ]
+            },
+            "top_n": null
+          },
+          "cost_usd": 0.00149025,
+          "attempts": 1,
+          "latency_s": 1.155
+        }
+      ]
+    },
+    "syn_041_network": {
+      "intent": "network",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014595,
+          "attempts": 1,
+          "latency_s": 1.044
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014595,
+          "attempts": 1,
+          "latency_s": 0.986
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "network",
+            "group_by": [
+              "lead_sponsor",
+              "drug"
+            ],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "asthma",
+              "sponsor": null,
+              "country": null,
+              "phase": [
+                "PHASE3"
+              ],
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014595,
+          "attempts": 1,
+          "latency_s": 0.96
+        }
+      ]
+    },
+    "syn_042_histogram": {
+      "intent": "histogram",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014355,
+          "attempts": 1,
+          "latency_s": 0.954
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014355,
+          "attempts": 1,
+          "latency_s": 0.99
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "histogram",
+            "group_by": [],
+            "measures": [
+              "enrollment"
+            ],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014355,
+          "attempts": 1,
+          "latency_s": 1.01
+        }
+      ]
+    },
+    "syn_043_total": {
+      "intent": "total",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": "Germany",
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014085,
+          "attempts": 1,
+          "latency_s": 0.982
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": "Germany",
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014085,
+          "attempts": 1,
+          "latency_s": 1.056
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": true,
+            "unsupported_reason": null,
+            "analysis": "total",
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": null,
+              "condition": "lupus",
+              "sponsor": null,
+              "country": "Germany",
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.0014085,
+          "attempts": 1,
+          "latency_s": 0.951
+        }
+      ]
+    },
+    "syn_044_out_of_scope": {
+      "intent": "out_of_scope",
+      "runs": [
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry data does not provide comparative effectiveness ('better than alternatives') or cost information.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "remdesivir",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00148575,
+          "attempts": 1,
+          "latency_s": 1.149
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry data does not provide comparative effectiveness or cost information for remdesivir versus alternatives.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "remdesivir",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00149025,
+          "attempts": 1,
+          "latency_s": 1.088
+        },
+        {
+          "passed": true,
+          "failures": [],
+          "plan": {
+            "supported": false,
+            "unsupported_reason": "ClinicalTrials.gov registry data does not provide comparative efficacy ('better than alternatives') or cost information.",
+            "analysis": null,
+            "group_by": [],
+            "measures": [],
+            "filters": {
+              "drug": "remdesivir",
+              "condition": null,
+              "sponsor": null,
+              "country": null,
+              "phase": null,
+              "status": null,
+              "start_year": null,
+              "end_year": null
+            },
+            "comparison": null,
+            "top_n": null
+          },
+          "cost_usd": 0.00148575,
+          "attempts": 1,
+          "latency_s": 1.213
+        }
+      ]
+    }
+  }
+}

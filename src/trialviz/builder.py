@@ -16,6 +16,7 @@ from trialviz.schemas import (
     Channel,
     Citation,
     Edge,
+    EntityCheck,
     LLMInfo,
     Meta,
     NetworkData,
@@ -53,7 +54,11 @@ def select_viz(plan: QueryPlan) -> VizType:
 
 
 def build_response(
-    plan: QueryPlan, fetched: Fetched, data_timestamp: str | None, llm: LLMInfo | None
+    plan: QueryPlan,
+    fetched: Fetched,
+    data_timestamp: str | None,
+    llm: LLMInfo | None,
+    entities: Sequence[EntityCheck] = (),
 ) -> QueryResponse:
     if not plan.supported:
         meta = Meta(
@@ -64,7 +69,7 @@ def build_response(
         )
         return QueryResponse(status="unsupported", visualization=None, meta=meta)
 
-    notes: list[str] = []
+    notes: list[str] = [e.note for e in entities if e.note]  # spelling fixes come first
     viz_type = select_viz(plan)
     meta = _base_meta(plan, fetched, data_timestamp, llm, notes)
     builder = _BUILDERS[viz_type]
@@ -81,6 +86,7 @@ def build_response(
     if meta.records_used == 0:
         notes.append("No trials matched the query.")
     meta.notes = notes  # Meta copied the list on construction; later notes go in here
+    meta.entities = list(entities)
     viz = Visualization(type=viz_type, title=_title(plan), encoding=encoding, data=data)
     return QueryResponse(status="ok", visualization=viz, meta=meta)
 

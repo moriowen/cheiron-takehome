@@ -9,6 +9,7 @@ from trialviz.compiler import compile_plan
 from trialviz.ctgov.client import CTGovClient
 from trialviz.llm.planner import Planner
 from trialviz.plan import Analysis, QueryPlan
+from trialviz.resolve import resolve_entities
 from trialviz.retrieve import Retriever, TTLCache
 from trialviz.schemas import LLMInfo, QueryRequest, QueryResponse
 
@@ -83,6 +84,7 @@ class Pipeline:
         if not plan.supported:
             return build_response(plan, [], self._data_timestamp(), llm)
 
+        plan, entities = resolve_entities(plan, self._retriever)
         compiled = compile_plan(plan)
         if plan.analysis is Analysis.TOTAL:
             fetched = [
@@ -94,7 +96,7 @@ class Pipeline:
                 (q.series, self._retriever.retrieve(q.query, compiled.fields, compiled.buckets))
                 for q in compiled.queries
             ]
-        return build_response(plan, fetched, self._data_timestamp(), llm)
+        return build_response(plan, fetched, self._data_timestamp(), llm, entities)
 
     def _data_timestamp(self) -> str | None:
         if (hit := self._cache.get("version")) is not None:

@@ -195,6 +195,27 @@ CASES: list[dict] = [
     },
     # --- edge cases and regressions ---
     {
+        # D34: the planner may keep or fix the typo; the entity check must end on the real name
+        "id": "misspelled_drug_corrected",
+        "query": "How are pembrolizimab trials distributed across phases?",
+        "expect": {
+            "analysis": "breakdown",
+            "group_by": ["phase"],
+            "filters": {"drug": "pembroliz"},
+            "entity_used": "pembrolizumab",
+        },
+    },
+    {
+        # D34: a name the registry does not know stays as asked, and the answer says so
+        "id": "unknown_drug_reported",
+        "query": "How many trials test xqzvmab?",
+        "expect": {
+            "analysis": "total",
+            "filters": {"drug": "xqzvmab"},
+            "entity_note": "no close name",
+        },
+    },
+    {
         "id": "brand_name_kept_as_written",
         "query": "How many Keytruda trials are recruiting right now?",
         "expect": {
@@ -303,6 +324,8 @@ META: dict[str, tuple[str, str, str]] = {
     "regression_partial_request_still_supported": ("network", "hard", "regression"),
     "scatter_duration_vs_enrollment": ("scatter", "medium", "taxonomy"),
     "crosstab_phase_sponsor_class": ("crosstab", "medium", "taxonomy"),
+    "misspelled_drug_corrected": ("distribution", "medium", "edge_case"),
+    "unknown_drug_reported": ("total", "medium", "edge_case"),
 }
 
 for _case in CASES:

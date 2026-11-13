@@ -7,6 +7,7 @@ Checks response invariants, not exact numbers (the registry changes daily):
 - meta has the data timestamp, the API query, and records_used <= total_matching
 - exact counts (D32): a phase breakdown's bars sum to total_matching (every trial has one
   phase bucket, "Not reported" included); a single-valued breakdown never sums above it
+- entity check (D34): `entity_used` must be the name searched; `entity_note` must be in a note
 - regression (D27): no network node is a generic intervention name such as "Chemotherapy"
 
 Reports pass rate with a 95% Wilson interval and p50/p95 latency. Uses the hand-written cases
@@ -75,6 +76,12 @@ def check_response(resp: QueryResponse, expect: dict) -> list[str]:
     if m.records_used > m.total_matching:
         errors.append("records_used > total_matching")
     errors += _check_exact_counts(resp)
+    if want := expect.get("entity_used"):
+        used = [e.used.lower() for e in m.entities]
+        if want not in used:
+            errors.append(f"entity check: searched {used}, expected {want!r}")
+    if (want := expect.get("entity_note")) and not any(want in (e.note or "") for e in m.entities):
+        errors.append(f"entity check: no note containing {want!r}")
     return errors[:10]
 
 

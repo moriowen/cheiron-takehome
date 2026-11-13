@@ -126,6 +126,18 @@ class LLMInfo(BaseModel):
     cost_usd: float
 
 
+class EntityCheck(BaseModel):
+    """How one name from the question was checked against the registry (D34)."""
+
+    field: Literal["drug", "condition", "sponsor"]
+    value: str = Field(description="The name as the question (or a hint) gave it.")
+    matches: int = Field(description="Registry trials matching `value`.")
+    used: str = Field(description="The name searched: `value`, or the registry's suggestion.")
+    used_matches: int
+    corrected: bool = False
+    note: str | None = None
+
+
 class Meta(BaseModel):
     plan: QueryPlan | None = Field(default=None, description="How the question was interpreted.")
     filters: dict[str, Any] = Field(default_factory=dict, description="Filters applied.")
@@ -157,6 +169,9 @@ class Meta(BaseModel):
     units: dict[str, str] = Field(default_factory=dict, description="Field -> unit.")
     sort: str | None = None
     time_granularity: str | None = None
+    entities: list[EntityCheck] = Field(
+        default_factory=list, description="Each name in the plan, counted; spelling fixes."
+    )
     notes: list[str] = Field(default_factory=list, description="Assumptions and caveats.")
     llm: LLMInfo | None = None
 

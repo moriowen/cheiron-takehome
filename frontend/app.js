@@ -5,7 +5,7 @@
 const PRESETS = [
   "01-trend-with-hint", "02-compare-phases", "03-countries-recruiting", "04-sponsor-drug-network",
   "05-drug-cooccurrence-network", "06-enrollment-histogram", "07-out-of-scope",
-  "08-exact-phase-counts",
+  "08-exact-phase-counts", "09-misspelled-drug",
 ];
 const API = "../query";
 let live = false;
@@ -53,6 +53,8 @@ function renderAnswer(box, resp) {
   } else {
     const v = resp.visualization;
     box.insertAdjacentHTML("beforeend", `<h3>${escapeHtml(v.title)}</h3>`);
+    (m.entities || []).filter((e) => e.note).forEach((e) =>
+      box.insertAdjacentHTML("beforeend", `<p class="correction">${escapeHtml(e.note)}</p>`));
     const chart = document.createElement("div");
     chart.className = "chart";
     box.appendChild(chart);
@@ -61,10 +63,12 @@ function renderAnswer(box, resp) {
       ` · data as of ${(m.data_timestamp || "").slice(0, 10)}` + (m.llm ? ` · planned by ${m.llm.model}` : "");
     box.insertAdjacentHTML("beforeend", `<div class="hint">${summary}. Click any mark to see its sources.</div>`);
   }
-  if (m.notes.length && resp.status === "ok") {
+  const entityNotes = new Set((m.entities || []).map((e) => e.note));
+  const notes = m.notes.filter((n) => !entityNotes.has(n));  // shown above the chart
+  if (notes.length && resp.status === "ok") {
     const ul = document.createElement("ul");
     ul.className = "notes";
-    m.notes.forEach((n) => ul.insertAdjacentHTML("beforeend", `<li>${escapeHtml(n)}</li>`));
+    notes.forEach((n) => ul.insertAdjacentHTML("beforeend", `<li>${escapeHtml(n)}</li>`));
     box.appendChild(ul);
   }
   box.insertAdjacentHTML("beforeend",

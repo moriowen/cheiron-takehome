@@ -102,6 +102,18 @@ class Retriever:
         r = self._fetch(query, fields, n)
         return Retrieved(r.studies, r.total_count, truncated=r.truncated, method="registry_count")
 
+    def count(self, query: StudyQuery) -> int:
+        """Registry matches for a query (cached)."""
+        return self._count(query)
+
+    def suggest(self, text: str, dictionary: str) -> list[str]:
+        """The registry's autocomplete names for `text` (cached; see CTGovClient.suggest)."""
+        key = ("suggest", text.lower(), dictionary)
+        if (hit := self._cache.get(key)) is None:
+            hit = self._client.suggest(text, dictionary)
+            self._cache.put(key, hit)
+        return hit
+
     def _bucket_counts(self, query, fields, buckets, total: int) -> Retrieved:
         studies: dict[str, dict] = {}  # by NCT ID: a multi-valued trial can be in 2 samples
         counts: dict[str, int] = {}

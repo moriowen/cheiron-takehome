@@ -49,6 +49,10 @@ EXAMPLES = [
         "exact-phase-counts",  # 14,719 matches: exact registry counts per phase (D32)
         {"query": "How are lung cancer trials distributed across phases?"},
     ),
+    (
+        "misspelled-drug",  # "pembrolizimab" (3 trials) -> "pembrolizumab" (D34)
+        {"query": "How are pembrolizimab trials distributed across phases?"},
+    ),
 ]
 
 

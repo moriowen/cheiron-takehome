@@ -144,6 +144,15 @@ So "lung cancer by phase" costs 10 requests and is exact, where it was a 3,000-r
 Up to `max_records` (20,000) matches, the retriever fetches every record, so the counts are exact for every chart type. Above it, a chart that needs records (names, countries, years, networks, histograms, scatter plots) uses the first `sample_records` (3,000) in relevance order, as before (A05).
 We measured the rate limit before building the parallel fetch: about 10 requests in a burst, then about 1 request/s. At 2 requests/s, 35% of requests got HTTP 429, and a 429 takes about 9 s to clear. A page of 1,000 records already takes about 0.9 s, so a sequential fetch is close to the limit. Parallel shards would gain a few seconds from the burst and then hit 429s. The client now has a token bucket (burst 8, 0.8 request/s) in place of the fixed gap, so bursts of count calls do not trigger 429s. At 1.0 request/s, the e2e eval still got 10 retries in 27 cases, so the server's refill is likely a little under 1/s. Cost: a 20,000-record fetch takes about 20 to 25 s, cached for an hour. The e2e p95 latency went from 5.9 s to 18.6 s; that is the price of exact counts on broad record charts (top sponsors, cross-tabs).
 
+### D34. Entity check: count every name, correct likely typos from registry data
+2026-11-12. Accepted. Thresholds approved by the user.
+A new stage (`resolve.py`) runs after the hints and before the compiler. It counts every drug, condition, and sponsor name in the plan (filters and compared values) on its own. A name with fewer than 20 matches is compared with up to 3 suggestions from the registry's autocomplete (`/api/int/suggest`, dictionaries InterventionName, Condition, LeadSponsorName). The best suggestion replaces the name if it has at least 10 times as many trials (and at least 1). Why the second condition: the registry itself has typos, so a misspelling is rarely at 0. `pembrolizimab` matches 3 trials and `pembrolizumab` 3,006. Code makes the choice from counts; the LLM never proposes names, so it cannot invent one. Every check is in `meta.entities`, so the UI can show "pembrolizumab: 3,006 trials". A healthy name costs one count request, which the retriever's cache shares with the main query.
+The suggest endpoint is not in the documented API (the user accepted that). If it fails, the name is kept, and a 0-match name gets a note saying so.
+
+### D35. Auto-correct with a note, not a clarification round-trip
+2026-11-12. Accepted. The user chose this over a `needs_clarification` status.
+A corrected name is searched at once, the title uses it, and the first note says what changed: `"pembrolizimab" matches only 3 trials; searched for "pembrolizumab" (3,006 trials), the registry's closest drug name, instead.` The UI shows that note above the chart. The response schema keeps two statuses. Cost: a user who meant the rare spelling cannot opt out in this version. A correction that would make two compared values equal is skipped.
+
 ## Assumptions
 
 | ID | Assumption | If false |

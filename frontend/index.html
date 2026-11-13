@@ -54,6 +54,10 @@
           <p class="flow-note">Plan fields: <code>supported, analysis, group_by, measures, filters, comparison, top_n</code>.<br>Analysis: breakdown, trend, network, histogram, scatter, total.</p>
         </div>
         <div class="flow-row">
+          <article class="flow-box"><h4>Entity check</h4><p>Count each drug, condition, and sponsor name in the registry.<br>Fewer than 20 matches: ask the registry's autocomplete, and switch to a name with 10× more trials.</p></article>
+          <p class="flow-note">"pembrolizimab" (3 trials) becomes "pembrolizumab" (3,006), with a note. Code decides from registry counts; the LLM is not involved.</p>
+        </div>
+        <div class="flow-row">
           <article class="flow-box"><h4>Compiler</h4><p>Plan → ClinicalTrials.gov search parameters.<br>One search per compared value; select only needed API fields.</p></article>
           <p class="flow-note">Each compared value becomes its own series. A trial matching several values can appear in each series.</p>
         </div>
@@ -90,7 +94,7 @@
 
       <h3 class="flow-heading">How the system is evaluated</h3>
       <div class="eval-flow" aria-label="Golden dataset feeds planner and end-to-end evals, followed by the gates">
-        <article class="flow-box data-box eval-golden"><h4>Golden dataset</h4><p>27 hand-written cases + 45 synthetic cases.</p><p class="eval-detail">TASK.md appendix, taxonomy, edge cases, regressions. Synthetic tuples: intent × entity × filter × phrasing style. Code derives expected plans; gpt-5.4 writes only question text.</p></article>
+        <article class="flow-box data-box eval-golden"><h4>Golden dataset</h4><p>29 hand-written cases + 45 synthetic cases.</p><p class="eval-detail">TASK.md appendix, taxonomy, edge cases, regressions. Synthetic tuples: intent × entity × filter × phrasing style. Code derives expected plans; gpt-5.4 writes only question text.</p></article>
         <div class="eval-checks">
           <article class="flow-box"><h4>Planner evals</h4><p>Deterministic plan checks.<br>pass@k and pass^k, k=3; 95% Wilson intervals.</p><p class="eval-detail">Per intent, failure categories, cost per success, p50/p95 latency.</p></article>
           <article class="flow-box"><h4>End-to-end evals</h4><p>Full pipeline against the live registry.<br>Check chart type, citations, and meta invariants.</p></article>

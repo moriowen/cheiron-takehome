@@ -230,3 +230,16 @@ def test_rate_limiter_allows_a_burst_then_the_sustained_rate(monkeypatch):
     for _ in range(3):
         client.count(StudyQuery())
     assert len(slept) == 2
+
+
+def test_suggest_calls_the_site_autocomplete_and_unescapes():
+    seen = {}
+
+    def handler(req: httpx.Request):
+        seen["url"] = str(req.url)
+        return httpx.Response(200, json=["pembrolizumab", "Pembrolizumab Injection \\[Keytruda\\]"])
+
+    out = make_client(handler).suggest("pembrolizimab", "InterventionName")
+    assert seen["url"].startswith("https://ct.test/api/int/suggest?")
+    assert "dictionary=InterventionName" in seen["url"]
+    assert out == ["pembrolizumab", "Pembrolizumab Injection [Keytruda]"]
