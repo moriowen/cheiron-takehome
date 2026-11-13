@@ -9,7 +9,7 @@
     "visualization": {
       "type": "time_series",
       "title": "Pembrolizumab trials since 2015 started per year",
-      "subtitle": null,
+      "subtitle": "Exact counts, all 2,940 trials",
       "encoding": {
         "x": {
           "field": "year",
@@ -26,498 +26,563 @@
       },
       "data": [
         {
-          "year": "2015",
-          "trial_count": 121,
-          "estimated_count": 0,
           "citation_count": 121,
           "citations": [
             {
               "nct_id": "NCT02414269",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2015-05",
-              "title": "Malignant Pleural Disease Treated With Autologous T Cells Genetically Engineered to Target the Cancer-Cell Surface Antigen Mesothelin"
+              "title": "Malignant Pleural Disease Treated With Autologous T Cells Genetically Engineered to Target the Cancer-Cell Surface Antigen Mesothelin",
+              "match": null
             },
             {
               "nct_id": "NCT02506153",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2015-11-10",
-              "title": "Physician/Patient Choice of Either High-Dose Recombinant Interferon Alfa-2B or Ipilimumab, Versus Pembrolizumab in Treating Patients With Stage III-IV High Risk Melanoma That Has Been Removed by Surgery"
+              "title": "Physician/Patient Choice of Either High-Dose Recombinant Interferon Alfa-2B or Ipilimumab, Versus Pembrolizumab in Treating Patients With Stage III-IV High Risk Melanoma That Has Been Removed by Surgery",
+              "match": null
             },
             {
               "nct_id": "NCT02446457",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2015-07-31",
-              "title": "Rituximab and Pembrolizumab With or Without Lenalidomide in Treating Patients With Relapsed Follicular Lymphoma and Diffuse Large B-Cell Lymphoma"
+              "title": "Rituximab and Pembrolizumab With or Without Lenalidomide in Treating Patients With Relapsed Follicular Lymphoma and Diffuse Large B-Cell Lymphoma",
+              "match": null
             },
             {
               "nct_id": "NCT02555657",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2015-10-13",
-              "title": "Study of Single Agent Pembrolizumab (MK-3475) Versus Single Agent Chemotherapy for Metastatic Triple Negative Breast Cancer (MK-3475-119/KEYNOTE-119)"
+              "title": "Study of Single Agent Pembrolizumab (MK-3475) Versus Single Agent Chemotherapy for Metastatic Triple Negative Breast Cancer (MK-3475-119/KEYNOTE-119)",
+              "match": null
             },
             {
               "nct_id": "NCT02546986",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2015-10-09",
-              "title": "Safety and Efficacy Study of CC-486 With MK-3475 to Treat Locally Advanced or Metastatic Non-small Cell Lung Cancer"
+              "title": "Safety and Efficacy Study of CC-486 With MK-3475 to Treat Locally Advanced or Metastatic Non-small Cell Lung Cancer",
+              "match": null
             }
-          ]
+          ],
+          "trial_count": 121,
+          "year": "2015",
+          "estimated_count": 0
         },
         {
-          "year": "2016",
-          "trial_count": 194,
-          "estimated_count": 0,
           "citation_count": 194,
           "citations": [
             {
               "nct_id": "NCT02705820",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2016-04-25",
-              "title": "Switch Maintenance Pembrolizumab in Patients With NSCLC After First Line Platinum Doublet Chemotherapy"
+              "title": "Switch Maintenance Pembrolizumab in Patients With NSCLC After First Line Platinum Doublet Chemotherapy",
+              "match": null
             },
             {
               "nct_id": "NCT02906332",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2016-12-12",
-              "title": "Pembrolizumab + Lenalidomide Post Autologous Stem Cell Transplant (ASCT) in High-risk Multiple Myeloma (MM)"
+              "title": "Pembrolizumab + Lenalidomide Post Autologous Stem Cell Transplant (ASCT) in High-risk Multiple Myeloma (MM)",
+              "match": null
             },
             {
               "nct_id": "NCT02862457",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2016-08-23",
-              "title": "Study of Epacadostat (INCB024360) Alone and In Combination With Pembrolizumab (MK-3475) With Chemotherapy and Pembrolizumab Without Chemotherapy in Participants With Advanced Solid Tumors (MK-3475-434)"
+              "title": "Study of Epacadostat (INCB024360) Alone and In Combination With Pembrolizumab (MK-3475) With Chemotherapy and Pembrolizumab Without Chemotherapy in Participants With Advanced Solid Tumors (MK-3475-434)",
+              "match": null
             },
             {
               "nct_id": "NCT02880345",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2016-08",
-              "title": "RADVAX\u2122: A Trial of Combined Pembrolizumab and Hypofractionated Radiation in Patients With Advanced Urothelial Cancer Who Have Progressed on Anti-PD-1/PD-L1 Monotherapy"
+              "title": "RADVAX\u2122: A Trial of Combined Pembrolizumab and Hypofractionated Radiation in Patients With Advanced Urothelial Cancer Who Have Progressed on Anti-PD-1/PD-L1 Monotherapy",
+              "match": null
             },
             {
               "nct_id": "NCT02853331",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2016-09-16",
-              "title": "Study to Evaluate the Efficacy and Safety of Pembrolizumab (MK-3475) in Combination With Axitinib Versus Sunitinib Monotherapy in Participants With Renal Cell Carcinoma (MK-3475-426/KEYNOTE-426)"
+              "title": "Study to Evaluate the Efficacy and Safety of Pembrolizumab (MK-3475) in Combination With Axitinib Versus Sunitinib Monotherapy in Participants With Renal Cell Carcinoma (MK-3475-426/KEYNOTE-426)",
+              "match": null
             }
-          ]
+          ],
+          "trial_count": 194,
+          "year": "2016",
+          "estimated_count": 0
         },
         {
-          "year": "2017",
-          "trial_count": 260,
-          "estimated_count": 5,
           "citation_count": 260,
           "citations": [
             {
               "nct_id": "NCT02758587",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2017-07-04",
-              "title": "Study of FAK (Defactinib) and PD-1 (Pembrolizumab) Inhibition in Advanced Solid Malignancies (FAK-PD1)"
+              "title": "Study of FAK (Defactinib) and PD-1 (Pembrolizumab) Inhibition in Advanced Solid Malignancies (FAK-PD1)",
+              "match": null
             },
             {
               "nct_id": "NCT03192059",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2017-07-01",
-              "title": "Study of Pembrolizumab, Radiation and Immune Modulatory Cocktail in Cervical/Uterine Cancer"
+              "title": "Study of Pembrolizumab, Radiation and Immune Modulatory Cocktail in Cervical/Uterine Cancer",
+              "match": null
             },
             {
               "nct_id": "NCT03077828",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2017-04-21",
-              "title": "Pembrolizumab and Combination Chemotherapy in Treating Patients With Relapsed or Refractory Hodgkin Lymphoma"
+              "title": "Pembrolizumab and Combination Chemotherapy in Treating Patients With Relapsed or Refractory Hodgkin Lymphoma",
+              "match": null
             },
             {
               "nct_id": "NCT03237572",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2017-09-25",
-              "title": "Focused Ultrasound and Pembrolizumab in Metastatic Breast Cancer"
+              "title": "Focused Ultrasound and Pembrolizumab in Metastatic Breast Cancer",
+              "match": null
             },
             {
               "nct_id": "NCT03316573",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2017-12-07",
-              "title": "Pembrolizumab in Neoplasms or Lymphomas"
+              "title": "Pembrolizumab in Neoplasms or Lymphomas",
+              "match": null
             }
-          ]
+          ],
+          "trial_count": 260,
+          "year": "2017",
+          "estimated_count": 5
         },
         {
-          "year": "2018",
-          "trial_count": 254,
-          "estimated_count": 12,
           "citation_count": 254,
           "citations": [
             {
               "nct_id": "NCT03712605",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2018-11-15",
-              "title": "Testing Pembrolizumab Versus Observation in Patients With Merkel Cell Carcinoma After Surgery, STAMP Trial"
+              "title": "Testing Pembrolizumab Versus Observation in Patients With Merkel Cell Carcinoma After Surgery, STAMP Trial",
+              "match": null
             },
             {
               "nct_id": "NCT03393845",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2018-01-29",
-              "title": "Study of Pembrolizumab Plus Fulvestrant in Hormone Receptor Positive, HER-2 Negative Advanced/Metastatic Breast Cancer Patients"
+              "title": "Study of Pembrolizumab Plus Fulvestrant in Hormone Receptor Positive, HER-2 Negative Advanced/Metastatic Breast Cancer Patients",
+              "match": null
             },
             {
               "nct_id": "NCT03396445",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2018-02-18",
-              "title": "Study of Boserolimab (MK-5890) as Monotherapy and in Combination With Pembrolizumab (MK-3475) in Adults With Advanced Solid Tumors (MK-5890-001)"
+              "title": "Study of Boserolimab (MK-5890) as Monotherapy and in Combination With Pembrolizumab (MK-3475) in Adults With Advanced Solid Tumors (MK-5890-001)",
+              "match": null
             },
             {
               "nct_id": "NCT03407144",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2018-04-09",
-              "title": "Safety and Efficacy of Pembrolizumab (MK-3475) in Children and Young Adults With Classical Hodgkin Lymphoma (MK-3475-667/KEYNOTE-667)"
+              "title": "Safety and Efficacy of Pembrolizumab (MK-3475) in Children and Young Adults With Classical Hodgkin Lymphoma (MK-3475-667/KEYNOTE-667)",
+              "match": null
             },
             {
               "nct_id": "NCT03419481",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2018-04-30",
-              "title": "Pembrolizumab in Hepatocellular Carcinoma"
+              "title": "Pembrolizumab in Hepatocellular Carcinoma",
+              "match": null
             }
-          ]
+          ],
+          "trial_count": 254,
+          "year": "2018",
+          "estimated_count": 12
         },
         {
-          "year": "2019",
-          "trial_count": 248,
-          "estimated_count": 15,
           "citation_count": 248,
           "citations": [
             {
               "nct_id": "NCT03937141",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2019-08-26",
-              "title": "Efficacy and Safety Trial of ADU-S100 and Pembrolizumab in Head and Neck Cancer"
+              "title": "Efficacy and Safety Trial of ADU-S100 and Pembrolizumab in Head and Neck Cancer",
+              "match": null
             },
             {
               "nct_id": "NCT03818893",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2019-03",
-              "title": "Combination Therapy With GEN0101 and Pembrolizmub in Advanced Melanoma Patients PIb/PII"
+              "title": "Combination Therapy With GEN0101 and Pembrolizmub in Advanced Melanoma Patients PIb/PII",
+              "match": null
             },
             {
               "nct_id": "NCT03765229",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2019-03-22",
-              "title": "An Exploratory Study of Pembrolizumab Plus Entinostat in Non-Inflamed Stage III/IV Melanoma"
+              "title": "An Exploratory Study of Pembrolizumab Plus Entinostat in Non-Inflamed Stage III/IV Melanoma",
+              "match": null
             },
             {
               "nct_id": "NCT03957551",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2019-08-27",
-              "title": "Cabozantinib and Pembrolizumab for Advanced Metastatic Melanoma"
+              "title": "Cabozantinib and Pembrolizumab for Advanced Metastatic Melanoma",
+              "match": null
             },
             {
               "nct_id": "NCT03895970",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2019-04-20",
-              "title": "Lenvatinib Combined Pembrolizumab in Advanced Hepatobiliary Tumors"
+              "title": "Lenvatinib Combined Pembrolizumab in Advanced Hepatobiliary Tumors",
+              "match": null
             }
-          ]
+          ],
+          "trial_count": 248,
+          "year": "2019",
+          "estimated_count": 15
         },
         {
-          "year": "2020",
-          "trial_count": 264,
-          "estimated_count": 13,
           "citation_count": 264,
           "citations": [
             {
               "nct_id": "NCT04369937",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2020-07-06",
-              "title": "HPV-16 Vaccination and Pembrolizumab Plus Cisplatin for \"Intermediate Risk\" HPV-16-associated Head and Neck Squamous Cell Carcinoma"
+              "title": "HPV-16 Vaccination and Pembrolizumab Plus Cisplatin for \"Intermediate Risk\" HPV-16-associated Head and Neck Squamous Cell Carcinoma",
+              "match": null
             },
             {
               "nct_id": "NCT04396457",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2020-05-25",
-              "title": "Pembrolizumab Plus Pemetrexed for Elderly Patients With Non-Sq NSCLC With PD-L1 < 50%: CJLSG1901"
+              "title": "Pembrolizumab Plus Pemetrexed for Elderly Patients With Non-Sq NSCLC With PD-L1 < 50%: CJLSG1901",
+              "match": null
             },
             {
               "nct_id": "NCT03899857",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2020-10-21",
-              "title": "Pembrolizumab for Newly Diagnosed Glioblastoma"
+              "title": "Pembrolizumab for Newly Diagnosed Glioblastoma",
+              "match": null
             },
             {
               "nct_id": "NCT03260712",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2020-01-07",
-              "title": "Pembrolizumab in Biliary Tract Cancer"
+              "title": "Pembrolizumab in Biliary Tract Cancer",
+              "match": null
             },
             {
               "nct_id": "NCT04429542",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2020-06-01",
-              "title": "Study of Safety and Tolerability of BCA101 Monotherapy and in Combination Therapy in Patients With EGFR-driven Advanced Solid Tumors"
+              "title": "Study of Safety and Tolerability of BCA101 Monotherapy and in Combination Therapy in Patients With EGFR-driven Advanced Solid Tumors",
+              "match": null
             }
-          ]
+          ],
+          "trial_count": 264,
+          "year": "2020",
+          "estimated_count": 13
         },
         {
-          "year": "2021",
-          "trial_count": 266,
-          "estimated_count": 13,
           "citation_count": 266,
           "citations": [
             {
               "nct_id": "NCT04854434",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2021-06-29",
-              "title": "A Study to Evaluate the Safety and Efficacy of Selinexor With or Without Pembrolizumab Versus Standard of Care in Previously Treated Metastatic Colorectal Cancer With RAS Mutations"
+              "title": "A Study to Evaluate the Safety and Efficacy of Selinexor With or Without Pembrolizumab Versus Standard of Care in Previously Treated Metastatic Colorectal Cancer With RAS Mutations",
+              "match": null
             },
             {
               "nct_id": "NCT04740307",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2021-03-16",
-              "title": "Safety and Efficacy of Coformulated Pembrolizumab/Quavonlimab (MK-1308A) in Combination With Lenvatinib (E7080/MK-7902) in Advanced Hepatocellular Carcinoma (MK-1308A-004)"
+              "title": "Safety and Efficacy of Coformulated Pembrolizumab/Quavonlimab (MK-1308A) in Combination With Lenvatinib (E7080/MK-7902) in Advanced Hepatocellular Carcinoma (MK-1308A-004)",
+              "match": null
             },
             {
               "nct_id": "NCT04519151",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2021-04-12",
-              "title": "Pembrolizumab and Lenvatinib for Platinum- Sensitive Recurrent Ovarian Cancer"
+              "title": "Pembrolizumab and Lenvatinib for Platinum- Sensitive Recurrent Ovarian Cancer",
+              "match": null
             },
             {
               "nct_id": "NCT04171622",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2021-11-04",
-              "title": "Lenvatinib and Pembrolizumab for the Treatment of Stage IVB Locally Advanced and Unresectable or Stage IVC Metastatic Anaplastic Thyroid Cancer"
+              "title": "Lenvatinib and Pembrolizumab for the Treatment of Stage IVB Locally Advanced and Unresectable or Stage IVC Metastatic Anaplastic Thyroid Cancer",
+              "match": null
             },
             {
               "nct_id": "NCT05821751",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2021-12-02",
-              "title": "The Effect of Prebiotic Inulin on Patients Affected by R/M HNSCC Treated With Immune Checkpoint Inhibitors"
+              "title": "The Effect of Prebiotic Inulin on Patients Affected by R/M HNSCC Treated With Immune Checkpoint Inhibitors",
+              "match": null
             }
-          ]
+          ],
+          "trial_count": 266,
+          "year": "2021",
+          "estimated_count": 13
         },
         {
-          "year": "2022",
-          "trial_count": 299,
-          "estimated_count": 23,
           "citation_count": 299,
           "citations": [
             {
               "nct_id": "NCT05077709",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2022-04-11",
-              "title": "IO102-IO103 in Combination With Pembrolizumab as First-line Treatment for Patients With Metastatic NSCLC, SCCHN, or mUBC"
+              "title": "IO102-IO103 in Combination With Pembrolizumab as First-line Treatment for Patients With Metastatic NSCLC, SCCHN, or mUBC",
+              "match": null
             },
             {
               "nct_id": "NCT05141357",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2022-02-15",
-              "title": "A Study of HBI-8000 (Tucidinostat) With Pembrolizumab in Non-Small Cell Lung Cancer"
+              "title": "A Study of HBI-8000 (Tucidinostat) With Pembrolizumab in Non-Small Cell Lung Cancer",
+              "match": null
             },
             {
               "nct_id": "NCT04931979",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2022-10-20",
-              "title": "SRT in Combination With Pembrolizumab in Patients With Recurrent Prostate Cancer After Radical Prostatectomy"
+              "title": "SRT in Combination With Pembrolizumab in Patients With Recurrent Prostate Cancer After Radical Prostatectomy",
+              "match": null
             },
             {
               "nct_id": "NCT05268510",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2022-09-15",
-              "title": "Chemotherapy and Pembrolizumab, Followed by Pembrolizumab and Olaparib As Firstline Therapy in Her-2 Negative Gastric/GEJ Adenocarcinoma"
+              "title": "Chemotherapy and Pembrolizumab, Followed by Pembrolizumab and Olaparib As Firstline Therapy in Her-2 Negative Gastric/GEJ Adenocarcinoma",
+              "match": null
             },
             {
               "nct_id": "NCT05355051",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2022-10-05",
-              "title": "A Phase II Study of the Combination of Azacitidine and Pembrolizumab for Patients Relapsed/Refractory Hodgkin's Lymphoma"
+              "title": "A Phase II Study of the Combination of Azacitidine and Pembrolizumab for Patients Relapsed/Refractory Hodgkin's Lymphoma",
+              "match": null
             }
-          ]
+          ],
+          "trial_count": 299,
+          "year": "2022",
+          "estimated_count": 23
         },
         {
-          "year": "2023",
-          "trial_count": 259,
-          "estimated_count": 26,
           "citation_count": 259,
           "citations": [
             {
               "nct_id": "NCT06307093",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2023-03-01",
-              "title": "Study Comparing the Pharmacokinetics, Safety, and Efficacy of RPH-075 and Keytruda\u00ae in Patients With Malignant Neoplasms"
+              "title": "Study Comparing the Pharmacokinetics, Safety, and Efficacy of RPH-075 and Keytruda\u00ae in Patients With Malignant Neoplasms",
+              "match": null
             },
             {
               "nct_id": "NCT05996445",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2023-07-28",
-              "title": "A Study of XmAb\u00ae662 as Monotherapy or in Combination With Pembrolizumab in Advanced Solid Tumors"
+              "title": "A Study of XmAb\u00ae662 as Monotherapy or in Combination With Pembrolizumab in Advanced Solid Tumors",
+              "match": null
             },
             {
               "nct_id": "NCT06102395",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2023-05-01",
-              "title": "Evaluating the Efficacy and Safety of Pembrolizumab Plus Standard Chemotherapy in the Neoadjuvant Treatment of Local Advanced (LA) HNSCC"
+              "title": "Evaluating the Efficacy and Safety of Pembrolizumab Plus Standard Chemotherapy in the Neoadjuvant Treatment of Local Advanced (LA) HNSCC",
+              "match": null
             },
             {
               "nct_id": "NCT06049212",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2023-10-26",
-              "title": "Sacituzumab Tirumotecan (MK-2870) as Monotherapy and in Combination With Pembrolizumab in Participants With Advanced Solid Tumors (MK-2870-008)"
+              "title": "Sacituzumab Tirumotecan (MK-2870) as Monotherapy and in Combination With Pembrolizumab in Participants With Advanced Solid Tumors (MK-2870-008)",
+              "match": null
             },
             {
               "nct_id": "NCT06170710",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2023-12-01",
-              "title": "Postoperative CCRT Followed by Immunotherapy in High-Risk LA HNSCC"
+              "title": "Postoperative CCRT Followed by Immunotherapy in High-Risk LA HNSCC",
+              "match": null
             }
-          ]
+          ],
+          "trial_count": 259,
+          "year": "2023",
+          "estimated_count": 26
         },
         {
-          "year": "2024",
-          "trial_count": 260,
-          "estimated_count": 24,
           "citation_count": 260,
           "citations": [
             {
               "nct_id": "NCT06006923",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2024-06-26",
-              "title": "Regorafenib in Combination With Pembrolizumab or Pembrolizumab for MSI-H Colorectal Cancer"
+              "title": "Regorafenib in Combination With Pembrolizumab or Pembrolizumab for MSI-H Colorectal Cancer",
+              "match": null
             },
             {
               "nct_id": "NCT06134375",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2024-11-26",
-              "title": "A Study of Tetrathiomolybdate (TM) Plus Capecitabine"
+              "title": "A Study of Tetrathiomolybdate (TM) Plus Capecitabine",
+              "match": null
             },
             {
               "nct_id": "NCT06253494",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2024-05-14",
-              "title": "Pembrolizumab, Lenvatinib and IL-15 Superagonist N-803 in Combination With HER2 Targeting Autologous Dendritic Cell (AdHER2DC) Vaccine in Participants With Advanced or Metastatic Endometrial Cancer"
+              "title": "Pembrolizumab, Lenvatinib and IL-15 Superagonist N-803 in Combination With HER2 Targeting Autologous Dendritic Cell (AdHER2DC) Vaccine in Participants With Advanced or Metastatic Endometrial Cancer",
+              "match": null
             },
             {
               "nct_id": "NCT06549946",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2024-12-17",
-              "title": "Ixovex-1 Single Agent and Combination Therapy"
+              "title": "Ixovex-1 Single Agent and Combination Therapy",
+              "match": null
             },
             {
               "nct_id": "NCT06516887",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2024-12-27",
-              "title": "Study of Bemcentinib Plus Pacritinib In Patients With Advanced Lung Adenocarcinoma"
+              "title": "Study of Bemcentinib Plus Pacritinib In Patients With Advanced Lung Adenocarcinoma",
+              "match": null
             }
-          ]
+          ],
+          "trial_count": 260,
+          "year": "2024",
+          "estimated_count": 24
         },
         {
-          "year": "2025",
-          "trial_count": 259,
-          "estimated_count": 46,
           "citation_count": 259,
           "citations": [
             {
               "nct_id": "NCT07067450",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2025-07-20",
-              "title": "Adjuvant Immunotherapy for Esophageal Squamous Cell Carcinoma"
+              "title": "Adjuvant Immunotherapy for Esophageal Squamous Cell Carcinoma",
+              "match": null
             },
             {
               "nct_id": "NCT06984328",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2025-07-25",
-              "title": "Study of the Effectiveness and Safety of Acasunlimab Alone and With Pembrolizumab to Treat Advanced Melanoma of the Skin That Has Returned After Treatment With an Approved Checkpoint Inhibitor Therapy (ABBIL1TY MELANOMA-07)"
+              "title": "Study of the Effectiveness and Safety of Acasunlimab Alone and With Pembrolizumab to Treat Advanced Melanoma of the Skin That Has Returned After Treatment With an Approved Checkpoint Inhibitor Therapy (ABBIL1TY MELANOMA-07)",
+              "match": null
             },
             {
               "nct_id": "NCT07252739",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2025-12-19",
-              "title": "KEYMAKER-U01 Substudy 01J: A Study of Pembrolizumab Plus MK-1084 in Participants With Non-Small Cell Lung Cancer (NSCLC) With Kirsten Rat Sarcoma Viral Oncogene Homolog (KRAS) G12C Mutations (MK-3475-01J/KEYMAKER-U01J)"
+              "title": "KEYMAKER-U01 Substudy 01J: A Study of Pembrolizumab Plus MK-1084 in Participants With Non-Small Cell Lung Cancer (NSCLC) With Kirsten Rat Sarcoma Viral Oncogene Homolog (KRAS) G12C Mutations (MK-3475-01J/KEYMAKER-U01J)",
+              "match": null
             },
             {
               "nct_id": "NCT06793761",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2025-02-01",
-              "title": "A Phase II Study to Evaluate the Efficacy and Safety of Salvage Preoperative PD-1 Inhibitor Combined with Chemotherapy Neoadjuvant Therapy in Recurrent and Metastatic LPSCC/HPSCC"
+              "title": "A Phase II Study to Evaluate the Efficacy and Safety of Salvage Preoperative PD-1 Inhibitor Combined with Chemotherapy Neoadjuvant Therapy in Recurrent and Metastatic LPSCC/HPSCC",
+              "match": null
             },
             {
               "nct_id": "NCT06634875",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2025-01-30",
-              "title": "Isunakinra Alone and in Combination With Pembrolizumab in Patients With Colorectal Cancer (MSS)"
+              "title": "Isunakinra Alone and in Combination With Pembrolizumab in Patients With Colorectal Cancer (MSS)",
+              "match": null
             }
-          ]
+          ],
+          "trial_count": 259,
+          "year": "2025",
+          "estimated_count": 46
         },
         {
-          "year": "2026",
-          "trial_count": 244,
-          "estimated_count": 112,
           "citation_count": 244,
           "citations": [
             {
               "nct_id": "NCT07770100",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2026-09-09",
-              "title": "Concurrent Immunotherapy and Systemic Therapy With Stereotactic Body Radiation Therapy (SBRT) for Stage IV Cancers (COINSSS IV)"
+              "title": "Concurrent Immunotherapy and Systemic Therapy With Stereotactic Body Radiation Therapy (SBRT) for Stage IV Cancers (COINSSS IV)",
+              "match": null
             },
             {
               "nct_id": "NCT07915037",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2026-12",
-              "title": "Evaluation of the Effect of Time of Administration on the Activity on First Line of Pembrolizumab in Association With Carboplatin-pemetrexed in Metastatic Non-squamous Lung Cancer. A Randomised Multicenter Phase III Trial"
+              "title": "Evaluation of the Effect of Time of Administration on the Activity on First Line of Pembrolizumab in Association With Carboplatin-pemetrexed in Metastatic Non-squamous Lung Cancer. A Randomised Multicenter Phase III Trial",
+              "match": null
             },
             {
               "nct_id": "NCT07870577",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2026-06-01",
-              "title": "Peripheral Neuropathy in Patients Receiving Enfortumab Vedotin and Pembrolizumab as Perioperative Systemic Therapy for Urothelial Carcinoma"
+              "title": "Peripheral Neuropathy in Patients Receiving Enfortumab Vedotin and Pembrolizumab as Perioperative Systemic Therapy for Urothelial Carcinoma",
+              "match": null
             },
             {
               "nct_id": "NCT07610941",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2026-04-09",
-              "title": "Phase 1 Open Label Trial of MST-0312 Alone and in Combination in Subjects With Solid Malignancies"
+              "title": "Phase 1 Open Label Trial of MST-0312 Alone and in Combination in Subjects With Solid Malignancies",
+              "match": null
             },
             {
               "nct_id": "NCT06882174",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2026-08-31",
-              "title": "This Study is Comparing Morning vs Random Scheduling of Standard of Care Pembrolizumab Checkpoint Inhibitor Immunotherapy Infusions in Patients With Metastatic Non-small Cell Lung Cancer"
+              "title": "This Study is Comparing Morning vs Random Scheduling of Standard of Care Pembrolizumab Checkpoint Inhibitor Immunotherapy Infusions in Patients With Metastatic Non-small Cell Lung Cancer",
+              "match": null
             }
-          ]
+          ],
+          "trial_count": 244,
+          "year": "2026",
+          "estimated_count": 112
         },
         {
-          "year": "2027",
-          "trial_count": 12,
-          "estimated_count": 12,
           "citation_count": 12,
           "citations": [
             {
               "nct_id": "NCT07689240",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2027-02-10",
-              "title": "Testing the Investigational Medication Pembrolizumab After Kidney Removal for Patients With Non-Clear Cell Renal Cell Carcinoma"
+              "title": "Testing the Investigational Medication Pembrolizumab After Kidney Removal for Patients With Non-Clear Cell Renal Cell Carcinoma",
+              "match": null
             },
             {
               "nct_id": "NCT04266730",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2027-05-20",
-              "title": "Trial of a Personalized and Adaptive Neoantigen Dose-Adjusted Vaccine Concurrently With Pembrolizumab"
+              "title": "Trial of a Personalized and Adaptive Neoantigen Dose-Adjusted Vaccine Concurrently With Pembrolizumab",
+              "match": null
             },
             {
               "nct_id": "NCT07913568",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2027-02-01",
-              "title": "A Phase II Investigator-initiated Trial of Sacituzumab Tirumotecan Plus Pembrolizumab in Patients With Recurrent ovarIan Clear Cell Carcinoma Previously Treated With Platinum-based Chemotherapy\uff08NCCH2407/MK014\uff09"
+              "title": "A Phase II Investigator-initiated Trial of Sacituzumab Tirumotecan Plus Pembrolizumab in Patients With Recurrent ovarIan Clear Cell Carcinoma Previously Treated With Platinum-based Chemotherapy\uff08NCCH2407/MK014\uff09",
+              "match": null
             },
             {
               "nct_id": "NCT07843550",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2027-03-01",
-              "title": "A Phase 1/2 Trial Of Larotrectinib And Pembrolizumab In Patients With Solid Tumors Previously Treated With Immune Checkpoint Inhibitor Monotherapy"
+              "title": "A Phase 1/2 Trial Of Larotrectinib And Pembrolizumab In Patients With Solid Tumors Previously Treated With Immune Checkpoint Inhibitor Monotherapy",
+              "match": null
             },
             {
               "nct_id": "NCT07862751",
               "field": "protocolSection.statusModule.startDateStruct.date",
               "excerpt": "2027-01-01",
-              "title": "US/PA/E Imaging for Early Identification of Tumor Response in Patients With Stage II-III Triple Negative Breast Cancer Receiving Neoadjuvant Immunotherapy and Chemotherapy"
+              "title": "US/PA/E Imaging for Early Identification of Tumor Response in Patients With Stage II-III Triple Negative Breast Cancer Receiving Neoadjuvant Immunotherapy and Chemotherapy",
+              "match": null
             }
-          ]
+          ],
+          "trial_count": 12,
+          "year": "2027",
+          "estimated_count": 12
         }
       ]
     },
@@ -541,7 +606,9 @@
           "end_year": null
         },
         "comparison": null,
-        "top_n": null
+        "top_n": null,
+        "ignored_constraints": [],
+        "interpretation_notes": []
       },
       "filters": {
         "drug": "Pembrolizumab",
@@ -553,26 +620,53 @@
       },
       "source": "clinicaltrials.gov",
       "data_timestamp": "2026-11-12T10:00:05",
-      "records_used": 2940,
       "total_matching": 2940,
-      "truncated": false,
+      "trials_counted": 2940,
+      "count_completeness": "exact",
       "count_method": "all_records",
+      "records_fetched": 2940,
+      "citation_limit": 5,
+      "coverage": [
+        {
+          "series": null,
+          "total_matching": 2940,
+          "trials_counted": 2940,
+          "count_completeness": "exact",
+          "count_method": "all_records",
+          "records_fetched": 2940
+        }
+      ],
       "bucket_clauses": {},
       "multi_valued": false,
       "units": {
         "trial_count": "trials"
       },
+      "derivations": {},
       "sort": "ascending by year",
       "time_granularity": "year",
+      "ignored_constraints": [],
+      "entities": [
+        {
+          "field": "drug",
+          "value": "Pembrolizumab",
+          "matches": 3006,
+          "used": "Pembrolizumab",
+          "used_matches": 3006,
+          "corrected": false,
+          "note": null
+        }
+      ],
       "notes": [
         "estimated_count is the part of trial_count whose start date the registry marks ESTIMATED (planned, not yet confirmed)."
       ],
       "llm": {
         "model": "gpt-5.4-mini",
-        "prompt_version": "2026-11-12.4",
+        "prompt_version": "2026-11-12.7",
         "attempts": 1,
-        "cost_usd": 0.00145
+        "cost_usd": 0.001775
       }
     }
-  }
+  },
+  "generated_at": "2026-11-13T01:19:47.230077+00:00",
+  "code_revision": "68b058fe71af380c32323d6faeb0d72615b35b16"
 }

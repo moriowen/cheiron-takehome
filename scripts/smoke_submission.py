@@ -27,7 +27,7 @@ def verify(base):
             with urllib.request.urlopen(base + "/health", timeout=2) as r:
                 assert json.load(r) == {"status": "ok"}
             break
-        except (urllib.error.URLError, TimeoutError):
+        except (urllib.error.URLError, OSError):
             time.sleep(0.2)
     else:
         raise RuntimeError(f"Server never became healthy: {base}")

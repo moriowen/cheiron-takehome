@@ -13,7 +13,7 @@ How we measure the system, and how the setup maps to common eval practice. The s
 
 Results are committed in `evals/results/`. File names carry the model, the prompt version, the dataset version, and k, so every score can be traced to the exact code and data that produced it.
 
-## Current results
+## Recorded runs
 
 | Run | Model | Prompt | Dataset | pass^k (k=3) | 95% CI | pass@k | Cost per success | p50 / p95 latency | Failures |
 |---|---|---|---|---|---|---|---|---|---|
@@ -60,3 +60,5 @@ The end-to-end runner now reports three stages separately: interpretation (the r
 For independent known answers, `tests/test_cohort_correctness.py` defines six hand-labeled records, including a diabetes distractor, overlapping drugs, multiple countries, and a missing year. Its mock registry applies filters directly to those labels without calling production extraction or compilation code. Assertions pin exact cohorts, phase counts, country ranking, zero-filled trends, comparison overlap, and network weights. Mutation checks prove the evaluator rejects a wrong cohort and wrong requested limit even when the chart shape is valid.
 
 `uv run python -m evals.planner_eval --heldout --runs 3` and `uv run python -m evals.e2e_eval --heldout` score only the 15 adversarial cases written before prompt .5. They never load into development evals. Held-out failures are reported without changing the prompt or relabeling cases. Results include the git revision, marked `+dirty` if the working tree changed. A development rerun of prompt .7 scored 78/79 pass^3 (236/237 attempts), with one missing ranking limit. The held-out planner scored 14/15 pass^3: forecasting was incorrectly accepted in all three runs. This is a known scope limitation, not evidence that forecasting works.
+
+The strengthened live end-to-end checks passed 34/34 development cases (95% CI 89.8 to 100%; latency p50 4.8 s, p95 22.8 s; planner cost $0.0605). Held-out end-to-end checks passed 14/15 (95% CI 70.2 to 98.8%; p50 3.2 s, p95 14.0 s; planner cost $0.0269), with the same forecasting scope failure.

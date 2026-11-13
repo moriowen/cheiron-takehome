@@ -8,7 +8,7 @@
     "meta": {
       "plan": {
         "supported": false,
-        "unsupported_reason": "ClinicalTrials.gov registry records do not provide efficacy conclusions like whether one drug is more effective than another.",
+        "unsupported_reason": "ClinicalTrials.gov records do not provide comparative effectiveness answers like whether one drug is more effective than another.",
         "analysis": null,
         "group_by": [],
         "measures": [],
@@ -23,30 +23,40 @@
           "end_year": null
         },
         "comparison": null,
-        "top_n": null
+        "top_n": null,
+        "ignored_constraints": [],
+        "interpretation_notes": []
       },
       "filters": {},
       "api_query": {},
       "source": "clinicaltrials.gov",
-      "data_timestamp": "2026-11-12T10:00:05",
-      "records_used": 0,
+      "data_timestamp": null,
       "total_matching": 0,
-      "truncated": false,
+      "trials_counted": 0,
+      "count_completeness": null,
       "count_method": null,
+      "records_fetched": 0,
+      "citation_limit": 5,
+      "coverage": [],
       "bucket_clauses": {},
       "multi_valued": false,
       "units": {},
+      "derivations": {},
       "sort": null,
       "time_granularity": null,
+      "ignored_constraints": [],
+      "entities": [],
       "notes": [
-        "ClinicalTrials.gov registry records do not provide efficacy conclusions like whether one drug is more effective than another."
+        "ClinicalTrials.gov records do not provide comparative effectiveness answers like whether one drug is more effective than another."
       ],
       "llm": {
         "model": "gpt-5.4-mini",
-        "prompt_version": "2026-11-12.4",
+        "prompt_version": "2026-11-12.7",
         "attempts": 1,
-        "cost_usd": 0.001484
+        "cost_usd": 0.001808
       }
     }
-  }
+  },
+  "generated_at": "2026-11-13T01:20:34.021116+00:00",
+  "code_revision": "68b058fe71af380c32323d6faeb0d72615b35b16"
 }

@@ -17,6 +17,10 @@ Prompt `2026-11-12.7`, development dataset `2026-11-12.6`, model `gpt-5.4-mini`:
 
 The earlier development run scored 100%. The repeat shows why a perfect saved score is not a guarantee. The held-out scope failure remains a limitation. Full results, costs, confidence intervals, and revisions are saved in `evals/results/`.
 
+## Live end-to-end evaluation
+
+The strengthened checks passed 34/34 development cases, with p50 latency 4.8 s and p95 22.8 s. The held-out run passed 14/15, with p50 3.2 s and p95 14.0 s. Its only failure was the same forecasting case. Each result identifies whether a failure came from interpretation, execution, or the final answer. Registry rate-limit retries occurred and are included in the measured latency.
+
 ## One failure, diagnosis, fix, and regression
 
 An empty configured cache was silently discarded. `Retriever` selected `cache or TTLCache(3600)`, but `TTLCache.__len__` makes an empty cache false. The replacement used default settings, so the caller's size bound and TTL were lost. The fix selects the caller's cache with an explicit `cache is not None` check. `tests/test_concurrency.py::test_empty_configured_cache_is_used_and_keeps_its_bound` fills a one-entry cache, verifies its bound, and verifies a repeated query makes no extra upstream call.

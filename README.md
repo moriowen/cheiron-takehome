@@ -233,6 +233,8 @@ Earlier results (the latest validation is described below and in `docs/03-evals.
 | Planner, 72 cases | gpt-5.4-nano | 95.8% | 88.5 to 98.6% | $0.00042 | 1.3 / 2.0 s |
 | End-to-end, 29 cases, live | gpt-5.4-mini | 29/29 | 88 to 100% | | 5.9 / 22.3 s |
 
+Fresh validation on prompt `2026-11-12.7`: 34/34 development end-to-end cases passed. The planner passed 78/79 development cases on all three runs (236/237 attempts), and its per-intent gate passed. The separate adversarial set passed 14/15 cases for both planner and end-to-end checks. Forecasting was incorrectly accepted; this remains a known limitation. See [docs/submission-validation.md](docs/submission-validation.md) for the evidence and clean-ZIP startup checks.
+
 GitHub CI runs lint and the offline tests on every push. The planner eval gate runs locally with the key in `.env`: `uv run python -m evals.planner_eval --runs 3 --gate` fails if any intent drops below its floor in `evals/thresholds.json`. Run it before committing a change to the prompt, plan schema, or model settings. [docs/03-evals.md](docs/03-evals.md) explains the method, the failure categories, and how each failure we found became a regression case.
 
 ## Design decisions and trade-offs

@@ -66,19 +66,23 @@ Each milestone ends with tests green, lint clean, a commit, and this file and `d
 |---|---|---|---|
 | M0 | LLM planner layer, ClinicalTrials.gov client | Offline and live tests pass | Done |
 | M1 | Final `QueryPlan`, `QueryRequest`, `QueryResponse` models | Every taxonomy row can be written as a valid plan; schema tests pass | Done |
-| M2 | Planner eval set and runner | Each appendix question has an expected plan; `evals/run.py` prints pass rate and cost per model | Done (mini 19/19) |
+| M2 | Planner eval set and runner | Each appendix question has an expected plan; `evals/planner_eval.py` prints pass rate and cost per model | Done (development 78/79 pass^3; held-out 14/15) |
 | M3 | Recorded fixtures and field registry | Every Dimension and measure extracts values with citations from real fixtures | Done |
 | M4 | Aggregator | Breakdown, cross-tab, trend, network (bipartite and co-occurrence), histogram, scatter, total all tested on fixtures | Done |
 | M5 | Chart selector and spec builders | Every taxonomy row produces a valid `QueryResponse` from a fixed plan and fixtures | Done |
 | M6 | Pipeline, FastAPI `POST /query`, cache, Docker | End-to-end request works locally and in Docker | Done locally (9 query classes live); Docker build not yet run |
-| M7 | End-to-end evals, example runs, README | 3 to 5 example JSON outputs committed from real runs; README covers every TASK.md item | Done (e2e 19/19, 7 examples) |
+| M7 | End-to-end evals, example runs, README | 3 to 5 example JSON outputs committed from real runs; README covers every TASK.md item | Done (development e2e 34/34; held-out 14/15; 9 real examples) |
 | M8 | Chat frontend with D3, static deploy with presets | Every chart type renders; deployed URL works | Done (rendering checked in headless Chrome) |
 
 ## Evals
 
-Two levels, both run by one script:
+Three complementary checks:
 
 1. Planner evals (cheap, run often): question -> expected plan fields. Checks analysis kind, dimensions, filters, comparison, and supported. Free-text values are compared case-insensitively. Reports pass rate, failures, tokens, and cost per model.
-2. End-to-end evals (slower, hit the live API): question -> response invariants. Checks chart type, non-empty data, every datum has citations, citation NCT IDs exist in the fetched records, counts are non-negative, and `meta` is complete.
+2. End-to-end evals (`evals/e2e_eval.py`, slower, hit the live API): interpretation, executed cohort queries, and response invariants. Checks chart type, non-empty data, every datum has citations, citation NCT IDs exist in the fetched records, counts are non-negative, and `meta` is complete.
 
 Each failure is tagged as interpretation (the model misread the question) or design (the plan schema or pipeline cannot express it) (A06).
+
+3. Independent execution fixtures (`tests/test_cohort_correctness.py`): six hand-labeled studies with known filter, comparison, ranking, trend, and network answers.
+
+The 15 held-out adversarial cases are separate from the 79 development cases and require `--heldout`. The prompt is not tuned against their results. Trustworthiness work also adds conservative normalization, explicit omitted constraints, separate completeness and citation metadata, bounded shared resources, typed chart rows, and a reproducible submission ZIP.
