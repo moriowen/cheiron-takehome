@@ -200,16 +200,22 @@ function setMode() {
     : "Saved demo: use an example button, or start the backend to ask your own question";
 }
 
+// Collapse the guide after a pick so the answer is visible.
+function closeGuide() {
+  $("guide").open = false;
+}
+
 async function initExamples() {
   for (const btn of document.querySelectorAll("[data-preset]")) {
-    btn.onclick = () => playPreset(btn.dataset.preset).catch((e) => {
+    btn.onclick = () => { closeGuide(); playPreset(btn.dataset.preset).catch((e) => {
       addMsg("bot").innerHTML = `<p class="error">Could not load the saved example (${escapeHtml(e.message)}).</p>`;
-    });
+    }); };
     loadPreset(btn.dataset.preset).then((ex) => { btn.title = ex.request.query; })
       .catch(() => { btn.disabled = true; btn.title = "Saved example file not found"; });
   }
   for (const btn of document.querySelectorAll("[data-example]")) {
     btn.onclick = () => {
+      closeGuide();
       $("q").value = btn.dataset.example;
       $("q").focus();
       if (!live) {
