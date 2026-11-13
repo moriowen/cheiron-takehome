@@ -191,6 +191,10 @@ Live end-to-end checks inspect the raw plan, observed cohort fetches, and final 
 2026-11-12. Implemented under the submission priorities.
 The ZIP contains tracked project files plus a code revision manifest. Environment secrets, dependencies, caches, and git history are excluded. Validation reports distinguish development from held-out results and saved demo playback from live execution. A fresh planner run exposed a ranking failure that the earlier perfect run missed, so both the result and the limitation are disclosed.
 
+### D43. Static demo on GitHub Pages; no hosted backend
+2026-11-12. Agreed with the user.
+The public demo is the frontend on GitHub Pages with saved runs only. No backend is deployed, so the OpenAI key never leaves the local machine and no server costs or abuse risk exist. Every question in the "What can I ask?" guide has a saved run (examples 01 to 15), so each button works without a backend. A reviewer who wants live answers runs the project locally with the README steps. Cost: the public page cannot answer typed questions, and saved runs are snapshots of the registry.
+
 ## Assumptions
 
 | ID | Assumption | If false |
