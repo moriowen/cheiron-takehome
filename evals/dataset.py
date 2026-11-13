@@ -11,7 +11,7 @@ from pathlib import Path
 from evals.heldout_cases import HELDOUT
 from evals.planner_cases import CASES
 
-DATASET_VERSION = "2026-11-12.5"
+DATASET_VERSION = "2026-11-12.6"
 DATA_DIR = Path(__file__).parent / "data"
 SYNTHETIC_FILE = DATA_DIR / "synthetic.json"
 

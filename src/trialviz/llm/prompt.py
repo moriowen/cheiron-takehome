@@ -5,7 +5,7 @@ import json
 from trialviz.plan import ENTITY_DIMENSIONS, Dimension, Measure
 from trialviz.schemas import QueryRequest
 
-PROMPT_VERSION = "2026-11-12.6"
+PROMPT_VERSION = "2026-11-12.7"
 
 _DIMENSIONS = ", ".join(d.value for d in Dimension)
 _ENTITIES = ", ".join(sorted(d.value for d in ENTITY_DIMENSIONS))
@@ -45,7 +45,8 @@ Comparison: set when the user compares 2-4 named drugs, conditions, or sponsors
   down by: "compare phases for A vs B" -> group_by [phase], comparison drug [A, B].
 - Comparison works with breakdown (exactly one group_by), trend, and total.
 
-top_n: set when the user asks for the "top", "most common", or "most" items (default 10 then).
+top_n: set when the user asks for a ranking: "top", "most common", "most", "leading",
+"biggest", "main" items (default 10 then).
 
 Conditions you cannot apply: the filters above are the only ones that exist. If the question
 narrows the trials by anything else (study design such as randomized, double-blind, open-label,

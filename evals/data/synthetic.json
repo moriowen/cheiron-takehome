@@ -188,7 +188,8 @@
             "PHASE3"
           ],
           "drug": "metformin"
-        }
+        },
+        "constraints_ambiguous": true
       },
       "intent": "total",
       "difficulty": "hard",
@@ -198,7 +199,8 @@
         "entity": "drug",
         "filter": "phase",
         "style": "lowercase_typo"
-      }
+      },
+      "review_note": "\"metformin only\" may mean monotherapy, which no filter expresses; disclosing it is acceptable (found by prompt .6 eval)."
     },
     {
       "id": "syn_008_out_of_scope",

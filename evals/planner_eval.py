@@ -104,7 +104,8 @@ def check_plan(plan: QueryPlan, expect: dict) -> list[Failure]:
 
     if "top_n_set" in expect and (plan.top_n is not None) != expect["top_n_set"]:
         out.append(Failure(F.WRONG_TOP_N, f"expected set={expect['top_n_set']}, got {plan.top_n}"))
-    out += _check_constraints(plan.ignored_constraints, expect.get("ignored_contains", []))
+    if not expect.get("constraints_ambiguous"):  # wording that may or may not be a condition
+        out += _check_constraints(plan.ignored_constraints, expect.get("ignored_contains", []))
     return out
 
 
